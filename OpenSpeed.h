@@ -51,7 +51,7 @@ namespace OpenSpeed {
   SpeedGameInformation GetInformationOfCurrentSpeedGame() {
     switch (GetCurrentSpeedGame()) {
       case SpeedGame::U2:
-        return {0x0, 0x870970, 0x0};
+        return {0x78E8F4, 0x870970, 0x0};
       case SpeedGame::MW05:
         return {0x8B0050, 0x0, 0x982BDC};
       case SpeedGame::Carbon:
