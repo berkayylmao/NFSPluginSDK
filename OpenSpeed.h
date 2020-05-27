@@ -39,7 +39,7 @@ namespace OpenSpeed {
   };
 
   SpeedGame GetCurrentSpeedGame() {
-    if (std::strstr(reinterpret_cast<const char*>(0x789694), "Need for Speed Undergound 2"))
+    if (std::strstr(reinterpret_cast<const char*>(0x789694), "Need for Speed Underground 2"))
       return SpeedGame::U2;
     if (std::strstr(reinterpret_cast<const char*>(0x8AF684), "Need For Speed Most Wanted"))
       return SpeedGame::MW05;
