@@ -1,0 +1,26 @@
+BasedOnStyle: Google
+
+# why do these even exist?
+IncludeBlocks: Preserve
+SortIncludes: false
+
+# "int& foo", "int* foo"
+DerivePointerAlignment: false
+PointerAlignment: Left
+PointerBindsToType: true
+
+# namespace foo {} // namespace foo
+FixNamespaceComments: true
+
+# indent all namespace content
+NamespaceIndentation: All
+
+# max 100 chars in a line
+ColumnLimit: 100
+
+# personal preference
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AlignConsecutiveMacros: true
+AlignEscapedNewlines: Left
+AlignOperands: true
