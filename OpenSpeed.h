@@ -38,7 +38,7 @@ namespace OpenSpeed {
           ppD3DDevice(reinterpret_cast<void**>(ppD3DDevice)) {}
   };
 
-  SpeedGame GetCurrentSpeedGame() {
+  static SpeedGame GetCurrentSpeedGame() {
     if (std::strstr(reinterpret_cast<const char*>(0x789694), "Need for Speed Underground 2"))
       return SpeedGame::U2;
     if (std::strstr(reinterpret_cast<const char*>(0x8AF684), "Need For Speed Most Wanted"))
@@ -48,7 +48,7 @@ namespace OpenSpeed {
 
     return SpeedGame::NotSupported;
   }
-  SpeedGameInformation GetInformationOfCurrentSpeedGame() {
+  static SpeedGameInformation GetInformationOfCurrentSpeedGame() {
     switch (GetCurrentSpeedGame()) {
       case SpeedGame::U2:
         return {0x78E8F4, 0x870970, 0x0};
