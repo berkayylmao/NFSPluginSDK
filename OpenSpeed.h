@@ -29,26 +29,22 @@ namespace OpenSpeed {
     void**      ppD3DDevice;
 
     SpeedGameInformation() : szWindowName(nullptr), pDirect3D9(nullptr), ppD3DDevice(nullptr) {}
-    SpeedGameInformation(const char* szWindowName, void* pDirect3D9, void** ppD3DDevice)
-        : szWindowName(szWindowName), pDirect3D9(pDirect3D9), ppD3DDevice(ppD3DDevice) {}
-    SpeedGameInformation(std::uintptr_t szWindowName, std::uintptr_t pDirect3D9,
-                         std::uintptr_t ppD3DDevice)
-        : szWindowName(reinterpret_cast<const char*>(szWindowName)),
-          pDirect3D9(reinterpret_cast<void*>(pDirect3D9)),
-          ppD3DDevice(reinterpret_cast<void**>(ppD3DDevice)) {}
+    SpeedGameInformation(const char* szWindowName, void* pDirect3D9, void** ppD3DDevice) :
+        szWindowName(szWindowName), pDirect3D9(pDirect3D9), ppD3DDevice(ppD3DDevice) {}
+    SpeedGameInformation(std::uintptr_t szWindowName, std::uintptr_t pDirect3D9, std::uintptr_t ppD3DDevice) :
+        szWindowName(reinterpret_cast<const char*>(szWindowName)),
+        pDirect3D9(reinterpret_cast<void*>(pDirect3D9)),
+        ppD3DDevice(reinterpret_cast<void**>(ppD3DDevice)) {}
   };
 
-  static SpeedGame GetCurrentSpeedGame() {
-    if (std::strstr(reinterpret_cast<const char*>(0x789694), "Need for Speed Underground 2"))
-      return SpeedGame::U2;
-    if (std::strstr(reinterpret_cast<const char*>(0x8AF684), "Need For Speed Most Wanted"))
-      return SpeedGame::MW05;
-    if (std::strstr(reinterpret_cast<const char*>(0x9E9E94), "Need For Speed Carbon"))
-      return SpeedGame::Carbon;
+  static inline SpeedGame GetCurrentSpeedGame() {
+    if (std::strstr(reinterpret_cast<const char*>(0x789694), "Need for Speed Underground 2")) return SpeedGame::U2;
+    if (std::strstr(reinterpret_cast<const char*>(0x8AF684), "Need For Speed Most Wanted")) return SpeedGame::MW05;
+    if (std::strstr(reinterpret_cast<const char*>(0x9E9E94), "Need For Speed Carbon")) return SpeedGame::Carbon;
 
     return SpeedGame::NotSupported;
   }
-  static SpeedGameInformation GetInformationOfCurrentSpeedGame() {
+  static inline SpeedGameInformation GetInformationOfCurrentSpeedGame() {
     switch (GetCurrentSpeedGame()) {
       case SpeedGame::U2:
         return {0x78E8F4, 0x870970, 0x0};

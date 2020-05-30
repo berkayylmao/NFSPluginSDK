@@ -15,12 +15,15 @@ FixNamespaceComments: true
 # indent all namespace content
 NamespaceIndentation: All
 
-# max 100 chars in a line
-ColumnLimit: 100
-
 # personal preference
 AlignConsecutiveAssignments: true
 AlignConsecutiveDeclarations: true
 AlignConsecutiveMacros: true
 AlignEscapedNewlines: Left
 AlignOperands: true
+BreakBeforeBraces: Attach
+BreakBeforeTernaryOperators: true
+BreakConstructorInitializers: AfterColon
+BreakStringLiterals: true
+ColumnLimit: 120
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
