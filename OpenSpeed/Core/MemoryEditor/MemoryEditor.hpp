@@ -19,12 +19,14 @@
 // clang-format on
 
 #pragma once
-#include <array>          // array
-#include <cstdint>        // integer types
-#include <cstring>        // memcpy
-#include <mutex>          // mutex, scoped_lock
-#include <unordered_map>  // unordered_map
-#include <type_traits>    // enable_if, is_arithmetic
+#include <array>
+#include <cstdint>  // integer types
+#include <cstring>  // memcpy
+#include <memory>   // unique_ptr
+#include <mutex>    // mutex, scoped_lock
+#include <unordered_map>
+#include <type_traits>  // enable_if, is_arithmetic
+#include <tuple>
 
 #if defined(__linux__) || defined(_LINUX)
 #include <sys/mman.h>  // mprotect()
@@ -36,9 +38,20 @@
 #endif
 
 namespace MemoryEditor {
-  enum class MakeType : std::uint8_t { Call, Jump, Detour, NOP, Return, DebuggerTrap };
+  enum class MakeType : std::uint8_t {
+    // 0xE8
+    Call,
+    // 0xE9
+    Jump,
+    // 0x90
+    NOP,
+    // 0xC3
+    Return,
+    // 0xCC
+    DebuggerTrap
+  };
 
-  class IEditor {
+  class Editor {
    protected:
     struct MemoryAccessInfo {
 #if defined(_WIN32)
@@ -49,6 +62,27 @@ namespace MemoryEditor {
       constexpr MemoryAccessInfo() = default;
       constexpr MemoryAccessInfo(std::uintmax_t infoSize) : size(infoSize) {}
     };
+    class DetourInfo {
+      std::uint8_t   mOrigBytes[sizeof(std::uint32_t) + 1];
+      std::uintptr_t mAddrFrom;
+      std::uintptr_t mAddrDetour;
+
+     public:
+      void Detour() {
+        Editor::Get().UnlockMemory(mAddrFrom, sizeof(std::uint32_t) + 1);
+        std::memcpy(mOrigBytes, reinterpret_cast<void*>(mAddrFrom), sizeof(std::uint32_t) + 1);
+        Editor::Get().LockMemory(mAddrFrom);
+      }
+      void Undetour() const {
+        Editor::Get().UnlockMemory(mAddrFrom, sizeof(std::uint32_t) + 1);
+        std::memcpy(reinterpret_cast<void*>(mAddrFrom), mOrigBytes, sizeof(std::uint32_t) + 1);
+        Editor::Get().LockMemory(mAddrFrom);
+      }
+
+      explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour) :
+          mOrigBytes({0x00}), mAddrFrom(addrFrom), mAddrDetour(addrDetour) {}
+      ~DetourInfo() { Undetour(); }
+    };
 
     std::uintptr_t                                               mBase;
     mutable std::mutex                                           mMutex;
@@ -58,14 +92,14 @@ namespace MemoryEditor {
       return to - from - sizeof(std::uint32_t) - 1;
     }
 
-    explicit IEditor() {
+    explicit Editor() {
 #ifdef __linux__ || defined(_LINUX)
 #error Base address cannot be dynamically acquired without hacks on linux systems. Call 'Get(baseAddress)' instead.
 #elif _WIN32
       mBase = reinterpret_cast<std::uintptr_t>(GetModuleHandleW(NULL));
 #endif
     }
-    explicit IEditor(std::uintptr_t base) : mBase(base) {}
+    explicit Editor(std::uintptr_t base) : mBase(base) {}
 
    public:
     inline std::uintptr_t AbsRVA(std::uintptr_t rva) const { return mBase + rva; }
@@ -92,7 +126,13 @@ namespace MemoryEditor {
       mAccessInfos[address] = _info;
     }
 
-    void Make(MakeType type, std::uintptr_t from, const std::uintptr_t to) const {
+    std::unique_ptr<DetourInfo> Detour(std::uintptr_t from, std::uintptr_t to) const {
+      auto _ret = std::make_unique<DetourInfo>(from, to);
+      _ret->Detour();
+
+      return _ret;
+    }
+    void Make(MakeType type, std::uintptr_t from, std::uintptr_t to) const {
       std::uint8_t* _arr = reinterpret_cast<std::uint8_t*>(from);
 
       std::uint8_t _b = 0x00;
@@ -105,9 +145,6 @@ namespace MemoryEditor {
           UnlockMemory(from, sizeof(std::uint32_t) + 1);
           _arr[0]                                     = 0xE9;
           *reinterpret_cast<std::uint32_t*>(&_arr[1]) = CalcDistance(from, to);
-        case MakeType::Detour:
-          // detour here
-          break;
         case MakeType::NOP:
           _b = 0x90;
           break;
@@ -157,16 +194,16 @@ namespace MemoryEditor {
       return _ret;
     }
 
-    static inline const IEditor& Get() {
-      static IEditor memory;
+    static inline const Editor& Get() {
+      static Editor memory;
       return memory;
     }
-    static inline const IEditor& Get(std::uintptr_t base) {
-      static IEditor memory(base);
+    static inline const Editor& Get(std::uintptr_t base) {
+      static Editor memory(base);
       return memory;
     }
   };
 
-  static inline const IEditor& Get() { return IEditor::Get(); }
-  static inline const IEditor& Get(std::uintptr_t base) { return IEditor::Get(base); }
+  static inline const Editor& Get() { return Editor::Get(); }
+  static inline const Editor& Get(std::uintptr_t base) { return Editor::Get(base); }
 }  // namespace MemoryEditor
