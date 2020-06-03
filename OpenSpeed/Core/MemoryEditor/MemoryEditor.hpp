@@ -74,7 +74,9 @@ namespace MemoryEditor {
       }
 
       explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour) :
-          mOrigBytes{0x00}, mAddrFrom(addrFrom), mAddrDetour(addrDetour) {}
+          mOrigBytes{0x00}, mAddrFrom(addrFrom), mAddrDetour(addrDetour) {
+        Detour();
+      }
       ~DetourInfo() { Undetour(); }
     };
 
@@ -133,10 +135,7 @@ namespace MemoryEditor {
     }
 
     std::unique_ptr<DetourInfo> Detour(std::uintptr_t from, std::uintptr_t to) const {
-      auto _ret = std::make_unique<DetourInfo>(from, to);
-      _ret->Detour();
-
-      return _ret;
+      return std::make_unique<DetourInfo>(from, to);
     }
     void Make(MakeType type, std::uintptr_t from, std::uintptr_t to) const {
       std::uint8_t* _arr = reinterpret_cast<std::uint8_t*>(from);
