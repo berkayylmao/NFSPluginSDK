@@ -66,6 +66,7 @@ namespace MemoryEditor {
         Editor::Get().UnlockMemory(mAddrFrom, sizeof(std::uint32_t) + 1);
         std::memcpy(mOrigBytes, reinterpret_cast<void*>(mAddrFrom), sizeof(std::uint32_t) + 1);
         Editor::Get().LockMemory(mAddrFrom);
+        Editor::Get().Make(MakeType::Jump, mAddrFrom, mAddrDetour);
       }
       void Undetour() const {
         Editor::Get().UnlockMemory(mAddrFrom, sizeof(std::uint32_t) + 1);
@@ -146,10 +147,12 @@ namespace MemoryEditor {
           UnlockMemory(from, sizeof(std::uint32_t) + 1);
           _arr[0]                                     = 0xE8;
           *reinterpret_cast<std::uint32_t*>(&_arr[1]) = CalcDistance(from, to);
+          break;
         case MakeType::Jump:
           UnlockMemory(from, sizeof(std::uint32_t) + 1);
           _arr[0]                                     = 0xE9;
           *reinterpret_cast<std::uint32_t*>(&_arr[1]) = CalcDistance(from, to);
+          break;
         case MakeType::NOP:
           _b = 0x90;
           break;
