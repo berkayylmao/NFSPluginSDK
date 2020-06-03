@@ -74,7 +74,7 @@ namespace MemoryEditor {
       }
 
       explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour) :
-          mOrigBytes({0x00}), mAddrFrom(addrFrom), mAddrDetour(addrDetour) {}
+          mOrigBytes{0x00}, mAddrFrom(addrFrom), mAddrDetour(addrDetour) {}
       ~DetourInfo() { Undetour(); }
     };
 
@@ -98,9 +98,9 @@ namespace MemoryEditor {
     }
 
     explicit Editor() {
-#ifdef __linux__ || defined(_LINUX)
+#if defined(__linux__) || defined(_LINUX)
 #error Base address cannot be dynamically acquired without hacks on linux systems. Call 'Get(baseAddress)' instead.
-#elif _WIN32
+#elif defined(_WIN32)
       mBase = reinterpret_cast<std::uintptr_t>(GetModuleHandleW(NULL));
 #endif
     }
@@ -115,7 +115,8 @@ namespace MemoryEditor {
       // Old memory access page is stored only in Windows.
 
       MemoryAccessInfo& info = mAccessInfos[address];
-      VirtualProtect(reinterpret_cast<LPVOID>(address), info.size, info.oldMemoryAccess, &info.oldMemoryAccess);
+      VirtualProtect(reinterpret_cast<LPVOID>(address), static_cast<SIZE_T>(info.size), info.oldMemoryAccess,
+                     &info.oldMemoryAccess);
 #endif
       mAccessInfos.erase(address);
     }
@@ -190,7 +191,7 @@ namespace MemoryEditor {
         UnlockMemory(_offBase, sizeof(std::uintptr_t));
         if (!_p || !*_p) {
           LockMemory(_offBase);
-          ret = nullptr;
+          _ret = nullptr;
           break;
         }
         _last = reinterpret_cast<std::uintptr_t>(*_p);
