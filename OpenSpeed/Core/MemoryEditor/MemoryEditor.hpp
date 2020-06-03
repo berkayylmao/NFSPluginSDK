@@ -52,22 +52,16 @@ namespace MemoryEditor {
   };
 
   class Editor {
-   protected:
-    struct MemoryAccessInfo {
-#if defined(_WIN32)
-      DWORD oldMemoryAccess = NULL;
-#endif
-      std::uintmax_t size = NULL;
-
-      constexpr MemoryAccessInfo() = default;
-      constexpr MemoryAccessInfo(std::uintmax_t infoSize) : size(infoSize) {}
-    };
+   public:
     class DetourInfo {
       std::uint8_t   mOrigBytes[sizeof(std::uint32_t) + 1];
       std::uintptr_t mAddrFrom;
       std::uintptr_t mAddrDetour;
 
      public:
+      std::uintptr_t GetAddrFrom() { return mAddrFrom; }
+      std::uintptr_t GetAddrDetour() { return mAddrDetour; }
+
       void Detour() {
         Editor::Get().UnlockMemory(mAddrFrom, sizeof(std::uint32_t) + 1);
         std::memcpy(mOrigBytes, reinterpret_cast<void*>(mAddrFrom), sizeof(std::uint32_t) + 1);
@@ -82,6 +76,17 @@ namespace MemoryEditor {
       explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour) :
           mOrigBytes({0x00}), mAddrFrom(addrFrom), mAddrDetour(addrDetour) {}
       ~DetourInfo() { Undetour(); }
+    };
+
+   protected:
+    struct MemoryAccessInfo {
+#if defined(_WIN32)
+      DWORD oldMemoryAccess = NULL;
+#endif
+      std::uintmax_t size = NULL;
+
+      constexpr MemoryAccessInfo() = default;
+      constexpr MemoryAccessInfo(std::uintmax_t infoSize) : size(infoSize) {}
     };
 
     std::uintptr_t                                               mBase;
