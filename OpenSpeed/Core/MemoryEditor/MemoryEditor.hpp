@@ -54,9 +54,9 @@ namespace MemoryEditor {
   class Editor {
    public:
     class DetourInfo {
-      std::uint8_t   mOrigBytes[sizeof(std::uint32_t) + 1];
-      std::uintptr_t mAddrFrom;
-      std::uintptr_t mAddrDetour;
+      std::array<std::uint8_t, sizeof(std::uint32_t) + 1> mOrigBytes;
+      std::uintptr_t                                      mAddrFrom;
+      std::uintptr_t                                      mAddrDetour;
 
      public:
       std::uintptr_t GetAddrFrom() { return mAddrFrom; }
@@ -64,18 +64,18 @@ namespace MemoryEditor {
 
       void Detour() {
         Editor::Get().UnlockMemory(mAddrFrom, sizeof(std::uint32_t) + 1);
-        std::memcpy(mOrigBytes, reinterpret_cast<void*>(mAddrFrom), sizeof(std::uint32_t) + 1);
+        std::memcpy(mOrigBytes.data(), reinterpret_cast<void*>(mAddrFrom), sizeof(std::uint32_t) + 1);
         Editor::Get().LockMemory(mAddrFrom);
         Editor::Get().Make(MakeType::Jump, mAddrFrom, mAddrDetour);
       }
       void Undetour() const {
         Editor::Get().UnlockMemory(mAddrFrom, sizeof(std::uint32_t) + 1);
-        std::memcpy(reinterpret_cast<void*>(mAddrFrom), mOrigBytes, sizeof(std::uint32_t) + 1);
+        std::memcpy(reinterpret_cast<void*>(mAddrFrom), mOrigBytes.data(), sizeof(std::uint32_t) + 1);
         Editor::Get().LockMemory(mAddrFrom);
       }
 
       explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour) :
-          mOrigBytes{0x00}, mAddrFrom(addrFrom), mAddrDetour(addrDetour) {
+          mAddrFrom(addrFrom), mAddrDetour(addrDetour) {
         Detour();
       }
       ~DetourInfo() { Undetour(); }
