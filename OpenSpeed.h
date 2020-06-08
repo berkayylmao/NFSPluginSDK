@@ -27,14 +27,17 @@ namespace OpenSpeed {
     const char* szWindowName;
     void*       pDirect3D9;
     void**      ppD3DDevice;
+    void**      ppDI8Device;
 
-    SpeedGameInformation() : szWindowName(nullptr), pDirect3D9(nullptr), ppD3DDevice(nullptr) {}
-    SpeedGameInformation(const char* szWindowName, void* pDirect3D9, void** ppD3DDevice) :
-        szWindowName(szWindowName), pDirect3D9(pDirect3D9), ppD3DDevice(ppD3DDevice) {}
-    SpeedGameInformation(std::uintptr_t szWindowName, std::uintptr_t pDirect3D9, std::uintptr_t ppD3DDevice) :
+    SpeedGameInformation() : szWindowName(nullptr), pDirect3D9(nullptr), ppD3DDevice(nullptr), ppDI8Device(nullptr) {}
+    SpeedGameInformation(const char* szWindowName, void* pDirect3D9, void** ppD3DDevice, void** ppDI8Device) :
+        szWindowName(szWindowName), pDirect3D9(pDirect3D9), ppD3DDevice(ppD3DDevice), ppDI8Device(ppDI8Device) {}
+    SpeedGameInformation(std::uintptr_t szWindowName, std::uintptr_t addrPDirect3D9, std::uintptr_t addrPPD3DDevice,
+                         std::uintptr_t addrPPDI8Device) :
         szWindowName(reinterpret_cast<const char*>(szWindowName)),
-        pDirect3D9(reinterpret_cast<void*>(pDirect3D9)),
-        ppD3DDevice(reinterpret_cast<void**>(ppD3DDevice)) {}
+        pDirect3D9(reinterpret_cast<void*>(addrPDirect3D9)),
+        ppD3DDevice(reinterpret_cast<void**>(addrPPD3DDevice)),
+        ppDI8Device(reinterpret_cast<void**>(addrPPDI8Device)) {}
   };
 
   static inline SpeedGame GetCurrentSpeedGame() {
@@ -47,11 +50,11 @@ namespace OpenSpeed {
   static inline SpeedGameInformation GetInformationOfCurrentSpeedGame() {
     switch (GetCurrentSpeedGame()) {
       case SpeedGame::U2:
-        return {0x78E8F4, 0x870970, 0x0};
+        return {0x78E8F4, 0x870970, 0x0, 0x0};
       case SpeedGame::MW05:
-        return {0x8B0050, 0x0, 0x982BDC};
+        return {0x8B0050, 0x0, 0x982BDC, 0x982D14};
       case SpeedGame::Carbon:
-        return {0x9E3648, 0x0, 0xAB0ABC};
+        return {0x9E3648, 0x0, 0xAB0ABC, 0x0};
     }
     return {};
   }
