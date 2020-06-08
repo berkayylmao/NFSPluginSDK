@@ -45,6 +45,7 @@ class MemoryFieldWrapper {
   const FieldType                     mFieldMaxVal;
 
   MemoryFieldWrapper(const MemoryFieldWrapper&) = delete;
+  MemoryFieldWrapper(MemoryFieldWrapper&&)      = delete;
 
  public:
   constexpr MemoryFieldWrapper(details::__MakePtr<FieldType> const volatile fieldPtr,
@@ -61,7 +62,6 @@ class MemoryFieldWrapper {
       MemoryFieldWrapper(reinterpret_cast<details::__MakePtr<FieldType>>(fieldAddress), fieldDefaultValue,
                          fieldMinimumValue, fieldMaximumValue) {}
 
-  const char* const                   GetFieldNameAsCString() const { return mFieldName.c_str(); }
   details::__MakeRef<FieldType>       GetField() const { return *mFieldPtr; }
   details::__MakePtr<FieldType> const GetFieldPointer() const { return mFieldPtr; }
   details::__MakeRef<const FieldType> GetFieldDefaultValue() const { return mFieldDefVal; }
@@ -79,9 +79,9 @@ class MemoryFieldWrapper {
     if constexpr (std::is_arithmetic_v<FieldType>())
       if constexpr (_newVal <= GetFieldMinimumValue() || _newVal >= GetFieldMaximumValue()) return *mFieldPtr;
 
-    MemoryEditor::Get().UnlockMemory(_fieldRawAddress, sizeof(FieldType));
+    MemoryEditor::Get().UnlockMemory(reinterpret_cast<std::uintptr_t>(mFieldPtr), sizeof(FieldType));
     *mFieldPtr = _newVal;
-    MemoryEditor::Get().LockMemory(_fieldRawAddress);
+    MemoryEditor::Get().LockMemory(reinterpret_cast<std::uintptr_t>(mFieldPtr));
     return *mFieldPtr;
   }
 
