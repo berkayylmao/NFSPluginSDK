@@ -62,8 +62,9 @@ namespace MemoryEditor {
       std::uintptr_t                                      mAddrDetour;
 
      public:
-      std::uintptr_t GetAddrFrom() { return mAddrFrom; }
-      std::uintptr_t GetAddrDetour() { return mAddrDetour; }
+      std::uintptr_t GetAddrFrom() const { return mAddrFrom; }
+      std::uintptr_t GetAddrDetour() const { return mAddrDetour; }
+      bool           GetHasDetoured() const { return mHasDetoured; }
 
       void Detour() {
         if (mHasDetoured) return;
@@ -83,11 +84,11 @@ namespace MemoryEditor {
         mHasDetoured = false;
       }
 
+      // Detours immediately
       explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour) :
           mHasDetoured(false), mAddrFrom(addrFrom), mAddrDetour(addrDetour) {
         Detour();
       }
-      ~DetourInfo() { Undetour(); }
     };
 
    protected:
