@@ -69,9 +69,6 @@ namespace MemoryEditor {
       void Detour() {
         if (mHasDetoured) return;
 
-        Editor::Get().UnlockMemory(mAddrFrom, sizeof(std::uint32_t) + 1);
-        std::memcpy(mOrigBytes.data(), reinterpret_cast<void*>(mAddrFrom), sizeof(std::uint32_t) + 1);
-        Editor::Get().LockMemory(mAddrFrom);
         Editor::Get().Make(MakeType::Jump, mAddrFrom, mAddrDetour);
         mHasDetoured = true;
       }
@@ -87,6 +84,10 @@ namespace MemoryEditor {
       // Detours immediately
       explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour) :
           mHasDetoured(false), mAddrFrom(addrFrom), mAddrDetour(addrDetour) {
+        Editor::Get().UnlockMemory(mAddrFrom, sizeof(std::uint32_t) + 1);
+        std::memcpy(mOrigBytes.data(), reinterpret_cast<void*>(mAddrFrom), sizeof(std::uint32_t) + 1);
+        Editor::Get().LockMemory(mAddrFrom);
+
         Detour();
       }
     };
