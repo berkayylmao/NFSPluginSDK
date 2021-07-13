@@ -87,7 +87,7 @@ namespace OpenSpeed::MW05 {
       }
     };
 
-    static inline const RigidBody** g_mMaps = reinterpret_cast<RigidBody**>(0x92D0E8);
+    static inline RigidBody** g_mMaps = reinterpret_cast<RigidBody**>(0x92D0E8);
 
     ScratchPtr<State>                             mState;
     BehaviorSpecsPtr<Attrib::Gen::rigidbodyspecs> mSpecs;

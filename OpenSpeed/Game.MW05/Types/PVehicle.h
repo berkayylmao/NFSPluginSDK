@@ -28,7 +28,7 @@
 
 namespace OpenSpeed::MW05 {
   struct PVehicle : PhysicsObject, IVehicle, EventSequencer::IContext, IExplodeable, IAttributeable, bTNode<PVehicle*> {
-    static inline const bTList<PVehicle>* g_mInstances = reinterpret_cast<bTList<PVehicle>*>(0x9352B0);
+    static inline bTList<PVehicle>* g_mInstances = reinterpret_cast<bTList<PVehicle>*>(0x9352B0);
 
     // Probably not all correct, TODO:FIX
     Attrib::Gen::pvehicle    mAttributes;
