@@ -19,6 +19,7 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/_ptr.h>
 #include <OpenSpeed/Game.MW05/Types/Behavior.h>
 #include <OpenSpeed/Game.MW05/Types/bNode.h>
 #include <OpenSpeed/Game.MW05/Types/CollisionGeometry.h>
@@ -35,25 +36,25 @@ namespace OpenSpeed::MW05 {
                      WCollisionMgr::ICollisionHandler,
                      CollisionGeometry::IBoundable,
                      bTNode<RigidBody> {
-    enum class StatusType : std::uint32_t {
-      NoTrigger         = 1 << 0,
-      Attached          = 1 << 1,
-      CollisionWorld    = 1 << 2,
-      CollisionObject   = 1 << 3,
-      EnableDrag        = 1 << 5,
-      CheckWorld        = 1 << 6,
-      FixedCG           = 1 << 7,
-      Animating         = 1 << 8,
-      Initiliazed       = 1 << 9,
-      Integrating       = 1 << 10,
-      EnableDragAngular = 1 << 11,
-      DisableIntegrator = 1 << 12,
-      ModifyPrims       = 1 << 13,
-      Inactive          = 1 << 14,
-      CollisionGround   = 1 << 15
-    };
-
     struct State {
+      enum class StatusType : std::uint32_t {
+        NoTrigger         = 1 << 0,
+        Attached          = 1 << 1,
+        CollisionWorld    = 1 << 2,
+        CollisionObject   = 1 << 3,
+        EnableDrag        = 1 << 5,
+        CheckWorld        = 1 << 6,
+        FixedCG           = 1 << 7,
+        Animating         = 1 << 8,
+        Initiliazed       = 1 << 9,
+        Integrating       = 1 << 10,
+        EnableDragAngular = 1 << 11,
+        DisableIntegrator = 1 << 12,
+        ModifyPrims       = 1 << 13,
+        Inactive          = 1 << 14,
+        CollisionGround   = 1 << 15
+      };
+
       UMath::Vector4 orientation;
       UMath::Vector3 position;
       StatusType     statusPrev;
@@ -86,7 +87,7 @@ namespace OpenSpeed::MW05 {
       }
     };
 
-    static inline const RigidBody** mMaps = reinterpret_cast<RigidBody**>(0x92D0E8);
+    static inline const RigidBody** g_mMaps = reinterpret_cast<RigidBody**>(0x92D0E8);
 
     ScratchPtr<State>                             mState;
     BehaviorSpecsPtr<Attrib::Gen::rigidbodyspecs> mSpecs;
@@ -122,6 +123,6 @@ namespace OpenSpeed::MW05 {
   };
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
-  DEFINE_ENUM_FLAG_OPERATORS(RigidBody::StatusType)
+  DEFINE_ENUM_FLAG_OPERATORS(RigidBody::State::StatusType)
 #endif
 }  // namespace OpenSpeed::MW05
