@@ -108,11 +108,11 @@ namespace OpenSpeed::MW05::Attrib {
     const char*   mNamePtr;
 
     template <typename T>
-    T& GetData(StringKey fieldKey, std::int32_t idx = 0) {
-      return reinterpret_cast<T&(__thiscall*)(Collection*, StringKey, std::int32_t)>(0x454190)(this, fieldKey, idx);
+    T* GetData(StringKey fieldKey, std::int32_t idx = 0) {
+      return reinterpret_cast<T*(__thiscall*)(Collection*, StringKey, std::int32_t)>(0x454190)(this, fieldKey, idx);
     }
     template <typename T>
-    T& GetData(const char* fieldName, std::int32_t idx = 0) {
+    T* GetData(const char* fieldName, std::int32_t idx = 0) {
       return this->GetData<T>(StringToKey(fieldName), idx);
     }
 
