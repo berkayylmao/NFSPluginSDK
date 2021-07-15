@@ -106,6 +106,8 @@ namespace OpenSpeed::MW05 {
   struct WWorldPos;
 
   namespace Attrib {
+    using StringKey = std::uint32_t;
+
     struct Class;
     struct ClassPrivate;
     struct Collection;
@@ -117,7 +119,6 @@ namespace OpenSpeed::MW05 {
     struct Node;
     struct Private;
     struct RefSpec;
-    struct StringKey;
     struct Vault;
 
     namespace Gen {

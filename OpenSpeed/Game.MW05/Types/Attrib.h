@@ -30,6 +30,33 @@ namespace OpenSpeed::MW05::Attrib {
     std::uint16_t mKeyShift;
   };
 
+  struct RGBA {
+    float R, G, B, A;
+
+    RGBA operator+(const RGBA& rhs) {
+      RGBA _result = *this;
+      _result.R += rhs.R;
+      _result.G += rhs.G;
+      _result.B += rhs.B;
+      _result.A += rhs.A;
+
+      return _result;
+    }
+
+    void operator=(const RGBA& rhs) {
+      this->R = rhs.R;
+      this->G = rhs.G;
+      this->B = rhs.B;
+      this->A = rhs.A;
+    }
+    void operator+=(const RGBA& rhs) { *this = *this + rhs; }
+
+    operator float*() { return reinterpret_cast<float*>(this); }
+
+    RGBA(float red, float green, float blue, float alpha) : R(red), G(green), B(blue), A(alpha) {}
+    ~RGBA() = default;
+  };
+
   struct Class {
     std::uint32_t mKey;
     std::uint32_t mRefCount;
@@ -115,15 +142,8 @@ namespace OpenSpeed::MW05::Attrib {
     const Collection* mCollectionPtr;
   };
 
-  struct StringKey {
-    std::uint32_t mHash32;
-    const char*   mString;
-
-    StringKey(std::uint32_t hash) : mHash32(hash) {}
-  };
-
   namespace Gen {
-    struct camerainfo : Instance {
+    struct camerainfo {
       Private     _Array_STIFFNESS;
       float       STIFFNESS[2];
       Private     _Array_ANGLE;
@@ -170,7 +190,7 @@ namespace OpenSpeed::MW05::Attrib {
       CollisionReactionRecord REAR_REACTION;
     };
 
-    struct pvehicle : Instance {
+    struct pvehicle {
       enum class Type_car_type : std::uint32_t {
         McLaren     = 1 << 0,
         Porsche     = 1 << 1,
@@ -222,7 +242,7 @@ namespace OpenSpeed::MW05::Attrib {
       std::uint8_t   TrafficEngType;
     };
 
-    struct rigidbodyspecs : Instance {
+    struct rigidbodyspecs {
       UMath::Vector4 COLLISION_BOX_PAD;
       UMath::Vector4 DRAG;
       UMath::Vector4 WORLD_MOMENT_SCALE;
@@ -282,32 +302,7 @@ namespace OpenSpeed::MW05::Attrib {
       std::uint8_t     WheelEffectIntensity;
     };
 
-    struct timeofdaylighting : Instance {
-      struct RGBA {
-        float R, G, B, A;
-
-        RGBA operator+(const RGBA& rhs) {
-          RGBA _result = *this;
-          _result.R += rhs.R;
-          _result.G += rhs.G;
-          _result.B += rhs.B;
-          _result.A += rhs.A;
-
-          return _result;
-        }
-
-        void operator=(const RGBA& rhs) {
-          this->R = rhs.R;
-          this->G = rhs.G;
-          this->B = rhs.B;
-          this->A = rhs.A;
-        }
-        void operator+=(const RGBA& rhs) { *this = *this + rhs; }
-
-        RGBA(float red, float green, float blue, float alpha) : R(red), G(green), B(blue), A(alpha) {}
-        ~RGBA() = default;
-      };
-
+    struct timeofdaylighting {
       RGBA          SpecularColour;
       RGBA          DiffuseColour;
       RGBA          AmbientColour;
@@ -359,9 +354,10 @@ namespace OpenSpeed::MW05::Attrib {
     return reinterpret_cast<Collection*(__cdecl*)(std::uint32_t, std::uint32_t)>(0x455FD0)(classHash, collectionHash);
   }
 
-  static inline StringKey StringToKey(const char* cstring) {
-    return reinterpret_cast<StringKey(__cdecl*)(const char*)>(0x454640)(cstring);
+  static inline StringKey StringToKey(const char* name) {
+    return reinterpret_cast<StringKey(__cdecl*)(const char*)>(0x454640)(name);
   }
+
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
   DEFINE_ENUM_FLAG_OPERATORS(Attrib::Gen::pvehicle::Type_car_type)
 #endif
