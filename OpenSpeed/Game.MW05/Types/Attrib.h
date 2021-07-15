@@ -119,14 +119,12 @@ namespace OpenSpeed::MW05::Attrib {
   };
 
   struct Instance {
-    enum class Flags : std::uint16_t { Dynamic = 1 };
+    enum class Flags : std::uint32_t { Dynamic = 1 };
 
-    UTL::COM::IUnknown* mOwner;
-    Collection*         mCollection;
-    void*               mLayoutPtr;
-    std::uint32_t       mMsgPort;
-    Flags               mFlags;
-    std::uint16_t       mLock;
+    Collection*   mCollection;
+    void*         mLayoutPtr;
+    std::uint32_t mMsgPort;
+    Flags         mFlags;
   };
 
   struct Private {

@@ -48,8 +48,8 @@ namespace OpenSpeed::MW05 {
     HSIMSERVICE__*   mBodyService;
     std::uint32_t    mWorldID;
     Mechanics        mMechanics;
-    Behaviors        mBehaviors;
-    Attachments*     mAttachments;
+    // Behaviors        mBehaviors;
+    // Attachments*     mAttachments;
 
     virtual ~PhysicsObject();
     virtual void Reset();

@@ -46,9 +46,8 @@ namespace OpenSpeed::MW05::UTL {
         IUnknown* ref;
       };
 
-      struct _IList : eastl::vector<UTL::COM::Object::_IPair> {};
-
-      _IList _mInterfaces;
+      // eastl::vector<UTL::COM::Object::_IPair>
+      unsigned char _mInterfaces[0x18];
     };
 
     struct IUnknown {
