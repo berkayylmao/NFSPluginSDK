@@ -19,17 +19,14 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/Attrib.h>
 
 namespace OpenSpeed::MW05 {
   struct TimeOfDay {
-    float                           mSkyboxSpeedMultiplier;
-    std::int32_t                    mTimeOfDaySpeedMultiplier;
-    float                           mTimeOfDayValue;
-    float                           mSunDefaultOrbitAxisX;
-    float                           mSunDefaultOrbitAxisY;
-    unsigned char                   _unk[0x4 * 45];
-    Attrib::Gen::timeofdaylighting* mTimeOfDayLighting;
+    float        mSkyboxSpeedMultiplier;
+    std::int32_t mTimeOfDaySpeedMultiplier;
+    float        mTimeOfDayValue;
+    float        mSunDefaultOrbitAxisX;
+    float        mSunDefaultOrbitAxisY;
 
     static inline TimeOfDay** g_ppInstance = reinterpret_cast<TimeOfDay**>(0x9B392C);
     static TimeOfDay*         GetInstance() {
