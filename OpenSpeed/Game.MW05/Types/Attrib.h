@@ -73,32 +73,38 @@ namespace OpenSpeed::MW05::Attrib {
     Vault*        mSource;
     const char*   mNamePtr;
 
-    Definition* GetDefinition(std::uint32_t key) {
-      return reinterpret_cast<Definition*(__cdecl*)(std::uint32_t)>(0x457380)(key);
-    }
-    std::uint32_t GetNumDefinitions() { return reinterpret_cast<std::uint32_t(__cdecl*)()>(0x451660)(); }
-    std::uint32_t GetFirstDefinition() { return reinterpret_cast<std::uint32_t(__cdecl*)()>(0x451670)(); }
-    std::uint32_t GetNextDefinition(std::uint32_t key) {
-      return reinterpret_cast<std::uint32_t(__cdecl*)(std::uint32_t)>(0x4573C0)(key);
+    template <typename T>
+    T* GetData(StringKey fieldKey, std::int32_t idx = 0) {
+      return reinterpret_cast<T*(__thiscall*)(Collection*, StringKey, std::int32_t)>(0x454190)(this, fieldKey, idx);
     }
 
-    Collection* GetCollection(std::uint32_t key) {
-      return reinterpret_cast<Collection*(__cdecl*)(std::uint32_t)>(0x454CC0)(key);
+    static Definition* GetDefinition(StringKey key) {
+      return reinterpret_cast<Definition*(__cdecl*)(StringKey)>(0x457380)(key);
     }
-    std::uint32_t GetNumCollections() { return reinterpret_cast<std::uint32_t(__cdecl*)()>(0x453FC0)(); }
-    std::uint32_t GetFirstCollection() { return reinterpret_cast<std::uint32_t(__cdecl*)()>(0x456B00)(); }
-    std::uint32_t GetNextCollection(std::uint32_t key) {
-      return reinterpret_cast<std::uint32_t(__cdecl*)(std::uint32_t)>(0x456B20)(key);
+    static std::uint32_t GetNumDefinitions() { return reinterpret_cast<std::uint32_t(__cdecl*)()>(0x451660)(); }
+    static std::uint32_t GetFirstDefinition() { return reinterpret_cast<std::uint32_t(__cdecl*)()>(0x451670)(); }
+    static std::uint32_t GetNextDefinition(StringKey key) {
+      return reinterpret_cast<std::uint32_t(__cdecl*)(StringKey)>(0x4573C0)(key);
+    }
+
+    static Collection* GetCollection(StringKey key) {
+      return reinterpret_cast<Collection*(__cdecl*)(StringKey)>(0x454CC0)(key);
+    }
+    static std::uint32_t GetNumCollections() { return reinterpret_cast<std::uint32_t(__cdecl*)()>(0x453FC0)(); }
+    static std::uint32_t GetFirstCollection() { return reinterpret_cast<std::uint32_t(__cdecl*)()>(0x456B00)(); }
+    static std::uint32_t GetNextCollection(StringKey key) {
+      return reinterpret_cast<std::uint32_t(__cdecl*)(StringKey)>(0x456B20)(key);
     }
   };
 
   struct Database {
-    static inline Database* g_sThis = reinterpret_cast<Database*>(0x90DCBC);
-
     DatabasePrivate& mPrivates;
 
     virtual ~Database();
-    Class* GetClass(std::uint32_t key) { return reinterpret_cast<Class*(__cdecl*)(std::uint32_t)>(0x454DB0)(key); }
+
+    static inline Database* g_sThis = reinterpret_cast<Database*>(0x90DCBC);
+
+    static Class* GetClass(StringKey key) { return reinterpret_cast<Class*(__cdecl*)(StringKey)>(0x454DB0)(key); }
   };
 
   struct Definition {
@@ -348,8 +354,8 @@ namespace OpenSpeed::MW05::Attrib {
     };
   }  // namespace Gen
 
-  static inline Collection* FindCollection(std::uint32_t classHash, std::uint32_t collectionHash) {
-    return reinterpret_cast<Collection*(__cdecl*)(std::uint32_t, std::uint32_t)>(0x455FD0)(classHash, collectionHash);
+  static inline Collection* FindCollection(StringKey classKey, StringKey collectionKey) {
+    return reinterpret_cast<Collection*(__cdecl*)(StringKey, StringKey)>(0x455FD0)(classKey, collectionKey);
   }
 
   static inline StringKey StringToKey(const char* name) {
