@@ -30,39 +30,23 @@ namespace OpenSpeed::MW05 {
     FECustomizationRecord*              mCustomization;
     IVehicleCache*                      mVehicleCache;
     Physics::Info::PerformanceMatching* mPerformanceMatch;
-    eVehicleParamFlags                  mCreateFlags;
+    eVehicleParamFlags                  mFlags;
 
-    static void TypeName(VehicleParams* pVehicleParams) {
-      reinterpret_cast<void(__cdecl*)(VehicleParams*)>(0x4040F0)(pVehicleParams);
-    }
+    static void AddTypeName(VehicleParams* to) { reinterpret_cast<void(__cdecl*)(VehicleParams*)>(0x4040F0)(to); }
 
-    VehicleParams(IVehicleCache* pVehicleCache, DriverClass driverClass, std::uint32_t vehicleHash,
-                  const UMath::Vector3& direction, const UMath::Vector3& position, eVehicleParamFlags createFlags,
-                  FECustomizationRecord* pFECR, Physics::Info::PerformanceMatching* pPerformanceMatch) :
+    explicit VehicleParams(IVehicleCache* pVehicleCache, DriverClass driverClass, std::uint32_t vehicleHash,
+                           const UMath::Vector3& direction, const UMath::Vector3& position, eVehicleParamFlags flags,
+                           FECustomizationRecord* pFECR, Physics::Info::PerformanceMatching* pPerformanceMatch) :
         Sim::Param(0x0A6B47FAC),
         mVehicleCache(pVehicleCache),
         mDriverClass(driverClass),
         mVehicleHash(vehicleHash),
         mDirection(const_cast<UMath::Vector3*>(&direction)),
         mPosition(const_cast<UMath::Vector3*>(&position)),
-        mCreateFlags(createFlags),
+        mFlags(flags),
         mCustomization(pFECR),
         mPerformanceMatch(pPerformanceMatch) {
-      TypeName(this);
-    }
-    VehicleParams(IVehicleCache* pVehicleCache, DriverClass driverClass, std::uint32_t vehicleHash,
-                  const UMath::Vector3& direction, const UMath::Vector3& position, eVehicleParamFlags createFlags,
-                  FECustomizationRecord* pFECR, Physics::Info::PerformanceMatching* pPerformanceMatch) :
-        Sim::Param(0x0A6B47FAC),
-        mVehicleCache(pVehicleCache),
-        mDriverClass(driverClass),
-        mVehicleHash(vehicleHash),
-        mDirection(const_cast<UMath::Vector3*>(&direction)),
-        mPosition(const_cast<UMath::Vector3*>(&position)),
-        mCreateFlags(createFlags),
-        mCustomization(pFECR),
-        mPerformanceMatch(pPerformanceMatch) {
-      TypeName(this);
+      AddTypeName(this);
     }
   };
 }  // namespace OpenSpeed::MW05
