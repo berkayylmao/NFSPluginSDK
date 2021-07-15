@@ -22,8 +22,9 @@
 #include <array>
 #include <cstdint>  // integer types
 #include <cstring>  // memcpy
-#include <memory>   // unique_ptr
-#include <mutex>    // mutex, scoped_lock
+#include <initializer_list>
+#include <memory>  // unique_ptr
+#include <mutex>   // mutex, scoped_lock
 #include <unordered_map>
 #include <type_traits>  // enable_if, is_arithmetic
 #include <tuple>
@@ -183,31 +184,29 @@ namespace MemoryEditor {
       LockMemory(from);
     }
 
-    template <typename PointedType, typename... Offsets>
-    std::enable_if_t<std::is_same<Offsets..., std::intptr_t>::value, PointedType*> ReadPointer(
-        std::uintptr_t base, Offsets&&... offsets) const {
+    template <typename PointedType>
+    PointedType* ReadPointer(std::uintptr_t base, std::initializer_list<std::uintptr_t> offsets) const {
       PointedType* _ret = nullptr;
       UnlockMemory(base, sizeof(std::uintptr_t));
-      if (!base || !*reinterpret_cast<PointedType*>(base)) {
+      if (!base || !*reinterpret_cast<std::uintptr_t*>(base)) {
         LockMemory(base);
         return _ret;
       }
 
-      std::uintptr_t _last = reinterpret_cast<std::uintptr_t>(*reinterpret_cast<PointedType*>(base));
+      std::uintptr_t _last = *reinterpret_cast<std::uintptr_t*>(base);
       LockMemory(base);
 
-      const std::array<std::intptr_t, sizeof...(Offsets)> arrOffsets{Offsets...};
-      for (const auto& off : arrOffsets) {
+      for (const auto& off : offsets) {
         LockMemory(_last);
-        const std::uintptr_t _offBase = _last + off;
-        const PointedType*   _p       = reinterpret_cast<PointedType*>(_offBase);
+        std::uintptr_t  _offBase = _last + off;
+        std::uintptr_t* _p       = reinterpret_cast<std::uintptr_t*>(_offBase);
         UnlockMemory(_offBase, sizeof(std::uintptr_t));
         if (!_p || !*_p) {
           LockMemory(_offBase);
           _ret = nullptr;
           break;
         }
-        _last = reinterpret_cast<std::uintptr_t>(*_p);
+        _last = *_p;
         _ret  = reinterpret_cast<PointedType*>(_last);
       }
       return _ret;
