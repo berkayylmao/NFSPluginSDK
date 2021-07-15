@@ -19,7 +19,8 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/Grid.h>
 
 namespace OpenSpeed::MW05 {
-  struct VehicleCustomizations {};
+  struct RBGrid : Grid<RigidBody> {};
 }  // namespace OpenSpeed::MW05

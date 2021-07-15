@@ -18,6 +18,8 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/EASTL/EASTL/vector.h>
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::UTL {
@@ -35,7 +37,18 @@ namespace OpenSpeed::MW05::UTL {
 
   namespace COM {
     struct Object {
-      std::int8_t mInterfaces[0x18];
+      struct _IPair {
+        struct _Finder {
+          const IUnknown* ref;
+        };
+
+        void*     handle;
+        IUnknown* ref;
+      };
+
+      struct _IList : eastl::vector<UTL::COM::Object::_IPair> {};
+
+      _IList _mInterfaces;
     };
 
     struct IUnknown {

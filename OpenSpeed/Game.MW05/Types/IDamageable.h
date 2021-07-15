@@ -19,7 +19,18 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
-  struct IDamageable;
-}
+  struct IDamageable : UTL::COM::IUnknown {
+    virtual ~IDamageable();
+    virtual void                       SetInShock(float)    = 0;
+    virtual void                       SetShockForce(float) = 0;
+    virtual float                      InShock()            = 0;
+    virtual void                       ResetDamage()        = 0;
+    virtual float                      GetHealth()          = 0;
+    virtual bool                       IsDestroyed()        = 0;
+    virtual void                       Destroy()            = 0;
+    virtual /*DamageZone::Info*/ void* GetZoneDamage()      = 0;
+  };
+}  // namespace OpenSpeed::MW05

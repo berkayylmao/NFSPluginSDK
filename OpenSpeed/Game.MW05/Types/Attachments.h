@@ -18,8 +18,14 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
-namespace MW05 {
-  struct IChassis;
-}
+#include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/IAttachable.h>
+
+namespace OpenSpeed::MW05 {
+  struct Attachments {
+    eastl::list<IAttachable*> mList;
+    IAttachable*              mOwner;
+  };
+}  // namespace OpenSpeed::MW05

@@ -19,13 +19,18 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
-  struct IVehicleCache : UTL::COM::IUnknown {
-    virtual ~IVehicleCache();
-    virtual const char*         GetCacheName()                                                                   = 0;
-    virtual eVehicleCacheResult OnQueryVehicleCache(const IVehicle* removethis, const IVehicleCache* whosasking) = 0;
-    virtual void                OnRemovedVehicleCache(IVehicle* ivehicle)                                        = 0;
+  struct InputControls {
+    float mBanking;
+    float mSteering;
+    float mSteeringVertical;
+    float mStrafeVertical;
+    float mStrafeHorizontal;
+    float mGas;
+    float mBrake;
+    float mHandBrake;
+    bool  mActionButton;
+    bool  mNOS;
   };
 }  // namespace OpenSpeed::MW05

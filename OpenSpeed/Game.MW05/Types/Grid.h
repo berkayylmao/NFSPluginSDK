@@ -19,13 +19,27 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
-  struct IVehicleCache : UTL::COM::IUnknown {
-    virtual ~IVehicleCache();
-    virtual const char*         GetCacheName()                                                                   = 0;
-    virtual eVehicleCacheResult OnQueryVehicleCache(const IVehicle* removethis, const IVehicleCache* whosasking) = 0;
-    virtual void                OnRemovedVehicleCache(IVehicle* ivehicle)                                        = 0;
+  template <class T>
+  struct Grid {
+    struct Axis {
+      struct Node {
+        Node*  mHead;
+        Node*  mTail;
+        float  mPosition;
+        float  mSort;
+        Axis&  mAxis;
+        Node*& mRoot;
+      };
+
+      Node     mMin;
+      Node     mMax;
+      Grid<T>& mGrid;
+    };
+
+    Axis mX;
+    Axis mZ;
+    T&   mOwner;
   };
 }  // namespace OpenSpeed::MW05

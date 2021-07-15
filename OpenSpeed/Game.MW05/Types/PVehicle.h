@@ -28,14 +28,17 @@
 
 namespace OpenSpeed::MW05 {
   struct PVehicle : PhysicsObject, IVehicle, EventSequencer::IContext, IExplodeable, IAttributeable, bTNode<PVehicle*> {
-    static inline bTList<PVehicle>* g_mInstances = reinterpret_cast<bTList<PVehicle>*>(0x9352B0);
+    struct _InstanceLayout {
+      PVehicle* mInstance;
+      bool      mIsEnabled;
+    };
+    static inline _InstanceLayout* g_mInstances = reinterpret_cast<_InstanceLayout*>(0x9352B0);
 
-    // Probably not all correct, TODO:FIX
     Attrib::Gen::pvehicle    mAttributes;
-    VehicleCustomizations*   mCustomization;
+    FECustomizationRecord*   mCustomization;
     IInput*                  mInput;
     ICollisionBody*          mCollisionBody;
-    IChassis*                mChassis;
+    ISuspension*             mSuspension;
     IEngine*                 mEngine;
     IDamageable*             mDamage;
     ITransmission*           mTranny;
@@ -43,40 +46,63 @@ namespace OpenSpeed::MW05 {
     IArticulatedVehicle*     mArticulation;
     IRenderable*             mRenderable;
     IAudible*                mAudible;
-    IDamagePhysics*          mDamagePhysics;
     EventSequencer::IEngine* mSequencer;
     HSIMTASK__*              mTaskFX;
     UCrc32                   mClass;
-
-    float          mSpeed;
-    float          mAbsSpeed;
-    float          mSpeedometer;
-    float          mTimeInAir;
-    float          mSlipAngle;
-    float          mDraftZoneModifier;
-    std::uint32_t  mWheelsOnGround;
-    UMath::Vector3 mLocalVel;
-
-    DriverClass             mDriverClass;
-    DriverStyle             mDriverStyle;
-    bool                    mDriverStyleInitted;
-    VehicleFX::LightID      mGlareState;
-    float                   mStartingNOS;
-    float                   mBrakeTime;
-    IVehicle::ForceStopType mForceStop;
-    PhysicsMode             mPhysicsMode;
-    bool                    mAnimating;
-    bool                    mStaging;
-    bool                    mDragStaging;
-    bool                    mShouldUseDragStagingCamera;
+    float                    mSpeed;
+    float                    mAbsSpeed;
+    float                    mSpeedometer;
+    float                    mTimeInAir;
+    float                    mSlipAngle;
+    std::uint32_t            mWheelsOnGround;
+    UMath::Vector3           mLocalVel;
+    DriverClass              mDriverClass;
+    DriverStyle              mDriverStyle;
+    VehicleFX::LightID       mGlareState;
+    float                    mStartingNOS;
+    float                    mBrakeTime;
+    IVehicle::ForceStopType  mForceStop;
+    PhysicsMode              mPhysicsMode;
+    bool                     mAnimating;
+    bool                     mStaging;
 
     virtual ~PVehicle();
     virtual void OnDebugDraw() = 0;
 
+    bool IsValid() { return mObjType != SimableType::Invalid && mDirty == false && this->GetRigidBody(); }
+
     static PVehicle* Construct(const VehicleParams& vehicleParams) {
       ISimable* pSimable = reinterpret_cast<ISimable*(__cdecl*)(const VehicleParams&, UCrc32)>(0x689820)(
-          vehicleParams, vehicleParams.hash);
+          vehicleParams, vehicleParams.mName);
       return dynamic_cast<PVehicle*>(pSimable);
+    }
+
+    static std::int32_t GetInstancesCount() {
+      std::int32_t _amount   = 0;
+      auto*        _instance = g_mInstances;
+      while ((_instance++)->mInstance) _amount++;
+
+      return _amount;
+    }
+
+    static PVehicle* GetInstance(std::int32_t idx) {
+      auto* _pInst = g_mInstances[idx].mInstance;
+      if (_pInst && _pInst->IsValid()) return _pInst;
+
+      return nullptr;
+    }
+
+    static PVehicle* GetPlayerInstance() {
+      auto* _instance = g_mInstances;
+      while (_instance->mInstance) {
+        if (_instance->mInstance->IsValid() &&
+            (_instance->mInstance->IsPlayer() || _instance->mInstance->IsOwnedByPlayer()))
+          return _instance->mInstance;
+
+        _instance++;
+      }
+
+      return nullptr;
     }
   };
 }  // namespace OpenSpeed::MW05

@@ -18,9 +18,11 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/EASTL/EASTL/list.h>
 #include <OpenSpeed/Core/EASTL/EASTL/map.h>
 
 #include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/Attachments.h>
 #include <OpenSpeed/Game.MW05/Types/Behavior.h>
 #include <OpenSpeed/Game.MW05/Types/IBody.h>
 #include <OpenSpeed/Game.MW05/Types/ISimable.h>
@@ -46,6 +48,8 @@ namespace OpenSpeed::MW05 {
     HSIMSERVICE__*   mBodyService;
     std::uint32_t    mWorldID;
     Mechanics        mMechanics;
+    Behaviors        mBehaviors;
+    Attachments*     mAttachments;
 
     virtual ~PhysicsObject();
     virtual void Reset();

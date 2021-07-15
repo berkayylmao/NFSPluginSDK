@@ -19,7 +19,11 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
-  struct IAudible;
-}
+  struct IAudible : UTL::COM::IUnknown {
+    virtual ~IAudible();
+    virtual bool IsAudible() = 0;
+  };
+}  // namespace OpenSpeed::MW05

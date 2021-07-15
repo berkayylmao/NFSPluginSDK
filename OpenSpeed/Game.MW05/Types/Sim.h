@@ -18,6 +18,8 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/EASTL/EASTL/list.h>
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib.h>
 #include <OpenSpeed/Game.MW05/Types/IAttachable.h>
@@ -31,19 +33,17 @@ namespace OpenSpeed::MW05 {
       };
     }  // namespace Collision
 
-    struct IEntity : UTL::COM::IUnknown, IAttachable {
-      unsigned char __unk[0x4];
-
+    struct IEntity : UTL::COM::IUnknown {
       virtual ~IEntity();
-      virtual void                  AttachPhysics(ISimable*);
-      virtual void                  DetachPhysics();
-      virtual ISimable*             GetSimable();
-      virtual const UMath::Vector3& GetPosition();
-      virtual bool                  SetPosition(const UMath::Vector3& newPosition) = 0;
-      virtual void                  Kill();
-      virtual bool                  Attach(UTL::COM::IUnknown* p);
-      virtual bool                  Detach(UTL::COM::IUnknown* p);
-      virtual IAttachable::List*    GetAttachments();
+      virtual void                       AttachPhysics(ISimable*);
+      virtual void                       DetachPhysics();
+      virtual ISimable*                  GetSimable();
+      virtual const UMath::Vector3&      GetPosition();
+      virtual bool                       SetPosition(const UMath::Vector3& newPosition) = 0;
+      virtual void                       Kill();
+      virtual bool                       Attach(UTL::COM::IUnknown* p);
+      virtual bool                       Detach(UTL::COM::IUnknown* p);
+      virtual eastl::list<IAttachable*>* GetAttachments();
     };
     struct IServiceable : UTL::COM::IUnknown {
       virtual ~IServiceable();
@@ -61,10 +61,9 @@ namespace OpenSpeed::MW05 {
       virtual ~Object();
     };
 
-    struct Entity : Object, IEntity {
+    struct Entity : Object, UTL::GarbageNode<Entity>, IEntity, IAttachable {
       ISimable*    mSimable;
       Attachments* mAttachments;
-      std::uint8_t __unk[0x4];
 
       virtual ~Entity();
     };
@@ -80,14 +79,15 @@ namespace OpenSpeed::MW05 {
 
     struct Param {
       UCrc32       mType;
-      UCrc32       hash;
-      Param*       mSource;
+      UCrc32       mName;
+      void*        mData;
       std::uint8_t __pad[0x4];
 
       UCrc32 GetType() { return mType; }
+      UCrc32 GetName() { return mName; }
       void*  GetData() { return &__pad + sizeof(__pad); }
 
-      Param(UCrc32 hash) : hash(hash), mSource(this) {}
+      Param(UCrc32 hash) : mName(hash), mData(this) {}
     };
   }  // namespace Sim
 

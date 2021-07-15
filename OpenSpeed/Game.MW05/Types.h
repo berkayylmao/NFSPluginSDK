@@ -26,7 +26,11 @@
 
 namespace OpenSpeed::MW05 {
   struct ActionRef;
+  struct AIAvoidable;
+  struct AISplinePath;
+  struct AITarget;
   struct AIVehicle;
+  struct Attachments;
   template <class T>
   struct AttributeStructPtr;
   struct Behavior;
@@ -38,11 +42,12 @@ namespace OpenSpeed::MW05 {
   struct bNode;
   template <class T>
   struct bTNode;
-  struct CameraInfo;
   struct EventSequencer;
   struct FECustomizationRecord;
   struct GIcon;
   struct GManager;
+  template <class T>
+  struct Grid;
   struct HCAUSE__;
   struct HSIMABLE__;
   struct HSIMPROFILE__;
@@ -53,7 +58,6 @@ namespace OpenSpeed::MW05 {
   struct IAttributeable;
   struct IAudible;
   struct IBody;
-  struct IChassis;
   struct ICollisionBody;
   struct IDamageable;
   struct IDamagePhysics;
@@ -66,13 +70,17 @@ namespace OpenSpeed::MW05 {
   struct IInput;
   struct IInputPlayer;
   struct IModel;
+  struct InputControls;
   struct InputPlayer;
   struct IPlayer;
+  struct IPursuit;
   struct IRBVehicle;
   struct IRenderable;
   struct IRigidBody;
+  struct IRoadBlock;
   struct ISimable;
   struct ISteeringWheel;
+  struct ISuspension;
   struct ITransmission;
   struct IVehicle;
   struct IVehicleAI;
@@ -90,28 +98,39 @@ namespace OpenSpeed::MW05 {
   struct ScratchPtr;
   struct SimSurface;
   struct TimeOfDay;
-  struct TimeOfDayLighting;
-  struct TimeOfDayLightingData;
   struct UCrc32;
-  struct VehicleCustomizations;
   struct VehicleParams;
   struct WCollider;
   struct WorldModel;
+  struct WRoadNav;
   struct WWorldPos;
 
   namespace Attrib {
+    struct Class;
+    struct ClassPrivate;
     struct Collection;
+    struct Database;
+    struct DatabasePrivate;
+    struct Definition;
+    struct HashMap;
     struct Instance;
+    struct Node;
     struct Private;
+    struct RefSpec;
     struct StringKey;
+    struct Vault;
 
     namespace Gen {
+      struct aivehicle;
+      struct camerainfo;
       struct collisionreactions;
       struct pvehicle;
       struct rigidbodyspecs;
       struct simsurface;
+      struct timeofdaylighting;
     }  // namespace Gen
   }    // namespace Attrib
+
   namespace CollisionGeometry {
     struct _V3c;
     struct _Q4c;
@@ -121,34 +140,37 @@ namespace OpenSpeed::MW05 {
     struct PCloudHeader;
     struct IBoundable;
   }  // namespace CollisionGeometry
+
   namespace Dynamics {
     namespace Collision {
       struct Geometry;
       struct Moment;
       struct Plane;
     }  // namespace Collision
+
     struct IEntity;
   }  // namespace Dynamics
-  namespace Game {}
-  namespace Physics {
-    struct Tunings;
 
+  namespace Physics {
     namespace Info {
       struct CorrectedPerformance;
       struct PerformanceMatching;
     }  // namespace Info
   }    // namespace Physics
+
   namespace Math {
     struct Vector2;
     struct Vector3;
     struct Vector4;
     struct Matrix4;
   }  // namespace Math
+
   namespace Sim {
     namespace Collision {
       struct Info;
       struct IListener;
     }  // namespace Collision
+
     struct Attachments;
     struct Entity;
     struct IEntity;
@@ -158,12 +180,14 @@ namespace OpenSpeed::MW05 {
     struct Packet;
     struct Param;
   }  // namespace Sim
+
   namespace UMath {
     struct Vector2;
     struct Vector3;
     struct Vector4;
     struct Matrix4;
   }  // namespace UMath
+
   namespace UTL {
     template <typename T>
     struct GarbageNode;
@@ -172,14 +196,13 @@ namespace OpenSpeed::MW05 {
       struct Object;
     }  // namespace COM
   }    // namespace UTL
+
   namespace WCollisionMgr {
     struct WorldCollisionInfo;
-  }
+  }  // namespace WCollisionMgr
 
-  enum class DriverClass : std::uint32_t { Human, Traffic, Cop, Racer, None, NIS, Remote, RemoteRacer, Ghost };
-  enum class DriverStyle : std::uint32_t { Racing, Drag, Drift, HighSpeed, Traffic };
-  enum class EAILaneChangeType : std::uint32_t { None, Left, Right };
-  enum class eMode : std::uint32_t { MODE_AWAKE, MODE_SLEEPING, MODE_NOMODEL };
+  enum class DriverClass : std::uint32_t { Human, Traffic, Cop, Racer, None, NIS, Remote };
+  enum class DriverStyle : std::uint32_t { Racing, Drag };
   enum class eInvulnerability : std::uint32_t {
     None,
     FromManualReset,
@@ -187,8 +210,12 @@ namespace OpenSpeed::MW05 {
     FromControlSwitch,
     FromPhysicsSwitch
   };
+  enum class eLaneSelection {
+    CenterLane,
+    CurrentLane,
+    ValidLane,
+  };
   enum class ePlayerHudType : std::uint32_t { None, Standard, Drag, Split1, Split2, DragSplit1, DragSplit2 };
-  enum class eTurnSignalState : std::uint32_t { None, Left, Right };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class GameFlowState : std::uint32_t {
     None,
@@ -215,20 +242,12 @@ namespace OpenSpeed::MW05 {
     Fragment
   };
   enum class SpeedUnitType : std::uint8_t { MPH, KMH, MPS };
-  enum class VehicleCreateFlags : std::uint32_t {
-    Valid           = 1 << 0,
-    Spooled         = 1 << 1,
-    Critical        = 1 << 2,
-    NosAdded        = 1 << 3,
-    NosRemoved      = 1 << 4,
-    Composited      = 1 << 5,
-    Unlimited       = 1 << 6,
-    CachedType      = 1 << 7,
-    CachedOnly      = 1 << 8,
-    PhysicsOnly     = 1 << 9,
-    SnapToGround    = 1 << 10,
-    LowResolution   = 1 << 11,
-    CalcPerformance = 1 << 12
+  enum class eVehicleParamFlags : std::uint32_t {
+    Spooled         = 1 << 0,
+    SnapToGround    = 1 << 1,
+    NosRemoved      = 1 << 2,
+    CalcPerformance = 1 << 3,
+    NosAdded        = 1 << 4
   };
   namespace CollisionGeometry {
     enum class BoundFlags : std::uint32_t {
@@ -245,8 +264,7 @@ namespace OpenSpeed::MW05 {
       Joint_Female         = 1 << 10,
       Joint_Male           = 1 << 11,
       Male_Post            = 1 << 12,
-      Joint_Invert         = 1 << 13,
-      PrimVsOwnParts       = 1 << 14
+      Joint_Invert         = 1 << 13
     };
   }
   namespace VehicleFX {
@@ -255,29 +273,30 @@ namespace OpenSpeed::MW05 {
       LeftHead         = 1 << 0,
       RightHead        = 1 << 1,
       CenterHead       = 1 << 2,
-      Headlights       = (std::uint32_t)LeftHead | (std::uint32_t)RightHead | (std::uint32_t)CenterHead,
       LeftBrake        = 1 << 3,
       RightBrake       = 1 << 4,
       CenterBrake      = 1 << 5,
-      Brakelights      = (std::uint32_t)LeftBrake | (std::uint32_t)RightBrake | (std::uint32_t)CenterBrake,
       LeftReverse      = 1 << 6,
       RightReverse     = 1 << 7,
-      Reverse          = (std::uint32_t)LeftReverse | (std::uint32_t)RightReverse,
       LeftRearSignal   = 1 << 8,
       RightRearSignal  = 1 << 9,
       LeftFrontSignal  = 1 << 10,
       RightFrontSignal = 1 << 11,
-      LeftSignal       = (std::uint32_t)LeftFrontSignal | (std::uint32_t)LeftRearSignal,
-      RightSignal      = (std::uint32_t)RightFrontSignal | (std::uint32_t)RightRearSignal,
       CopRed           = 1 << 12,
       CopBlue          = 1 << 13,
       CopWhite         = 1 << 14,
+      Headlights       = (std::uint32_t)LeftHead | (std::uint32_t)RightHead | (std::uint32_t)CenterHead,
+      Brakelights      = (std::uint32_t)LeftBrake | (std::uint32_t)RightBrake | (std::uint32_t)CenterBrake,
+      RunningLights    = (std::uint32_t)Headlights | (std::uint32_t)Brakelights,
+      Reverse          = (std::uint32_t)LeftReverse | (std::uint32_t)RightReverse,
+      LeftSignal       = (std::uint32_t)LeftFrontSignal | (std::uint32_t)LeftRearSignal,
+      RightSignal      = (std::uint32_t)RightFrontSignal | (std::uint32_t)RightRearSignal,
       Cop              = (std::uint32_t)CopRed | (std::uint32_t)CopBlue | (std::uint32_t)CopWhite
     };
   }  // namespace VehicleFX
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
-  DEFINE_ENUM_FLAG_OPERATORS(VehicleCreateFlags)
+  DEFINE_ENUM_FLAG_OPERATORS(eVehicleParamFlags)
   DEFINE_ENUM_FLAG_OPERATORS(CollisionGeometry::BoundFlags)
   DEFINE_ENUM_FLAG_OPERATORS(VehicleFX::LightID)
 #endif

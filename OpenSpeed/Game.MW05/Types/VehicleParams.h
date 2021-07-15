@@ -24,43 +24,43 @@
 namespace OpenSpeed::MW05 {
   struct VehicleParams : Sim::Param {
     DriverClass                         mDriverClass;
-    Attrib::Gen::pvehicle               mVehicleAttrib;
+    std::uint32_t                       mVehicleHash;
     UMath::Vector3*                     mDirection;
     UMath::Vector3*                     mPosition;
-    FECustomizationRecord*              mFECR;
+    FECustomizationRecord*              mCustomization;
     IVehicleCache*                      mVehicleCache;
     Physics::Info::PerformanceMatching* mPerformanceMatch;
-    VehicleCreateFlags                  mCreateFlags;
+    eVehicleParamFlags                  mCreateFlags;
 
     static void TypeName(VehicleParams* pVehicleParams) {
       reinterpret_cast<void(__cdecl*)(VehicleParams*)>(0x4040F0)(pVehicleParams);
     }
 
-    VehicleParams(IVehicleCache* pVehicleCache, DriverClass driverClass, const Attrib::Gen::pvehicle& vehicleAttrib,
-                  const UMath::Vector3& direction, const UMath::Vector3& position, VehicleCreateFlags createFlags,
+    VehicleParams(IVehicleCache* pVehicleCache, DriverClass driverClass, std::uint32_t vehicleHash,
+                  const UMath::Vector3& direction, const UMath::Vector3& position, eVehicleParamFlags createFlags,
                   FECustomizationRecord* pFECR, Physics::Info::PerformanceMatching* pPerformanceMatch) :
         Sim::Param(0x0A6B47FAC),
         mVehicleCache(pVehicleCache),
         mDriverClass(driverClass),
-        mVehicleAttrib(vehicleAttrib),
+        mVehicleHash(vehicleHash),
         mDirection(const_cast<UMath::Vector3*>(&direction)),
         mPosition(const_cast<UMath::Vector3*>(&position)),
         mCreateFlags(createFlags),
-        mFECR(pFECR),
+        mCustomization(pFECR),
         mPerformanceMatch(pPerformanceMatch) {
       TypeName(this);
     }
-    VehicleParams(IVehicleCache* pVehicleCache, DriverClass driverClass, const std::uint32_t vehicleHash,
-                  const UMath::Vector3& direction, const UMath::Vector3& position, VehicleCreateFlags createFlags,
+    VehicleParams(IVehicleCache* pVehicleCache, DriverClass driverClass, std::uint32_t vehicleHash,
+                  const UMath::Vector3& direction, const UMath::Vector3& position, eVehicleParamFlags createFlags,
                   FECustomizationRecord* pFECR, Physics::Info::PerformanceMatching* pPerformanceMatch) :
         Sim::Param(0x0A6B47FAC),
         mVehicleCache(pVehicleCache),
         mDriverClass(driverClass),
-        mVehicleAttrib(vehicleHash),
+        mVehicleHash(vehicleHash),
         mDirection(const_cast<UMath::Vector3*>(&direction)),
         mPosition(const_cast<UMath::Vector3*>(&position)),
         mCreateFlags(createFlags),
-        mFECR(pFECR),
+        mCustomization(pFECR),
         mPerformanceMatch(pPerformanceMatch) {
       TypeName(this);
     }

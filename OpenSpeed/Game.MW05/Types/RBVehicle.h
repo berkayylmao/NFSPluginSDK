@@ -26,21 +26,18 @@
 namespace OpenSpeed::MW05 {
   struct RBVehicle : RigidBody, IRBVehicle {
     IVehicle*                                     mVehicle;
-    IChassis*                                     mChassis;
+    ISuspension*                                  mSuspension;
     BehaviorSpecsPtr<Attrib::Gen::rigidbodyspecs> mSpecs;
     float                                         mDeadOnWheels;
     CollisionGeometry::Collection*                mGeoms;
     std::uint32_t                                 mFrame;
-    UMath::Vector3                                mCollisionCOG;
+    UMath::Vector3                                mCollisionCenterOfGravity;
     float                                         mCollisionMass;
     bool                                          mObjectCollisionsEnabled;
-    bool                                          mVehicleCollisionsEnabled;
-    bool                                          mTumblingFlag;
-    std::uint32_t                                 mTumblingIndex;
     eInvulnerability                              mInvulnerableState;
     float                                         mInvulnerableTimer;
     float                                         mLastPenetration;
-    Attrib::Gen::collisionreactions               mReactions[10];
+    Attrib::Gen::collisionreactions               mReactions;
 
     virtual ~RBVehicle();
   };

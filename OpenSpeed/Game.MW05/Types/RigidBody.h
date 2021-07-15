@@ -21,11 +21,13 @@
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/_ptr.h>
 #include <OpenSpeed/Game.MW05/Types/Behavior.h>
-#include <OpenSpeed/Game.MW05/Types/bNode.h>
+#include <OpenSpeed/Game.MW05/Types/bList.h>
 #include <OpenSpeed/Game.MW05/Types/CollisionGeometry.h>
 #include <OpenSpeed/Game.MW05/Types/ICollisionBody.h>
 #include <OpenSpeed/Game.MW05/Types/IDynamicsEntity.h>
 #include <OpenSpeed/Game.MW05/Types/IRigidBody.h>
+#include <OpenSpeed/Game.MW05/Types/Math.h>
+#include <OpenSpeed/Game.MW05/Types/RBGrid.h>
 #include <OpenSpeed/Game.MW05/Types/WCollisionMgr.h>
 
 namespace OpenSpeed::MW05 {
@@ -36,8 +38,48 @@ namespace OpenSpeed::MW05 {
                      WCollisionMgr::ICollisionHandler,
                      CollisionGeometry::IBoundable,
                      bTNode<RigidBody> {
-    struct State {
-      enum class StatusType : std::uint32_t {
+    struct Primitive : bTNode<Primitive> {
+      enum Flags {
+        VSWORLD   = 1 << 0,
+        VSOBJECTS = 1 << 1,
+        VSGROUND  = 1 << 2,
+        DISABLED  = 1 << 3,
+        ONESIDED  = 1 << 4,
+      };
+
+      const Math::Vector4 mOrientation;
+      const Math::Vector3 mDimension;
+      const char          mShape;
+      const Math::Vector3 mOffset;
+      const UCrc32        mName;
+      Math::Vector3       mPrevPosition;
+      Flags               mFlags;
+      void*               mMaterial;
+    };
+    struct PrimList : bTList<RigidBody::Primitive> {
+      float         mRadius;
+      std::uint32_t mSize;
+    };
+
+    struct Mesh : bTNode<Mesh> {
+      enum class Flags {
+        DISABLED = 1 << 0,
+        FREEABLE = 1 << 2,
+      };
+
+      Math::Vector4*      mVerts;
+      const std::uint16_t mNumVertices;
+      Flags               mFlags;
+      void*               mMaterial;
+      UCrc32              mName;
+    };
+    struct MeshList : bTList<Mesh> {
+      std::uint32_t mSize;
+      std::uint32_t mVertCount;
+    };
+
+    struct Volatile {
+      enum class Status : std::uint32_t {
         NoTrigger         = 1 << 0,
         Attached          = 1 << 1,
         CollisionWorld    = 1 << 2,
@@ -57,13 +99,17 @@ namespace OpenSpeed::MW05 {
 
       UMath::Vector4 orientation;
       UMath::Vector3 position;
-      StatusType     statusPrev;
+      Status         statusPrev;
+      // [South, East, Vertical]
       UMath::Vector3 linearVelocity;
       float          mass;
+      // [South, East, Horizontal]
       UMath::Vector3 angularVelocity;
-      float          oom;            // OOMass
-      UMath::Vector3 InertiaTensor;  // PrincipalInertia
-      StatusType     status;
+      // OOMass
+      float oom;
+      // PrincipalInertia
+      UMath::Vector3 InertiaTensor;
+      Status         status;
       UMath::Vector3 force;
       int8_t         leversInContact;
       int8_t         mode;
@@ -71,38 +117,43 @@ namespace OpenSpeed::MW05 {
       int8_t         __unused2;
       UMath::Vector3 torque;
       float          radius;
+      // World transformation matrix
+      // [v0] RightVector   (Rotation)
+      // [v1] UpVector      (OrientToGround)
+      // [v2] ForwardVector [South, East, Vertical, ?]
+      // [v3] ?
       UMath::Matrix4 bodyMatrix;
 
-      bool GetStatus(StatusType status) {
+      bool GetStatus(Status status) {
         return (static_cast<std::uint32_t>(this->status) & static_cast<std::uint32_t>(status)) ==
                static_cast<std::uint32_t>(status);
       }
-      void SetStatus(StatusType status) {
+      void SetStatus(Status status) {
         this->status =
-            static_cast<StatusType>(static_cast<std::uint32_t>(this->status) | static_cast<std::uint32_t>(status));
+            static_cast<Status>(static_cast<std::uint32_t>(this->status) | static_cast<std::uint32_t>(status));
       }
-      void RemoveStatus(StatusType status) {
+      void RemoveStatus(Status status) {
         this->status =
-            static_cast<StatusType>(static_cast<std::uint32_t>(this->status) ^ static_cast<std::uint32_t>(status));
+            static_cast<Status>(static_cast<std::uint32_t>(this->status) ^ static_cast<std::uint32_t>(status));
       }
     };
 
     static inline RigidBody** g_mMaps = reinterpret_cast<RigidBody**>(0x92D0E8);
 
-    ScratchPtr<State>                             mState;
+    ScratchPtr<Volatile>                          mData;
     BehaviorSpecsPtr<Attrib::Gen::rigidbodyspecs> mSpecs;
     UMath::Matrix4                                mInvWorldTensor;
     UMath::Vector4                                mGroundNormal;
     UMath::Vector3                                mDimension;
     WCollider*                                    mWCollider;
-    UMath::Vector3                                mCOG;
+    UMath::Vector3                                mCenterOfGravity;
     const CollisionGeometry::Bounds*              mGeoms;
-    /* RBGrid*/ void*                             mGrid;
+    RBGrid*                                       mGrid;
     unsigned int                                  mCollisionMask;
     SimableType                                   mSimableType;
     float                                         mDetachForce;
-    // RigidBody::PrimList                           mPrimitives;
-    // RigidBody::MeshList                           mMeshes;
+    PrimList                                      mPrimitives;
+    MeshList                                      mMeshes;
 
     virtual ~RigidBody();
     virtual void OnDebugDraw();
@@ -120,9 +171,56 @@ namespace OpenSpeed::MW05 {
     virtual bool CanCollideWithWorld();
     virtual bool CanCollideWithGround();
     virtual bool CanCollideWithObjects();
+
+#pragma region overrides
+    virtual ISimable*             GetOwner() override;
+    virtual bool                  IsSimple() override;
+    virtual std::int32_t          GetIndex() override;
+    virtual SimableType           GetSimableType() override;
+    virtual float                 GetRadius() override;
+    virtual float                 GetMass() override;
+    virtual float                 GetOOMass() override;
+    virtual const UMath::Vector3& GetPosition() override;
+    virtual const UMath::Vector3& GetLinearVelocity() override;
+    virtual const UMath::Vector3& GetAngularVelocity() override;
+    virtual float                 GetSpeed() override;
+    virtual float                 GetSpeedXZ() override;
+    virtual void                  GetForwardVector(UMath::Vector3& out) override;
+    virtual void                  GetRightVector(UMath::Vector3& out) override;
+    virtual void                  GetUpVector(UMath::Vector3& out) override;
+    virtual void                  GetMatrix4(UMath::Matrix4& out) override;
+    virtual const UMath::Vector4& GetOrientation() override;
+    virtual void                  GetDimension(UMath::Vector3& out) const override;
+    virtual void                  GetDimension(UMath::Vector3& out) override;
+    virtual std::uint32_t         GetTriggerFlags() override;
+    virtual WCollider*            GetWCollider() override;
+    virtual void                  GetPointVelocity(const UMath::Vector3& vec, UMath::Vector3& out) override;
+    virtual void                  SetPosition(const UMath::Vector3& newPosition) override;
+    virtual void                  SetLinearVelocity(const UMath::Vector3& newLinearVelocity) override;
+    virtual void                  SetAngularVelocity(const UMath::Vector3& newAngularVelocity) override;
+    virtual void                  SetRadius(float newRadius) override;
+    virtual void                  SetMass(float newMass) override;
+    virtual void                  SetOrientation(const UMath::Matrix4& newOrientation) override;
+    virtual void                  SetOrientation(const UMath::Vector4& newOrientation) override;
+    virtual void                  ModifyXPos(float newPosX) override;
+    virtual void                  ModifyYPos(float newPosY) override;
+    virtual void                  ModifyZPos(float newPosZ) override;
+    virtual void                  Resolve(const UMath::Vector3&, const UMath::Vector3&) override;
+    virtual void                  ResolveForce(const UMath::Vector3&, const UMath::Vector3&) override;
+    virtual void                  ResolveForce(const UMath::Vector3&) override;
+    virtual void                  ResolveTorque(const UMath::Vector3&, const UMath::Vector3&) override;
+    virtual void                  ResolveTorque(const UMath::Vector3&) override;
+    virtual void                  PlaceObject(const UMath::Matrix4&, const UMath::Vector3&) override;
+    virtual void                  Accelerate(const UMath::Vector3& distribution, float amount) override;
+    virtual void                  ConvertLocalToWorld(UMath::Vector3& out, bool normalize) override;
+    virtual void                  ConvertWorldToLocal(UMath::Vector3& out, bool normalize) override;
+    virtual void                  Debug() override;
+#pragma endregion
   };
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
-  DEFINE_ENUM_FLAG_OPERATORS(RigidBody::State::StatusType)
+  DEFINE_ENUM_FLAG_OPERATORS(RigidBody::Primitive::Flags)
+  DEFINE_ENUM_FLAG_OPERATORS(RigidBody::Mesh::Flags)
+  DEFINE_ENUM_FLAG_OPERATORS(RigidBody::Volatile::Status)
 #endif
 }  // namespace OpenSpeed::MW05

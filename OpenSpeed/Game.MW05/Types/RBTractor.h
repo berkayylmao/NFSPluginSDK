@@ -25,6 +25,14 @@
 
 namespace OpenSpeed::MW05 {
   struct RBTractor : RBVehicle, IArticulatedVehicle, IVehicleCache {
+    IVehicle*      mTrailer;
+    IInput*        mIInput;
+    HSIMTASK__*    mTrailerTask;
+    bool           mHitched;
+    UMath::Vector3 m5thWheel;
+    UMath::Vector3 mTrailer5thWheel;
+    float          mDetachTimer;
+
     virtual ~RBTractor();
   };
 }  // namespace OpenSpeed::MW05

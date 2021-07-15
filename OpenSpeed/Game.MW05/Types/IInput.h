@@ -20,32 +20,26 @@
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/UTL.h>
+#include <OpenSpeed/Game.MW05/Types/InputControls.h>
 
 namespace OpenSpeed::MW05 {
   struct IInput : UTL::COM::IUnknown {
     virtual ~IInput();
-    virtual void   ClearInput()                             = 0;
-    virtual float* GetControls()                            = 0;
-    virtual float  GetControlHandBrake()                    = 0;
-    virtual float  GetControlActionButton()                 = 0;
-    virtual void   SetControlSteering(float amount)         = 0;
-    virtual void   SetControlGas(float amount)              = 0;
-    virtual void   SetControlBrake(float amount)            = 0;
-    virtual void   SetControlNOS(bool isPressed)            = 0;
-    virtual void   SetControlHandBrake(float amount)        = 0;
-    virtual void   SetControlActionButton(bool isPressed)   = 0;
-    virtual void   SetControlSteeringVertical(float amount) = 0;
-    virtual void   SetControlBanking(float amount)          = 0;
-    virtual float  GetControlBanking()                      = 0;
-    virtual bool   IsLookBackButtonPressed()                = 0;
-    virtual bool   IsPullBackButtonPressed()                = 0;
-    virtual bool   IsAutomaticShift()                       = 0;
-
-    float GetControlBrake();
-    float GetControlGas();
-    float GetControlSteering();
-    float GetControlSteeringVertical();
-    bool  GetCruiseControl();
-    bool  GetControlNOS();
+    virtual void           ClearInput()                             = 0;
+    virtual InputControls& GetControls()                            = 0;
+    virtual float          GetControlHandBrake()                    = 0;
+    virtual float          GetControlActionButton()                 = 0;
+    virtual void           SetControlSteering(float amount)         = 0;
+    virtual void           SetControlGas(float amount)              = 0;
+    virtual void           SetControlBrake(float amount)            = 0;
+    virtual void           SetControlNOS(bool isPressed)            = 0;
+    virtual void           SetControlHandBrake(float amount)        = 0;
+    virtual void           SetControlActionButton(bool isPressed)   = 0;
+    virtual void           SetControlSteeringVertical(float amount) = 0;
+    virtual void           SetControlBanking(float amount)          = 0;
+    virtual float          GetControlBanking()                      = 0;
+    virtual bool           IsLookBackButtonPressed()                = 0;
+    virtual bool           IsPullBackButtonPressed()                = 0;
+    virtual bool           IsAutomaticShift()                       = 0;
   };
 }  // namespace OpenSpeed::MW05

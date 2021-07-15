@@ -43,12 +43,11 @@ namespace OpenSpeed::MW05 {
     virtual ~Behavior();
     virtual void         Reset() = 0;
     virtual std::int32_t GetPriority();
-    virtual void         OnOwnerAttached(IAttachable*) = 0;
-    virtual void         OnOwnerDetached(IAttachable*) = 0;
-    // struct Container ->
-    virtual void OnTaskSimulate(float)           = 0;
-    virtual void OnBehaviorChange(const UCrc32&) = 0;
-    virtual void OnPause()                       = 0;
-    virtual void OnUnPause()                     = 0;
+    virtual void         OnOwnerAttached(IAttachable*)   = 0;
+    virtual void         OnOwnerDetached(IAttachable*)   = 0;
+    virtual void         OnTaskSimulate(float)           = 0;
+    virtual void         OnBehaviorChange(const UCrc32&) = 0;
+    virtual void         OnPause()                       = 0;
+    virtual void         OnUnPause()                     = 0;
   };
 }  // namespace OpenSpeed::MW05

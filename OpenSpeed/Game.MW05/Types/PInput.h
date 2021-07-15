@@ -24,7 +24,7 @@
 
 namespace OpenSpeed::MW05 {
   struct PInput : Behavior, IInput {
-    unsigned char __unk[0x24];
+    InputControls mControls;
 
     virtual ~PInput();
     virtual void SetControlStrafeVertical(float amount);

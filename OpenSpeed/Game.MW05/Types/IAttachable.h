@@ -18,19 +18,19 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/EASTL/EASTL/list.h>
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
   struct IAttachable : UTL::COM::IUnknown {
-    struct List;
-
     virtual ~IAttachable();
-    virtual bool  Attach(UTL::COM::IUnknown* p)     = 0;
-    virtual bool  Detach(UTL::COM::IUnknown* p)     = 0;
-    virtual bool  IsAttached(UTL::COM::IUnknown* p) = 0;
-    virtual void  OnAttached(IAttachable* p)        = 0;
-    virtual void  OnDetached(IAttachable* p)        = 0;
-    virtual List* GetAttachments()                  = 0;
+    virtual bool                       Attach(UTL::COM::IUnknown* p)     = 0;
+    virtual bool                       Detach(UTL::COM::IUnknown* p)     = 0;
+    virtual bool                       IsAttached(UTL::COM::IUnknown* p) = 0;
+    virtual void                       OnAttached(IAttachable* p)        = 0;
+    virtual void                       OnDetached(IAttachable* p)        = 0;
+    virtual eastl::list<IAttachable*>* GetAttachments()                  = 0;
   };
 }  // namespace OpenSpeed::MW05
