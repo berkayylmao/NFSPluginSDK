@@ -117,6 +117,11 @@ namespace OpenSpeed::MW05::Attrib {
       return this->GetData<T>(StringToKey(fieldName), idx);
     }
 
+    template <typename T>
+    T* GetLayout() {
+      return reinterpret_cast<T*>(mLayout);
+    }
+
     Definition* GetDefinition(StringKey key) {
       return reinterpret_cast<Definition*(__thiscall*)(Collection*, StringKey)>(0x457380)(this, key);
     }
