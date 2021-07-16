@@ -37,7 +37,7 @@ namespace OpenSpeed::MW05::Attrib {
   struct RGBA {
     float r, g, b, a;
 
-    RGBA operator+(const RGBA& rhs) {
+    RGBA operator+(const RGBA& rhs) const noexcept {
       RGBA _result = *this;
       _result.r += rhs.r;
       _result.g += rhs.g;
@@ -46,7 +46,7 @@ namespace OpenSpeed::MW05::Attrib {
 
       return _result;
     }
-    RGBA operator-(const RGBA& rhs) {
+    RGBA operator-(const RGBA& rhs) const noexcept {
       RGBA _result = *this;
       _result.r -= rhs.r;
       _result.g -= rhs.g;
@@ -55,7 +55,7 @@ namespace OpenSpeed::MW05::Attrib {
 
       return _result;
     }
-    RGBA operator*(const RGBA& rhs) {
+    RGBA operator*(const RGBA& rhs) const noexcept {
       RGBA _result = *this;
       _result.r *= rhs.r;
       _result.g *= rhs.g;
@@ -64,7 +64,7 @@ namespace OpenSpeed::MW05::Attrib {
 
       return _result;
     }
-    RGBA operator/(const RGBA& rhs) {
+    RGBA operator/(const RGBA& rhs) const noexcept {
       RGBA _result = *this;
       _result.r /= rhs.r;
       _result.g /= rhs.g;
@@ -73,7 +73,7 @@ namespace OpenSpeed::MW05::Attrib {
 
       return _result;
     }
-    RGBA operator*(float rhs) {
+    RGBA operator*(float rhs) const noexcept {
       RGBA _result = *this;
       _result.r *= rhs;
       _result.g *= rhs;
@@ -82,7 +82,7 @@ namespace OpenSpeed::MW05::Attrib {
 
       return _result;
     }
-    RGBA operator/(float rhs) {
+    RGBA operator/(float rhs) const noexcept {
       RGBA _result = *this;
       _result.r /= rhs;
       _result.g /= rhs;
@@ -105,10 +105,10 @@ namespace OpenSpeed::MW05::Attrib {
     void operator*=(float rhs) { *this = *this * rhs; }
     void operator/=(float rhs) { *this = *this / rhs; }
 
-                 operator float*() { return reinterpret_cast<float*>(this); }
-                 operator const float*() { return reinterpret_cast<const float*>(this); }
-    float&       operator[](size_t index) { return (reinterpret_cast<float*>(this))[index]; }
-    const float& operator[](size_t index) const { return (reinterpret_cast<const float*>(this))[index]; }
+                 operator float*() noexcept { return reinterpret_cast<float*>(this); }
+                 operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
+    float&       operator[](size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
+    const float& operator[](size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
 
     RGBA()  = default;
     ~RGBA() = default;

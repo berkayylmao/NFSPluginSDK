@@ -24,42 +24,42 @@ namespace OpenSpeed::MW05::UMath {
   struct Vector2 {
     float y, x;
 
-    Vector2 operator+(const Vector2& rhs) {
+    Vector2 operator+(const Vector2& rhs) const noexcept {
       Vector2 _result = *this;
       _result.x += rhs.x;
       _result.y += rhs.y;
 
       return _result;
     }
-    Vector2 operator-(const Vector2& rhs) {
+    Vector2 operator-(const Vector2& rhs) const noexcept {
       Vector2 _result = *this;
       _result.x -= rhs.x;
       _result.y -= rhs.y;
 
       return _result;
     }
-    Vector2 operator*(const Vector2& rhs) {
+    Vector2 operator*(const Vector2& rhs) const noexcept {
       Vector2 _result = *this;
       _result.x *= rhs.x;
       _result.y *= rhs.y;
 
       return _result;
     }
-    Vector2 operator/(const Vector2& rhs) {
+    Vector2 operator/(const Vector2& rhs) const noexcept {
       Vector2 _result = *this;
       _result.x /= rhs.x;
       _result.y /= rhs.y;
 
       return _result;
     }
-    Vector2 operator*(float rhs) {
+    Vector2 operator*(float rhs) const noexcept {
       Vector2 _result = *this;
       _result.x *= rhs;
       _result.y *= rhs;
 
       return _result;
     }
-    Vector2 operator/(float rhs) {
+    Vector2 operator/(float rhs) const noexcept {
       Vector2 _result = *this;
       _result.x /= rhs;
       _result.y /= rhs;
@@ -78,10 +78,10 @@ namespace OpenSpeed::MW05::UMath {
     void operator*=(float rhs) { *this = *this * rhs; }
     void operator/=(float rhs) { *this = *this / rhs; }
 
-                 operator float*() { return reinterpret_cast<float*>(this); }
-                 operator const float*() { return reinterpret_cast<const float*>(this); }
-    float&       operator[](size_t index) { return (reinterpret_cast<float*>(this))[index]; }
-    const float& operator[](size_t index) const { return (reinterpret_cast<const float*>(this))[index]; }
+                 operator float*() noexcept { return reinterpret_cast<float*>(this); }
+                 operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
+    float&       operator[](size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
+    const float& operator[](size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
 
     Vector2()  = default;
     ~Vector2() = default;
@@ -90,7 +90,7 @@ namespace OpenSpeed::MW05::UMath {
   struct Vector3 {
     float y, z, x;
 
-    Vector3 operator+(const Vector3& rhs) {
+    Vector3 operator+(const Vector3& rhs) const noexcept {
       Vector3 _result = *this;
       _result.x += rhs.x;
       _result.y += rhs.y;
@@ -98,7 +98,7 @@ namespace OpenSpeed::MW05::UMath {
 
       return _result;
     }
-    Vector3 operator-(const Vector3& rhs) {
+    Vector3 operator-(const Vector3& rhs) const noexcept {
       Vector3 _result = *this;
       _result.x -= rhs.x;
       _result.y -= rhs.y;
@@ -106,7 +106,7 @@ namespace OpenSpeed::MW05::UMath {
 
       return _result;
     }
-    Vector3 operator*(const Vector3& rhs) {
+    Vector3 operator*(const Vector3& rhs) const noexcept {
       Vector3 _result = *this;
       _result.x *= rhs.x;
       _result.y *= rhs.y;
@@ -114,7 +114,7 @@ namespace OpenSpeed::MW05::UMath {
 
       return _result;
     }
-    Vector3 operator/(const Vector3& rhs) {
+    Vector3 operator/(const Vector3& rhs) const noexcept {
       Vector3 _result = *this;
       _result.x /= rhs.x;
       _result.y /= rhs.y;
@@ -122,7 +122,7 @@ namespace OpenSpeed::MW05::UMath {
 
       return _result;
     }
-    Vector3 operator*(float rhs) {
+    Vector3 operator*(float rhs) const noexcept {
       Vector3 _result = *this;
       _result.x *= rhs;
       _result.y *= rhs;
@@ -130,7 +130,7 @@ namespace OpenSpeed::MW05::UMath {
 
       return _result;
     }
-    Vector3 operator/(float rhs) {
+    Vector3 operator/(float rhs) const noexcept {
       Vector3 _result = *this;
       _result.x /= rhs;
       _result.y /= rhs;
@@ -151,10 +151,10 @@ namespace OpenSpeed::MW05::UMath {
     void operator*=(float rhs) { *this = *this * rhs; }
     void operator/=(float rhs) { *this = *this / rhs; }
 
-                 operator float*() { return reinterpret_cast<float*>(this); }
-                 operator const float*() { return reinterpret_cast<const float*>(this); }
-    float&       operator[](size_t index) { return (reinterpret_cast<float*>(this))[index]; }
-    const float& operator[](size_t index) const { return (reinterpret_cast<const float*>(this))[index]; }
+                 operator float*() noexcept { return reinterpret_cast<float*>(this); }
+                 operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
+    float&       operator[](size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
+    const float& operator[](size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
 
     Vector3()  = default;
     ~Vector3() = default;
@@ -172,7 +172,7 @@ namespace OpenSpeed::MW05::UMath {
 
     inline void ToMatrix4(Matrix4* to) { reinterpret_cast<void(__cdecl*)(Vector4*, Matrix4*)>(0x5CA910)(this, to); }
 
-    Vector4 operator+(const Vector4& rhs) {
+    Vector4 operator+(const Vector4& rhs) const noexcept {
       Vector4 _result = *this;
       _result.x += rhs.x;
       _result.y += rhs.y;
@@ -181,7 +181,7 @@ namespace OpenSpeed::MW05::UMath {
 
       return _result;
     }
-    Vector4 operator-(const Vector4& rhs) {
+    Vector4 operator-(const Vector4& rhs) const noexcept {
       Vector4 _result = *this;
       _result.x -= rhs.x;
       _result.y -= rhs.y;
@@ -190,7 +190,7 @@ namespace OpenSpeed::MW05::UMath {
 
       return _result;
     }
-    Vector4 operator*(const Vector4& rhs) {
+    Vector4 operator*(const Vector4& rhs) const noexcept {
       Vector4 _result = *this;
       _result.x *= rhs.x;
       _result.y *= rhs.y;
@@ -199,7 +199,7 @@ namespace OpenSpeed::MW05::UMath {
 
       return _result;
     }
-    Vector4 operator/(const Vector4& rhs) {
+    Vector4 operator/(const Vector4& rhs) const noexcept {
       Vector4 _result = *this;
       _result.x /= rhs.x;
       _result.y /= rhs.y;
@@ -208,7 +208,7 @@ namespace OpenSpeed::MW05::UMath {
 
       return _result;
     }
-    Vector4 operator*(float rhs) {
+    Vector4 operator*(float rhs) const noexcept {
       Vector4 _result = *this;
       _result.x *= rhs;
       _result.y *= rhs;
@@ -217,7 +217,7 @@ namespace OpenSpeed::MW05::UMath {
 
       return _result;
     }
-    Vector4 operator/(float rhs) {
+    Vector4 operator/(float rhs) const noexcept {
       Vector4 _result = *this;
       _result.x /= rhs;
       _result.y /= rhs;
@@ -240,10 +240,10 @@ namespace OpenSpeed::MW05::UMath {
     void operator*=(float rhs) { *this = *this * rhs; }
     void operator/=(float rhs) { *this = *this / rhs; }
 
-                 operator float*() { return reinterpret_cast<float*>(this); }
-                 operator const float*() { return reinterpret_cast<const float*>(this); }
-    float&       operator[](size_t index) { return (reinterpret_cast<float*>(this))[index]; }
-    const float& operator[](size_t index) const { return (reinterpret_cast<const float*>(this))[index]; }
+                 operator float*() noexcept { return reinterpret_cast<float*>(this); }
+                 operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
+    float&       operator[](size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
+    const float& operator[](size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
 
     Vector4()  = default;
     ~Vector4() = default;
@@ -322,12 +322,12 @@ namespace OpenSpeed::MW05::UMath {
     void operator*=(float rhs) { *this = *this * rhs; }
     void operator/=(float rhs) { *this = *this / rhs; }
 
-                   operator float*() { return reinterpret_cast<float*>(this); }
-                   operator const float*() { return reinterpret_cast<const float*>(this); }
-                   operator Vector4*() { return reinterpret_cast<Vector4*>(this); }
-                   operator const Vector4*() { return reinterpret_cast<const Vector4*>(this); }
-    Vector4&       operator[](size_t index) { return (reinterpret_cast<Vector4*>(this))[index]; }
-    const Vector4& operator[](size_t index) const { return (reinterpret_cast<const Vector4*>(this))[index]; }
+                   operator float*() noexcept { return reinterpret_cast<float*>(this); }
+                   operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
+                   operator Vector4*() noexcept { return reinterpret_cast<Vector4*>(this); }
+                   operator const Vector4*() const noexcept { return reinterpret_cast<const Vector4*>(this); }
+    Vector4&       operator[](size_t index) noexcept { return (reinterpret_cast<Vector4*>(this))[index]; }
+    const Vector4& operator[](size_t index) const noexcept { return (reinterpret_cast<const Vector4*>(this))[index]; }
 
     Matrix4()  = default;
     ~Matrix4() = default;
