@@ -18,6 +18,8 @@
 // clang-format on
 
 #pragma once
+#include <type_traits>  // enable_if_t, is_base_of_v
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/bList.h>
 #include <OpenSpeed/Game.MW05/Types/IAttributeable.h>
@@ -70,6 +72,62 @@ namespace OpenSpeed::MW05 {
     virtual void OnDebugDraw() = 0;
 
     bool IsValid() { return mObjType != SimableType::Invalid && mDirty == false && this->GetRigidBody(); }
+
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<IVehicleAI, T>, T*> GetAIAs() {
+      if (!IsValid()) return nullptr;
+      return static_cast<T*>(mAI);
+    }
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<IArticulatedVehicle, T>, T*> GetArticulatedVehicleAs() {
+      if (!IsValid()) return nullptr;
+      return static_cast<T*>(mArticulation);
+    }
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<IAudible, T>, T*> GetAudibleAs() {
+      if (!IsValid()) return nullptr;
+      return static_cast<T*>(mAudible);
+    }
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<ICollisionBody, T>, T*> GetCollisionBodyAs() {
+      if (!IsValid()) return nullptr;
+      return static_cast<T*>(mCollisionBody);
+    }
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<IDamageable, T>, T*> GetDamageableAs() {
+      if (!IsValid()) return nullptr;
+      return static_cast<T*>(mDamage);
+    }
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<IEngine, T>, T*> GetEngineAs() {
+      if (!IsValid()) return nullptr;
+      return static_cast<T*>(mEngine);
+    }
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<IInput, T>, T*> GetInputAs() {
+      if (!IsValid()) return nullptr;
+      return static_cast<T*>(mInput);
+    }
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<IRenderable, T>, T*> GetRenderableAs() {
+      if (!IsValid()) return nullptr;
+      return static_cast<T*>(mRenderable);
+    }
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<IRigidBody, T>, T*> GetRigidBodyAs() {
+      if (!IsValid()) return nullptr;
+      return static_cast<T*>(GetRigidBody());
+    }
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<ISuspension, T>, T*> GetSuspensionAs() {
+      if (!IsValid()) return nullptr;
+      return static_cast<T*>(mSuspension);
+    }
+    template <typename T>
+    std::enable_if_t<std::is_base_of_v<ITransmission, T>, T*> GetTransmissionAs() {
+      if (!IsValid()) return nullptr;
+      return static_cast<T*>(mTranny);
+    }
 
     static inline _InstanceLayout* g_mInstances = reinterpret_cast<_InstanceLayout*>(0x9352B0);
 
