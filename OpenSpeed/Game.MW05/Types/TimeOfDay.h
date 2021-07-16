@@ -28,6 +28,14 @@ namespace OpenSpeed::MW05 {
     float        mSunDefaultOrbitAxisX;
     float        mSunDefaultOrbitAxisY;
 
+    void operator=(const TimeOfDay& rhs) {
+      mSkyboxSpeedMultiplier    = rhs.mSkyboxSpeedMultiplier;
+      mTimeOfDaySpeedMultiplier = rhs.mTimeOfDaySpeedMultiplier;
+      mTimeOfDayValue           = rhs.mTimeOfDayValue;
+      mSunDefaultOrbitAxisX     = rhs.mSunDefaultOrbitAxisX;
+      mSunDefaultOrbitAxisY     = rhs.mSunDefaultOrbitAxisY;
+    }
+
     static inline TimeOfDay** g_ppInstance = reinterpret_cast<TimeOfDay**>(0x9B392C);
     static TimeOfDay*         GetInstance() {
       if (g_ppInstance && *g_ppInstance) return *g_ppInstance;
