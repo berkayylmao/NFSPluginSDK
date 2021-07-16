@@ -19,21 +19,21 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/Math.h>
 
 namespace OpenSpeed::MW05 {
   struct TimeOfDay {
-    float        mSkyboxSpeedMultiplier;
-    std::int32_t mTimeOfDaySpeedMultiplier;
-    float        mTimeOfDayValue;
-    float        mSunDefaultOrbitAxisX;
-    float        mSunDefaultOrbitAxisY;
+    float         mSkyboxSpeedMultiplier;
+    std::int32_t  mTimeOfDaySpeedMultiplier;
+    float         mTimeOfDayValue;
+    Math::Vector2 mSunOrbitAxis;
 
     void operator=(const TimeOfDay& rhs) {
       mSkyboxSpeedMultiplier    = rhs.mSkyboxSpeedMultiplier;
       mTimeOfDaySpeedMultiplier = rhs.mTimeOfDaySpeedMultiplier;
       mTimeOfDayValue           = rhs.mTimeOfDayValue;
-      mSunDefaultOrbitAxisX     = rhs.mSunDefaultOrbitAxisX;
-      mSunDefaultOrbitAxisY     = rhs.mSunDefaultOrbitAxisY;
+      mSunOrbitAxis.x           = rhs.mSunOrbitAxis.x;
+      mSunOrbitAxis.y           = rhs.mSunOrbitAxis.y;
     }
 
     static inline TimeOfDay** g_ppInstance = reinterpret_cast<TimeOfDay**>(0x9B392C);
