@@ -35,61 +35,84 @@ namespace OpenSpeed::MW05::Attrib {
   };
 
   struct RGBA {
-    float R, G, B, A;
+    float r, g, b, a;
 
     RGBA operator+(const RGBA& rhs) {
       RGBA _result = *this;
-      _result.R += rhs.R;
-      _result.G += rhs.G;
-      _result.B += rhs.B;
-      _result.A += rhs.A;
+      _result.r += rhs.r;
+      _result.g += rhs.g;
+      _result.b += rhs.b;
+      _result.a += rhs.a;
 
       return _result;
     }
     RGBA operator-(const RGBA& rhs) {
       RGBA _result = *this;
-      _result.R -= rhs.R;
-      _result.G -= rhs.G;
-      _result.B -= rhs.B;
-      _result.A -= rhs.A;
+      _result.r -= rhs.r;
+      _result.g -= rhs.g;
+      _result.b -= rhs.b;
+      _result.a -= rhs.a;
+
+      return _result;
+    }
+    RGBA operator*(const RGBA& rhs) {
+      RGBA _result = *this;
+      _result.r *= rhs.r;
+      _result.g *= rhs.g;
+      _result.b *= rhs.b;
+      _result.a *= rhs.a;
+
+      return _result;
+    }
+    RGBA operator/(const RGBA& rhs) {
+      RGBA _result = *this;
+      _result.r /= rhs.r;
+      _result.g /= rhs.g;
+      _result.b /= rhs.b;
+      _result.a /= rhs.a;
 
       return _result;
     }
     RGBA operator*(float rhs) {
       RGBA _result = *this;
-      _result.R *= rhs;
-      _result.G *= rhs;
-      _result.B *= rhs;
-      _result.A *= rhs;
+      _result.r *= rhs;
+      _result.g *= rhs;
+      _result.b *= rhs;
+      _result.a *= rhs;
 
       return _result;
     }
     RGBA operator/(float rhs) {
       RGBA _result = *this;
-      _result.R /= rhs;
-      _result.G /= rhs;
-      _result.B /= rhs;
-      _result.A /= rhs;
+      _result.r /= rhs;
+      _result.g /= rhs;
+      _result.b /= rhs;
+      _result.a /= rhs;
 
       return _result;
     }
 
     void operator=(const RGBA& rhs) {
-      this->R = rhs.R;
-      this->G = rhs.G;
-      this->B = rhs.B;
-      this->A = rhs.A;
+      this->r = rhs.r;
+      this->g = rhs.g;
+      this->b = rhs.b;
+      this->a = rhs.a;
     }
     void operator+=(const RGBA& rhs) { *this = *this + rhs; }
     void operator-=(const RGBA& rhs) { *this = *this - rhs; }
+    void operator*=(const RGBA& rhs) { *this = *this * rhs; }
+    void operator/=(const RGBA& rhs) { *this = *this / rhs; }
     void operator*=(float rhs) { *this = *this * rhs; }
     void operator/=(float rhs) { *this = *this / rhs; }
 
-    operator float*() { return reinterpret_cast<float*>(this); }
+                 operator float*() { return reinterpret_cast<float*>(this); }
+                 operator const float*() { return reinterpret_cast<const float*>(this); }
+    float&       operator[](size_t index) { return (reinterpret_cast<float*>(this))[index]; }
+    const float& operator[](size_t index) const { return (reinterpret_cast<const float*>(this))[index]; }
 
     RGBA()  = default;
     ~RGBA() = default;
-    RGBA(float red, float green, float blue, float alpha) : R(red), G(green), B(blue), A(alpha) {}
+    RGBA(float red, float green, float blue, float alpha) : r(red), g(green), b(blue), a(alpha) {}
   };
 
   struct Class {
