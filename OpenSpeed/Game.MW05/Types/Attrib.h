@@ -87,8 +87,9 @@ namespace OpenSpeed::MW05::Attrib {
 
     operator float*() { return reinterpret_cast<float*>(this); }
 
-    RGBA(float red, float green, float blue, float alpha) : R(red), G(green), B(blue), A(alpha) {}
+    RGBA()  = default;
     ~RGBA() = default;
+    RGBA(float red, float green, float blue, float alpha) : R(red), G(green), B(blue), A(alpha) {}
   };
 
   struct Class {
