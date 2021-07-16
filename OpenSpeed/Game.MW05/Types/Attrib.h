@@ -110,7 +110,7 @@ namespace OpenSpeed::MW05::Attrib {
     float&       operator[](size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
     const float& operator[](size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
 
-    RGBA()  = default;
+    RGBA() : r(0.0f), g(0.0f), b(0.0f), a(0.0f) {}
     ~RGBA() = default;
     RGBA(float red, float green, float blue, float alpha) : r(red), g(green), b(blue), a(alpha) {}
   };

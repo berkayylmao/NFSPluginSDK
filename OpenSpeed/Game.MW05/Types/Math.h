@@ -83,7 +83,7 @@ namespace OpenSpeed::MW05::Math {
     float&       operator[](size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
     const float& operator[](size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
 
-    Vector2()  = default;
+    Vector2() : x(0.0f), y(0.0f) {}
     ~Vector2() = default;
     Vector2(float x, float y) : x(x), y(y) {}
   };
@@ -156,7 +156,7 @@ namespace OpenSpeed::MW05::Math {
     float&       operator[](size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
     const float& operator[](size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
 
-    Vector3()  = default;
+    Vector3() : x(0.0f), y(0.0f), z(0.0f) {}
     ~Vector3() = default;
     Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
   };
@@ -236,7 +236,7 @@ namespace OpenSpeed::MW05::Math {
     float&       operator[](size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
     const float& operator[](size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
 
-    Vector4()  = default;
+    Vector4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
     ~Vector4() = default;
     Vector4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
   };
