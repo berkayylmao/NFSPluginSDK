@@ -136,9 +136,24 @@ namespace OpenSpeed::MW05 {
         this->status =
             static_cast<Status>(static_cast<std::uint32_t>(this->status) ^ static_cast<std::uint32_t>(status));
       }
-    };
 
-    static inline RigidBody** g_mMaps = reinterpret_cast<RigidBody**>(0x92D0E8);
+      static inline Volatile** g_mInstances = reinterpret_cast<Volatile**>(0x9383B0);
+
+      static std::int32_t GetInstancesCount() {
+        std::int32_t _amount    = 0;
+        auto**       _pInstance = g_mInstances;
+        while ((*_pInstance)++) _amount++;
+
+        return _amount;
+      }
+
+      static RigidBody::Volatile* GetInstance(std::int32_t idx) {
+        auto* _instance = g_mInstances[idx];
+        if (_instance) return _instance;
+
+        return nullptr;
+      }
+    };
 
     ScratchPtr<Volatile>                          mData;
     BehaviorSpecsPtr<Attrib::Gen::rigidbodyspecs> mSpecs;
