@@ -33,7 +33,8 @@ namespace OpenSpeed::MW05 {
       bool      mIsEnabled;
     };
 
-    Attrib::Gen::pvehicle    mAttributes;
+    Attrib::Instance         mAttributes;
+    std::uint32_t            mClassKey;
     FECustomizationRecord*   mCustomization;
     IInput*                  mInput;
     ICollisionBody*          mCollisionBody;
