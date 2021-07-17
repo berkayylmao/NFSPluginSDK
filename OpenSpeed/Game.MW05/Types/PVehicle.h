@@ -70,6 +70,68 @@ namespace OpenSpeed::MW05 {
 
     virtual ~PVehicle();
     virtual void OnDebugDraw() = 0;
+#pragma region overrides
+    virtual bool                            OnTask(HSIMTASK__* p, float) override;
+    virtual void                            Kill() override;
+    virtual void                            DebugObject() override;
+    virtual const UMath::Vector3&           GetPosition() override;
+    virtual const IModel*                   GetModel() const                                                 = 0;
+    virtual IModel*                         GetModel()                                                       = 0;
+    virtual ISimable*                       GetSimable()                                                     = 0;
+    virtual const ISimable*                 GetSimable() const                                               = 0;
+    virtual const UMath::Vector3&           GetPosition()                                                    = 0;
+    virtual void                            SetBehaviorOverride(UCrc32, UCrc32)                              = 0;
+    virtual void                            RemoveBehaviorOverride(UCrc32)                                   = 0;
+    virtual void                            CommitBehaviorOverrides()                                        = 0;
+    virtual void                            SetStaging(bool isStaging)                                       = 0;
+    virtual bool                            IsStaging()                                                      = 0;
+    virtual void                            Launch()                                                         = 0;
+    virtual float                           GetPerfectLaunch()                                               = 0;
+    virtual void                            SetDriverStyle(DriverStyle newDriverStyle)                       = 0;
+    virtual DriverStyle                     GetDriverStyle()                                                 = 0;
+    virtual void                            SetPhysicsMode(PhysicsMode newPhysicsMode)                       = 0;
+    virtual PhysicsMode                     GetPhysicsMode()                                                 = 0;
+    virtual std::int32_t                    GetModelType()                                                   = 0;
+    virtual bool                            IsSpooled()                                                      = 0;
+    virtual const UCrc32&                   GetVehicleClass()                                                = 0;
+    virtual const Attrib::Gen::pvehicle&    GetVehicleAttributes()                                           = 0;
+    virtual const char*                     GetVehicleName()                                                 = 0;
+    virtual std::uint32_t                   GetVehicleKey()                                                  = 0;
+    virtual void                            SetDriverClass(DriverClass newDriverClass)                       = 0;
+    virtual DriverClass                     GetDriverClass()                                                 = 0;
+    virtual bool                            IsLoading()                                                      = 0;
+    virtual float                           GetOffscreenTime()                                               = 0;
+    virtual float                           GetOnScreenTime()                                                = 0;
+    virtual bool                            SetVehicleOnGround(const UMath::Vector3&, const UMath::Vector3&) = 0;
+    virtual void                            ForceStopOn(ForceStopType type)                                  = 0;
+    virtual void                            ForceStopOff(ForceStopType type)                                 = 0;
+    virtual ForceStopType                   GetForceStop()                                                   = 0;
+    virtual bool                            InShock()                                                        = 0;
+    virtual bool                            IsDestroyed()                                                    = 0;
+    virtual void                            Activate()                                                       = 0;
+    virtual void                            Deactivate()                                                     = 0;
+    virtual bool                            IsActive()                                                       = 0;
+    virtual float                           GetSpeedometer()                                                 = 0;
+    virtual float                           GetSpeed()                                                       = 0;
+    virtual void                            SetSpeed(float newSpeed)                                         = 0;
+    virtual float                           GetAbsoluteSpeed()                                               = 0;
+    virtual bool                            IsGlareOn(VehicleFX::LightID fxId)                               = 0;
+    virtual void                            GlareOn(VehicleFX::LightID fxId)                                 = 0;
+    virtual void                            GlareOff(VehicleFX::LightID fxId)                                = 0;
+    virtual bool                            IsCollidingWithSoftBarrier()                                     = 0;
+    virtual IVehicleAI*                     GetAIVehiclePtr()                                                = 0;
+    virtual float                           GetSlipAngle()                                                   = 0;
+    virtual const UMath::Vector3&           GetLocalVelocity()                                               = 0;
+    virtual void                            ComputeHeading(UMath::Vector3* out)                              = 0;
+    virtual bool                            IsAnimating()                                                    = 0;
+    virtual void                            SetAnimating(bool isAnimating)                                   = 0;
+    virtual bool                            IsOffWorld()                                                     = 0;
+    virtual FECustomizationRecord*          GetCustomizations()                                              = 0;
+    virtual FECustomizationRecord::Tunings* GetTunings()                                                     = 0;
+    virtual void                            SetTunings(const FECustomizationRecord::Tunings& newTunings)     = 0;
+    virtual bool                            GetPerformance(Physics::Info::CorrectedPerformance& out)         = 0;
+    virtual void*                           _unkFunc()                                                       = 0;
+#pragma endregion
 
     bool IsValid() { return mObjType != SimableType::Invalid && mDirty == false && this->GetRigidBody(); }
 
