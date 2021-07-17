@@ -29,9 +29,9 @@ namespace OpenSpeed::MW05 {
     FECarRecord           CarTable[200];
     FECustomizationRecord Customizations[75];
     FECareerRecord        CareerRecords[25];
-    unsigned int          SoldHistoryBounty;
-    unsigned short        SoldHistoryNumEvadedPursuits;
-    unsigned short        SoldHistoryNumBustedPursuits;
+    std::uint32_t         SoldHistoryBounty;
+    std::uint16_t         SoldHistoryNumEvadedPursuits;
+    std::uint16_t         SoldHistoryNumBustedPursuits;
     FEInfractionsData     SoldHistoryUnservedInfractions;
     FEInfractionsData     SoldHistoryServedInfractions;
   };
