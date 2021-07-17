@@ -33,6 +33,7 @@ namespace OpenSpeed::MW05 {
   struct Attachments;
   template <class T>
   struct AttributeStructPtr;
+  struct AudioSettings;
   struct Behavior;
   template <class T>
   struct BehaviorSpecsPtr;
@@ -42,14 +43,27 @@ namespace OpenSpeed::MW05 {
   struct bNode;
   template <class T>
   struct bTNode;
+  struct CareerPursuitScores;
+  struct CareerSettings;
+  struct cFinishedRaceStats;
+  struct cFrontEndDatabase;
+  struct CostToStateScores;
   struct EventSequencer;
+  struct FECareerRecord;
+  struct FECarRecord;
   struct FECustomizationRecord;
+  struct FEInfractionsData;
+  struct FEKeyboardSettings;
+  struct FEPlayerCarDB;
+  struct FinishedRaceStatsEntry;
+  struct GameplaySettings;
   struct GIcon;
   struct GManager;
   template <class T>
   struct Grid;
   struct HACTIVITY__;
   struct HCAUSE__;
+  struct HighScoresDatabase;
   struct HSIMABLE__;
   struct HSIMPROFILE__;
   struct HSIMSERVICE__;
@@ -87,11 +101,16 @@ namespace OpenSpeed::MW05 {
   struct IVehicle;
   struct IVehicleAI;
   struct IVehicleCache;
+  struct JukeboxEntry;
   struct LocalPlayer;
+  struct OptionsSettings;
   struct PhysicsObject;
   struct PInput;
   struct PlayerSettings;
+  struct PursuitScore;
   struct PVehicle;
+  struct RaceSettings;
+  struct RaceTypeHighScores;
   struct RBTractor;
   struct RBVehicle;
   struct RideInfo;
@@ -100,8 +119,13 @@ namespace OpenSpeed::MW05 {
   struct ScratchPtr;
   struct SimSurface;
   struct TimeOfDay;
+  struct Timer;
+  struct TopEvadedPursuitDetail;
+  struct TrackHighScore;
   struct UCrc32;
+  struct UserProfile;
   struct VehicleParams;
+  struct VideoSettings;
   struct WCollider;
   struct WorldModel;
   struct WRoadNav;
@@ -219,6 +243,26 @@ namespace OpenSpeed::MW05 {
 
   enum class DriverClass : std::uint32_t { Human, Traffic, Cop, Racer, None, NIS, Remote };
   enum class DriverStyle : std::uint32_t { Racing, Drag };
+  enum class eControllerConfig : std::uint32_t { MinConfig, Config1, Config2, Config3, Config4, MaxConfig, Config5 };
+  enum class eFEGameModes : std::uint32_t {
+    None,
+    Career         = 1 << 0,
+    Challenge      = 1 << 1,
+    QuickRace      = 1 << 2,
+    Online         = 1 << 3,
+    Options        = 1 << 4,
+    Customize      = 1 << 5,
+    Lan            = 1 << 6,
+    ProfileManager = 1 << 7,
+    CareerManager  = 1 << 8,
+    RapSheet       = 1 << 9,
+    ModeSelect     = 1 << 10,
+    Trailers       = 1 << 11,
+    CarLot         = 1 << 15,
+    Safehouse      = 1 << 16,
+    PostRival      = 1 << 17,
+    BeatGame       = 1 << 18
+  };
   enum class eInvulnerability : std::uint32_t {
     None,
     FromManualReset,
@@ -231,8 +275,23 @@ namespace OpenSpeed::MW05 {
     CurrentLane,
     ValidLane,
   };
+  enum class eLoadSaveGame : std::uint32_t { Load, Save };
+  enum class eOptionsCategory : std::uint32_t {
+    Audio,
+    Video,
+    PCAdvancedDisplay,
+    Gameplay,
+    Player,
+    Controls,
+    EATrax,
+    Trailers,
+    Credits,
+    Online
+  };
   enum class ePlayerHudType : std::uint32_t { None, Standard, Drag, Split1, Split2, DragSplit1, DragSplit2 };
   enum class ePlayerList : std::uint32_t { All, Local, Remote };
+  enum class ePlayerSettingsCameras : std::uint32_t { Bumper, Hood, Default, Close, Far, SuperFar, Drift, Pursuit };
+  enum class ePostRaceOptions : std::uint32_t { NextRace, Quit, RestartRace, RestartEvent };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class eVehicleParamFlags : std::uint32_t {
     Spooled         = 1 << 0,
