@@ -165,19 +165,19 @@ namespace OpenSpeed::MW05::UMath {
 
     // RightVector [Roll]
     inline void ExtractXAxis(Vector3* to) const {
-      reinterpret_cast<void(__cdecl*)(Vector4*, Vector3*)>(0x5CA6F0)(this, to);
+      reinterpret_cast<void(__cdecl*)(const Vector4*, Vector3*)>(0x5CA6F0)(this, to);
     }
     // UpVector [Pitch]
     inline void ExtractYAxis(Vector3* to) const {
-      reinterpret_cast<void(__cdecl*)(Vector4*, Vector3*)>(0x5CA7B0)(this, to);
+      reinterpret_cast<void(__cdecl*)(const Vector4*, Vector3*)>(0x5CA7B0)(this, to);
     }
     // ForwardVector [Yaw]
     inline void ExtractZAxis(Vector3* to) const {
-      reinterpret_cast<void(__cdecl*)(Vector4*, Vector3*)>(0x5CA870)(this, to);
+      reinterpret_cast<void(__cdecl*)(const Vector4*, Vector3*)>(0x5CA870)(this, to);
     }
 
     inline void ToMatrix4(Matrix4* to) const {
-      reinterpret_cast<void(__cdecl*)(Vector4*, Matrix4*)>(0x5CA910)(this, to);
+      reinterpret_cast<void(__cdecl*)(const Vector4*, Matrix4*)>(0x5CA910)(this, to);
     }
 
     Vector4 operator+(const Vector4& rhs) const noexcept {
@@ -261,7 +261,7 @@ namespace OpenSpeed::MW05::UMath {
     Vector4 v0, v1, v2, v3;
 
     inline void ToQuaternion(Vector4* to) const {
-      reinterpret_cast<void(__cdecl*)(Matrix4*, Vector4*)>(0x5D06A0)(this, to);
+      reinterpret_cast<void(__cdecl*)(const Matrix4*, Vector4*)>(0x5D06A0)(this, to);
     }
 
     Matrix4 operator+(const Matrix4& rhs) {
