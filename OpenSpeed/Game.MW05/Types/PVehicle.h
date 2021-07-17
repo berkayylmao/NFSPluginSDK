@@ -74,7 +74,6 @@ namespace OpenSpeed::MW05 {
     virtual bool                            OnTask(HSIMTASK__* p, float) override;
     virtual void                            Kill() override;
     virtual void                            DebugObject() override;
-    virtual const UMath::Vector3&           GetPosition() override;
     virtual const IModel*                   GetModel() const override;
     virtual IModel*                         GetModel() override;
     virtual ISimable*                       GetSimable() override;
