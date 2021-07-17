@@ -20,7 +20,7 @@
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
 
-namespace MW05 {
+namespace OpenSpeed::MW05 {
   struct HSIMSERVICE__ {
     std::int32_t unused;
   };
