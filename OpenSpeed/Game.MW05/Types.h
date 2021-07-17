@@ -232,7 +232,7 @@ namespace OpenSpeed::MW05 {
     ValidLane,
   };
   enum class ePlayerHudType : std::uint32_t { None, Standard, Drag, Split1, Split2, DragSplit1, DragSplit2 };
-  enum class ePlayerList { All, Local, Remote };
+  enum class ePlayerList : std::uint32_t { All, Local, Remote };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class eVehicleParamFlags : std::uint32_t {
     Spooled         = 1 << 0,
@@ -241,7 +241,7 @@ namespace OpenSpeed::MW05 {
     CalcPerformance = 1 << 3,
     NosAdded        = 1 << 4
   };
-  enum class eVehicleList : std::int32_t {
+  enum class eVehicleList : std::uint32_t {
     All,
     Players,
     AI,
