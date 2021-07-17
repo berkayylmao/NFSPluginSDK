@@ -47,5 +47,9 @@ namespace OpenSpeed::MW05 {
 
     static inline UTL::ListableSet<IPlayer, 8, ePlayerList, 3>* g_mLists =
         reinterpret_cast<UTL::ListableSet<IPlayer, 8, ePlayerList, 3>*>(0x92D87C);
+
+    static IPlayer* GetPlayer() {
+      if (IPlayer* player = *g_mLists->mSet[ePlayerList::All].mBegin) return player;
+    }
   };
 }  // namespace OpenSpeed::MW05
