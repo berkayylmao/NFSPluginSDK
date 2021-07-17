@@ -55,5 +55,47 @@ namespace OpenSpeed::MW05 {
     virtual void Reset();
     virtual void OnTaskSimulate(float) = 0;
     virtual void OnBehaviorChange(const UCrc32&);
+#pragma region overrides
+    virtual bool                       OnTask(HSIMTASK__*, float) override;
+    virtual SimableType                GetSimableType() override;
+    virtual void                       Kill() override;
+    virtual bool                       Attach(UTL::COM::IUnknown* object) override;
+    virtual bool                       Detach(UTL::COM::IUnknown* object) override;
+    virtual eastl::list<IAttachable*>* GetAttachments() override;
+    virtual void                       AttachEntity(Sim::IEntity* entity) override;
+    virtual void                       DetachEntity() override;
+    virtual IPlayer*                   GetPlayer() override;
+    virtual bool                       IsPlayer() override;
+    virtual bool                       IsOwnedByPlayer() override;
+    virtual Sim::IEntity*              GetEntity() override;
+    virtual void                       DebugObject() override;
+    virtual HSIMABLE__*                GetOwnerHandle() override;
+    virtual ISimable*                  GetOwner() override;
+    virtual bool                       IsOwnedBy(ISimable* pSimable) override;
+    virtual void                       SetOwnerObject(ISimable* pSimable) override;
+    virtual const Attrib::Instance&    GetAttributes() override;
+    virtual const WWorldPos&           GetWPos() const override;
+    virtual WWorldPos&                 GetWPos() override;
+    virtual const IRigidBody*          GetRigidBody() const override;
+    virtual IRigidBody*                GetRigidBody() override;
+    virtual bool                       IsRigidBodySimple() override;
+    virtual bool                       IsRigidBodyComplex() override;
+    virtual const UMath::Vector3&      GetPosition() override;
+    virtual void                       GetTransform(UMath::Matrix4& matrix) override;
+    virtual void                       GetLinearVelocity(UMath::Vector3& to) override;
+    virtual void                       GetAngularVelocity(UMath::Vector3& to) override;
+    virtual std::uint32_t              GetWorldID() override;
+    virtual EventSequencer::IEngine*   GetEventSequencer() override;
+    virtual void                       ProcessStimulus(std::uint32_t) override;
+    virtual const IModel*              GetModel() const override;
+    virtual IModel*                    GetModel() override;
+    virtual void                       SetCausality(HCAUSE__* p, float time) override;
+    virtual HCAUSE__*                  GetCausality() override;
+    virtual float                      GetCausalityTime() override;
+    virtual void                       GetDimension(UMath::Vector3& to) override;
+    virtual bool                       IsAttached(UTL::COM::IUnknown* pOther) override;
+    virtual void                       OnAttached(IAttachable* pOther) override;
+    virtual void                       OnDetached(IAttachable* pOther) override;
+#pragma endregion
   };
 }  // namespace OpenSpeed::MW05

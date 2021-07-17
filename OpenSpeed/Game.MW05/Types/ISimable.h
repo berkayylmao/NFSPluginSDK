@@ -33,10 +33,10 @@ namespace OpenSpeed::MW05 {
     virtual ~ISimable();
     virtual SimableType                GetSimableType()                       = 0;
     virtual void                       Kill()                                 = 0;
-    virtual bool                       Attach(UTL::COM::IUnknown* p)          = 0;
-    virtual bool                       Detach(UTL::COM::IUnknown* p)          = 0;
+    virtual bool                       Attach(UTL::COM::IUnknown* object)     = 0;
+    virtual bool                       Detach(UTL::COM::IUnknown* object)     = 0;
     virtual eastl::list<IAttachable*>* GetAttachments()                       = 0;
-    virtual void                       AttachEntity(Sim::IEntity* p)          = 0;
+    virtual void                       AttachEntity(Sim::IEntity* entity)     = 0;
     virtual void                       DetachEntity()                         = 0;
     virtual IPlayer*                   GetPlayer()                            = 0;
     virtual bool                       IsPlayer()                             = 0;

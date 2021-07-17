@@ -21,6 +21,7 @@
 #include <OpenSpeed/Core/EASTL/EASTL/vector.h>
 
 #include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/UTL/_ListSet.h>
 
 namespace OpenSpeed::MW05::UTL {
   template <typename T>
@@ -33,6 +34,11 @@ namespace OpenSpeed::MW05::UTL {
       bool      mDirty;
       Collector mCollector;
     };
+  };
+
+  template <typename T, std::uint32_t nT, typename E, std::uint32_t nE>
+  struct ListableSet {
+    _ListSet<T, nT, nE> mSet;
   };
 
   namespace COM {

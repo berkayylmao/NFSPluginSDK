@@ -18,19 +18,45 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Core/EASTL/EASTL/list.h>
+#include <OpenSpeed/Core/EASTL/EASTL/vector.h>
 
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
 
-namespace OpenSpeed::MW05 {
-  struct IAttachable : UTL::COM::IUnknown {
-    virtual ~IAttachable();
-    virtual bool                       Attach(UTL::COM::IUnknown* object)     = 0;
-    virtual bool                       Detach(UTL::COM::IUnknown* object)     = 0;
-    virtual bool                       IsAttached(UTL::COM::IUnknown* object) = 0;
-    virtual void                       OnAttached(IAttachable* pOther)        = 0;
-    virtual void                       OnDetached(IAttachable* pOther)        = 0;
-    virtual eastl::list<IAttachable*>* GetAttachments()                  = 0;
+namespace OpenSpeed::MW05::UTL {
+  template <typename T>
+  struct GarbageNode {
+    struct Collector {
+      std::int8_t __unk[0x4];
+    };
+
+    union {
+      bool      mDirty;
+      Collector mCollector;
+    };
   };
-}  // namespace OpenSpeed::MW05
+
+  template <typename T, std::uint32_t nT, enum E, std::uint32_t nE>
+  struct ListableSet {};
+
+  namespace COM {
+    struct Object {
+      struct _IPair {
+        struct _Finder {
+          const IUnknown* ref;
+        };
+
+        void*     handle;
+        IUnknown* ref;
+      };
+
+      // eastl::vector<UTL::COM::Object::_IPair>
+      unsigned char _mInterfaces[0x18];
+    };
+
+    struct IUnknown {
+      Object* _mCOMObject;
+
+      virtual ~IUnknown();
+    };
+  }  // namespace COM
+}  // namespace OpenSpeed::MW05::UTL

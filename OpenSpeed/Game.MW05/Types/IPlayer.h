@@ -44,5 +44,8 @@ namespace OpenSpeed::MW05 {
     virtual void                  ResetGameBreaker(bool fill)                    = 0;
     virtual void                  ChargeGameBreaker(float amount)                = 0;
     virtual bool                  ToggleGameBreaker()                            = 0;
+
+    static inline UTL::ListableSet<IPlayer, 8, ePlayerList, 3>* _mLists =
+        reinterpret_cast<UTL::ListableSet<IPlayer, 8, ePlayerList, 3>*>(0x92D87C);
   };
 }  // namespace OpenSpeed::MW05

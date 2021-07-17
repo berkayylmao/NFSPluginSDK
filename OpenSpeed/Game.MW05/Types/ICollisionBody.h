@@ -29,7 +29,7 @@ namespace OpenSpeed::MW05 {
     virtual const UMath::Vector3& GetPosition()                                                = 0;
     virtual const UMath::Vector3& GetLinearVelocity()                                          = 0;
     virtual const UMath::Vector3& GetAngularVelocity()                                         = 0;
-    virtual void                  GetDimension(UMath::Vector3& out)                            = 0;
+    virtual void                  GetDimension(UMath::Vector3& to)                             = 0;
     virtual void                  Damp(float amount)                                           = 0;
     virtual void                  SetAnimating(bool isAnimating)                               = 0;
     virtual bool                  IsModeling()                                                 = 0;

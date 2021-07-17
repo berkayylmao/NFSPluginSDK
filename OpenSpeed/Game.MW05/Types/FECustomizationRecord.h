@@ -78,8 +78,7 @@ namespace OpenSpeed::MW05 {
           mInduction(0.0f) {}
     };
 
-    std::uint8_t      damage1[0x6];
-    unsigned char     __stuff1[0x2C];
+    unsigned char     __stuff1[0x2E];
     std::uint16_t     bodykit;
     std::uint16_t     brakepadsFront;
     std::uint16_t     windowFrontLeft;

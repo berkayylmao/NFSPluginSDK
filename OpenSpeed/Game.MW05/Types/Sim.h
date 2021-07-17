@@ -29,7 +29,7 @@ namespace OpenSpeed::MW05 {
   namespace Sim {
     namespace Collision {
       struct IListener {
-        virtual void OnCollision(const Info&);
+        virtual void OnCollision(const Info& cinfo);
       };
     }  // namespace Collision
 
@@ -41,8 +41,8 @@ namespace OpenSpeed::MW05 {
       virtual const UMath::Vector3&      GetPosition();
       virtual bool                       SetPosition(const UMath::Vector3& newPosition) = 0;
       virtual void                       Kill();
-      virtual bool                       Attach(UTL::COM::IUnknown* p);
-      virtual bool                       Detach(UTL::COM::IUnknown* p);
+      virtual bool                       Attach(UTL::COM::IUnknown* object);
+      virtual bool                       Detach(UTL::COM::IUnknown* object);
       virtual eastl::list<IAttachable*>* GetAttachments();
     };
     struct IServiceable : UTL::COM::IUnknown {

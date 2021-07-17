@@ -48,11 +48,13 @@ namespace OpenSpeed::MW05 {
   struct GManager;
   template <class T>
   struct Grid;
+  struct HACTIVITY__;
   struct HCAUSE__;
   struct HSIMABLE__;
   struct HSIMPROFILE__;
   struct HSIMSERVICE__;
   struct HSIMTASK__;
+  struct IActivity;
   struct IArticulatedVehicle;
   struct IAttachable;
   struct IAttributeable;
@@ -190,8 +192,21 @@ namespace OpenSpeed::MW05 {
   }  // namespace UMath
 
   namespace UTL {
+    template <typename T, std::uint32_t nT, std::uint32_t nE>
+    struct _ListSet;
+    template <typename T, std::uint32_t nT>
+    struct _Storage;
+    template <typename T, std::uint32_t nT, std::uint32_t N = 16>
+    struct FixedVector;
     template <typename T>
     struct GarbageNode;
+    template <typename T, std::uint32_t nT>
+    struct List;
+    template <typename T, std::uint32_t nT, typename E, std::uint32_t nE>
+    struct ListableSet;
+    template <typename T, std::uint32_t N = 16>
+    struct Vector;
+
     namespace COM {
       struct IUnknown;
       struct Object;
@@ -217,7 +232,27 @@ namespace OpenSpeed::MW05 {
     ValidLane,
   };
   enum class ePlayerHudType : std::uint32_t { None, Standard, Drag, Split1, Split2, DragSplit1, DragSplit2 };
+  enum class ePlayerList { All, Local, Remote };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
+  enum class eVehicleParamFlags : std::uint32_t {
+    Spooled         = 1 << 0,
+    SnapToGround    = 1 << 1,
+    NosRemoved      = 1 << 2,
+    CalcPerformance = 1 << 3,
+    NosAdded        = 1 << 4
+  };
+  enum class eVehicleList : std::int32_t {
+    All,
+    Players,
+    AI,
+    AIRacers,
+    AICops,
+    AITraffic,
+    Racers,
+    Remote,
+    Inactive,
+    Trailers
+  };
   enum class GameFlowState : std::uint32_t {
     None,
     LoadingFrontEnd,
@@ -243,13 +278,7 @@ namespace OpenSpeed::MW05 {
     Fragment
   };
   enum class SpeedUnitType : std::uint8_t { MPH, KMH, MPS };
-  enum class eVehicleParamFlags : std::uint32_t {
-    Spooled         = 1 << 0,
-    SnapToGround    = 1 << 1,
-    NosRemoved      = 1 << 2,
-    CalcPerformance = 1 << 3,
-    NosAdded        = 1 << 4
-  };
+
   namespace CollisionGeometry {
     enum class BoundFlags : std::uint32_t {
       Disabled             = 1 << 0,
@@ -270,7 +299,7 @@ namespace OpenSpeed::MW05 {
   }
   namespace VehicleFX {
     enum class LightID : std::uint32_t {
-      None             = 0,
+      None,
       LeftHead         = 1 << 0,
       RightHead        = 1 << 1,
       CenterHead       = 1 << 2,
