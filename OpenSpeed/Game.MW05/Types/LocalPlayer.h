@@ -60,7 +60,6 @@ namespace OpenSpeed::MW05 {
     virtual void                  ResetGameBreaker(bool fill) override;
     virtual void                  ChargeGameBreaker(float amount) override;
     virtual bool                  ToggleGameBreaker() override;
-    virtual bool                  SetPosition(const UMath::Vector3& newPosition) override;
     virtual void                  OnAttached(IAttachable* pOther) override;
     virtual void                  OnDetached(IAttachable* pOther) override;
     virtual void                  OnCollision(const Sim::Collision::Info& cinfo) override;
