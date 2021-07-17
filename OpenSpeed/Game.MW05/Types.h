@@ -52,6 +52,7 @@ namespace OpenSpeed::MW05 {
   struct FECareerRecord;
   struct FECarRecord;
   struct FECustomizationRecord;
+  struct FEImpoundData;
   struct FEInfractionsData;
   struct FEKeyboardSettings;
   struct FEPlayerCarDB;
@@ -263,6 +264,7 @@ namespace OpenSpeed::MW05 {
     PostRival      = 1 << 17,
     BeatGame       = 1 << 18
   };
+  enum class eImpoundReasons : std::int8_t { None, BustedByCross, StrikeLimitReached, InsufficientFunds, Released };
   enum class eInvulnerability : std::uint32_t {
     None,
     FromManualReset,
