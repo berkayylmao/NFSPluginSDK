@@ -38,7 +38,7 @@ namespace OpenSpeed::MW05::UTL {
 
   template <typename T, std::uint32_t nT, typename E, std::uint32_t nE>
   struct ListableSet {
-    _ListSet<T, nT, nE> mSet;
+    _ListSet<T, nT, E, nE> mSet;
   };
 
   namespace COM {

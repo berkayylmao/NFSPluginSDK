@@ -192,7 +192,7 @@ namespace OpenSpeed::MW05 {
   }  // namespace UMath
 
   namespace UTL {
-    template <typename T, std::uint32_t nT, std::uint32_t nE>
+    template <typename T, std::uint32_t nT, typename E, std::uint32_t nE>
     struct _ListSet;
     template <typename T, std::uint32_t nT>
     struct _Storage;

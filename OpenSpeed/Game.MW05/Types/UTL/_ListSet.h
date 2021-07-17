@@ -22,8 +22,11 @@
 #include <OpenSpeed/Game.MW05/Types/UTL/List.h>
 
 namespace OpenSpeed::MW05::UTL {
-  template <typename T, std::uint32_t nT, std::uint32_t nE>
+  template <typename T, std::uint32_t nT, typename E, std::uint32_t nE>
   struct _ListSet {
     List<T, nT> _buckets[nE];
+
+    List<T, nT>&       operator[](E index) noexcept { return _buckets[static_cast<std::size_t>(index)]; }
+    const List<T, nT>& operator[](E index) const noexcept { return _buckets[static_cast<std::size_t>(index)]; }
   };
 }  // namespace OpenSpeed::MW05::UTL
