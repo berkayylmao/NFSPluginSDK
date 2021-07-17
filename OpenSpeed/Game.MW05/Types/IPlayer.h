@@ -50,6 +50,7 @@ namespace OpenSpeed::MW05 {
 
     static IPlayer* GetPlayer() {
       if (IPlayer* player = *g_mLists->mSet[ePlayerList::All].mBegin) return player;
+      return nullptr;
     }
   };
 }  // namespace OpenSpeed::MW05
