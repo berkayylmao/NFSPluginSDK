@@ -24,9 +24,9 @@
 namespace OpenSpeed::MW05 {
   struct VehicleParams : Sim::Param {
     DriverClass                         mDriverClass;
-    std::uint32_t                       mVehicleHash;
-    UMath::Vector3*                     mDirection;
-    UMath::Vector3*                     mPosition;
+    Attrib::StringKey                   mVehicleKey;
+    const UMath::Vector3*               mDirection;
+    const UMath::Vector3*               mPosition;
     FECustomizationRecord*              mCustomization;
     IVehicleCache*                      mVehicleCache;
     Physics::Info::PerformanceMatching* mPerformanceMatch;
@@ -34,18 +34,21 @@ namespace OpenSpeed::MW05 {
 
     static void AddTypeName(VehicleParams* to) { reinterpret_cast<void(__cdecl*)(VehicleParams*)>(0x4040F0)(to); }
 
-    explicit VehicleParams(IVehicleCache* pVehicleCache, DriverClass driverClass, std::uint32_t vehicleHash,
-                           const UMath::Vector3& direction, const UMath::Vector3& position, eVehicleParamFlags flags,
-                           FECustomizationRecord* pFECR, Physics::Info::PerformanceMatching* pPerformanceMatch) :
+    explicit VehicleParams(DriverClass driverClass, Attrib::StringKey vehicleKey, const UMath::Vector3& direction,
+                           const UMath::Vector3& position, FECustomizationRecord* pFECR = nullptr,
+                           eVehicleParamFlags flags = eVehicleParamFlags::SnapToGround |
+                                                      eVehicleParamFlags::CalcPerformance,
+                           IVehicleCache*                      pVehicleCache     = nullptr,
+                           Physics::Info::PerformanceMatching* pPerformanceMatch = nullptr) :
         Sim::Param(0x0A6B47FAC),
-        mVehicleCache(pVehicleCache),
         mDriverClass(driverClass),
-        mVehicleHash(vehicleHash),
-        mDirection(const_cast<UMath::Vector3*>(&direction)),
-        mPosition(const_cast<UMath::Vector3*>(&position)),
-        mFlags(flags),
+        mVehicleKey(vehicleKey),
+        mDirection(&direction),
+        mPosition(&position),
         mCustomization(pFECR),
-        mPerformanceMatch(pPerformanceMatch) {
+        mVehicleCache(pVehicleCache),
+        mPerformanceMatch(pPerformanceMatch),
+        mFlags(flags) {
       AddTypeName(this);
     }
   };
