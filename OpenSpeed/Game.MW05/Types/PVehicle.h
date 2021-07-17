@@ -193,8 +193,8 @@ namespace OpenSpeed::MW05 {
     static inline _InstanceLayout* g_mInstances = reinterpret_cast<_InstanceLayout*>(0x9352B0);
 
     static PVehicle* Construct(const VehicleParams& vehicleParams) {
-      ISimable* pSimable = reinterpret_cast<ISimable*(__cdecl*)(const VehicleParams&, UCrc32)>(0x689820)(
-          vehicleParams, vehicleParams.mName);
+      ISimable* pSimable =
+          reinterpret_cast<ISimable*(__cdecl*)(VehicleParams, UCrc32)>(0x689820)(vehicleParams, vehicleParams.mName);
       return static_cast<PVehicle*>(pSimable);
     }
 
