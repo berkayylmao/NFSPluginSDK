@@ -489,16 +489,17 @@ namespace OpenSpeed::MW05 {
     ExitDemoDisc
   };
   enum class JunkmanParts : std::uint32_t {
+    None        = 0,
     Tires       = 1 << 0,
     Brakes      = 1 << 1,
-    Drivetrain  = 1 << 2,
+    Chassis     = 1 << 2,
     Transmisson = 1 << 3,
     Engine      = 1 << 4,
-    Turbo       = 1 << 5,
-    Nitrous     = 1 << 6,
-    All         = static_cast<std::uint32_t>(Tires) | static_cast<std::uint32_t>(Brakes) |
-          static_cast<std::uint32_t>(Drivetrain) | static_cast<std::uint32_t>(Transmisson) |
-          static_cast<std::uint32_t>(Engine) | static_cast<std::uint32_t>(Turbo) | static_cast<std::uint32_t>(Nitrous)
+    Induction   = 1 << 5,
+    NOS         = 1 << 6,
+    All = static_cast<std::uint32_t>(Tires) | static_cast<std::uint32_t>(Brakes) | static_cast<std::uint32_t>(Chassis) |
+          static_cast<std::uint32_t>(Transmisson) | static_cast<std::uint32_t>(Engine) |
+          static_cast<std::uint32_t>(Induction) | static_cast<std::uint32_t>(NOS)
   };
   enum class PhysicsMode : std::uint32_t { Inactive, Simulated, Emulated };
   enum class SimableType : std::uint32_t {
