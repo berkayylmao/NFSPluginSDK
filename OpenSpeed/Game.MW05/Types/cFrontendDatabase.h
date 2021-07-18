@@ -27,6 +27,7 @@
 
 namespace OpenSpeed::MW05 {
   struct cFrontEndDatabase {
+    // GRace::Type
     enum class RaceType : std::uint32_t {
       P2P,
       Circuit,
