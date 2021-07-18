@@ -34,5 +34,27 @@ namespace OpenSpeed::MW05 {
     std::uint16_t         SoldHistoryNumBustedPursuits;
     FEInfractionsData     SoldHistoryUnservedInfractions;
     FEInfractionsData     SoldHistoryServedInfractions;
+
+    void AwardBonusCars() { reinterpret_cast<void(__thiscall*)(FEPlayerCarDB*)>(0x56F0C0)(this); }
+    void AwardRivalCar(Attrib::StringKey carKey) {
+      reinterpret_cast<void(__thiscall*)(FEPlayerCarDB*, Attrib::StringKey)>(0x5A41E0)(this, carKey);
+    }
+    FECarRecord* GetCarByIndex(std::uint32_t index) {
+      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x56ECF0)(this, index);
+    }
+    FECarRecord* GetCarRecordByHandle(std::uint32_t handle) {
+      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x56ECC0)(this, handle);
+    }
+    FECareerRecord* GetCareerRecordByHandle(std::uint8_t handle) {
+      return reinterpret_cast<FECareerRecord*(__thiscall*)(FEPlayerCarDB*, std::uint8_t)>(0x56F120)(this, handle);
+    }
+    FECustomizationRecord* GetCustomizationRecordByHandle(std::uint8_t handle) {
+      return reinterpret_cast<FECustomizationRecord*(__thiscall*)(FEPlayerCarDB*, std::uint8_t)>(0x56F100)(this,
+                                                                                                           handle);
+    }
+    std::size_t GetNumCars() { return reinterpret_cast<std::size_t(__thiscall*)(FEPlayerCarDB*)>(0x5812C0)(this); }
+    std::size_t GetNumCareerCars() {
+      return reinterpret_cast<std::size_t(__thiscall*)(FEPlayerCarDB*)>(0x5810E0)(this);
+    }
   };
 }  // namespace OpenSpeed::MW05
