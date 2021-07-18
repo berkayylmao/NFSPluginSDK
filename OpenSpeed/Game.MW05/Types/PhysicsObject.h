@@ -26,6 +26,7 @@
 #include <OpenSpeed/Game.MW05/Types/Behavior.h>
 #include <OpenSpeed/Game.MW05/Types/IBody.h>
 #include <OpenSpeed/Game.MW05/Types/ISimable.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib/Instance.h>
 
 namespace OpenSpeed::MW05 {
   struct PhysicsObject : Sim::Object,
@@ -37,10 +38,10 @@ namespace OpenSpeed::MW05 {
     struct Mechanics : eastl::map<std::uint32_t, Behavior*, eastl::less<std::uint32_t>> {};
     struct Behaviors : eastl::list<Behavior*> {};
 
-    WWorldPos*       mWPos;
-    SimableType      mObjType;
-    //HSIMABLE__*      mOwner;
-    Attrib::Instance mAttributes;
+    WWorldPos*  mWPos;
+    SimableType mObjType;
+    // HSIMABLE__*      mOwner;
+    Attrib::Instance mPhysicsObjectAttributes;
     IRigidBody*      mRigidBody;
     HSIMTASK__*      mSimulateTask;
     Sim::IEntity*    mEntity;

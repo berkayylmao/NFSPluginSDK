@@ -19,7 +19,6 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/Attrib.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/HashMap.h>
 
 namespace OpenSpeed::MW05::Attrib {
@@ -36,10 +35,6 @@ namespace OpenSpeed::MW05::Attrib {
     template <typename T>
     T* GetData(StringKey fieldKey, std::int32_t idx = 0) {
       return reinterpret_cast<T*(__thiscall*)(Collection*, StringKey, std::int32_t)>(0x454190)(this, fieldKey, idx);
-    }
-    template <typename T>
-    T* GetData(const char* fieldName, std::int32_t idx = 0) {
-      return this->GetData<T>(StringToKey(fieldName), idx);
     }
 
     template <typename T>

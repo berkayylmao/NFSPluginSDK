@@ -21,9 +21,9 @@
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/Attrib.h>
 #include <OpenSpeed/Game.MW05/Types/IAttachable.h>
 #include <OpenSpeed/Game.MW05/Types/UCrc32.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib/Gen/simsurface.h>
 
 namespace OpenSpeed::MW05 {
   namespace Sim {
