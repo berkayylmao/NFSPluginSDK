@@ -21,16 +21,17 @@
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Attrib {
-  static inline Collection* FindCollection(StringKey classKey, StringKey collectionKey) {
-    return reinterpret_cast<Collection*(__cdecl*)(StringKey, StringKey)>(0x455FD0)(classKey, collectionKey);
-  }
-  static inline Collection* FindCollection(const char* className, StringKey collectionKey) {
-    return FindCollection(StringToKey(className), collectionKey);
-  }
-  static inline Collection* FindCollection(const char* className, const char* collectionName) {
-    return FindCollection(StringToKey(className), StringToKey(collectionName));
-  }
-  static inline StringKey StringToKey(const char* name) {
-    return reinterpret_cast<StringKey(__cdecl*)(const char*)>(0x454640)(name);
-  }
+  struct Database {
+    DatabasePrivate& mPrivates;
+
+    virtual ~Database();
+
+    Class* GetClass(StringKey key) {
+      return reinterpret_cast<Class*(__thiscall*)(Database*, StringKey)>(0x454DB0)(this, key);
+    }
+
+    static inline Database* g_sThis = reinterpret_cast<Database*>(0x90DCBC);
+
+    static Database* Get() { return g_sThis; }
+  };
 }  // namespace OpenSpeed::MW05::Attrib

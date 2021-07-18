@@ -27,6 +27,7 @@
 #include <OpenSpeed/Game.MW05/Types/IVehicle.h>
 #include <OpenSpeed/Game.MW05/Types/PhysicsObject.h>
 #include <OpenSpeed/Game.MW05/Types/VehicleParams.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib/Gen/pvehicle.h>
 
 namespace OpenSpeed::MW05 {
   struct PVehicle : PhysicsObject, IVehicle, EventSequencer::IContext, IExplodeable, IAttributeable, bTNode<PVehicle*> {
@@ -35,8 +36,7 @@ namespace OpenSpeed::MW05 {
       bool      mIsEnabled;
     };
 
-    Attrib::Instance         mAttributes;
-    std::uint32_t            mClassKey;
+    Attrib::Gen::pvehicle    mAttributes;
     FECustomizationRecord*   mCustomization;
     IInput*                  mInput;
     ICollisionBody*          mCollisionBody;
@@ -71,65 +71,65 @@ namespace OpenSpeed::MW05 {
     virtual ~PVehicle();
     virtual void OnDebugDraw() = 0;
 #pragma region overrides
-    virtual bool                            OnTask(HSIMTASK__* p, float) override;
-    virtual void                            Kill() override;
-    virtual void                            DebugObject() override;
-    virtual const IModel*                   GetModel() const override;
-    virtual IModel*                         GetModel() override;
-    virtual ISimable*                       GetSimable() override;
-    virtual const ISimable*                 GetSimable() const override;
-    virtual const UMath::Vector3&           GetPosition() override;
-    virtual void                            SetBehaviorOverride(UCrc32, UCrc32) override;
-    virtual void                            RemoveBehaviorOverride(UCrc32) override;
-    virtual void                            CommitBehaviorOverrides() override;
-    virtual void                            SetStaging(bool isStaging) override;
-    virtual bool                            IsStaging() override;
-    virtual void                            Launch() override;
-    virtual float                           GetPerfectLaunch() override;
-    virtual void                            SetDriverStyle(DriverStyle newDriverStyle) override;
-    virtual DriverStyle                     GetDriverStyle() override;
-    virtual void                            SetPhysicsMode(PhysicsMode newPhysicsMode) override;
-    virtual PhysicsMode                     GetPhysicsMode() override;
-    virtual std::int32_t                    GetModelType() override;
-    virtual bool                            IsSpooled() override;
-    virtual const UCrc32&                   GetVehicleClass() override;
-    virtual const Attrib::Gen::pvehicle&    GetVehicleAttributes() override;
-    virtual const char*                     GetVehicleName() override;
-    virtual std::uint32_t                   GetVehicleKey() override;
-    virtual void                            SetDriverClass(DriverClass newDriverClass) override;
-    virtual DriverClass                     GetDriverClass() override;
-    virtual bool                            IsLoading() override;
-    virtual float                           GetOffscreenTime() override;
-    virtual float                           GetOnScreenTime() override;
-    virtual bool                            SetVehicleOnGround(const UMath::Vector3&, const UMath::Vector3&) override;
-    virtual void                            ForceStopOn(ForceStopType type) override;
-    virtual void                            ForceStopOff(ForceStopType type) override;
-    virtual ForceStopType                   GetForceStop() override;
-    virtual bool                            InShock() override;
-    virtual bool                            IsDestroyed() override;
-    virtual void                            Activate() override;
-    virtual void                            Deactivate() override;
-    virtual bool                            IsActive() override;
-    virtual float                           GetSpeedometer() override;
-    virtual float                           GetSpeed() override;
-    virtual void                            SetSpeed(float newSpeed) override;
-    virtual float                           GetAbsoluteSpeed() override;
-    virtual bool                            IsGlareOn(VehicleFX::LightID fxId) override;
-    virtual void                            GlareOn(VehicleFX::LightID fxId) override;
-    virtual void                            GlareOff(VehicleFX::LightID fxId) override;
-    virtual bool                            IsCollidingWithSoftBarrier() override;
-    virtual IVehicleAI*                     GetAIVehiclePtr() override;
-    virtual float                           GetSlipAngle() override;
-    virtual const UMath::Vector3&           GetLocalVelocity() override;
-    virtual void                            ComputeHeading(UMath::Vector3* out) override;
-    virtual bool                            IsAnimating() override;
-    virtual void                            SetAnimating(bool isAnimating) override;
-    virtual bool                            IsOffWorld() override;
-    virtual FECustomizationRecord*          GetCustomizations() override;
-    virtual FECustomizationRecord::Tunings* GetTunings() override;
-    virtual void                            SetTunings(const FECustomizationRecord::Tunings& newTunings) override;
-    virtual bool                            GetPerformance(Physics::Info::CorrectedPerformance& out) override;
-    virtual void*                           _unkFunc() override;
+    virtual bool                         OnTask(HSIMTASK__* p, float) override;
+    virtual void                         Kill() override;
+    virtual void                         DebugObject() override;
+    virtual const IModel*                GetModel() const override;
+    virtual IModel*                      GetModel() override;
+    virtual ISimable*                    GetSimable() override;
+    virtual const ISimable*              GetSimable() const override;
+    virtual const UMath::Vector3&        GetPosition() override;
+    virtual void                         SetBehaviorOverride(UCrc32, UCrc32) override;
+    virtual void                         RemoveBehaviorOverride(UCrc32) override;
+    virtual void                         CommitBehaviorOverrides() override;
+    virtual void                         SetStaging(bool isStaging) override;
+    virtual bool                         IsStaging() override;
+    virtual void                         Launch() override;
+    virtual float                        GetPerfectLaunch() override;
+    virtual void                         SetDriverStyle(DriverStyle newDriverStyle) override;
+    virtual DriverStyle                  GetDriverStyle() override;
+    virtual void                         SetPhysicsMode(PhysicsMode newPhysicsMode) override;
+    virtual PhysicsMode                  GetPhysicsMode() override;
+    virtual std::int32_t                 GetModelType() override;
+    virtual bool                         IsSpooled() override;
+    virtual const UCrc32&                GetVehicleClass() override;
+    virtual const Attrib::Gen::pvehicle& GetVehicleAttributes() override;
+    virtual const char*                  GetVehicleName() override;
+    virtual std::uint32_t                GetVehicleKey() override;
+    virtual void                         SetDriverClass(DriverClass newDriverClass) override;
+    virtual DriverClass                  GetDriverClass() override;
+    virtual bool                         IsLoading() override;
+    virtual float                        GetOffscreenTime() override;
+    virtual float                        GetOnScreenTime() override;
+    virtual bool                         SetVehicleOnGround(const UMath::Vector3&, const UMath::Vector3&) override;
+    virtual void                         ForceStopOn(ForceStopType type) override;
+    virtual void                         ForceStopOff(ForceStopType type) override;
+    virtual ForceStopType                GetForceStop() override;
+    virtual bool                         InShock() override;
+    virtual bool                         IsDestroyed() override;
+    virtual void                         Activate() override;
+    virtual void                         Deactivate() override;
+    virtual bool                         IsActive() override;
+    virtual float                        GetSpeedometer() override;
+    virtual float                        GetSpeed() override;
+    virtual void                         SetSpeed(float newSpeed) override;
+    virtual float                        GetAbsoluteSpeed() override;
+    virtual bool                         IsGlareOn(VehicleFX::LightID fxId) override;
+    virtual void                         GlareOn(VehicleFX::LightID fxId) override;
+    virtual void                         GlareOff(VehicleFX::LightID fxId) override;
+    virtual bool                         IsCollidingWithSoftBarrier() override;
+    virtual IVehicleAI*                  GetAIVehiclePtr() override;
+    virtual float                        GetSlipAngle() override;
+    virtual const UMath::Vector3&        GetLocalVelocity() override;
+    virtual void                         ComputeHeading(UMath::Vector3* out) override;
+    virtual bool                         IsAnimating() override;
+    virtual void                         SetAnimating(bool isAnimating) override;
+    virtual bool                         IsOffWorld() override;
+    virtual FECustomizationRecord*       GetCustomizations() override;
+    virtual Physics::Tunings*            GetTunings() override;
+    virtual void                         SetTunings(const Physics::Tunings& tunings) override;
+    virtual bool                         GetPerformance(Physics::Info::CorrectedPerformance& to) override;
+    virtual void*                        _unkFunc() override;
 #pragma endregion
 
     bool IsValid() { return mObjType != SimableType::Invalid && mDirty == false && this->GetRigidBody(); }

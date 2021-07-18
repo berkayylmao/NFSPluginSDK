@@ -80,8 +80,8 @@ namespace OpenSpeed::MW05::UMath {
 
                  operator float*() noexcept { return reinterpret_cast<float*>(this); }
                  operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
-    float&       operator[](size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
-    const float& operator[](size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
+    float&       operator[](std::size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
+    const float& operator[](std::size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
 
     Vector2() : x(0.0f), y(0.0f) {}
     ~Vector2() = default;
@@ -153,8 +153,8 @@ namespace OpenSpeed::MW05::UMath {
 
                  operator float*() noexcept { return reinterpret_cast<float*>(this); }
                  operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
-    float&       operator[](size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
-    const float& operator[](size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
+    float&       operator[](std::size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
+    const float& operator[](std::size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
 
     Vector3() : x(0.0f), y(0.0f), z(0.0f) {}
     ~Vector3() = default;
@@ -250,8 +250,8 @@ namespace OpenSpeed::MW05::UMath {
 
                  operator float*() noexcept { return reinterpret_cast<float*>(this); }
                  operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
-    float&       operator[](size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
-    const float& operator[](size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
+    float&       operator[](std::size_t index) noexcept { return (reinterpret_cast<float*>(this))[index]; }
+    const float& operator[](std::size_t index) const noexcept { return (reinterpret_cast<const float*>(this))[index]; }
 
     Vector4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
     ~Vector4() = default;
@@ -336,8 +336,10 @@ namespace OpenSpeed::MW05::UMath {
                    operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
                    operator Vector4*() noexcept { return reinterpret_cast<Vector4*>(this); }
                    operator const Vector4*() const noexcept { return reinterpret_cast<const Vector4*>(this); }
-    Vector4&       operator[](size_t index) noexcept { return (reinterpret_cast<Vector4*>(this))[index]; }
-    const Vector4& operator[](size_t index) const noexcept { return (reinterpret_cast<const Vector4*>(this))[index]; }
+    Vector4&       operator[](std::size_t index) noexcept { return (reinterpret_cast<Vector4*>(this))[index]; }
+    const Vector4& operator[](std::size_t index) const noexcept {
+      return (reinterpret_cast<const Vector4*>(this))[index];
+    }
 
     Matrix4()  = default;
     ~Matrix4() = default;

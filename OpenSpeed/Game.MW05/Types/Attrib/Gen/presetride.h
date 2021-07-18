@@ -19,18 +19,8 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib/Instance.h>
 
-namespace OpenSpeed::MW05::Attrib {
-  static inline Collection* FindCollection(StringKey classKey, StringKey collectionKey) {
-    return reinterpret_cast<Collection*(__cdecl*)(StringKey, StringKey)>(0x455FD0)(classKey, collectionKey);
-  }
-  static inline Collection* FindCollection(const char* className, StringKey collectionKey) {
-    return FindCollection(StringToKey(className), collectionKey);
-  }
-  static inline Collection* FindCollection(const char* className, const char* collectionName) {
-    return FindCollection(StringToKey(className), StringToKey(collectionName));
-  }
-  static inline StringKey StringToKey(const char* name) {
-    return reinterpret_cast<StringKey(__cdecl*)(const char*)>(0x454640)(name);
-  }
-}  // namespace OpenSpeed::MW05::Attrib
+namespace OpenSpeed::MW05::Attrib::Gen {
+  struct presetride : Instance {};
+}  // namespace OpenSpeed::MW05::Attrib::Gen

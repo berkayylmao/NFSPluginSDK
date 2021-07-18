@@ -39,7 +39,7 @@ namespace OpenSpeed::MW05 {
 
     WWorldPos*       mWPos;
     SimableType      mObjType;
-    HSIMABLE__*      mOwner;
+    //HSIMABLE__*      mOwner;
     Attrib::Instance mAttributes;
     IRigidBody*      mRigidBody;
     HSIMTASK__*      mSimulateTask;

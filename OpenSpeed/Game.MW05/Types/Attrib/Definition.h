@@ -21,16 +21,24 @@
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Attrib {
-  static inline Collection* FindCollection(StringKey classKey, StringKey collectionKey) {
-    return reinterpret_cast<Collection*(__cdecl*)(StringKey, StringKey)>(0x455FD0)(classKey, collectionKey);
-  }
-  static inline Collection* FindCollection(const char* className, StringKey collectionKey) {
-    return FindCollection(StringToKey(className), collectionKey);
-  }
-  static inline Collection* FindCollection(const char* className, const char* collectionName) {
-    return FindCollection(StringToKey(className), StringToKey(collectionName));
-  }
-  static inline StringKey StringToKey(const char* name) {
-    return reinterpret_cast<StringKey(__cdecl*)(const char*)>(0x454640)(name);
-  }
+  struct Definition {
+    enum class Flags : std::uint8_t {
+      Array           = 1 << 0,
+      InLayout        = 1 << 1,
+      IsBound         = 1 << 2,
+      IsNotSearchable = 1 << 3,
+    };
+
+    std::uint32_t mKey;
+    std::uint32_t mType;
+    std::uint16_t mOffset;
+    std::uint16_t mSize;
+    std::uint16_t mMaxCount;
+    Flags         mFlags;
+    std::uint8_t  mAlignment;
+  };
+
+#if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
+  DEFINE_ENUM_FLAG_OPERATORS(Definition::Flags)
+#endif
 }  // namespace OpenSpeed::MW05::Attrib

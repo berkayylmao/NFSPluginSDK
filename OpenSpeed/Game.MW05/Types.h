@@ -152,6 +152,7 @@ namespace OpenSpeed::MW05 {
       struct aivehicle;
       struct camerainfo;
       struct collisionreactions;
+      struct presetride;
       struct pvehicle;
       struct rigidbodyspecs;
       struct simsurface;
@@ -180,10 +181,17 @@ namespace OpenSpeed::MW05 {
   }  // namespace Dynamics
 
   namespace Physics {
+    struct Tunings;
+
     namespace Info {
       struct CorrectedPerformance;
-      struct PerformanceMatching;
+      struct Performance;
     }  // namespace Info
+
+    namespace Upgrades {
+      enum class Type : std::uint32_t { Tires, Brakes, Chassis, Transmission, Engine, Induction, NOS };
+      struct Package;
+    }  // namespace Upgrades
   }    // namespace Physics
 
   namespace Math {
@@ -242,9 +250,163 @@ namespace OpenSpeed::MW05 {
     struct WorldCollisionInfo;
   }  // namespace WCollisionMgr
 
+  enum class CarSlotId : std::uint32_t {
+    Base,
+    DamageModel_FrontWindow,
+    DamageModel_Body,
+    DamageModel_CopLights,
+    DamageModel_CopSpoiler,
+    DamageModel_FrontWheel,
+    DamageModel_LeftBrakelight,
+    DamageModel_RightBrakelight,
+    DamageModel_LeftHeadlight,
+    DamageModel_RightHeadlight,
+    DamageModel_Hood,
+    DamageModel_Bushguard,
+    DamageModel_FrontBumper,
+    DamageModel_RightDoor,
+    DamageModel_RightRearDoor,
+    DamageModel_Trunk,
+    DamageModel_RearBumper,
+    DamageModel_RearKeftWindow,
+    DamageModel_FrontLeftWindow,
+    DamageModel_FrontRightWindow,
+    DamageModel_RearRightWindow,
+    DamageModel_LeftDoor,
+    DamageModel_LeftRearDoor,
+    Body,
+    FrontBrake,
+    FrontLeftWindow,
+    FrontRightWindow,
+    FrontWindow,
+    Interior,
+    LeftBrakelight,
+    LeftBrakelightGlass,
+    LeftHeadlight,
+    LeftHeadlightGlass,
+    LeftSideMirror,
+    RearBrake,
+    RearLeftWindow,
+    RearRightWindow,
+    RearWindow,
+    RightBrakelight,
+    RightBrakelightGlass,
+    RightHeadlight,
+    RightHeadlightGlass,
+    RightSideMirror,
+    Driver,
+    Spoiler,
+    UniversalSpoilerBase,
+    DamagePlayerModel_Front,
+    DamagePlayerModel_FrontLeft,
+    DamagePlayerModel_FrontRight,
+    DamagePlayerModel_Rear,
+    DamagePlayerModel_RearLeft,
+    DamagePlayerModel_RearRight,
+    Attachment0,
+    Attachment1,
+    Attachment2,
+    Attachment3,
+    Attachment4,
+    Attachment5,
+    Attachment6,
+    Attachment7,
+    Attachment8,
+    Attachment9,
+    RoofScoop,
+    Hood,
+    Headlight,
+    Brakelight,
+    FrontWheel,
+    RearWheel,
+    Spinner,
+    LicensePlate,
+    DecalModel_FrontWindow,
+    DecalModel_RearWindow,
+    DecalModel_LeftDoor,
+    DecalModel_RightDoor,
+    DecalModel_LeftQuarter,
+    DecalModel_RightQuarter,
+    BasePaint,
+    VinylLayer,
+    PaintRim,
+    VinylColour0,
+    VinylColour1,
+    VinylColour2,
+    VinylColour3,
+    DecalTexture_FrontWindow0,
+    DecalTexture_FrontWindow1,
+    DecalTexture_FrontWindow2,
+    DecalTexture_FrontWindow3,
+    DecalTexture_FrontWindow4,
+    DecalTexture_FrontWindow5,
+    DecalTexture_FrontWindow6,
+    DecalTexture_FrontWindow7,
+    DecalTexture_RearWindow0,
+    DecalTexture_RearWindow1,
+    DecalTexture_RearWindow2,
+    DecalTexture_RearWindow3,
+    DecalTexture_RearWindow4,
+    DecalTexture_RearWindow5,
+    DecalTexture_RearWindow6,
+    DecalTexture_RearWindow7,
+    DecalTexture_LeftDoor0,
+    DecalTexture_LeftDoor1,
+    DecalTexture_LeftDoor2,
+    DecalTexture_LeftDoor3,
+    DecalTexture_LeftDoor4,
+    DecalTexture_LeftDoor5,
+    DecalTexture_LeftDoor_LeftNumber,
+    DecalTexture_LeftDoor6,
+    DecalTexture_LeftDoor_RightNumber,
+    DecalTexture_LeftDoor7,
+    DecalTexture_RightDoor0,
+    DecalTexture_RightDoor1,
+    DecalTexture_RightDoor2,
+    DecalTexture_RightDoor3,
+    DecalTexture_RightDoor4,
+    DecalTexture_RightDoor5,
+    DecalTexture_RightDoor_LeftNumber,
+    DecalTexture_RightDoor6,
+    DecalTexture_RightDoor_RightNumber,
+    DecalTexture_RightDoor7,
+    DecalTexture_LeftQuarter0,
+    DecalTexture_LeftQuarter1,
+    DecalTexture_LeftQuarter2,
+    DecalTexture_LeftQuarter3,
+    DecalTexture_LeftQuarter4,
+    DecalTexture_LeftQuarter5,
+    DecalTexture_LeftQuarter6,
+    DecalTexture_LeftQuarter7,
+    DecalTexture_RightQuarter_tex0,
+    DecalTexture_RightQuarter_tex1,
+    DecalTexture_RightQuarter_tex2,
+    DecalTexture_RightQuarter_tex3,
+    DecalTexture_RightQuarter_tex4,
+    DecalTexture_RightQuarter_tex5,
+    DecalTexture_RightQuarter_tex6,
+    DecalTexture_RightQuarter_tex7,
+    WindowTint,
+    CustomHud,
+    HudBackingColour,
+    HudNeedleColour,
+    HudCharacterColour,
+    CV,
+    WheelManufacturer,
+    Misc
+  };
   enum class DriverClass : std::uint32_t { Human, Traffic, Cop, Racer, None, NIS, Remote };
   enum class DriverStyle : std::uint32_t { Racing, Drag };
+  enum class eCareerUpgradeLevels : std::uint32_t {
+    LevelStock,
+    Level1,
+    Level2,
+    Level3,
+    LevelUnique,
+    LevelUnspecified = UINT_MAX,
+  };
   enum class eControllerConfig : std::uint32_t { MinConfig, Config1, Config2, Config3, Config4, MaxConfig, Config5 };
+  enum class eCustomTuningType : std::uint32_t { Setting1, Setting2, Setting3 };
   enum class eFEGameModes : std::uint32_t {
     None,
     Career         = 1 << 0,
@@ -326,6 +488,18 @@ namespace OpenSpeed::MW05 {
     UnloadingRegion,
     ExitDemoDisc
   };
+  enum class JunkmanParts : std::uint32_t {
+    Tires       = 1 << 0,
+    Brakes      = 1 << 1,
+    Drivetrain  = 1 << 2,
+    Transmisson = 1 << 3,
+    Engine      = 1 << 4,
+    Turbo       = 1 << 5,
+    Nitrous     = 1 << 6,
+    All         = static_cast<std::uint32_t>(Tires) | static_cast<std::uint32_t>(Brakes) |
+          static_cast<std::uint32_t>(Drivetrain) | static_cast<std::uint32_t>(Transmisson) |
+          static_cast<std::uint32_t>(Engine) | static_cast<std::uint32_t>(Turbo) | static_cast<std::uint32_t>(Nitrous)
+  };
   enum class PhysicsMode : std::uint32_t { Inactive, Simulated, Emulated };
   enum class SimableType : std::uint32_t {
     Invalid,
@@ -358,6 +532,7 @@ namespace OpenSpeed::MW05 {
       Joint_Invert         = 1 << 13
     };
   }
+
   namespace VehicleFX {
     enum class LightID : std::uint32_t {
       None,
@@ -387,8 +562,10 @@ namespace OpenSpeed::MW05 {
   }  // namespace VehicleFX
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
+  DEFINE_ENUM_FLAG_OPERATORS(eFEGameModes)
   DEFINE_ENUM_FLAG_OPERATORS(eVehicleParamFlags)
   DEFINE_ENUM_FLAG_OPERATORS(CollisionGeometry::BoundFlags)
+  DEFINE_ENUM_FLAG_OPERATORS(JunkmanParts)
   DEFINE_ENUM_FLAG_OPERATORS(VehicleFX::LightID)
 #endif
 }  // namespace OpenSpeed::MW05
