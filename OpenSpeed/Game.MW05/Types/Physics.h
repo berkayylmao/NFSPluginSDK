@@ -43,6 +43,11 @@ namespace OpenSpeed::MW05::Physics {
       static void ApplyPreset(Attrib::Gen::pvehicle& to, const Attrib::Gen::presetride& preset) {
         reinterpret_cast<void(__cdecl*)(Attrib::Gen::pvehicle&, const Attrib::Gen::presetride&)>(0x67C080)(to, preset);
       }
+
+      static bool CanInstallJunkman(const Attrib::Gen::pvehicle& instance, Type type) {
+        return reinterpret_cast<bool(__cdecl*)(const Attrib::Gen::pvehicle&, Type)>(0x677FE0)(instance, type);
+      }
+
       static eCareerUpgradeLevels GetLevel(const Attrib::Gen::pvehicle& instance, Type type) {
         return reinterpret_cast<eCareerUpgradeLevels(__cdecl*)(const Attrib::Gen::pvehicle&, Type)>(0x672D30)(instance,
                                                                                                               type);
