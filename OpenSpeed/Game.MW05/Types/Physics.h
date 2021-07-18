@@ -33,11 +33,11 @@ namespace OpenSpeed::MW05::Physics {
     struct Package {
       eCareerUpgradeLevels mTires;
       eCareerUpgradeLevels mBrakes;
-      eCareerUpgradeLevels mDrivetrain;
+      eCareerUpgradeLevels mChassis;
       eCareerUpgradeLevels mTransmission;
       eCareerUpgradeLevels mEngine;
-      eCareerUpgradeLevels mTurbo;
-      eCareerUpgradeLevels mNitro;
+      eCareerUpgradeLevels mInduction;
+      eCareerUpgradeLevels mNOS;
       JunkmanParts         mJunkman;
 
       static void ApplyPreset(Attrib::Gen::pvehicle& to, const Attrib::Gen::presetride& preset) {
