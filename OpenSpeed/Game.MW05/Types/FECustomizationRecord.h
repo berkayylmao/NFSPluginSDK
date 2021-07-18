@@ -30,6 +30,16 @@ namespace OpenSpeed::MW05 {
     std::int32_t               mPreset;
     std::uint8_t               mHandle;
 
+    void operator=(const FECustomizationRecord& rhs) {
+      std::copy(std::cbegin(rhs.mInstalledPartIndices), std::cend(rhs.mInstalledPartIndices),
+                std::begin(this->mInstalledPartIndices));
+      this->mInstalledPhysics = rhs.mInstalledPhysics;
+      std::copy(std::cbegin(rhs.mTunings), std::cend(rhs.mTunings), std::begin(this->mTunings));
+      this->mActiveTuning = rhs.mActiveTuning;
+      this->mPreset       = rhs.mPreset;
+      this->mHandle       = rhs.mHandle;
+    }
+
     std::int16_t& operator[](CarSlotId id) noexcept { return mInstalledPartIndices[static_cast<std::uint32_t>(id)]; }
     const std::int16_t& operator[](CarSlotId id) const noexcept {
       return mInstalledPartIndices[static_cast<std::uint32_t>(id)];

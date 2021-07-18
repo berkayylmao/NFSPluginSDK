@@ -18,8 +18,9 @@
 // clang-format on
 
 #pragma once
-#include <cstdint>  // integer types
-#include <cstring>  // memcpy
+#include <algorithm>  // copy
+#include <cstdint>    // integer types
+#include <iterator>   // begin, end
 #if defined(_WIN32)
 #include <winnt.h>  // DEFINE_ENUM_FLAG_OPERATORS
 #endif

@@ -41,15 +41,15 @@ namespace OpenSpeed::MW05::Attrib::Layouts {
     Private     _Array_SELECTABLE;
     bool        SELECTABLE[2];
 
-    void operator=(const camerainfolayout& newCameraInfo) {
-      std::memcpy(STIFFNESS, newCameraInfo.STIFFNESS, sizeof(float) * 2);
-      std::memcpy(ANGLE, newCameraInfo.ANGLE, sizeof(float) * 2);
-      std::memcpy(LAG, newCameraInfo.LAG, sizeof(float) * 2);
-      std::memcpy(FOV, newCameraInfo.FOV, sizeof(float) * 2);
-      std::memcpy(HEIGHT, newCameraInfo.HEIGHT, sizeof(float) * 2);
-      std::memcpy(LATEOFFSET, newCameraInfo.LATEOFFSET, sizeof(float) * 2);
-      std::memcpy(TILTING, newCameraInfo.TILTING, sizeof(bool) * 2);
-      std::memcpy(SELECTABLE, newCameraInfo.SELECTABLE, sizeof(bool) * 2);
+    void operator=(const camerainfolayout& rhs) {
+      std::copy(std::cbegin(rhs.STIFFNESS), std::cend(rhs.STIFFNESS), std::begin(this->STIFFNESS));
+      std::copy(std::cbegin(rhs.ANGLE), std::cend(rhs.ANGLE), std::begin(this->ANGLE));
+      std::copy(std::cbegin(rhs.LAG), std::cend(rhs.LAG), std::begin(this->LAG));
+      std::copy(std::cbegin(rhs.FOV), std::cend(rhs.FOV), std::begin(this->FOV));
+      std::copy(std::cbegin(rhs.HEIGHT), std::cend(rhs.HEIGHT), std::begin(this->HEIGHT));
+      std::copy(std::cbegin(rhs.LATEOFFSET), std::cend(rhs.LATEOFFSET), std::begin(this->LATEOFFSET));
+      std::copy(std::cbegin(rhs.TILTING), std::cend(rhs.TILTING), std::begin(this->TILTING));
+      std::copy(std::cbegin(rhs.SELECTABLE), std::cend(rhs.SELECTABLE), std::begin(this->SELECTABLE));
     }
   };
-}  // namespace OpenSpeed::MW05::Attrib::Gen
+}  // namespace OpenSpeed::MW05::Attrib::Layouts
