@@ -40,6 +40,15 @@ namespace OpenSpeed::MW05::Physics {
       eCareerUpgradeLevels mNOS;
       JunkmanParts         mJunkman;
 
+      explicit Package() :
+          mTires(eCareerUpgradeLevels::LevelStock),
+          mBrakes(eCareerUpgradeLevels::LevelStock),
+          mChassis(eCareerUpgradeLevels::LevelStock),
+          mTransmission(eCareerUpgradeLevels::LevelStock),
+          mEngine(eCareerUpgradeLevels::LevelStock),
+          mInduction(eCareerUpgradeLevels::LevelStock),
+          mJunkman(JunkmanParts::None) {}
+
       static void ApplyPreset(Attrib::Gen::pvehicle& to, const Attrib::Gen::presetride& preset) {
         reinterpret_cast<void(__cdecl*)(Attrib::Gen::pvehicle&, const Attrib::Gen::presetride&)>(0x67C080)(to, preset);
       }
