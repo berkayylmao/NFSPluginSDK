@@ -26,6 +26,8 @@ namespace OpenSpeed::MW05::Physics {
       float mTopSpeed;
       float mHandling;
       float mAcceleration;
+
+      explicit Performance() : mTopSpeed(0.0f), mHandling(0.0f), mAcceleration(0.0f) {}
     };
   }  // namespace Info
 
