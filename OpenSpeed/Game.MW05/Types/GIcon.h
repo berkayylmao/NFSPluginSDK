@@ -62,10 +62,11 @@ namespace OpenSpeed::MW05 {
     std::uint16_t mFlags;
     std::int16_t  mSectionId;
     std::int16_t  mCombSectionId;
-    std::uint16_t mRotation;
-    std::uint8_t  _pad[0x2];
-    std::uint32_t mEmitter;
+    WorldModel*   mModel;
+    EmitterGroup* mEmitter;
     Math::Vector3 mPosition;
+    std::uint16_t mRotation;
+    std::uint16_t mPad;
 
    public:
     GIcon(Type type, const UMath::Vector3& initialPosition, float _unk) {
