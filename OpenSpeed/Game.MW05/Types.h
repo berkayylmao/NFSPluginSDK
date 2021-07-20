@@ -463,6 +463,7 @@ namespace OpenSpeed::MW05 {
   enum class ePlayerSettingsCameras : std::uint32_t { Bumper, Hood, Default, Close, Far, SuperFar, Drift, Pursuit };
   enum class ePostRaceOptions : std::uint32_t { NextRace, Quit, RestartRace, RestartEvent };
   enum class eSplitTimeTypes : std::uint8_t { RaceLeader, LapRecord, BestLap, LastLap, Off };
+  enum class eTrackDirection : std::uint8_t { Forward, Backward };
   enum class eTransmissionType : std::uint8_t { Automatic, Manual, Sport, ManualClutch };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class eVehicleParamFlags : std::uint32_t {

@@ -22,17 +22,17 @@
 
 namespace OpenSpeed::MW05 {
   struct RaceSettings {
-    std::uint32_t EventHash;
-    std::uint8_t  NumLaps;
-    std::uint8_t  TrackDirection;
-    bool          IsLapKO;
-    std::uint8_t  NumOpponents;
-    Difficulty    AISkill;
-    CopDensity    CopDensity;
-    TrafficLevel  TrafficDensity;
-    bool          CatchUp;
-    bool          CopsOn;
-    Region        RegionFilterBits;
-    std::uint32_t SelectedCar[2];
+    std::uint32_t   EventHash;
+    std::uint8_t    NumLaps;
+    eTrackDirection TrackDirection;
+    bool            IsLapKO;
+    std::uint8_t    NumOpponents;
+    Difficulty      AISkill;
+    CopDensity      CopDensity;
+    TrafficLevel    TrafficDensity;
+    bool            CatchUp;
+    bool            CopsOn;
+    Region          RegionFilterBits;
+    std::uint32_t   SelectedCar[2];
   };
 }  // namespace OpenSpeed::MW05
