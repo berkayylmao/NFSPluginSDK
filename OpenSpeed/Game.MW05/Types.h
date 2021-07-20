@@ -48,6 +48,7 @@ namespace OpenSpeed::MW05 {
   struct CareerSettings;
   struct cFinishedRaceStats;
   struct cFrontEndDatabase;
+  struct Context;
   struct CostToStateScores;
   struct EmitterGroup;
   struct EventSequencer;
@@ -60,10 +61,16 @@ namespace OpenSpeed::MW05 {
   struct FEPlayerCarDB;
   struct FinishedRaceStatsEntry;
   struct GameplaySettings;
+  struct GCharacter;
   struct GIcon;
   struct GManager;
+  struct GRaceBin;
+  struct GRaceParameters;
+  struct GRacerInfo;
   template <class T>
   struct Grid;
+  struct GTimer;
+  struct GTrigger;
   struct HACTIVITY__;
   struct HCAUSE__;
   struct HighScoresDatabase;
@@ -402,6 +409,7 @@ namespace OpenSpeed::MW05 {
   enum class Difficulty : std::uint8_t { Easy, Medium, Hard };
   enum class DriverClass : std::uint32_t { Human, Traffic, Cop, Racer, None, NIS, Remote };
   enum class DriverStyle : std::uint32_t { Racing, Drag };
+  enum class eAIDifficultyModifier : std::uint8_t { Easy, SomewhatEasy, Normal };
   enum class eCareerUpgradeLevels : std::uint32_t {
     LevelStock,
     Level1,
@@ -446,6 +454,7 @@ namespace OpenSpeed::MW05 {
     ValidLane,
   };
   enum class eLoadSaveGame : std::uint32_t { Load, Save };
+  enum class eOpponentStrength : std::uint8_t { Low, Medium, High };
   enum class eOptionsCategory : std::uint32_t {
     Audio,
     Video,
@@ -464,6 +473,7 @@ namespace OpenSpeed::MW05 {
   enum class ePostRaceOptions : std::uint32_t { NextRace, Quit, RestartRace, RestartEvent };
   enum class eSplitTimeTypes : std::uint8_t { RaceLeader, LapRecord, BestLap, LastLap, Off };
   enum class eTrackDirection : std::uint8_t { Forward, Backward };
+  enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
   enum class eTransmissionType : std::uint8_t { Automatic, Manual, Sport, ManualClutch };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class eVehicleParamFlags : std::uint32_t {

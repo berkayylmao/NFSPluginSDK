@@ -21,18 +21,11 @@
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05 {
-  struct RaceSettings {
-    std::uint32_t     EventHash;
-    std::uint8_t      NumLaps;
-    eTrackDirection   TrackDirection;
-    bool              IsLapKO;
-    std::uint8_t      NumOpponents;
-    eOpponentStrength AISkill;
-    CopDensity        CopDensity;
-    eTrafficDensity   TrafficDensity;
-    bool              CatchUp;
-    bool              CopsOn;
-    Region            RegionFilterBits;
-    std::uint32_t     SelectedCar[2];
+  struct GTimer {
+    float mStartTime;
+    float mTotalTime;
+    bool  mRunning;
+
+    bool IsRunning() { return mRunning; }
   };
 }  // namespace OpenSpeed::MW05
