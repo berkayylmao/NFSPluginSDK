@@ -49,6 +49,7 @@ namespace OpenSpeed::MW05 {
   struct cFinishedRaceStats;
   struct cFrontEndDatabase;
   struct CostToStateScores;
+  struct EmitterGroup;
   struct EventSequencer;
   struct FECareerRecord;
   struct FECarRecord;
@@ -397,6 +398,8 @@ namespace OpenSpeed::MW05 {
     WheelManufacturer,
     Misc
   };
+  enum class CopDensity : std::uint8_t { Off, Light, Medium, Heavy };
+  enum class Difficulty : std::uint8_t { Easy, Medium, Hard };
   enum class DriverClass : std::uint32_t { Human, Traffic, Cop, Racer, None, NIS, Remote };
   enum class DriverStyle : std::uint32_t { Racing, Drag };
   enum class eCareerUpgradeLevels : std::uint32_t {
@@ -507,6 +510,7 @@ namespace OpenSpeed::MW05 {
           static_cast<std::uint32_t>(Induction) | static_cast<std::uint32_t>(NOS)
   };
   enum class PhysicsMode : std::uint32_t { Inactive, Simulated, Emulated };
+  enum class Region : std::uint8_t { College, Coastal, City, None = UINT_MAX };
   enum class SimableType : std::uint32_t {
     Invalid,
     Vehicle,
@@ -519,6 +523,7 @@ namespace OpenSpeed::MW05 {
     Fragment
   };
   enum class SpeedUnitType : std::uint8_t { MPH, KPH, MPS };
+  enum class TrafficLevel : std::uint8_t { Off, Light, Medium, Heavy };
 
   namespace CollisionGeometry {
     enum class BoundFlags : std::uint32_t {

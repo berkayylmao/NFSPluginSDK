@@ -27,12 +27,12 @@ namespace OpenSpeed::MW05 {
     std::uint8_t  TrackDirection;
     bool          IsLapKO;
     std::uint8_t  NumOpponents;
-    std::uint8_t  AISkill;
-    std::uint8_t  CopDensity;
-    std::uint8_t  TrafficDensity;
+    Difficulty    AISkill;
+    CopDensity    CopDensity;
+    TrafficLevel  TrafficDensity;
     bool          CatchUp;
     bool          CopsOn;
-    std::uint8_t  RegionFilterBits;
+    Region        RegionFilterBits;
     std::uint32_t SelectedCar[2];
   };
 }  // namespace OpenSpeed::MW05
