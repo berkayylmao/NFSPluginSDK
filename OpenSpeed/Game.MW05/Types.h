@@ -34,10 +34,12 @@ namespace OpenSpeed::MW05 {
   struct Attachments;
   template <class T>
   struct AttributeStructPtr;
+  struct AttribVaultPackImage;
   struct AudioSettings;
   struct Behavior;
   template <class T>
   struct BehaviorSpecsPtr;
+  struct bFile;
   struct bList;
   template <class T>
   struct bTList;
@@ -62,15 +64,20 @@ namespace OpenSpeed::MW05 {
   struct FinishedRaceStatsEntry;
   struct GameplaySettings;
   struct GCharacter;
+  struct GEventTimer;
   struct GIcon;
   struct GManager;
+  struct GMilestone;
   struct GRaceBin;
   struct GRaceParameters;
   struct GRacerInfo;
   template <class T>
   struct Grid;
+  struct GRuntimeInstance;
+  struct GSpeedTrap;
   struct GTimer;
   struct GTrigger;
+  struct GVault;
   struct HACTIVITY__;
   struct HCAUSE__;
   struct HighScoresDatabase;
@@ -114,6 +121,8 @@ namespace OpenSpeed::MW05 {
   struct IVehicleCache;
   struct JukeboxEntry;
   struct LocalPlayer;
+  struct MilestoneTypeInfo;
+  struct ObjectStateBlockHeader;
   struct OptionsSettings;
   struct PhysicsObject;
   struct PInput;
@@ -162,6 +171,7 @@ namespace OpenSpeed::MW05 {
       struct aivehicle;
       struct camerainfo;
       struct collisionreactions;
+      struct gameplay;
       struct presetride;
       struct pvehicle;
       struct rigidbodyspecs;
