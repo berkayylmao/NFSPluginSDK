@@ -32,8 +32,8 @@ namespace OpenSpeed::MW05 {
     bool                   DriveWithAnalog;
     eControllerConfig      Config;
     ePlayerSettingsCameras CurCam;
-    std::uint8_t           SplitTimeType;
-    std::uint8_t           Transmission;
-    std::uint8_t           Handling;
+    eSplitTimeTypes        SplitTimeType;
+    eTransmissionType      Transmission;
+    eHandlingMode          Handling;
   };
 }  // namespace OpenSpeed::MW05

@@ -427,6 +427,7 @@ namespace OpenSpeed::MW05 {
     PostRival      = 1 << 17,
     BeatGame       = 1 << 18
   };
+  enum class eHandlingMode : std::uint8_t { Classic, Extreme };
   enum class eImpoundReasons : std::int8_t { None, BustedByCross, StrikeLimitReached, InsufficientFunds, Released };
   enum class eInvulnerability : std::uint32_t {
     None,
@@ -457,6 +458,8 @@ namespace OpenSpeed::MW05 {
   enum class ePlayerList : std::uint32_t { All, Local, Remote };
   enum class ePlayerSettingsCameras : std::uint32_t { Bumper, Hood, Default, Close, Far, SuperFar, Drift, Pursuit };
   enum class ePostRaceOptions : std::uint32_t { NextRace, Quit, RestartRace, RestartEvent };
+  enum class eSplitTimeTypes : std::uint8_t { RaceLeader, LapRecord, BestLap, LastLap, Off };
+  enum class eTransmissionType : std::uint8_t { Automatic, Manual, Sport, ManualClutch };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class eVehicleParamFlags : std::uint32_t {
     Spooled         = 1 << 0,
@@ -514,7 +517,7 @@ namespace OpenSpeed::MW05 {
     Sentry,
     Fragment
   };
-  enum class SpeedUnitType : std::uint8_t { MPH, KMH, MPS };
+  enum class SpeedUnitType : std::uint8_t { MPH, KPH, MPS };
 
   namespace CollisionGeometry {
     enum class BoundFlags : std::uint32_t {
