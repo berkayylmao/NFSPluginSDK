@@ -132,7 +132,7 @@ namespace OpenSpeed::MW05 {
     virtual void*                        _unkFunc() override;
 #pragma endregion
 
-    bool IsValid() { return mObjType != SimableType::Invalid && mDirty == false && this->GetRigidBody(); }
+    bool IsValid() { return mObjType != SimableType::Invalid && mDirty == false && this->mRigidBody != nullptr; }
 
     template <typename T>
     std::enable_if_t<std::is_base_of_v<IVehicleAI, T>, T*> GetAIAs() {
