@@ -84,6 +84,7 @@ namespace OpenSpeed::MW05 {
   struct IExplodeable;
   struct IExplosion;
   struct IFeedback;
+  struct IHandle;
   struct IHud;
   struct IInput;
   struct IInputPlayer;

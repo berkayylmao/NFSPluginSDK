@@ -67,5 +67,7 @@ namespace OpenSpeed::MW05 {
     virtual const UMath::Vector3& GetRightVector()                                             = 0;
     virtual const UMath::Vector3& GetUpVector()                                                = 0;
     virtual const UMath::Matrix4& GetMatrix4()                                                 = 0;
+
+    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4039C0)(); }
   };
 }  // namespace OpenSpeed::MW05

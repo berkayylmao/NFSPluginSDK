@@ -64,5 +64,7 @@ namespace OpenSpeed::MW05 {
     virtual float          GetShiftPoint(GearID from, GearID to) = 0;
     virtual ShiftStatus    GetShiftStatus()                      = 0;
     virtual ShiftPotential GetShiftPotential()                   = 0;
+
+    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x404010)(); }
   };
 }  // namespace OpenSpeed::MW05

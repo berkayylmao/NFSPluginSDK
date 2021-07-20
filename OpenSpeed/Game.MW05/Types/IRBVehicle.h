@@ -34,5 +34,7 @@ namespace OpenSpeed::MW05 {
     virtual eInvulnerability GetInvulnerability()                                                               = 0;
     virtual void             SetReactions(DriverClass target, const Attrib::Gen::collisionreactions& reactions) = 0;
     virtual const Attrib::Gen::collisionreactions& GetReactions(DriverClass target)                             = 0;
+
+    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4039E0)(); }
   };
 }  // namespace OpenSpeed::MW05
