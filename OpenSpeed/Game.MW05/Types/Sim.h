@@ -49,16 +49,19 @@ namespace OpenSpeed::MW05 {
       virtual ~IServiceable();
       virtual bool OnService(HSIMSERVICE__* p, Packet*) = 0;
     };
-    struct ITaskable {
+    struct ITaskable : UTL::COM::IUnknown {
       virtual ~ITaskable();
       virtual bool OnTask(HSIMTASK__* p, float);
     };
 
     struct Object : UTL::COM::Object, IServiceable, ITaskable {
+      std::uint8_t  _unk[0x4];
       std::uint32_t mTaskCount;
       std::uint32_t mServiceCount;
 
       virtual ~Object();
+      virtual bool OnService(HSIMSERVICE__* p, Packet*) override;
+      virtual bool OnTask(HSIMTASK__* p, float) override;
     };
 
     struct Entity : Object, UTL::GarbageNode<Entity>, IEntity, IAttachable {
