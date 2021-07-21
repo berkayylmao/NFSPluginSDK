@@ -33,6 +33,6 @@ namespace OpenSpeed::MW05 {
     virtual void                       Destroy()            = 0;
     virtual /*DamageZone::Info*/ void* GetZoneDamage()      = 0;
 
-    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x405000)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x405000)(); }
   };
 }  // namespace OpenSpeed::MW05

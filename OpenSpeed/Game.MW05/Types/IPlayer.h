@@ -53,6 +53,6 @@ namespace OpenSpeed::MW05 {
       return nullptr;
     }
 
-    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x6200D0)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x6200D0)(); }
   };
 }  // namespace OpenSpeed::MW05

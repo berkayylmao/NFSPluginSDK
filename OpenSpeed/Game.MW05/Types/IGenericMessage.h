@@ -32,6 +32,6 @@ namespace OpenSpeed::MW05 {
     virtual bool     IsGenericMessageShowing()                   = 0;
     virtual Priority GetCurrentGenericMessagePriority()          = 0;
 
-    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x5650B0)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x5650B0)(); }
   };
 }  // namespace OpenSpeed::MW05

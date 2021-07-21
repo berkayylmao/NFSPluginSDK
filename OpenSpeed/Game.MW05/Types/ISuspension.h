@@ -55,6 +55,6 @@ namespace OpenSpeed::MW05 {
     virtual void                  MatchSpeed(float speed)                                          = 0;
     virtual float                 GetRenderMotion()                                                = 0;
 
-    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x404040)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x404040)(); }
   }
 }  // namespace OpenSpeed::MW05

@@ -89,6 +89,6 @@ namespace OpenSpeed::MW05 {
     virtual float                         GetShortcutSkill()                                                       = 0;
     virtual float                         GetPercentRaceComplete()                                                 = 0;
 
-    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x403700)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x403700)(); }
   };
 }  // namespace OpenSpeed::MW05

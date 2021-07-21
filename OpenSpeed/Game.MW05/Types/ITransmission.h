@@ -65,6 +65,6 @@ namespace OpenSpeed::MW05 {
     virtual ShiftStatus    GetShiftStatus()                      = 0;
     virtual ShiftPotential GetShiftPotential()                   = 0;
 
-    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x404010)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x404010)(); }
   };
 }  // namespace OpenSpeed::MW05

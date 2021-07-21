@@ -89,7 +89,7 @@ namespace OpenSpeed::MW05 {
     virtual bool                         GetPerformance(Physics::Info::CorrectedPerformance& to)          = 0;
     virtual void*                        _unkFunc()                                                       = 0;
 
-    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4040E0)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4040E0)(); }
   };
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS

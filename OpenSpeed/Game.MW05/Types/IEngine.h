@@ -40,6 +40,6 @@ namespace OpenSpeed::MW05 {
     virtual float GetMinHorsePower()      = 0;
     virtual float GetHorsePower()         = 0;
 
-    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x404020)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x404020)(); }
   };
 }  // namespace OpenSpeed::MW05

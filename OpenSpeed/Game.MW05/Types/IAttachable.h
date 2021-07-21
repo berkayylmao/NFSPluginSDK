@@ -33,6 +33,6 @@ namespace OpenSpeed::MW05 {
     virtual void                       OnDetached(IAttachable* pOther)        = 0;
     virtual eastl::list<IAttachable*>* GetAttachments()                       = 0;
 
-    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x402820)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x402820)(); }
   };
 }  // namespace OpenSpeed::MW05
