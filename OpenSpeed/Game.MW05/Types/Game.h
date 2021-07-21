@@ -21,7 +21,7 @@
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Game {
-  static inline auto BeginGameFlowUnloadTrack() { reinterpret_cast<void(__cdecl*)()>(0x667340)(); }
+  static inline void BeginGameFlowUnloadTrack() { reinterpret_cast<void(__cdecl*)()>(0x667340)(); }
   // ECameraShake
   static inline void ShakeCamera() { reinterpret_cast<void(__cdecl*)()>(0x62B110)(); }
   // EForcePursuitBail
@@ -53,7 +53,13 @@ namespace OpenSpeed::MW05::Game {
   // Game_ShowPauseMenu
   static inline void ShowPauseMenu() { reinterpret_cast<void(__cdecl*)()>(0x6050F0)(); }
 
-  static inline auto stringhash32(const char* cstring) {
+  // custom hashing
+  static inline std::uint32_t bStringHash(const char* cstring) {
+    return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x460BF0)(cstring);
+  }
+
+  // uses 0xABCDEF00 magic
+  static inline std::uint32_t stringhash32(const char* cstring) {
     return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x5CC240)(cstring);
   }
 }  // namespace OpenSpeed::MW05::Game
