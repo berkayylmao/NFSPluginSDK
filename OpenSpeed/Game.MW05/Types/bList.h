@@ -30,13 +30,20 @@ namespace OpenSpeed::MW05 {
   };
 
   template <class T>
-  struct bTList : bList {
+  struct bTList {
+    bTNode<T> HeadNode;
+
     bTList() = default;
     ~bTList() {}
   };
 
   template <class T>
   struct bPList : bTList<bPNode> {
+    bPNode* AddHead(T*);
+    bPNode* AddTail(T*);
+    bPNode* AddBefore(bNode*, T*);
+    bPNode* AddAfter(bNode*, T*);
+
     bPList() = default;
     ~bPList() {}
   };

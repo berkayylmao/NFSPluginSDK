@@ -54,8 +54,13 @@ namespace OpenSpeed::MW05 {
     }
   };
 
-  template <class T>
-  struct bTNode : bNode {
+  template <typename T>
+  class bTNode {
+   protected:
+    bTNode<T>* Next;
+    bTNode<T>* Prev;
+
+   public:
     T* GetNext() { return Next; }
     T* GetPrev() { return Prev; }
     T* Remove() {
@@ -81,5 +86,9 @@ namespace OpenSpeed::MW05 {
       Remove();
       // free(this);
     }
+  };
+
+  struct bPNode : bTNode<bPNode> {
+    void* Object;
   };
 }  // namespace OpenSpeed::MW05

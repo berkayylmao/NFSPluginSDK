@@ -21,7 +21,7 @@
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::UTL {
-  template <typename T, std::uint32_t N = 16>
+  template <typename T, std::uint32_t N>
   struct Vector {
     T*            mBegin;
     std::uint32_t mCapacity;

@@ -45,6 +45,7 @@ namespace OpenSpeed::MW05 {
   struct bList;
   template <typename T>
   struct bPList;
+  struct bPNode;
   template <typename T>
   struct bTList;
   struct bNode;
