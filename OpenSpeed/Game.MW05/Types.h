@@ -26,27 +26,29 @@
 #endif
 
 namespace OpenSpeed::MW05 {
+  struct ActionData;
   struct ActionRef;
+  struct ActionQueue;
   struct AIAvoidable;
   struct AISplinePath;
   struct AITarget;
   struct AIVehicle;
   struct Attachments;
-  template <class T>
+  template <typename T>
   struct AttributeStructPtr;
   struct AttribVaultPackImage;
   struct AudioSettings;
   struct Behavior;
-  template <class T>
+  template <typename T>
   struct BehaviorSpecsPtr;
   struct bFile;
   struct bList;
-  template <class T>
+  template <typename T>
   struct bPList;
-  template <class T>
+  template <typename T>
   struct bTList;
   struct bNode;
-  template <class T>
+  template <typename T>
   struct bTNode;
   struct CareerPursuitScores;
   struct CareerSettings;
@@ -62,6 +64,7 @@ namespace OpenSpeed::MW05 {
   struct FEImpoundData;
   struct FEInfractionsData;
   struct FEKeyboardSettings;
+  struct FEngHud;
   struct FEObject;
   struct FEPlayerCarDB;
   struct FinishedRaceStatsEntry;
@@ -75,7 +78,7 @@ namespace OpenSpeed::MW05 {
   struct GRaceBin;
   struct GRaceParameters;
   struct GRacerInfo;
-  template <class T>
+  template <typename T>
   struct Grid;
   struct GRuntimeInstance;
   struct GSpeedTrap;
@@ -111,6 +114,7 @@ namespace OpenSpeed::MW05 {
   struct IInputPlayer;
   struct IModel;
   struct InputControls;
+  struct InputMapping;
   struct InputPlayer;
   struct IPlayer;
   struct IPursuit;
@@ -141,13 +145,15 @@ namespace OpenSpeed::MW05 {
   struct RBVehicle;
   struct RideInfo;
   struct RigidBody;
-  template <class T>
+  template <typename T>
   struct ScratchPtr;
   struct SimSurface;
   struct TimeOfDay;
   struct Timer;
   struct TopEvadedPursuitDetail;
   struct TrackHighScore;
+  template <typename T, std::size_t N>
+  struct UCircularQueue;
   struct UCrc32;
   struct UserProfile;
   struct VehicleParams;
@@ -251,19 +257,19 @@ namespace OpenSpeed::MW05 {
   }  // namespace UMath
 
   namespace UTL {
-    template <typename T, std::uint32_t nT, typename E, std::uint32_t nE>
+    template <typename T, std::size_t nT, typename E, std::size_t nE>
     struct _ListSet;
-    template <typename T, std::uint32_t nT>
+    template <typename T, std::size_t nT>
     struct _Storage;
-    template <typename T, std::uint32_t nT, std::uint32_t N = 16>
+    template <typename T, std::size_t nT, std::size_t N = 16>
     struct FixedVector;
     template <typename T>
     struct GarbageNode;
-    template <typename T, std::uint32_t nT>
+    template <typename T, std::size_t nT>
     struct List;
-    template <typename T, std::uint32_t nT, typename E, std::uint32_t nE>
+    template <typename T, std::size_t nT, typename E, std::size_t nE>
     struct ListableSet;
-    template <typename T, std::uint32_t N = 16>
+    template <typename T, std::size_t N = 16>
     struct Vector;
 
     namespace COM {
