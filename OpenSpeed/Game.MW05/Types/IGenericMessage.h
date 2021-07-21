@@ -23,11 +23,25 @@
 
 namespace OpenSpeed::MW05 {
   struct IGenericMessage : UTL::COM::IUnknown {
+    enum class FengTypes : Attrib::StringKey {
+      None,
+      Type1 = 0x8AB83EDB,  // [White Text] Shows and disappears quickly
+      Type2 = 0x9D73BC15,  // [White Text] Fades out towards player camera
+      Type3 = 0xE1C034FC,  // [White Text] Fades out towards bottom of the screen
+      Type4 = 0x5230FAF6,  // [Red Text] Fades out towards top of the screen
+      Type5 = 0xA19BB14C,  // [Green Text] Shows and disappears quickly
+      Type6 = 0x821E6378   // [Green/White Text] Flashes and is kept alive
+    };
+    enum class IconDisplayTypes : Attrib::StringKey {
+      HideIcon,
+      ShowIcon = 0x609F6B15,  // [Flashing background] Fades out towards bottom of the screen
+    };
     enum class Priority : std::uint32_t { Priority5, Priority4, Priority3, Priority2, Priority1 };
 
     virtual ~IGenericMessage();
-    virtual void     RequestGenericMessage(char const* text, bool, std::uint32_t, std::uint32_t, std::uint32_t,
-                                           Priority    priority)    = 0;
+    virtual void     RequestGenericMessage(char const* text, bool playOneFrame, Attrib::StringKey fengHash,
+                                           Attrib::StringKey iconKey, Attrib::StringKey iconDisplayKey,
+                                           Priority priority)    = 0;
     virtual void     RequestGenericMessageZoomOut(std::uint32_t) = 0;
     virtual bool     IsGenericMessageShowing()                   = 0;
     virtual Priority GetCurrentGenericMessagePriority()          = 0;

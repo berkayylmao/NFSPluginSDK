@@ -34,8 +34,9 @@ namespace OpenSpeed::MW05 {
     bool          mPlayOneFrame;
 
     virtual ~GenericMessage();
-    virtual void     RequestGenericMessage(char const* text, bool, std::uint32_t, std::uint32_t, std::uint32_t,
-                                           Priority    priority) override;
+    virtual void     RequestGenericMessage(char const* text, bool playOneFrame, Attrib::StringKey fengHash,
+                                           Attrib::StringKey iconKey, Attrib::StringKey iconDisplayKey,
+                                           Priority priority) override;
     virtual void     RequestGenericMessageZoomOut(std::uint32_t) override;
     virtual bool     IsGenericMessageShowing() override;
     virtual Priority GetCurrentGenericMessagePriority() override;
