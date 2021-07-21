@@ -42,6 +42,8 @@ namespace OpenSpeed::MW05 {
   struct bFile;
   struct bList;
   template <class T>
+  struct bPList;
+  template <class T>
   struct bTList;
   struct bNode;
   template <class T>
@@ -60,10 +62,12 @@ namespace OpenSpeed::MW05 {
   struct FEImpoundData;
   struct FEInfractionsData;
   struct FEKeyboardSettings;
+  struct FEObject;
   struct FEPlayerCarDB;
   struct FinishedRaceStatsEntry;
   struct GameplaySettings;
   struct GCharacter;
+  struct GenericMessage;
   struct GEventTimer;
   struct GIcon;
   struct GManager;
@@ -85,6 +89,7 @@ namespace OpenSpeed::MW05 {
   struct HSIMPROFILE__;
   struct HSIMSERVICE__;
   struct HSIMTASK__;
+  struct HudElement;
   struct IActivity;
   struct IArticulatedVehicle;
   struct IAttachable;
@@ -99,6 +104,7 @@ namespace OpenSpeed::MW05 {
   struct IExplodeable;
   struct IExplosion;
   struct IFeedback;
+  struct IGenericMessage;
   struct IHandle;
   struct IHud;
   struct IInput;

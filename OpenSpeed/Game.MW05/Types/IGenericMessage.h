@@ -19,25 +19,19 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/bNode.h>
+#include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
-  struct bList {
-    bNode HeadNode;
+  struct IGenericMessage : UTL::COM::IUnknown {
+    enum class Priority : std::uint32_t { Priority5, Priority4, Priority3, Priority2, Priority1 };
 
-    bList() = default;
-    ~bList() {}
-  };
+    virtual ~IGenericMessage();
+    virtual void     RequestGenericMessage(char const* text, bool, std::uint32_t, std::uint32_t, std::uint32_t,
+                                           Priority    priority)    = 0;
+    virtual void     RequestGenericMessageZoomOut(std::uint32_t) = 0;
+    virtual bool     IsGenericMessageShowing()                   = 0;
+    virtual Priority GetCurrentGenericMessagePriority()          = 0;
 
-  template <class T>
-  struct bTList : bList {
-    bTList() = default;
-    ~bTList() {}
-  };
-
-  template <class T>
-  struct bPList : bTList<bPNode> {
-    bPList() = default;
-    ~bPList() {}
+    static IHandle* GetHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x5650B0)(); }
   };
 }  // namespace OpenSpeed::MW05

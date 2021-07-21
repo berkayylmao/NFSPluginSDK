@@ -19,25 +19,25 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/bNode.h>
+#include <OpenSpeed/Game.MW05/Types/HudElement.h>
+#include <OpenSpeed/Game.MW05/Types/IGenericMessage.h>
 
 namespace OpenSpeed::MW05 {
-  struct bList {
-    bNode HeadNode;
+  struct GenericMessage : HudElement, IGenericMessage {
+    FEObject*     mpMessageFirstLine;
+    FEObject*     mpMessageSecondLine;
+    FEObject*     mpIcon;
+    Priority      mPriority;
+    std::uint32_t mNumFramesPlayed;
+    char          mStringBuffer[64];
+    std::uint32_t mFengHash;
+    bool          mPlayOneFrame;
 
-    bList() = default;
-    ~bList() {}
-  };
-
-  template <class T>
-  struct bTList : bList {
-    bTList() = default;
-    ~bTList() {}
-  };
-
-  template <class T>
-  struct bPList : bTList<bPNode> {
-    bPList() = default;
-    ~bPList() {}
+    virtual ~GenericMessage();
+    virtual void     RequestGenericMessage(char const* text, bool, std::uint32_t, std::uint32_t, std::uint32_t,
+                                           Priority    priority) override;
+    virtual void     RequestGenericMessageZoomOut(std::uint32_t) override;
+    virtual bool     IsGenericMessageShowing() override;
+    virtual Priority GetCurrentGenericMessagePriority() override;
   };
 }  // namespace OpenSpeed::MW05

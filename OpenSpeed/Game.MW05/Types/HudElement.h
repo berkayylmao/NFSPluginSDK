@@ -19,25 +19,14 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/bNode.h>
+#include <OpenSpeed/Game.MW05/Types/bList.h>
 
 namespace OpenSpeed::MW05 {
-  struct bList {
-    bNode HeadNode;
-
-    bList() = default;
-    ~bList() {}
-  };
-
-  template <class T>
-  struct bTList : bList {
-    bTList() = default;
-    ~bTList() {}
-  };
-
-  template <class T>
-  struct bPList : bTList<bPNode> {
-    bPList() = default;
-    ~bPList() {}
+  struct HudElement {
+    bPList<FEObject> Objects;
+    const char*      pPackageName;
+    std::uint64_t    Mask;
+    std::uint64_t    CurrentHudFeatures;
+    bool             mCurrentlySetVisible;
   };
 }  // namespace OpenSpeed::MW05
