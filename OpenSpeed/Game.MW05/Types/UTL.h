@@ -53,7 +53,7 @@ namespace OpenSpeed::MW05::UTL {
       };
       struct _IList : eastl::vector<UTL::COM::Object::_IPair> {
         template <typename T>
-        T* Find(IHandle* handle) {
+        T* Find() {
           return reinterpret_cast<T*(__thiscall*)(_IList*, IHandle*)>(0x5D59F0)(this, T::GetIHandle());
         }
       };
