@@ -30,8 +30,10 @@ namespace OpenSpeed::MW05 {
     std::uint8_t  CareerHandle;
     std::uint16_t Padd;
 
-    std::int32_t GetCost() { reinterpret_cast<std::int32_t(__thiscall*)(FECarRecord*)>(0x581730)(this); }
-    const char*  GetManufacturerName() { reinterpret_cast<const char*(__thiscall*)(FECarRecord*)>(0x581790)(this); }
-    CarType      GetType() { reinterpret_cast<CarType(__thiscall*)(FECarRecord*)>(0x5816B0)(this); }
+    std::int32_t GetCost() { return reinterpret_cast<std::int32_t(__thiscall*)(FECarRecord*)>(0x581730)(this); }
+    const char*  GetManufacturerName() {
+      return reinterpret_cast<const char*(__thiscall*)(FECarRecord*)>(0x581790)(this);
+    }
+    CarType GetType() { return reinterpret_cast<CarType(__thiscall*)(FECarRecord*)>(0x5816B0)(this); }
   };
 }  // namespace OpenSpeed::MW05
