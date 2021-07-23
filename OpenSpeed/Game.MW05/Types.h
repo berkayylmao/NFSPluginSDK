@@ -53,6 +53,7 @@ namespace OpenSpeed::MW05 {
   struct bTNode;
   struct CareerPursuitScores;
   struct CareerSettings;
+  struct CarPart;
   struct cFinishedRaceStats;
   struct cFrontEndDatabase;
   struct Context;
@@ -283,6 +284,17 @@ namespace OpenSpeed::MW05 {
     struct WorldCollisionInfo;
   }  // namespace WCollisionMgr
 
+  enum class CARPART_LOD : std::uint32_t { A, B, C, D, E, OFF = UINT_MAX };
+  enum class CarRenderUsage : std::uint32_t {
+    Player,
+    RemotePlayer,
+    AIRacer,
+    AICop,
+    AITraffic,
+    AIHeli,
+    NISCar,
+    Invalid
+  };
   enum class CarSlotId : std::uint32_t {
     Base,
     DamageModel_FrontWindow,
@@ -428,7 +440,103 @@ namespace OpenSpeed::MW05 {
     WheelManufacturer,
     Misc
   };
+  enum class CarType : std::uint32_t {
+    PORSCHE911TURBO,
+    PORSCHECARRERAGT,
+    VIPER,
+    COPMIDSIZE,
+    COPHELI,
+    RX8,
+    IMPREZAWRX,
+    LANCEREVO8,
+    MUSTANGGT,
+    CAMARO,
+    SEMI,
+    GTO,
+    SLR,
+    TRAILERA,
+    TRAILERB,
+    CORVETTE,
+    TRAFHA,
+    TRAFSUVA,
+    TRAF4DSEDB,
+    TRAFFICCOUP,
+    TT,
+    A3,
+    BMWM3GTR,
+    SL500,
+    PORSCHE997S,
+    TRAF4DSEDA,
+    TRAF4DSEDC,
+    TRAFCAMPER,
+    TRAFCEMTR,
+    TRAFDMPTR,
+    TRAFFIRE,
+    TRAFGARB,
+    TRAFMINIVAN,
+    TRAFNEWS,
+    TRAFPICKUPA,
+    TRAFSTWAG,
+    TRAFVANB,
+    TRAFTAXI,
+    TRAFCOURT,
+    TRAFPIZZA,
+    PORSCHE911GT2,
+    BMWM3GTRE46,
+    TRAFAMB,
+    TRAILERLOG,
+    TRAILERCON,
+    TRAILERCRATE,
+    TRAILERCMT,
+    IS300,
+    MONARO,
+    SL65,
+    ELISE,
+    COPMIDSIZEINT,
+    FORDGT,
+    ECLIPSEGT,
+    SUPRA,
+    CORVETTEC6R,
+    RX7,
+    COPSUV,
+    RX8SPEEDT,
+    MURCIELAGO,
+    A4,
+    COPSPORT,
+    GTI,
+    CAYMANS,
+    CLK500,
+    CTS,
+    DB9,
+    GALLARDO,
+    COBALTSS,
+    BMWM3,
+    CLIO,
+    COPGHOST,
+    COPSUVL,
+    COPGTO,
+    PUNTO,
+    COPGTOGHOST,
+    COPSPORTHENCH,
+    COPSPORTGHOST,
+    CEMTR,
+    GARB,
+    PIZZA,
+    TAXI,
+    MINIVAN,
+    PICKUPA,
+    NONE = UINT_MAX,
+  };
+  enum class CarUsageType : std::uint32_t {
+    Racing,
+    Cop,
+    Traffic,
+    Wheels,
+    Universal,
+  };
+  // GRace
   enum class CopDensity : std::uint8_t { Off, Light, Medium, Heavy };
+  // GRace
   enum class Difficulty : std::uint8_t { Easy, Medium, Hard };
   enum class DriverClass : std::uint32_t { Human, Traffic, Cop, Racer, None, NIS, Remote };
   enum class DriverStyle : std::uint32_t { Racing, Drag };
@@ -557,6 +665,7 @@ namespace OpenSpeed::MW05 {
     Fragment
   };
   enum class SpeedUnitType : std::uint8_t { MPH, KPH, MPS };
+  // GRace
   enum class TrafficLevel : std::uint8_t { Off, Light, Medium, Heavy };
 
   namespace CollisionGeometry {
