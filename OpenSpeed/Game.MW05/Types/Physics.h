@@ -118,6 +118,15 @@ namespace OpenSpeed::MW05::Physics {
         mAerodynamics(0.0f),
         mNOS(0.0f),
         mInduction(0.0f) {}
+    explicit Tunings(float steering, float handling, float brakes, float rideHeight, float aerodynamics, float nos,
+                     float induction) :
+        mSteering(steering),
+        mHandling(handling),
+        mBrakes(brakes),
+        mRideHeight(rideHeight),
+        mAerodynamics(aerodynamics),
+        mNOS(nos),
+        mInduction(induction) {}
 
     static inline const float g_GameDisplayMultiplier = 5.0f;
   };
