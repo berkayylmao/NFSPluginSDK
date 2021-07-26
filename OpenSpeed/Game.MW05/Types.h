@@ -163,6 +163,7 @@ namespace OpenSpeed::MW05 {
   struct WCollider;
   struct WorldModel;
   struct WRoadNav;
+  struct WTrigger;
   struct WWorldPos;
 
   namespace Attrib {
@@ -193,6 +194,35 @@ namespace OpenSpeed::MW05 {
       struct timeofdaylighting;
     }  // namespace Gen
   }    // namespace Attrib
+
+  namespace CARP {
+    enum class TriggerTypes : std::uint32_t { Undefined, Standard };
+    enum class TriggerFlags : std::uint32_t {
+      Enabled             = 1 << 0,
+      OneShot             = 1 << 1,
+      PlayerActivated     = 1 << 2,
+      AIActivated         = 1 << 3,
+      ExplosionActivated  = 1 << 4,
+      VehicleActivated    = 1 << 5,
+      BodyActivated       = 1 << 6,
+      TimeActivated       = 1 << 7,
+      UnManaged           = 1 << 8,
+      PathAnimActivated   = 1 << 9,
+      Silencable          = 1 << 10,
+      UseEntry            = 1 << 11,
+      NonUpYVec           = 1 << 12,
+      PlayerCharActivated = 1 << 13,
+      DebugOnly           = 1 << 14,
+      FireOnExit          = 1 << 15,
+      HumanActivated      = 1 << 16,
+      CopActivated        = 1 << 17,
+      FireOnEntry         = 1 << 18
+    };
+
+    struct EventList;
+    struct EventStaticData;
+    struct Trigger;
+  }  // namespace CARP
 
   namespace CollisionGeometry {
     struct _V3c;
@@ -718,6 +748,7 @@ namespace OpenSpeed::MW05 {
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
   DEFINE_ENUM_FLAG_OPERATORS(eFEGameModes)
   DEFINE_ENUM_FLAG_OPERATORS(eVehicleParamFlags)
+  DEFINE_ENUM_FLAG_OPERATORS(CARP::TriggerFlags)
   DEFINE_ENUM_FLAG_OPERATORS(CollisionGeometry::BoundFlags)
   DEFINE_ENUM_FLAG_OPERATORS(JunkmanParts)
   DEFINE_ENUM_FLAG_OPERATORS(VehicleFX::LightID)
