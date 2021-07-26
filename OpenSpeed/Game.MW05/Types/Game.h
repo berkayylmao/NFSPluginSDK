@@ -48,7 +48,7 @@ namespace OpenSpeed::MW05::Game {
   static inline void JumpToSafehouse() { reinterpret_cast<void(__cdecl*)()>(0x6052B0)(); }
   // Game_NavigatePlayerTo
   static inline void NavigatePlayerTo(GRuntimeInstance* to, GTrigger* trigger, float _unk = 0.0f, bool setGPS = true) {
-    reinterpret_cast<void(__cdecl*)(GRuntimeInstance*, GTrigger*, float, bool)>(0x6052B0)(to, trigger, _unk, setGPS);
+    reinterpret_cast<void(__cdecl*)(GRuntimeInstance*, GTrigger*, float, bool)>(0x605360)(to, trigger, _unk, setGPS);
   }
   // Game_SabotageEngine
   static inline void SabotageEngine(ISimable* pTarget, float durationInSeconds) {
