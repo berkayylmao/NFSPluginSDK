@@ -72,6 +72,7 @@ namespace OpenSpeed::MW05 {
     };
 
     struct Activity : Object, UTL::GarbageNode<Activity>, IActivity, IAttachable {
+      std::uint8_t _unk[0x4];
       Attachments* mAttachments;
     };
 
