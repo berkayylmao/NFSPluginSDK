@@ -33,6 +33,13 @@ namespace OpenSpeed::MW05 {
       };
     }  // namespace Collision
 
+    struct IActivity : UTL::COM::IUnknown {
+      virtual ~IActivity();
+      virtual void                       Release();
+      virtual bool                       Attach(UTL::COM::IUnknown* object);
+      virtual bool                       Detach(UTL::COM::IUnknown* object);
+      virtual eastl::list<IAttachable*>* GetAttachments();
+    };
     struct IEntity : UTL::COM::IUnknown {
       virtual ~IEntity();
       virtual void                       AttachPhysics(ISimable*);
@@ -62,6 +69,10 @@ namespace OpenSpeed::MW05 {
       virtual ~Object();
       virtual bool OnService(HSIMSERVICE__* p, Packet*) override;
       virtual bool OnTask(HSIMTASK__* p, float) override;
+    };
+
+    struct Activity : Object, UTL::GarbageNode<Activity>, IActivity, IAttachable {
+      Attachments* mAttachments;
     };
 
     struct Entity : Object, UTL::GarbageNode<Entity>, IEntity, IAttachable {

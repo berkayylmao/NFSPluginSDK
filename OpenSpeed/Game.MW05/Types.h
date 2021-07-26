@@ -59,6 +59,7 @@ namespace OpenSpeed::MW05 {
   struct Context;
   struct CostToStateScores;
   struct EmitterGroup;
+  struct eModel;
   struct EventSequencer;
   struct FECareerRecord;
   struct FECarRecord;
@@ -95,7 +96,6 @@ namespace OpenSpeed::MW05 {
   struct HSIMSERVICE__;
   struct HSIMTASK__;
   struct HudElement;
-  struct IActivity;
   struct IArticulatedVehicle;
   struct IAttachable;
   struct IAttributeable;
@@ -271,8 +271,10 @@ namespace OpenSpeed::MW05 {
       struct IListener;
     }  // namespace Collision
 
+    struct Activity;
     struct Attachments;
     struct Entity;
+    struct IActivity;
     struct IEntity;
     struct IServiceable;
     struct ITaskable;
@@ -600,6 +602,7 @@ namespace OpenSpeed::MW05 {
     PostRival      = 1 << 17,
     BeatGame       = 1 << 18
   };
+  enum class eGPSState : std::uint32_t { Down, Searching, Tracking };
   enum class eHandlingMode : std::uint8_t { Classic, Extreme };
   enum class eImpoundReasons : std::int8_t { None, BustedByCross, StrikeLimitReached, InsufficientFunds, Released };
   enum class eInvulnerability : std::uint32_t {
@@ -614,8 +617,10 @@ namespace OpenSpeed::MW05 {
     CurrentLane,
     ValidLane,
   };
+  enum class eLaneType : std::uint32_t { Racing, Traffic, Drag, Cop, CopReckless, Reset, StartingGrid, Any };
   enum class eLoadSaveGame : std::uint32_t { Load, Save };
   enum class eMiniMapModes : std::uint8_t { Static, Rotate, Off };
+  enum class eNavType : std::uint32_t { None, Traffic, Direction, Path };
   enum class eOpponentStrength : std::uint8_t { Low, Medium, High };
   enum class eOptionsCategory : std::uint32_t {
     Audio,
@@ -629,6 +634,7 @@ namespace OpenSpeed::MW05 {
     Credits,
     Online
   };
+  enum class ePathType : std::uint32_t { Cop, None, Racer, GPS, Player, Chopper, RaceRoute };
   enum class ePlayerHudType : std::uint32_t { None, Standard, Drag, Split1, Split2, DragSplit1, DragSplit2 };
   enum class ePlayerList : std::uint32_t { All, Local, Remote };
   enum class ePlayerSettingsCameras : std::uint32_t { Bumper, Hood, Default, Close, Far, SuperFar, Drift, Pursuit };
