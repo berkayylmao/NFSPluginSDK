@@ -615,6 +615,7 @@ namespace OpenSpeed::MW05 {
     ValidLane,
   };
   enum class eLoadSaveGame : std::uint32_t { Load, Save };
+  enum class eMiniMapModes : std::uint8_t { Static, Rotate, Off };
   enum class eOpponentStrength : std::uint8_t { Low, Medium, High };
   enum class eOptionsCategory : std::uint32_t {
     Audio,
@@ -656,6 +657,9 @@ namespace OpenSpeed::MW05 {
     Inactive,
     Trailers
   };
+  enum class eWorldMapView : std::uint8_t { Navigation, Event, Race, Pursuit };
+  enum class eWorldMapZoomLevels : std::uint8_t { All, Level1, Level2, Level4 };
+
   enum class GameFlowState : std::uint32_t {
     None,
     LoadingFrontEnd,

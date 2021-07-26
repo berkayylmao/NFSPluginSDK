@@ -22,17 +22,17 @@
 
 namespace OpenSpeed::MW05 {
   struct GameplaySettings {
-    bool          AutoSaveOn;
-    bool          RearviewOn;
-    bool          Damage;
-    SpeedUnitType SpeedoUnits;
-    std::uint8_t  RacingMiniMapMode;
-    std::uint8_t  ExploringMiniMapMode;
-    std::uint32_t MapItems;
-    std::uint8_t  LastMapZoom;
-    std::uint8_t  LastPursuitMapZoom;
-    std::uint8_t  LastMapView;
-    bool          JumpCam;
-    float         HighlightCam;
+    bool                AutoSaveOn;
+    bool                RearviewOn;
+    bool                Damage;
+    SpeedUnitType       SpeedoUnits;
+    eMiniMapModes       RacingMiniMapMode;
+    eMiniMapModes       ExploringMiniMapMode;
+    std::uint32_t       MapItems;
+    eWorldMapZoomLevels LastMapZoom;
+    eWorldMapZoomLevels LastPursuitMapZoom;
+    eWorldMapView       LastMapView;
+    bool                JumpCam;
+    float               HighlightCam;
   };
 }  // namespace OpenSpeed::MW05
