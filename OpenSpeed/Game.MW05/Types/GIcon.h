@@ -123,6 +123,6 @@ namespace OpenSpeed::MW05 {
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
   DEFINE_ENUM_FLAG_OPERATORS(GIcon::Flags)
-  DEFINE_ENUM_FLAG_OPERATORS(GIcon::Types)
+  DEFINE_ENUM_FLAG_OPERATORS(GIcon::Type)
 #endif
 }  // namespace OpenSpeed::MW05
