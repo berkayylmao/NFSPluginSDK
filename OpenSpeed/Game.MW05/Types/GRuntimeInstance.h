@@ -20,6 +20,7 @@
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/Gen/gameplay.h>
+#include <OpenSpeed/Game.MW05/Types/UMath.h>
 
 namespace OpenSpeed::MW05 {
   struct GRuntimeInstance : Attrib::Gen::gameplay {
@@ -33,5 +34,12 @@ namespace OpenSpeed::MW05 {
     ConnectedInstance* mConnected;
     GRuntimeInstance*  mPrev;
     GRuntimeInstance*  mNext;
+
+    bool GetDirection(UMath::Vector3& to) {
+      reinterpret_cast<bool(__thiscall*)(GRuntimeInstance*, UMath::Vector3&)>(0x5DACF0)(this, to);
+    }
+    bool GetPosition(UMath::Vector3& to) {
+      reinterpret_cast<bool(__thiscall*)(GRuntimeInstance*, UMath::Vector3&)>(0x605360)(this, to);
+    }
   };
 }  // namespace OpenSpeed::MW05
