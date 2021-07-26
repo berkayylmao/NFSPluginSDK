@@ -33,7 +33,7 @@ namespace OpenSpeed::MW05 {
     std::uint32_t   mNeighbourhoodHash;
     IHud*           mHud;
     HSIMTASK__*     mHudTask;
-    IActivity*      mSpeech;
+    Sim::IActivity* mSpeech;
     bool            mInGameBreaker;
     float           mGameBreakerCharge;
     HACTIVITY__*    mLastPursuit;
