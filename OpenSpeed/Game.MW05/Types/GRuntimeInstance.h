@@ -39,7 +39,7 @@ namespace OpenSpeed::MW05 {
       return reinterpret_cast<bool(__thiscall*)(GRuntimeInstance*, UMath::Vector3&)>(0x5DACF0)(this, to);
     }
     bool GetPosition(UMath::Vector3& to) {
-      return reinterpret_cast<bool(__thiscall*)(GRuntimeInstance*, UMath::Vector3&)>(0x605360)(this, to);
+      return reinterpret_cast<bool(__thiscall*)(GRuntimeInstance*, UMath::Vector3&)>(0x5E2970)(this, to);
     }
   };
 }  // namespace OpenSpeed::MW05

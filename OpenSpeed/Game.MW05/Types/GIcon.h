@@ -29,7 +29,7 @@ namespace OpenSpeed::MW05 {
       std::uint32_t mParticleHash;
     };
 
-    enum class Flag : std::uint16_t {
+    enum class Flags : std::uint16_t {
       ShowInWorld     = 1 << 0,
       ShowOnMap       = 1 << 1,
       Spawned         = 1 << 2,
@@ -59,7 +59,7 @@ namespace OpenSpeed::MW05 {
     };
 
     Type          mType;
-    std::uint16_t mFlags;
+    Flags         mFlags;
     std::int16_t  mSectionId;
     std::int16_t  mCombSectionId;
     WorldModel*   mModel;
@@ -69,11 +69,11 @@ namespace OpenSpeed::MW05 {
     std::uint16_t mPad;
 
    public:
-    GIcon(Type type, const UMath::Vector3& initialPosition, float _unk) {
+    GIcon(Type type, const UMath::Vector3& initialPosition, float _unk = 0.0f) {
       reinterpret_cast<void(__thiscall*)(GIcon*, Type, const UMath::Vector3&, float)>(0x5E5970)(this, type,
                                                                                                 initialPosition, _unk);
     }
-    ~GIcon() { reinterpret_cast<void(__thiscall*)(GIcon*)>(0x5EBED0)(this); }
+    ~GIcon() { reinterpret_cast<void(__thiscall*)(GIcon*, bool)>(0x5EBED0)(this, true); }
 
     std::uint32_t FindSection() { return reinterpret_cast<std::uint32_t(__thiscall*)(GIcon*)>(0x5DE590)(this); }
     WorldModel*   CreateGeometry(std::uint32_t _unk) {
@@ -87,26 +87,42 @@ namespace OpenSpeed::MW05 {
     Type         GetType() { return mType; }
     std::int16_t GetSectionID() { return mSectionId; }
     std::int16_t GetCombinedSectionID() { return mCombSectionId; }
-    bool         GetVisibleInWorld() { return mFlags & static_cast<std::uint16_t>(Flag::ShowInWorld); }
-    bool         GetVisibleOnMap() { return mFlags & static_cast<std::uint16_t>(Flag::ShowOnMap); }
-    bool         GetIsDisposable() { return mFlags & static_cast<std::uint16_t>(Flag::Disposable); }
-    bool         GetIsEnabled() { return mFlags & static_cast<std::uint16_t>(Flag::Enabled); }
-    bool         GetIsGPSing() { return mFlags & static_cast<std::uint16_t>(Flag::GPSing); }
-    bool         GetIsSnapped() { return mFlags & static_cast<std::uint16_t>(Flag::SnappedToGround); }
+    bool         GetVisibleInWorld() {
+      return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::ShowInWorld);
+    }
+    bool GetVisibleOnMap() { return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::ShowOnMap); }
+    bool GetIsDisposable() {
+      return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::Disposable);
+    }
+    bool GetIsEnabled() { return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::Enabled); }
+    bool GetIsGPSing() { return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::GPSing); }
+    bool GetIsSnapped() {
+      return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::SnappedToGround);
+    }
 
-    void MarkDisposable() { mFlags &= static_cast<std::uint16_t>(Flag::Disposable); }
-    void Show() { mFlags &= static_cast<std::uint16_t>(Flag::ShowInWorld); }
-    void Hide() { mFlags ^= static_cast<std::uint16_t>(Flag::ShowInWorld); }
+    void MarkDisposable() {
+      mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) | static_cast<std::uint16_t>(Flags::Disposable));
+    }
+    void Show() {
+      mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) | static_cast<std::uint16_t>(Flags::ShowInWorld));
+    }
+    void Hide() {
+      mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) ^ static_cast<std::uint16_t>(Flags::ShowInWorld));
+    }
     void HideUntilRespawn() {
       Hide();
-      mFlags &= static_cast<std::uint16_t>(Flag::ShowOnSpawn);
+      mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) | static_cast<std::uint16_t>(Flags::ShowOnSpawn));
     }
-    void ShowOnMap() { mFlags &= static_cast<std::uint16_t>(Flag::ShowOnMap); }
-    void HideOnMap() { mFlags ^= static_cast<std::uint16_t>(Flag::ShowOnMap); }
+    void ShowOnMap() {
+      mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) | static_cast<std::uint16_t>(Flags::ShowOnMap));
+    }
+    void HideOnMap() {
+      mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) ^ static_cast<std::uint16_t>(Flags::ShowOnMap));
+    }
   };
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
-  DEFINE_ENUM_FLAG_OPERATORS(GIcon::Flag)
-  DEFINE_ENUM_FLAG_OPERATORS(GIcon::Type)
+  DEFINE_ENUM_FLAG_OPERATORS(GIcon::Flags)
+  DEFINE_ENUM_FLAG_OPERATORS(GIcon::Types)
 #endif
 }  // namespace OpenSpeed::MW05
