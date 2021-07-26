@@ -77,6 +77,8 @@ namespace OpenSpeed::MW05 {
     std::uint32_t            mTrafficPattern;
     bool                     mHasBeenWon;
 
+    static void DisableBarriers() { reinterpret_cast<void(__cdecl*)()>(0x5DBF00)(); }
+
     static inline GRaceStatus** g_mThis = reinterpret_cast<GRaceStatus**>(0x91E000);
     static GRaceStatus*         Get() {
       if (!g_mThis) return nullptr;
