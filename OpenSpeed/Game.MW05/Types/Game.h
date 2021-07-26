@@ -34,12 +34,22 @@ namespace OpenSpeed::MW05::Game {
   static inline void BlowEngine(ISimable* pTarget) { reinterpret_cast<void(__cdecl*)(ISimable*)>(0x60AB30)(pTarget); }
   // Game_ClearAIControl
   static inline void ClearAIControl(bool _unk = true) { reinterpret_cast<void(__cdecl*)(bool)>(0x612420)(_unk); }
+  // GPS_Disengage
+  static inline void DisengageGPS() { reinterpret_cast<void(__cdecl*)()>(0x41ACE0)(); }
+  // GPS_Engage
+  static inline void EngageGPS(UMath::Vector3* to, float _unk = 0.0f) {
+    reinterpret_cast<void(__cdecl*)(UMath::Vector3*, float)>(0x42C830)(to, _unk);
+  }
   // Game_ForceAIControl
   static inline void ForceAIControl(bool _unk = true) { reinterpret_cast<void(__cdecl*)(bool)>(0x6123B0)(_unk); }
   // Game_JumpToCarLot
   static inline void JumpToCarLot() { reinterpret_cast<void(__cdecl*)()>(0x605250)(); }
   // Game_JumpToSafehouse
   static inline void JumpToSafehouse() { reinterpret_cast<void(__cdecl*)()>(0x6052B0)(); }
+  // Game_NavigatePlayerTo
+  static inline void NavigatePlayerTo(GRuntimeInstance* to, GTrigger* trigger, float _unk = 0.0f, bool setGPS = true) {
+    reinterpret_cast<void(__cdecl*)(GRuntimeInstance*, GTrigger*, float, bool)>(0x6052B0)(to, trigger, _unk, setGPS);
+  }
   // Game_SabotageEngine
   static inline void SabotageEngine(ISimable* pTarget, float durationInSeconds) {
     reinterpret_cast<void(__cdecl*)(ISimable*, float)>(0x60AB60)(pTarget, durationInSeconds);
