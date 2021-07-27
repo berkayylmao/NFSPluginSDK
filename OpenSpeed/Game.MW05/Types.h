@@ -79,6 +79,7 @@ namespace OpenSpeed::MW05 {
   struct GManager;
   struct GMilestone;
   struct GRaceBin;
+  struct GRaceIndexData;
   struct GRaceParameters;
   struct GRacerInfo;
   template <typename T>
