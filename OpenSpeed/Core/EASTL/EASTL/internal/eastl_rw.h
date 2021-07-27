@@ -26,52 +26,21 @@ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-/*-----------------------------------------------------------------------------
- * earesult.h
- *
- * Copyright (c) 2002 - 2005 Electronic Arts Inc. All rights reserved.
- * Maintained by Paul Pedriana, Maxis
- *---------------------------------------------------------------------------*/
+///////////////////////////////////////////////////////////////////////////////
+// To use this file, you can either copy and paste its contents right below 
+// the EASTL_USER_CONFIG_HEADER section of EASTL's config.h or you can leave 
+// config.h unmodified and instead #define EASTL_USER_CONFIG_HEADER be 
+// config_rw.h and config.h will #include this file automatically.
+///////////////////////////////////////////////////////////////////////////////
 
 
-#ifndef INCLUDED_earesult_H
-#define INCLUDED_earesult_H
+#ifndef EASTL_RW_H
+#define EASTL_RW_H
 
+// Unused
 
-#ifndef INCLUDED_eabase_H
-    #include "EABase/eabase.h"
-#endif
+#endif // Header include guard
 
-
-
-/// \brief This result type is width-compatible with most systems
-typedef int32_t ea_result_type;
-
-
-namespace EA
-{
-    typedef int32_t result_type;
-
-    enum
-    {
-        SUCCESS =  0,
-        FAILURE = -1
-    };
-}
-
-
-/// \brief Macro to simplify testing for success
-#ifndef EA_SUCCEEDED
-    #define EA_SUCCEEDED(result) ((result) >= 0)
-#endif
-
-/// \brief Macro to simplfify testing for general failure
-#ifndef EA_FAILED
-    #define EA_FAILED(result) ((result) < 0)
-#endif
-
-
-#endif
 
 
 
