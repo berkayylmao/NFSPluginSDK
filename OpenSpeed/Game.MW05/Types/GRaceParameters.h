@@ -26,5 +26,9 @@ namespace OpenSpeed::MW05 {
     Attrib::Gen::gameplay* mRaceRecord;
     GVault*                mParentVault;
     GVault*                mChildVault;
+
+    virtual void GetCheckpointPosition(std::uint32_t idx, UMath::Vector3& to);
+    virtual void GetCheckpointDirection(std::uint32_t idx, UMath::Vector3& to);
+    virtual ~GRaceParameters();
   };
 }  // namespace OpenSpeed::MW05
