@@ -27,11 +27,13 @@ namespace OpenSpeed::MW05::Attrib {
     virtual ~Database();
 
     Class* GetClass(StringKey key) {
-      return reinterpret_cast<Class*(__thiscall*)(Database*, StringKey)>(0x454DB0)(this, key);
+      return reinterpret_cast<Class*(__thiscall*)(Database*, StringKey)>(0x455BC0)(this, key);
     }
 
-    static inline Database* g_sThis = reinterpret_cast<Database*>(0x90DCBC);
-
-    static Database* Get() { return g_sThis; }
+    static inline Database** g_mThis = reinterpret_cast<Database**>(0x90DCBC);
+    static Database*         Get() {
+      if (!g_mThis) return nullptr;
+      return *g_mThis;
+    }
   };
 }  // namespace OpenSpeed::MW05::Attrib

@@ -30,7 +30,7 @@ namespace OpenSpeed::MW05::Attrib {
     std::uint32_t mRefCount;
     std::uint32_t mKey;
     Vault*        mSource;
-    const char*   mNamePtr;
+    const char**  mNamePtr;
 
     template <typename T>
     T* GetData(StringKey fieldKey, std::int32_t idx = 0) {
