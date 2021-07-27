@@ -25,5 +25,23 @@ namespace OpenSpeed::MW05::Attrib {
     std::uint32_t mKey;
     std::uint32_t mRefCount;
     ClassPrivate& mPrivates;
+
+    Definition* GetDefinition(StringKey key) {
+      return reinterpret_cast<Definition*(__thiscall*)(Class*, StringKey)>(0x457380)(this, key);
+    }
+    std::uint32_t GetNumDefinitions() { return reinterpret_cast<std::uint32_t(__thiscall*)(Class*)>(0x451660)(this); }
+    std::uint32_t GetFirstDefinition() { return reinterpret_cast<std::uint32_t(__thiscall*)(Class*)>(0x451670)(this); }
+    std::uint32_t GetNextDefinition(StringKey key) {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(Class*, StringKey)>(0x4573C0)(this, key);
+    }
+
+    Collection* GetCollection(StringKey key) {
+      return reinterpret_cast<Collection*(__thiscall*)(Class*, StringKey)>(0x454CC0)(this, key);
+    }
+    std::uint32_t GetNumCollections() { return reinterpret_cast<std::uint32_t(__thiscall*)(Class*)>(0x453FC0)(this); }
+    std::uint32_t GetFirstCollection() { return reinterpret_cast<std::uint32_t(__thiscall*)(Class*)>(0x456B00)(this); }
+    std::uint32_t GetNextCollection(StringKey key) {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(Class*, StringKey)>(0x456B20)(this, key);
+    }
   };
 }  // namespace OpenSpeed::MW05::Attrib
