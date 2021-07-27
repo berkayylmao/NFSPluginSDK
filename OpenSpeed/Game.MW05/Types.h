@@ -109,6 +109,7 @@ namespace OpenSpeed::MW05 {
   struct IExplodeable;
   struct IExplosion;
   struct IFeedback;
+  struct IGarbageCollector;
   struct IGenericMessage;
   struct IHandle;
   struct IHud;
@@ -169,15 +170,22 @@ namespace OpenSpeed::MW05 {
   namespace Attrib {
     using StringKey = std::uint32_t;
 
+    struct ChunkBlock;
     struct Class;
     struct ClassPrivate;
     struct Collection;
     struct Database;
     struct DatabasePrivate;
+    struct DataBlock;
     struct Definition;
+    struct DependencyNode;
+    struct ExportManager;
+    struct ExportNode;
+    struct ExportPolicyPair;
     struct HashMap;
     struct Instance;
     struct Node;
+    struct PointerNode;
     struct Private;
     struct RefSpec;
     struct Vault;
