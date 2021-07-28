@@ -23,14 +23,13 @@
 
 namespace OpenSpeed::MW05 {
   struct IGenericMessage : UTL::COM::IUnknown {
-    enum class FengTypes : Attrib::StringKey {
+    enum class FEngTypes : Attrib::StringKey {
       None,
-      Type1 = 0x8AB83EDB,  // [White Text] Shows and disappears quickly
+      Type1 = 0x8AB83EDB,  // [White Text] Fades out towards bottom of the screen
       Type2 = 0x9D73BC15,  // [White Text] Fades out towards player camera
-      Type3 = 0xE1C034FC,  // [White Text] Fades out towards bottom of the screen
-      Type4 = 0x5230FAF6,  // [Red Text] Fades out towards top of the screen
-      Type5 = 0xA19BB14C,  // [Green Text] Shows and disappears quickly
-      Type6 = 0x821E6378   // [Green/White Text] Flashes and is kept alive
+      Type3 = 0x5230FAF6,  // [Red Text] Fades out towards top of the screen
+      Type4 = 0xA19BB14C,  // [Green Text] Fades out towards bottom of the screen
+      Type5 = 0x821E6378   // [Green/White Text] Flashes and is kept alive
     };
     enum class IconDisplayTypes : Attrib::StringKey {
       HideIcon,
