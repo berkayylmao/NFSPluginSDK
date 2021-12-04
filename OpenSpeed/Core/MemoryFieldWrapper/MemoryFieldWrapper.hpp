@@ -77,8 +77,8 @@ class MemoryFieldWrapper {
 
   // Wrapped item assignments
   details::__MakeRef<FieldType> operator=(details::__MakeRef<const FieldType> _newVal) const {
-    if constexpr (std::is_arithmetic_v<FieldType>())
-      if constexpr (_newVal <= GetFieldMinimumValue() || _newVal >= GetFieldMaximumValue()) return *mFieldPtr;
+    if constexpr (std::is_arithmetic_v<FieldType>)
+      if (_newVal < GetFieldMinimumValue() || _newVal > GetFieldMaximumValue()) return *mFieldPtr;
 
     MemoryEditor::Get().UnlockMemory(reinterpret_cast<std::uintptr_t>(mFieldPtr), sizeof(FieldType));
     *mFieldPtr = _newVal;
