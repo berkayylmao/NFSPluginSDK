@@ -39,7 +39,7 @@ namespace OpenSpeed::MW05 {
                      CollisionGeometry::IBoundable,
                      bTNode<RigidBody> {
     struct Primitive : bTNode<Primitive> {
-      enum Flags {
+      enum class Flags : std::uint32_t {
         VSWORLD   = 1 << 0,
         VSOBJECTS = 1 << 1,
         VSGROUND  = 1 << 2,
