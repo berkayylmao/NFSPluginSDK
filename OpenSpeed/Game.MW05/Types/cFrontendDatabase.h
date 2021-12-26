@@ -70,7 +70,7 @@ namespace OpenSpeed::MW05 {
     VideoSettings*    GetVideoSettings() { return CurrentUserProfiles[0]->GetOptions()->GetVideoSettings(); }
     GameplaySettings* GetGameplaySettings() { return CurrentUserProfiles[0]->GetOptions()->GetGameplaySettings(); }
     AudioSettings*    GetAudioSettings() { return CurrentUserProfiles[0]->GetOptions()->GetAudioSettings(); }
-    PlayerSettings*   GetPlayerSettings(int) { return CurrentUserProfiles[0]->GetOptions()->GetPlayerSettings(); }
+    PlayerSettings*   GetPlayerSettings() { return CurrentUserProfiles[0]->GetOptions()->GetPlayerSettings(); }
     CareerSettings*   GetCareerSettings() { return CurrentUserProfiles[0]->GetCareer(); }
 
     static inline cFrontEndDatabase** g_mThis = reinterpret_cast<cFrontEndDatabase**>(0x91CF90);
