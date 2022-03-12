@@ -26,6 +26,7 @@ namespace OpenSpeed {
     static MemoryFieldWrapper<float>         AnimationSpeed{0x904AEC, 45.0f, 0.001f, 1000.0f};
     static MemoryFieldWrapper<bool>          DrawHUD{0x57CAA8, true, false, true};
     static MemoryFieldWrapper<bool>          IsFadeScreenOn{0x91CAE4, false, false, true};
+    static MemoryFieldWrapper<bool>          IsInNIS{0x91606C, false, false, true};
     static MemoryFieldWrapper<std::uint16_t> NOSFOVWidening{0x91112C, 0x666, 0x001, 0x3500};
     static MemoryFieldWrapper<GameFlowState> TheGameFlowManager{0x925E90, GameFlowState::InFrontEnd};
     static MemoryFieldWrapper<float>         Tweak_GameBreakerCollisionMass{0x901AEC, 2.0f, 0.0f, 100.0f};
