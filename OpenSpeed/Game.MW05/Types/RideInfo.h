@@ -51,7 +51,7 @@ namespace OpenSpeed::MW05 {
     std::uint8_t   mSpecialLODBehavior;
 
     CarPart* GetPart(CarSlotId slotId) {
-      reinterpret_cast<CarPart*(__thiscall*)(RideInfo*, CarSlotId)>(0x739C70)(this, slotId);
+      return reinterpret_cast<CarPart*(__thiscall*)(RideInfo*, CarSlotId)>(0x739C70)(this, slotId);
     }
 
     void SetRandomPart(CarSlotId slotId, eCareerUpgradeLevels upgradeLevel) {
