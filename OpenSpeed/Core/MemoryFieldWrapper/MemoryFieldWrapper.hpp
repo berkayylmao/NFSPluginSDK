@@ -45,8 +45,8 @@ class MemoryFieldWrapper {
   const FieldType                     mFieldMinVal;
   const FieldType                     mFieldMaxVal;
 
-  MemoryFieldWrapper(const MemoryFieldWrapper&)          = delete;
-  MemoryFieldWrapper(MemoryFieldWrapper&&)               = delete;
+  MemoryFieldWrapper(const MemoryFieldWrapper&) = delete;
+  MemoryFieldWrapper(MemoryFieldWrapper&&)      = delete;
 
  public:
   constexpr MemoryFieldWrapper(details::__MakePtr<FieldType> const volatile fieldPtr,
@@ -57,8 +57,7 @@ class MemoryFieldWrapper {
       mFieldDefVal(fieldDefaultValue),
       mFieldMinVal(fieldMinimumValue),
       mFieldMaxVal(fieldMaximumValue) {}
-  constexpr MemoryFieldWrapper(std::uintptr_t                      fieldAddress,
-                               details::__MakeRef<const FieldType> fieldDefaultValue,
+  constexpr MemoryFieldWrapper(std::uintptr_t fieldAddress, details::__MakeRef<const FieldType> fieldDefaultValue,
                                details::__MakeRef<const FieldType> fieldMinimumValue = FieldType(),
                                details::__MakeRef<const FieldType> fieldMaximumValue = FieldType()) :
       MemoryFieldWrapper(reinterpret_cast<details::__MakePtr<FieldType>>(fieldAddress), fieldDefaultValue,
@@ -77,12 +76,12 @@ class MemoryFieldWrapper {
   }
 
   // Wrapped item assignments
-  details::__MakeRef<FieldType> operator=(details::__MakeRef<const FieldType> _newVal) const {
-    if constexpr (std::is_arithmetic_v<FieldType>)
-      if (_newVal < GetFieldMinimumValue() || _newVal > GetFieldMaximumValue()) return *mFieldPtr;
+  details::__MakeRef<FieldType> operator=(details::__MakeRef<const FieldType> newValue) const {
+    if constexpr (std::is_arithmetic_v<FieldType> && !std::is_same_v<FieldType, bool>)
+      if (newValue < GetFieldMinimumValue() || newValue > GetFieldMaximumValue()) return *mFieldPtr;
 
     MemoryEditor::Get().UnlockMemory(reinterpret_cast<std::uintptr_t>(mFieldPtr), sizeof(FieldType));
-    *mFieldPtr = _newVal;
+    *mFieldPtr = newValue;
     MemoryEditor::Get().LockMemory(reinterpret_cast<std::uintptr_t>(mFieldPtr));
     return *mFieldPtr;
   }
