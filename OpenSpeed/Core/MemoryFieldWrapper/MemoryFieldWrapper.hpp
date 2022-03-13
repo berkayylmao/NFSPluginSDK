@@ -45,12 +45,13 @@ class MemoryFieldWrapper {
   const FieldType                     mFieldMinVal;
   const FieldType                     mFieldMaxVal;
 
-  MemoryFieldWrapper(const MemoryFieldWrapper&) = delete;
-  MemoryFieldWrapper(MemoryFieldWrapper&&)      = delete;
+  inline operator=(const MemoryFieldWrapper<FieldType>&) = delete;
+  MemoryFieldWrapper(const MemoryFieldWrapper&)          = delete;
+  MemoryFieldWrapper(MemoryFieldWrapper&&)               = delete;
 
  public:
   constexpr MemoryFieldWrapper(details::__MakePtr<FieldType> const volatile fieldPtr,
-                               details::__MakeRef<const FieldType> fieldDefaultValue = FieldType(),
+                               details::__MakeRef<const FieldType> fieldDefaultValue,
                                details::__MakeRef<const FieldType> fieldMinimumValue = FieldType(),
                                details::__MakeRef<const FieldType> fieldMaximumValue = FieldType()) :
       mFieldPtr(fieldPtr),
@@ -58,7 +59,7 @@ class MemoryFieldWrapper {
       mFieldMinVal(fieldMinimumValue),
       mFieldMaxVal(fieldMaximumValue) {}
   constexpr MemoryFieldWrapper(std::uintptr_t                      fieldAddress,
-                               details::__MakeRef<const FieldType> fieldDefaultValue = FieldType(),
+                               details::__MakeRef<const FieldType> fieldDefaultValue,
                                details::__MakeRef<const FieldType> fieldMinimumValue = FieldType(),
                                details::__MakeRef<const FieldType> fieldMaximumValue = FieldType()) :
       MemoryFieldWrapper(reinterpret_cast<details::__MakePtr<FieldType>>(fieldAddress), fieldDefaultValue,
