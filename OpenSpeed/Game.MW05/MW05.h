@@ -29,6 +29,7 @@ namespace OpenSpeed {
     static MemoryFieldWrapper<bool>           DrawCarsReflections{0x903324, true};
     static MemoryFieldWrapper<bool>           DrawCarShadow{0x903328, true};
     static MemoryFieldWrapper<bool>           DrawHUD{0x57CAA8, true};
+    static MemoryFieldWrapper<bool>           DrawLightFlares{0x8F2918, true};
     static MemoryFieldWrapper<CARPART_LOD>    ForceCarLOD{0x903384, CARPART_LOD::A};
     static MemoryFieldWrapper<CARPART_LOD>    ForceTireLOD{0x903388, CARPART_LOD::A};
     static MemoryFieldWrapper<bool>           IsFadeScreenOn{0x91CAE4, false};
