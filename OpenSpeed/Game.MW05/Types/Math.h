@@ -20,6 +20,11 @@
 #pragma once
 
 namespace OpenSpeed::MW05::Math {
+  struct Vector2;
+  struct Vector3;
+  struct Vector4;
+  struct Matrix4;
+
   struct Vector2 {
     float x, y;
 
@@ -315,7 +320,9 @@ namespace OpenSpeed::MW05::Math {
                    operator Vector4*() noexcept { return reinterpret_cast<Vector4*>(this); }
                    operator const Vector4*() const noexcept { return reinterpret_cast<const Vector4*>(this); }
     Vector4&       operator[](std::size_t index) noexcept { return (reinterpret_cast<Vector4*>(this))[index]; }
-    const Vector4& operator[](std::size_t index) const noexcept { return (reinterpret_cast<const Vector4*>(this))[index]; }
+    const Vector4& operator[](std::size_t index) const noexcept {
+      return (reinterpret_cast<const Vector4*>(this))[index];
+    }
 
     Matrix4()  = default;
     ~Matrix4() = default;

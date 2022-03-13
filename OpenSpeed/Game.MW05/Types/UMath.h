@@ -20,6 +20,11 @@
 #pragma once
 
 namespace OpenSpeed::MW05::UMath {
+  struct Vector2;
+  struct Vector3;
+  struct Vector4;
+  struct Matrix4;
+
   struct Vector2 {
     float y, x;
 
