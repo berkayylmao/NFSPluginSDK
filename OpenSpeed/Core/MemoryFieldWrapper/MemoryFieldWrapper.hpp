@@ -50,14 +50,15 @@ class MemoryFieldWrapper {
 
  public:
   constexpr MemoryFieldWrapper(details::__MakePtr<FieldType> const volatile fieldPtr,
-                               details::__MakeRef<const FieldType> fieldDefaultValue,
+                               details::__MakeRef<const FieldType> fieldDefaultValue = FieldType(),
                                details::__MakeRef<const FieldType> fieldMinimumValue = FieldType(),
                                details::__MakeRef<const FieldType> fieldMaximumValue = FieldType()) :
       mFieldPtr(fieldPtr),
       mFieldDefVal(fieldDefaultValue),
       mFieldMinVal(fieldMinimumValue),
       mFieldMaxVal(fieldMaximumValue) {}
-  constexpr MemoryFieldWrapper(std::uintptr_t fieldAddress, details::__MakeRef<const FieldType> fieldDefaultValue,
+  constexpr MemoryFieldWrapper(std::uintptr_t                      fieldAddress,
+                               details::__MakeRef<const FieldType> fieldDefaultValue = FieldType(),
                                details::__MakeRef<const FieldType> fieldMinimumValue = FieldType(),
                                details::__MakeRef<const FieldType> fieldMaximumValue = FieldType()) :
       MemoryFieldWrapper(reinterpret_cast<details::__MakePtr<FieldType>>(fieldAddress), fieldDefaultValue,
