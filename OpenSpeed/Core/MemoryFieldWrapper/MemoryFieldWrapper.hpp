@@ -45,7 +45,6 @@ class MemoryFieldWrapper {
   const FieldType                     mFieldMinVal;
   const FieldType                     mFieldMaxVal;
 
-  inline operator=(const MemoryFieldWrapper<FieldType>&) = delete;
   MemoryFieldWrapper(const MemoryFieldWrapper&)          = delete;
   MemoryFieldWrapper(MemoryFieldWrapper&&)               = delete;
 
