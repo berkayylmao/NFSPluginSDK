@@ -1,7 +1,7 @@
 // clang-format off
 //
 //    MemoryEditor: A header-only cross-platform library to edit runtime memory. (C++11)
-//    Copyright (C) 2021 Berkay Yigit <berkaytgy@gmail.com>
+//    Copyright (C) 2022 Berkay Yigit <berkaytgy@gmail.com>
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as published
