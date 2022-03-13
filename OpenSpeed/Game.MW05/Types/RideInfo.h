@@ -50,12 +50,10 @@ namespace OpenSpeed::MW05 {
     CarRenderUsage mMyCarRenderUsage;
     std::uint8_t   mSpecialLODBehavior;
 
-    void Init(CarType type, CarRenderUsage renderUsage, std::int32_t _unk1 = 0, std::int32_t _unk2 = 0) {
-      reinterpret_cast<void(__thiscall*)(RideInfo*, CarType, CarRenderUsage, std::int32_t, std::int32_t)>(0x739A70)(
-          this, type, renderUsage, _unk1, _unk2);
+    CarPart* GetPart(CarSlotId slotId) {
+      reinterpret_cast<CarPart*(__thiscall*)(RideInfo*, CarSlotId)>(0x739C70)(this, slotId);
     }
 
-    void SetRandomPaint() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x759800)(this); }
     void SetRandomPart(CarSlotId slotId, eCareerUpgradeLevels upgradeLevel) {
       reinterpret_cast<void(__thiscall*)(RideInfo*, CarSlotId, eCareerUpgradeLevels)>(0x7596E0)(this, slotId,
                                                                                                 upgradeLevel);
@@ -65,8 +63,14 @@ namespace OpenSpeed::MW05 {
                                                                                                 upgradeLevel);
     }
 
+    void SetRandomPaint() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x759800)(this); }
     void SetRandomParts() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x75B220)(this); }
     void SetStockParts() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x7594A0)(this); }
+
+    void Init(CarType type, CarRenderUsage renderUsage, std::int32_t _unk1 = 0, std::int32_t _unk2 = 0) {
+      reinterpret_cast<void(__thiscall*)(RideInfo*, CarType, CarRenderUsage, std::int32_t, std::int32_t)>(0x739A70)(
+          this, type, renderUsage, _unk1, _unk2);
+    }
 
     explicit RideInfo(CarType type, CarRenderUsage renderUsage) { Init(type, renderUsage); }
     explicit RideInfo(CarType type) : RideInfo(type, CarRenderUsage::Player) {}
