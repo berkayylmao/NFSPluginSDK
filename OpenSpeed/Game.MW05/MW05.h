@@ -23,16 +23,24 @@
 
 namespace OpenSpeed {
   namespace MW05::Variables {
-    static MemoryFieldWrapper<float>         AnimationSpeed{0x904AEC, 45.0f, 0.001f, 1000.0f};
-    static MemoryFieldWrapper<bool>          DrawHUD{0x57CAA8, true, false, true};
-    static MemoryFieldWrapper<bool>          IsFadeScreenOn{0x91CAE4, false, false, true};
-    static MemoryFieldWrapper<bool>          IsInNIS{0x91606C, false, false, true};
-    static MemoryFieldWrapper<std::uint16_t> NOSFOVWidening{0x91112C, 0x666, 0x001, 0x3500};
-    static MemoryFieldWrapper<GameFlowState> TheGameFlowManager{0x925E90, GameFlowState::InFrontEnd};
-    static MemoryFieldWrapper<float>         Tweak_GameBreakerCollisionMass{0x901AEC, 2.0f, 0.0f, 100.0f};
-    static MemoryFieldWrapper<float>         Tweak_GameSpeed{0x901B1C, 1.0f, 0.01f, 3.0f};
-    static MemoryFieldWrapper<bool>          Tweak_InfiniteNOS{0x937804, false, false, true};
-    static MemoryFieldWrapper<bool>          WindowHasLostFocus{0x982C50, false, false, true};
+    static MemoryFieldWrapper<float>          AnimationSpeed{0x904AEC, 45.0f, 0.001f, 1000.0f};
+    static MemoryFieldWrapper<UMath::Matrix4> CarScaleMatrix{0x9B34B0};
+    static MemoryFieldWrapper<bool>           DrawCars{0x903320, true};
+    static MemoryFieldWrapper<bool>           DrawCarsReflections{0x903324, true};
+    static MemoryFieldWrapper<bool>           DrawCarShadow{0x903328, true};
+    static MemoryFieldWrapper<bool>           DrawHUD{0x57CAA8, true};
+    static MemoryFieldWrapper<CARPART_LOD>    ForceCarLOD{0x903384, CARPART_LOD::A};
+    static MemoryFieldWrapper<CARPART_LOD>    ForceTireLOD{0x903388, CARPART_LOD::A};
+    static MemoryFieldWrapper<bool>           IsFadeScreenOn{0x91CAE4, false};
+    static MemoryFieldWrapper<bool>           IsInNIS{0x91606C, false};
+    static MemoryFieldWrapper<std::uint16_t>  NOSFOVWidening{0x91112C, 0x666, 0x001, 0x3500};
+    static MemoryFieldWrapper<GameFlowState>  TheGameFlowManager{0x925E90, GameFlowState::InFrontEnd};
+    static MemoryFieldWrapper<float>          Tweak_GameBreakerCollisionMass{0x901AEC, 2.0f, 0.0f, 100.0f};
+    static MemoryFieldWrapper<float>          Tweak_GameSpeed{0x901B1C, 1.0f, 0.01f, 3.0f};
+    static MemoryFieldWrapper<bool>           Tweak_InfiniteNOS{0x937804, false};
+    static MemoryFieldWrapper<bool>           Tweak_InfiniteRaceBreaker{0x988E1C, false};
+    static MemoryFieldWrapper<bool>           Tweak_PauseCameraLock{0x92584C, false};
+    static MemoryFieldWrapper<bool>           WindowHasLostFocus{0x982C50, false};
 
     namespace Config {
       static MemoryFieldWrapper<std::uint8_t> KeyAccelerate{0x91F420, 0x00};
