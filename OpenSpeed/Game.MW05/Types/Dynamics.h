@@ -19,7 +19,6 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UMath.h>
 
 namespace OpenSpeed::MW05::Dynamics {
   namespace Collision {

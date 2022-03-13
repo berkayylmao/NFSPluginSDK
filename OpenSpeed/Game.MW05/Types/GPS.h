@@ -20,7 +20,6 @@
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Sim.h>
-#include <OpenSpeed/Game.MW05/Types/UMath.h>
 #include <OpenSpeed/Game.MW05/Types/WRoadNav.h>
 
 namespace OpenSpeed::MW05 {

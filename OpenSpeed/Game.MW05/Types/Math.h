@@ -18,7 +18,6 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Math {
   struct Vector2 {

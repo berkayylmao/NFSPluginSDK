@@ -26,7 +26,6 @@
 #include <OpenSpeed/Game.MW05/Types/ICollisionBody.h>
 #include <OpenSpeed/Game.MW05/Types/IDynamicsEntity.h>
 #include <OpenSpeed/Game.MW05/Types/IRigidBody.h>
-#include <OpenSpeed/Game.MW05/Types/Math.h>
 #include <OpenSpeed/Game.MW05/Types/RBGrid.h>
 #include <OpenSpeed/Game.MW05/Types/WCollisionMgr.h>
 

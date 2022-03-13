@@ -21,7 +21,6 @@
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UMath.h>
 
 namespace OpenSpeed::MW05 {
   struct USpline {

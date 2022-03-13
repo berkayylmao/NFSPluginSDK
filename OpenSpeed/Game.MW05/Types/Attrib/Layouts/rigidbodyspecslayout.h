@@ -19,7 +19,6 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UMath.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/Private.h>
 
 namespace OpenSpeed::MW05::Attrib::Layouts {

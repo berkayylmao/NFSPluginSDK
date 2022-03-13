@@ -25,6 +25,9 @@
 #include <winnt.h>  // DEFINE_ENUM_FLAG_OPERATORS
 #endif
 
+#include <OpenSpeed/Game.MW05/Types/Math.h>
+#include <OpenSpeed/Game.MW05/Types/UMath.h>
+
 namespace OpenSpeed::MW05 {
   struct ActionData;
   struct ActionRef;
@@ -267,13 +270,6 @@ namespace OpenSpeed::MW05 {
     }  // namespace Upgrades
   }    // namespace Physics
 
-  namespace Math {
-    struct Vector2;
-    struct Vector3;
-    struct Vector4;
-    struct Matrix4;
-  }  // namespace Math
-
   namespace Sim {
     namespace Collision {
       struct Info;
@@ -291,13 +287,6 @@ namespace OpenSpeed::MW05 {
     struct Packet;
     struct Param;
   }  // namespace Sim
-
-  namespace UMath {
-    struct Vector2;
-    struct Vector3;
-    struct Vector4;
-    struct Matrix4;
-  }  // namespace UMath
 
   namespace UTL {
     template <typename T, std::size_t nT, typename E, std::size_t nE>

@@ -20,7 +20,6 @@
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/GTimer.h>
-#include <OpenSpeed/Game.MW05/Types/UMath.h>
 
 namespace OpenSpeed::MW05 {
   struct GRacerInfo {

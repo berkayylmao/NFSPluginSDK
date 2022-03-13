@@ -19,8 +19,6 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/Math.h>
-#include <OpenSpeed/Game.MW05/Types/UMath.h>
 #include <OpenSpeed/Game.MW05/Types/USpline.h>
 
 namespace OpenSpeed::MW05 {
