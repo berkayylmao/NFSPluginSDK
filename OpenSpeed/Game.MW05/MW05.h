@@ -24,7 +24,7 @@
 namespace OpenSpeed {
   namespace MW05::Variables {
     static MemoryFieldWrapper<float>          AnimationSpeed{0x904AEC, 45.0f, 0.001f, 1000.0f};
-    static MemoryFieldWrapper<UMath::Matrix4> CarScaleMatrix{0x9B34B0};
+    static MemoryFieldWrapper<UMath::Matrix4> CarScaleMatrix{0x9B34B0, UMath::Matrix4()};
     static MemoryFieldWrapper<bool>           DrawCars{0x903320, true};
     static MemoryFieldWrapper<bool>           DrawCarsReflections{0x903324, true};
     static MemoryFieldWrapper<bool>           DrawCarShadow{0x903328, true};
