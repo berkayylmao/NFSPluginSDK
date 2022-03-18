@@ -53,7 +53,6 @@ namespace OpenSpeed::MW05 {
     virtual WRoadNav*             GetDriveToNav()                                                                  = 0;
     virtual bool                  GetDrivableToDriveToNav()                                                        = 0;
     virtual void                  ResetDriveToNav(eLaneSelection laneSelection)                                    = 0;
-    virtual void                  ResetDriveToNav(const UMath::Vector3&)                                           = 0;
     virtual void                  ResetVehicleToRoadNav(WRoadNav* otherNav)                                        = 0;
     virtual void                  ResetVehicleToRoadNav(std::int16_t segInd, char laneInd, float timeStep)         = 0;
     virtual void      ResetVehicleToRoadPos(const UMath::Vector3& position, const UMath::Vector3& forwardVector)   = 0;

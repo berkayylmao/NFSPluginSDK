@@ -19,7 +19,8 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/IVehicleAI.h>
 
 namespace OpenSpeed::MW05 {
-  struct AIVehicle {};
+  struct AIVehicle : IVehicleAI {};
 }  // namespace OpenSpeed::MW05
