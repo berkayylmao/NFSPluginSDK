@@ -32,6 +32,7 @@ namespace OpenSpeed::MW05 {
   struct ActionData;
   struct ActionRef;
   struct ActionQueue;
+  struct AIGoal;
   struct AIAvoidable;
   struct AISplinePath;
   struct AITarget;
@@ -74,6 +75,7 @@ namespace OpenSpeed::MW05 {
   struct FEObject;
   struct FEPlayerCarDB;
   struct FinishedRaceStatsEntry;
+  struct FloatSpring;
   struct GameplaySettings;
   struct GCharacter;
   struct GenericMessage;
@@ -163,6 +165,7 @@ namespace OpenSpeed::MW05 {
   struct UCircularQueue;
   struct UCrc32;
   struct UserProfile;
+  struct VehicleBehavior;
   struct VehicleParams;
   struct VideoSettings;
   struct WCollider;

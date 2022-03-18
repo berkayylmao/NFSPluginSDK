@@ -21,33 +21,19 @@
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/Sim.h>
-#include <OpenSpeed/Game.MW05/Types/UCrc32.h>
+#include <OpenSpeed/Game.MW05/Types/Grid.h>
+#include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
-  struct Behavior : Sim::Object {
-    struct Container {
-      struct Elements : eastl::list<Behavior*> {};
+  struct AIAvoidable {
+    Grid<AIAvoidable>*        mGridNode;
+    eastl::list<AIAvoidable*> mNeighbors;
+    UTL::COM::IUnknown*       mUnk;
 
-      Elements _mElements;
-    };
+    virtual ~AIAvoidable();
+    virtual bool OnUpdateAvoidable(UMath::Vector3& pos, float& sweep) = 0;
 
-    bool           mPaused;
-    PhysicsObject* mOwner;
-    ISimable*      mIOwner;
-    UCrc32         mMechanic;
-    UCrc32         mSignature;
-    std::int32_t   mPriority;
-    HSIMPROFILE__* mProfile;
-
-    virtual ~Behavior();
-    virtual void         Reset() = 0;
-    virtual std::int32_t GetPriority();
-    virtual void         OnOwnerAttached(IAttachable* pOther)     = 0;
-    virtual void         OnOwnerDetached(IAttachable* pOther)     = 0;
-    virtual void         OnTaskSimulate(float deltaTime)          = 0;
-    virtual void         OnBehaviorChange(const UCrc32& mechanic) = 0;
-    virtual void         OnPause()                                = 0;
-    virtual void         OnUnPause()                              = 0;
+    inline const auto& GetAvoidableNeighbors() { return mNeighbors; }
+    inline void        SetAvoidableObject(UTL::COM::IUnknown* obj) { mUnk = obj; }
   };
 }  // namespace OpenSpeed::MW05
