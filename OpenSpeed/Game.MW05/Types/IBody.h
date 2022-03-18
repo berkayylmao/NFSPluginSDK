@@ -24,7 +24,7 @@
 namespace OpenSpeed::MW05 {
   struct IBody : UTL::COM::IUnknown {
     virtual ~IBody();
-    virtual void          GetTransform(UMath::Matrix4& matrix)       = 0;
+    virtual void          GetTransform(UMath::Matrix4& matrix)   = 0;
     virtual void          GetLinearVelocity(UMath::Vector3& to)  = 0;
     virtual void          GetAngularVelocity(UMath::Vector3& to) = 0;
     virtual void          GetDimension(UMath::Vector3& to)       = 0;

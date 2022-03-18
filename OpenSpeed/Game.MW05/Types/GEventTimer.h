@@ -21,17 +21,17 @@
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05 {
-struct GEventTimer  {
-	float mInterval;
-	bool mRunning;
-	float mElapsed;
-	std::uint32_t mNameHash;
-	char mName[20];
-   
-	bool IsRunning() { return mRunning;}
-	float GetInterval() { return mInterval; }
-	std::uint32_t GetNameHash() {return mNameHash;}
-	const char* GetName() {return mName;}
-	float GetElapsed() {return mElapsed;}
-};
+  struct GEventTimer {
+    float         mInterval;
+    bool          mRunning;
+    float         mElapsed;
+    std::uint32_t mNameHash;
+    char          mName[20];
+
+    inline bool          IsRunning() { return mRunning; }
+    inline float         GetInterval() { return mInterval; }
+    inline std::uint32_t GetNameHash() { return mNameHash; }
+    inline const char*   GetName() { return mName; }
+    inline float         GetElapsed() { return mElapsed; }
+  };
 }  // namespace OpenSpeed::MW05

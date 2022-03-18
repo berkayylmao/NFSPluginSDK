@@ -26,6 +26,6 @@ namespace OpenSpeed::MW05 {
     float mTotalTime;
     bool  mRunning;
 
-    bool IsRunning() { return mRunning; }
+    inline bool IsRunning() { return mRunning; }
   };
 }  // namespace OpenSpeed::MW05

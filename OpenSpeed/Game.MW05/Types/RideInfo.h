@@ -50,24 +50,24 @@ namespace OpenSpeed::MW05 {
     CarRenderUsage mMyCarRenderUsage;
     std::uint8_t   mSpecialLODBehavior;
 
-    CarPart* GetPart(CarSlotId slotId) {
+    inline CarPart* GetPart(CarSlotId slotId) {
       return reinterpret_cast<CarPart*(__thiscall*)(RideInfo*, CarSlotId)>(0x739C70)(this, slotId);
     }
 
-    void SetRandomPart(CarSlotId slotId, eCareerUpgradeLevels upgradeLevel) {
+    inline void SetRandomPart(CarSlotId slotId, eCareerUpgradeLevels upgradeLevel) {
       reinterpret_cast<void(__thiscall*)(RideInfo*, CarSlotId, eCareerUpgradeLevels)>(0x7596E0)(this, slotId,
                                                                                                 upgradeLevel);
     }
-    void SetUpgradePart(CarSlotId slotId, eCareerUpgradeLevels upgradeLevel) {
+    inline void SetUpgradePart(CarSlotId slotId, eCareerUpgradeLevels upgradeLevel) {
       reinterpret_cast<void(__thiscall*)(RideInfo*, CarSlotId, eCareerUpgradeLevels)>(0x759470)(this, slotId,
                                                                                                 upgradeLevel);
     }
 
-    void SetRandomPaint() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x759800)(this); }
-    void SetRandomParts() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x75B220)(this); }
-    void SetStockParts() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x7594A0)(this); }
+    inline void SetRandomPaint() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x759800)(this); }
+    inline void SetRandomParts() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x75B220)(this); }
+    inline void SetStockParts() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x7594A0)(this); }
 
-    void Init(CarType type, CarRenderUsage renderUsage, std::int32_t _unk1 = 0, std::int32_t _unk2 = 0) {
+    inline void Init(CarType type, CarRenderUsage renderUsage, std::int32_t _unk1 = 0, std::int32_t _unk2 = 0) {
       reinterpret_cast<void(__thiscall*)(RideInfo*, CarType, CarRenderUsage, std::int32_t, std::int32_t)>(0x739A70)(
           this, type, renderUsage, _unk1, _unk2);
     }

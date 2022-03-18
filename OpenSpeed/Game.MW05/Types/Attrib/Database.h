@@ -26,7 +26,7 @@ namespace OpenSpeed::MW05::Attrib {
 
     virtual ~Database();
 
-    Class* GetClass(StringKey key) {
+    inline Class* GetClass(StringKey key) {
       return reinterpret_cast<Class*(__thiscall*)(Database*, StringKey)>(0x455BC0)(this, key);
     }
 

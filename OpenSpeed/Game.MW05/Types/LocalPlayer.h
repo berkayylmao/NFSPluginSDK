@@ -62,7 +62,7 @@ namespace OpenSpeed::MW05 {
     virtual bool                  ToggleGameBreaker() override;
     virtual void                  OnAttached(IAttachable* pOther) override;
     virtual void                  OnDetached(IAttachable* pOther) override;
-    virtual void                  OnCollision(const Sim::Collision::Info& cinfo) override;
+    virtual void                  OnCollision(const Sim::Collision::Info& cInfo) override;
 #pragma endregion
   };
 }  // namespace OpenSpeed::MW05

@@ -32,9 +32,9 @@ namespace OpenSpeed::MW05 {
     AudioSettings    TheAudioSettings;
     PlayerSettings   ThePlayerSettings[2];
 
-    VideoSettings*    GetVideoSettings() { return &TheVideoSettings; }
-    GameplaySettings* GetGameplaySettings() { return &TheGameplaySettings; }
-    AudioSettings*    GetAudioSettings() { return &TheAudioSettings; }
-    PlayerSettings*   GetPlayerSettings(std::size_t index = 0) { return &ThePlayerSettings[index]; }
+    inline VideoSettings&    GetVideoSettings() { return TheVideoSettings; }
+    inline GameplaySettings& GetGameplaySettings() { return TheGameplaySettings; }
+    inline AudioSettings&    GetAudioSettings() { return TheAudioSettings; }
+    inline PlayerSettings&   GetPlayerSettings(std::size_t index = 0) { return ThePlayerSettings[index]; }
   };
 }  // namespace OpenSpeed::MW05

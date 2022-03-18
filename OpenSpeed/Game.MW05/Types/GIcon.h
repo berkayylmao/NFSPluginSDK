@@ -74,48 +74,52 @@ namespace OpenSpeed::MW05 {
     }
     ~GIcon() { reinterpret_cast<void(__thiscall*)(GIcon*, bool)>(0x5EBED0)(this, true); }
 
-    std::uint32_t FindSection() { return reinterpret_cast<std::uint32_t(__thiscall*)(GIcon*)>(0x5DE590)(this); }
-    WorldModel*   CreateGeometry(std::uint32_t _unk) {
+    inline std::uint32_t FindSection() { return reinterpret_cast<std::uint32_t(__thiscall*)(GIcon*)>(0x5DE590)(this); }
+    inline WorldModel*   CreateGeometry(std::uint32_t _unk) {
       return reinterpret_cast<WorldModel*(__thiscall*)(GIcon*, std::uint32_t)>(0x5DE690)(this, _unk);
     }
-    void SetPosition() { reinterpret_cast<void(__thiscall*)(GIcon*)>(0x5E5A90)(this); }
-    void Spawn() { reinterpret_cast<void(__thiscall*)(GIcon*)>(0x5EC270)(this); }
-    void Unspawn() { reinterpret_cast<void(__thiscall*)(GIcon*)>(0x5E5A00)(this); }
-    void SnapToGround() { reinterpret_cast<void(__thiscall*)(GIcon*)>(0x5EA0F0)(this); }
+    inline void SetPosition() { reinterpret_cast<void(__thiscall*)(GIcon*)>(0x5E5A90)(this); }
+    inline void Spawn() { reinterpret_cast<void(__thiscall*)(GIcon*)>(0x5EC270)(this); }
+    inline void Unspawn() { reinterpret_cast<void(__thiscall*)(GIcon*)>(0x5E5A00)(this); }
+    inline void SnapToGround() { reinterpret_cast<void(__thiscall*)(GIcon*)>(0x5EA0F0)(this); }
 
-    Type         GetType() { return mType; }
-    std::int16_t GetSectionID() { return mSectionId; }
-    std::int16_t GetCombinedSectionID() { return mCombSectionId; }
-    bool         GetVisibleInWorld() {
+    inline Type         GetType() { return mType; }
+    inline std::int16_t GetSectionID() { return mSectionId; }
+    inline std::int16_t GetCombinedSectionID() { return mCombSectionId; }
+    inline bool         GetVisibleInWorld() {
       return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::ShowInWorld);
     }
-    bool GetVisibleOnMap() { return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::ShowOnMap); }
-    bool GetIsDisposable() {
+    inline bool GetVisibleOnMap() {
+      return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::ShowOnMap);
+    }
+    inline bool GetIsDisposable() {
       return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::Disposable);
     }
-    bool GetIsEnabled() { return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::Enabled); }
-    bool GetIsGPSing() { return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::GPSing); }
-    bool GetIsSnapped() {
+    inline bool GetIsEnabled() {
+      return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::Enabled);
+    }
+    inline bool GetIsGPSing() { return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::GPSing); }
+    inline bool GetIsSnapped() {
       return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::SnappedToGround);
     }
 
-    void MarkDisposable() {
+    inline void MarkDisposable() {
       mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) | static_cast<std::uint16_t>(Flags::Disposable));
     }
-    void Show() {
+    inline void Show() {
       mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) | static_cast<std::uint16_t>(Flags::ShowInWorld));
     }
-    void Hide() {
+    inline void Hide() {
       mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) ^ static_cast<std::uint16_t>(Flags::ShowInWorld));
     }
-    void HideUntilRespawn() {
+    inline void HideUntilRespawn() {
       Hide();
       mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) | static_cast<std::uint16_t>(Flags::ShowOnSpawn));
     }
-    void ShowOnMap() {
+    inline void ShowOnMap() {
       mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) | static_cast<std::uint16_t>(Flags::ShowOnMap));
     }
-    void HideOnMap() {
+    inline void HideOnMap() {
       mFlags = static_cast<Flags>(static_cast<std::uint16_t>(mFlags) ^ static_cast<std::uint16_t>(Flags::ShowOnMap));
     }
   };

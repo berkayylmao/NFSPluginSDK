@@ -118,12 +118,13 @@ namespace OpenSpeed::MW05 {
     bool                                               mAllowMenuGates;
     std::uint32_t                                      mRestartEventHash;
 
-    GIcon* AllocIcon(GIcon::Type type, const Math::Vector3& initialPosition, float unk1 = 0.0f, bool unk2 = true) {
+    inline GIcon* AllocIcon(GIcon::Type type, const Math::Vector3& initialPosition, float unk1 = 0.0f,
+                            bool unk2 = true) {
       return reinterpret_cast<GIcon*(__thiscall*)(GManager*, GIcon::Type, const Math::Vector3&, float, bool)>(0x5E9EC0)(
           this, type, initialPosition, unk1, unk2);
     }
-    void SpawnAllLoadedSectionIcons() { reinterpret_cast<void(__thiscall*)(GManager*)>(0x5EDE20)(this); }
-    void UnspawnAllIcons() { reinterpret_cast<void(__thiscall*)(GManager*)>(0x5EA010)(this); }
+    inline void SpawnAllLoadedSectionIcons() { reinterpret_cast<void(__thiscall*)(GManager*)>(0x5EDE20)(this); }
+    inline void UnspawnAllIcons() { reinterpret_cast<void(__thiscall*)(GManager*)>(0x5EA010)(this); }
 
     static inline GManager** g_mThis = reinterpret_cast<GManager**>(0x91E00C);
     static GManager*         Get() {

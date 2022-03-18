@@ -30,7 +30,7 @@ namespace OpenSpeed::MW05 {
     std::int32_t               mPreset;
     std::uint8_t               mHandle;
 
-    void WriteRideIntoRecord(const RideInfo* rideInfo) {
+    inline void WriteRideIntoRecord(const RideInfo* rideInfo) {
       reinterpret_cast<void(__thiscall*)(FECustomizationRecord*, const RideInfo*)>(0x56F2F0)(this, rideInfo);
     }
 

@@ -32,12 +32,12 @@ namespace OpenSpeed::MW05 {
     std::uint16_t SMSSortOrder;
     char          CaseFileName[16];
 
-    const char*   GetCaseFileName() { return CaseFileName; }
-    void          AwardCash(std::int32_t amount) { CurrentCash += amount; }
-    std::int32_t  GetCash() { return CurrentCash; }
-    std::uint8_t  GetCurrentBin() { return CurrentBin; }
-    void          SetCurrentBin(std::uint8_t bin) { CurrentBin = bin; }
-    std::uint32_t GetCurrentCar() { return CurrentCar; }
-    std::uint32_t SetCurrentCar(std::uint32_t handle) { CurrentCar = handle; }
+    inline const char*   GetCaseFileName() { return CaseFileName; }
+    inline void          AwardCash(std::int32_t amount) { CurrentCash += amount; }
+    inline std::int32_t  GetCash() { return CurrentCash; }
+    inline std::uint8_t  GetCurrentBin() { return CurrentBin; }
+    inline void          SetCurrentBin(std::uint8_t bin) { CurrentBin = bin; }
+    inline std::uint32_t GetCurrentCar() { return CurrentCar; }
+    inline std::uint32_t SetCurrentCar(std::uint32_t handle) { CurrentCar = handle; }
   };
 }  // namespace OpenSpeed::MW05

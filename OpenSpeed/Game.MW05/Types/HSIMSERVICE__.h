@@ -24,4 +24,4 @@ namespace OpenSpeed::MW05 {
   struct HSIMSERVICE__ {
     std::int32_t unused;
   };
-}  // namespace MW05
+}  // namespace OpenSpeed::MW05

@@ -36,13 +36,13 @@ namespace OpenSpeed::MW05 {
     std::int32_t EATraxMode;
     std::int32_t PlayState;
 
-    float GetMasteredSpeechVol() { return SpeechVol * MasterVol; }
-    float GetMasteredFEMusicVol() { return FEMusicVol * MasterVol; }
-    float GetMasteredIGMusicVol() { return IGMusicVol * MasterVol; }
-    float GetMasteredSoundEffectsVol() { return SoundEffectsVol * MasterVol; }
-    float GetMasteredEngineVol() { return EngineVol * MasterVol; }
-    float GetMasteredCarVol() { return CarVol * MasterVol; }
-    float GetMasteredAmbientVol() { return AmbientVol * MasterVol; }
-    float GetMasteredSpeedVol() { return SpeedVol * MasterVol; }
+    inline float GetMasteredSpeechVol() { return SpeechVol * MasterVol; }
+    inline float GetMasteredFEMusicVol() { return FEMusicVol * MasterVol; }
+    inline float GetMasteredIGMusicVol() { return IGMusicVol * MasterVol; }
+    inline float GetMasteredSoundEffectsVol() { return SoundEffectsVol * MasterVol; }
+    inline float GetMasteredEngineVol() { return EngineVol * MasterVol; }
+    inline float GetMasteredCarVol() { return CarVol * MasterVol; }
+    inline float GetMasteredAmbientVol() { return AmbientVol * MasterVol; }
+    inline float GetMasteredSpeedVol() { return SpeedVol * MasterVol; }
   };
 }  // namespace OpenSpeed::MW05

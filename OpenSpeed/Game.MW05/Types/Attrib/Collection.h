@@ -33,12 +33,12 @@ namespace OpenSpeed::MW05::Attrib {
     const char**  mNamePtr;
 
     template <typename T>
-    T* GetData(StringKey fieldKey, std::int32_t idx = 0) {
+    inline T* GetData(StringKey fieldKey, std::int32_t idx = 0) {
       return reinterpret_cast<T*(__thiscall*)(Collection*, StringKey, std::int32_t)>(0x454190)(this, fieldKey, idx);
     }
 
     template <typename T>
-    T* GetLayout() {
+    inline T* GetLayout() {
       return reinterpret_cast<T*>(mLayout);
     }
   };

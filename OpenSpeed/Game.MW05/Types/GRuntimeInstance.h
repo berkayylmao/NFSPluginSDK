@@ -34,11 +34,11 @@ namespace OpenSpeed::MW05 {
     GRuntimeInstance*  mPrev;
     GRuntimeInstance*  mNext;
 
-    bool GetDirection(UMath::Vector3& to) {
-      return reinterpret_cast<bool(__thiscall*)(GRuntimeInstance*, UMath::Vector3&)>(0x5DACF0)(this, to);
+    inline bool GetDirection(UMath::Vector3& out) {
+      return reinterpret_cast<bool(__thiscall*)(GRuntimeInstance*, UMath::Vector3&)>(0x5DACF0)(this, out);
     }
-    bool GetPosition(UMath::Vector3& to) {
-      return reinterpret_cast<bool(__thiscall*)(GRuntimeInstance*, UMath::Vector3&)>(0x5E2970)(this, to);
+    inline bool GetPosition(UMath::Vector3& out) {
+      return reinterpret_cast<bool(__thiscall*)(GRuntimeInstance*, UMath::Vector3&)>(0x5E2970)(this, out);
     }
   };
 }  // namespace OpenSpeed::MW05

@@ -21,8 +21,8 @@
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05 {
-struct ObjectStateBlockHeader /* size: 0x8 */  {
-	std::uint32_t mKey;
-	std::uint32_t mSize;
-};
+  struct ObjectStateBlockHeader {
+    std::uint32_t mKey;
+    std::uint32_t mSize;
+  };
 }  // namespace OpenSpeed::MW05

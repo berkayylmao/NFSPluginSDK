@@ -36,9 +36,9 @@ namespace OpenSpeed::MW05 {
     bool               CareerModeHasBeenCompletedAtLeastOnce;
     HighScoresDatabase HighScores;
 
-    OptionsSettings*    GetOptions() { return &TheOptionsSettings; }
-    CareerSettings*     GetCareer() { return &TheCareerSettings; }
-    HighScoresDatabase* GetHighScores() { return &HighScores; }
-    void                SetProfileNamed(bool isNamed) { m_bNamed = isNamed; }
+    inline OptionsSettings&    GetOptions() { return TheOptionsSettings; }
+    inline CareerSettings&     GetCareer() { return TheCareerSettings; }
+    inline HighScoresDatabase& GetHighScores() { return HighScores; }
+    inline void                SetProfileNamed(bool isNamed) { m_bNamed = isNamed; }
   };
 }  // namespace OpenSpeed::MW05

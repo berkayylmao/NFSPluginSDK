@@ -21,10 +21,10 @@
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05 {
-struct MilestoneTypeInfo   {
-	std::uint32_t mTypeKey;
-	float mLastKnownValue;
-	float mBestValue;
-	std::uint32_t mFlags;
-};
+  struct MilestoneTypeInfo {
+    std::uint32_t mTypeKey;
+    float         mLastKnownValue;
+    float         mBestValue;
+    std::uint32_t mFlags;
+  };
 }  // namespace OpenSpeed::MW05
