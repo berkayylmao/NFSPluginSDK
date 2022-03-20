@@ -26,12 +26,12 @@
 namespace OpenSpeed::MW05 {
   struct IAttachable : UTL::COM::IUnknown {
     virtual ~IAttachable();
-    virtual bool                       Attach(UTL::COM::IUnknown* object)     = 0;
-    virtual bool                       Detach(UTL::COM::IUnknown* object)     = 0;
-    virtual bool                       IsAttached(UTL::COM::IUnknown* object) = 0;
-    virtual void                       OnAttached(IAttachable* pOther)        = 0;
-    virtual void                       OnDetached(IAttachable* pOther)        = 0;
-    virtual eastl::list<IAttachable*>* GetAttachments()                       = 0;
+    virtual bool         Attach(UTL::COM::IUnknown* object)     = 0;
+    virtual bool         Detach(UTL::COM::IUnknown* object)     = 0;
+    virtual bool         IsAttached(UTL::COM::IUnknown* object) = 0;
+    virtual void         OnAttached(IAttachable* pOther)        = 0;
+    virtual void         OnDetached(IAttachable* pOther)        = 0;
+    virtual Attachments* GetAttachments()                       = 0;
 
     static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x402820)(); }
   };

@@ -35,22 +35,22 @@ namespace OpenSpeed::MW05 {
 
     struct IActivity : UTL::COM::IUnknown {
       virtual ~IActivity();
-      virtual void                       Release();
-      virtual bool                       Attach(UTL::COM::IUnknown* object);
-      virtual bool                       Detach(UTL::COM::IUnknown* object);
-      virtual eastl::list<IAttachable*>* GetAttachments();
+      virtual void         Release();
+      virtual bool         Attach(UTL::COM::IUnknown* object);
+      virtual bool         Detach(UTL::COM::IUnknown* object);
+      virtual Attachments* GetAttachments();
     };
     struct IEntity : UTL::COM::IUnknown {
       virtual ~IEntity();
-      virtual void                       AttachPhysics(ISimable*);
-      virtual void                       DetachPhysics();
-      virtual ISimable*                  GetSimable();
-      virtual const UMath::Vector3&      GetPosition();
-      virtual bool                       SetPosition(const UMath::Vector3& newPosition) = 0;
-      virtual void                       Kill();
-      virtual bool                       Attach(UTL::COM::IUnknown* object);
-      virtual bool                       Detach(UTL::COM::IUnknown* object);
-      virtual eastl::list<IAttachable*>* GetAttachments();
+      virtual void                  AttachPhysics(ISimable*);
+      virtual void                  DetachPhysics();
+      virtual ISimable*             GetSimable();
+      virtual const UMath::Vector3& GetPosition();
+      virtual bool                  SetPosition(const UMath::Vector3& newPosition) = 0;
+      virtual void                  Kill();
+      virtual bool                  Attach(UTL::COM::IUnknown* object);
+      virtual bool                  Detach(UTL::COM::IUnknown* object);
+      virtual Attachments*          GetAttachments();
     };
     struct IServiceable : UTL::COM::IUnknown {
       virtual ~IServiceable();
