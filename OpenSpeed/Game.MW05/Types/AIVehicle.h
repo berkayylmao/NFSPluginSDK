@@ -36,7 +36,7 @@ namespace OpenSpeed::MW05 {
     float                   mReverseOverrideSteer;
     bool                    mReverseOverrideDirection;
     AITarget*               mTarget;
-    short                   mDestSegment;
+    std::int16_t            mDestSegment;
     bool                    mDrivableToTargetPos;
     bool                    mReversingSpeed;
     bool                    mSteeringBehind;
@@ -48,7 +48,7 @@ namespace OpenSpeed::MW05 {
     IRoadBlock*             mRoadBlock;
     UCrc32                  mGoalName;
     float                   mAvoidableRadius;
-    unsigned int            mDriveFlags;
+    DriveFlags              mDriveFlags;
     ICollisionBody*         mCollisionBody;
     ITransmission*          mITransmission;
     ISuspension*            mISuspension;
@@ -64,8 +64,8 @@ namespace OpenSpeed::MW05 {
     UMath::Vector3          mSeekAheadPosition;
     UMath::Vector3          mFarFutureDirection;
     UMath::Vector3          mFarFuturePosition;
-    short                   mLastFutureSegment;
-    short                   mLastFutureNodeInd;
+    std::int16_t            mLastFutureSegment;
+    std::int16_t            mLastFutureNodeInd;
     WRoadNav                mCurrentRoad;
     WRoadNav                mFutureRoad;
     float                   mAccelData[10];
