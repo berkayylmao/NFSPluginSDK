@@ -105,9 +105,9 @@ namespace OpenSpeed::MW05 {
     float                       fLaneChangeDist;
     float                       fLaneChangeInc;
     bool                        bCrossedPathGoal;
-    std::uint16_t               nPathGoalSegment;
-    float                       fPathGoalParam;
-    std::int32_t                nPathSegments;
-    std::uint16_t*              pPathSegments;
+    std::uint8_t                nPathGoalSegment;
+    std::uint16_t               fPathGoalParam;
+
+    virtual ~WRoadNav();
   };
 }  // namespace OpenSpeed::MW05
