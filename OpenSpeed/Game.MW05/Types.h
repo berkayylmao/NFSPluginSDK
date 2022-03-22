@@ -107,6 +107,8 @@ namespace OpenSpeed::MW05 {
   struct IAttributeable;
   struct IAudible;
   struct IBody;
+  struct ICause;
+  struct ICheater;
   struct ICollisionBody;
   struct IDamageable;
   struct IDamagePhysics;
@@ -125,7 +127,9 @@ namespace OpenSpeed::MW05 {
   struct InputControls;
   struct InputMapping;
   struct InputPlayer;
+  struct IPerpetrator;
   struct IPlayer;
+  struct IRacer;
   struct IPursuit;
   struct IRBVehicle;
   struct IRenderable;
@@ -148,6 +152,7 @@ namespace OpenSpeed::MW05 {
   struct PlayerSettings;
   struct PursuitScore;
   struct PVehicle;
+  struct RacePreparationInfo;
   struct RaceSettings;
   struct RaceTypeHighScores;
   struct RBTractor;
@@ -203,6 +208,9 @@ namespace OpenSpeed::MW05 {
       struct collisionreactions;
       struct gameplay;
       struct presetride;
+      struct pursuitescalation;
+      struct pursuitlevels;
+      struct pursuitsupport;
       struct pvehicle;
       struct rigidbodyspecs;
       struct simsurface;
