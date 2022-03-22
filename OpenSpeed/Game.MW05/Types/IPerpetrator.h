@@ -25,29 +25,29 @@ namespace OpenSpeed::MW05 {
   struct IPerpetrator : UTL::COM::IUnknown {
     virtual ~IPerpetrator();
 
-    virtual float                           GetHeat();
-    virtual void                            SetHeat(float heat);
-    virtual Attrib::Gen::pursuitescalation* GetPursuitEscalationAttrib();
-    virtual Attrib::Gen::pursuitlevels*     GetPursuitLevelAttrib();
-    virtual Attrib::Gen::pursuitsupport*    GetPursuitSupportAttrib();
-    virtual void                            AddCostToState(std::int32_t cost);
-    virtual std::int32_t                    GetCostToState();
-    virtual void                            SetCostToState(std::int32_t costToState);
-    virtual bool                            IsRacing();
-    virtual bool                            IsBeingPursued();
-    virtual bool                            IsHiddenFromCars();
-    virtual bool                            IsHiddenFromHelicopters();
-    virtual bool                            IsPartiallyHidden(float& howHidden);
-    virtual void                            AddToPendingRepPointsFromCopDestruction(std::int32_t amount);
-    virtual void                            AddToPendingRepPointsNormal(std::int32_t amount);
-    virtual std::int32_t                    GetPendingRepPointsNormal();
-    virtual std::int32_t                    GetPendingRepPointsFromCopDestruction();
-    virtual void                            ClearPendingRepPoints();
-    virtual void                            SetRacerInfo(GRacerInfo* info);
-    virtual GRacerInfo*                     GetRacerInfo();
-    virtual float                           GetLastTrafficHitTime();
-    virtual void                            Set911CallTime(float time);
-    virtual float                           Get911CallTime();
+    virtual float                           GetHeat()                                                    = 0;
+    virtual void                            SetHeat(float heat)                                          = 0;
+    virtual Attrib::Gen::pursuitescalation* GetPursuitEscalationAttrib()                                 = 0;
+    virtual Attrib::Gen::pursuitlevels*     GetPursuitLevelAttrib()                                      = 0;
+    virtual Attrib::Gen::pursuitsupport*    GetPursuitSupportAttrib()                                    = 0;
+    virtual void                            AddCostToState(std::int32_t cost)                            = 0;
+    virtual std::int32_t                    GetCostToState()                                             = 0;
+    virtual void                            SetCostToState(std::int32_t costToState)                     = 0;
+    virtual bool                            IsRacing()                                                   = 0;
+    virtual bool                            IsBeingPursued()                                             = 0;
+    virtual bool                            IsHiddenFromCars()                                           = 0;
+    virtual bool                            IsHiddenFromHelicopters()                                    = 0;
+    virtual bool                            IsPartiallyHidden(float& howHidden)                          = 0;
+    virtual void                            AddToPendingRepPointsFromCopDestruction(std::int32_t amount) = 0;
+    virtual void                            AddToPendingRepPointsNormal(std::int32_t amount)             = 0;
+    virtual std::int32_t                    GetPendingRepPointsNormal()                                  = 0;
+    virtual std::int32_t                    GetPendingRepPointsFromCopDestruction()                      = 0;
+    virtual void                            ClearPendingRepPoints()                                      = 0;
+    virtual void                            SetRacerInfo(GRacerInfo* info)                               = 0;
+    virtual GRacerInfo*                     GetRacerInfo()                                               = 0;
+    virtual float                           GetLastTrafficHitTime()                                      = 0;
+    virtual void                            Set911CallTime(float time)                                   = 0;
+    virtual float                           Get911CallTime()                                             = 0;
 
     static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4037E0)(); }
   };

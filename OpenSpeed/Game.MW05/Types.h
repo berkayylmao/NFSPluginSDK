@@ -32,11 +32,17 @@ namespace OpenSpeed::MW05 {
   struct ActionData;
   struct ActionRef;
   struct ActionQueue;
-  struct AIGoal;
+  struct AdaptivePIDControllerComplicated;
+  struct AdaptivePIDControllerSimple;
   struct AIAvoidable;
+  struct AIGoal;
+  struct AIPerpVehicle;
   struct AISplinePath;
   struct AITarget;
   struct AIVehicle;
+  struct AIVehicleEmpty;
+  struct AIVehicleHuman;
+  struct AIVehicleRacecar;
   struct Attachments;
   template <typename T>
   struct AttributeStructPtr;
@@ -148,6 +154,7 @@ namespace OpenSpeed::MW05 {
   struct ObjectStateBlockHeader;
   struct OptionsSettings;
   struct PhysicsObject;
+  struct PidError;
   struct PInput;
   struct PlayerSettings;
   struct PursuitScore;

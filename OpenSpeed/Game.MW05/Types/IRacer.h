@@ -24,9 +24,9 @@
 namespace OpenSpeed::MW05 {
   struct IRacer : UTL::COM::IUnknown {
     virtual ~IRacer();
-    virtual void PrepareForRace(const RacePreparationInfo& rpi);
-    virtual void StartRace(DriverStyle style);
-    virtual void QuitRace();
+    virtual void PrepareForRace(const RacePreparationInfo& rpi) = 0;
+    virtual void StartRace(DriverStyle style)                   = 0;
+    virtual void QuitRace()                                     = 0;
 
     static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x403850)(); }
   };

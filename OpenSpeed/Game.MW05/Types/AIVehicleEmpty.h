@@ -19,14 +19,13 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
+#include <OpenSpeed/Game.MW05/Types/AIVehicle.h>
 
 namespace OpenSpeed::MW05 {
-  struct ICause : UTL::COM::IUnknown {
-    virtual ~ICause();
-    virtual void OnCausedCollision(const Sim::Collision::Info& cInfo, ISimable* from, ISimable* to) = 0;
-    virtual void OnCausedExplosion(IExplosion* explosion, ISimable* to)                             = 0;
-
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x405020)(); }
+  struct AIVehicleEmpty : AIVehicle {
+    virtual ~AIVehicleEmpty();
+#pragma region overrides
+    virtual void Update(float deltaTime) override;
+#pragma endregion
   };
 }  // namespace OpenSpeed::MW05

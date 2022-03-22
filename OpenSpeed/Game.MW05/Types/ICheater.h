@@ -24,7 +24,7 @@
 namespace OpenSpeed::MW05 {
   struct ICheater : UTL::COM::IUnknown {
     virtual ~ICheater();
-    virtual float GetCatchupCheat();
+    virtual float GetCatchupCheat() = 0;
 
     static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x405240)(); }
   };
