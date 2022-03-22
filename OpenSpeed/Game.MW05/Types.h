@@ -40,9 +40,13 @@ namespace OpenSpeed::MW05 {
   struct AISplinePath;
   struct AITarget;
   struct AIVehicle;
+  struct AIVehicleCopCar;
   struct AIVehicleEmpty;
+  struct AIVehicleHelicopter;
   struct AIVehicleHuman;
+  struct AIVehiclePursuit;
   struct AIVehicleRacecar;
+  struct AIVehicleTraffic;
   struct Attachments;
   template <typename T>
   struct AttributeStructPtr;
@@ -102,12 +106,14 @@ namespace OpenSpeed::MW05 {
   struct GVault;
   struct HACTIVITY__;
   struct HCAUSE__;
+  struct HeliSheetCoordinate;
   struct HighScoresDatabase;
   struct HSIMABLE__;
   struct HSIMPROFILE__;
   struct HSIMSERVICE__;
   struct HSIMTASK__;
   struct HudElement;
+  struct IAIHelicopter;
   struct IArticulatedVehicle;
   struct IAttachable;
   struct IAttributeable;
@@ -137,13 +143,16 @@ namespace OpenSpeed::MW05 {
   struct IPlayer;
   struct IRacer;
   struct IPursuit;
+  struct IPursuitAI;
   struct IRBVehicle;
   struct IRenderable;
   struct IRigidBody;
   struct IRoadBlock;
   struct ISimable;
+  struct ISimpleChopper;
   struct ISteeringWheel;
   struct ISuspension;
+  struct ITrafficAI;
   struct ITransmission;
   struct IVehicle;
   struct IVehicleAI;
@@ -168,6 +177,7 @@ namespace OpenSpeed::MW05 {
   struct RigidBody;
   template <typename T>
   struct ScratchPtr;
+  struct SimpleChopper;
   struct SimSurface;
   struct TimeOfDay;
   struct Timer;
@@ -212,6 +222,7 @@ namespace OpenSpeed::MW05 {
     namespace Gen {
       struct aivehicle;
       struct camerainfo;
+      struct chopperspecs;
       struct collisionreactions;
       struct gameplay;
       struct presetride;
@@ -332,7 +343,7 @@ namespace OpenSpeed::MW05 {
     struct WorldCollisionInfo;
   }  // namespace WCollisionMgr
 
-  enum class CARPART_LOD : std::uint32_t { A, B, C, D, E, OFF = UINT_MAX };
+  enum class CARPART_LOD : std::uint32_t { A, B, C, D, E, OFF = UINT32_MAX };
   enum class CarRenderUsage : std::uint32_t {
     Player,
     RemotePlayer,
@@ -573,7 +584,7 @@ namespace OpenSpeed::MW05 {
     TAXI,
     MINIVAN,
     PICKUPA,
-    NONE = UINT_MAX,
+    NONE = UINT32_MAX,
   };
   enum class CarUsageType : std::uint32_t {
     Racing,
@@ -595,7 +606,7 @@ namespace OpenSpeed::MW05 {
     Level2,
     Level3,
     LevelUnique,
-    LevelUnspecified = UINT_MAX,
+    LevelUnspecified = UINT32_MAX,
   };
   enum class eControllerConfig : std::uint32_t { MinConfig, Config1, Config2, Config3, Config4, MaxConfig, Config5 };
   enum class eCustomTuningType : std::uint32_t { Setting1, Setting2, Setting3 };
@@ -708,7 +719,7 @@ namespace OpenSpeed::MW05 {
           static_cast<std::uint32_t>(Induction) | static_cast<std::uint32_t>(NOS)
   };
   enum class PhysicsMode : std::uint32_t { Inactive, Simulated, Emulated };
-  enum class Region : std::uint8_t { College, Coastal, City, None = UINT_MAX };
+  enum class Region : std::uint8_t { College, Coastal, City, None = UINT32_MAX };
   enum class SimableType : std::uint32_t {
     Invalid,
     Vehicle,
@@ -719,6 +730,13 @@ namespace OpenSpeed::MW05 {
     Newton,
     Sentry,
     Fragment
+  };
+  enum class SirenState : std::uint32_t {
+    Wail,
+    Yelp,
+    Scream,
+    Die,
+    Off = UINT32_MAX,
   };
   enum class SpeedUnitType : std::uint8_t { MPH, KPH, MPS };
   // GRace

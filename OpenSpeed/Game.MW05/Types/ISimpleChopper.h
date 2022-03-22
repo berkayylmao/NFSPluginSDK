@@ -18,36 +18,18 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Core/EASTL/EASTL/list.h>
-
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/Sim.h>
-#include <OpenSpeed/Game.MW05/Types/UCrc32.h>
+#include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
-  struct Behavior : Sim::Object {
-    struct Container {
-      struct Elements : eastl::list<Behavior*> {};
+  struct ISimpleChopper : UTL::COM::IUnknown {
+    virtual ~ISimpleChopper();
+    virtual void SetDesiredVelocity(const UMath::Vector3& velocity)   = 0;
+    virtual void GetDesiredVelocity(UMath::Vector3& out)              = 0;
+    virtual void MaxDeceleration(bool limit)                          = 0;
+    virtual void SetDesiredFacingVector(const UMath::Vector3& vector) = 0;
+    virtual void GetDesiredFacingVector(UMath::Vector3& out)          = 0;
 
-      Elements _mElements;
-    };
-
-    bool           mPaused;
-    PhysicsObject* mOwner;
-    ISimable*      mIOwner;
-    UCrc32         mMechanic;
-    UCrc32         mSignature;
-    std::int32_t   mPriority;
-    HSIMPROFILE__* mProfile;
-
-    virtual ~Behavior();
-    virtual void         Reset() = 0;
-    virtual std::int32_t GetPriority();
-    virtual void         OnOwnerAttached(IAttachable* pOther);
-    virtual void         OnOwnerDetached(IAttachable* pOther);
-    virtual void         OnTaskSimulate(float deltaTime);
-    virtual void         OnBehaviorChange(const UCrc32& mechanic);
-    virtual void         OnPause();
-    virtual void         OnUnPause();
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x404050)(); }
   };
 }  // namespace OpenSpeed::MW05
