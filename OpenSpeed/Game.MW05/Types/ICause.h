@@ -23,6 +23,8 @@
 
 namespace OpenSpeed::MW05 {
   struct ICause : UTL::COM::IUnknown {
+    std::uint32_t _mHandle;  // from UTL::Instanceable<HCAUSE__ *, ICause, n>
+
     virtual ~ICause();
     virtual void OnCausedCollision(const Sim::Collision::Info& cInfo, ISimable* from, ISimable* to) = 0;
     virtual void OnCausedExplosion(IExplosion* explosion, ISimable* to)                             = 0;
