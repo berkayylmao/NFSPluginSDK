@@ -89,4 +89,8 @@ namespace OpenSpeed::MW05 {
 
     static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x403700)(); }
   };
+
+#if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
+  DEFINE_ENUM_FLAG_OPERATORS(IVehicleAI::DriveFlags)
+#endif
 }  // namespace OpenSpeed::MW05
