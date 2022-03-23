@@ -145,11 +145,22 @@ namespace OpenSpeed::MW05 {
     virtual void                          OnBehaviorChange(const UCrc32& mechanic) override;
 #pragma endregion
 
+    inline void ClearGoal() {
+      if (mCurrentGoal) delete mCurrentGoal;
+      mCurrentGoal = nullptr;
+      mGoalName    = NULL;
+    }
+    inline void SetGoal(UCrc32 goal) {
+      this->ClearGoal();
+      reinterpret_cast<void(__thiscall*)(AIVehicle*, UCrc32)>(0x422480)(this, goal);
+    }
+
     inline AIGoal*        GetGoal() { return mCurrentGoal; }
-    inline void           UpdateSpawnTimer(float spawnTime) { mLastSpawnTime = spawnTime; }
     inline ITransmission* GetTransmission() { return mITransmission; }
     inline ISuspension*   GetSuspension() { return mISuspension; }
     inline IEngine*       GetEngine() { return mIEngine; }
     inline IInput*        GetInput() { return mIInput; }
+
+    inline void UpdateSpawnTimer(float spawnTime) { mLastSpawnTime = spawnTime; }
   };
 }  // namespace OpenSpeed::MW05
