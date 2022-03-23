@@ -18,6 +18,7 @@
 // clang-format on
 
 #pragma once
+#include <cmath>  // sqrt
 
 namespace OpenSpeed::MW05::UMath {
   struct Vector2;
@@ -90,6 +91,11 @@ namespace OpenSpeed::MW05::UMath {
     Vector2() : x(0.0f), y(0.0f) {}
     ~Vector2() = default;
     Vector2(float x, float y) : x(x), y(y) {}
+
+    Vector2 Normalize() {
+      float t = std::sqrt(x * x + y * y);
+      return Vector2(x / t, y / t);
+    }
   };
   struct Vector3 {
     float y, z, x;
@@ -163,6 +169,11 @@ namespace OpenSpeed::MW05::UMath {
     Vector3() : x(0.0f), y(0.0f), z(0.0f) {}
     ~Vector3() = default;
     Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
+
+    Vector3 Normalize() {
+      float t = std::sqrt(x * x + y * y + z * z);
+      return Vector3(x / t, y / t, z / t);
+    }
   };
   struct Vector4 {
     float y, z, x, w;
@@ -260,6 +271,11 @@ namespace OpenSpeed::MW05::UMath {
     Vector4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
     ~Vector4() = default;
     Vector4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
+
+    Vector4 Normalize() {
+      float t = std::sqrt(x * x + y * y + z * z + w * w);
+      return Vector4(x / t, y / t, z / t, w / t);
+    }
   };
   struct Matrix4 {
     Vector4 v0, v1, v2, v3;
