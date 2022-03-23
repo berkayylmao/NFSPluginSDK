@@ -28,7 +28,6 @@
 
 #include <OpenSpeed/Game.MW05/Types/Math.h>
 #include <OpenSpeed/Game.MW05/Types/UMath.h>
-#include <OpenSpeed/Game.MW05/Types/Attrib/Instance.h>  // AttributeStructPtr<T> specialization
 
 namespace OpenSpeed::MW05 {
 #pragma region Forward declarations
@@ -48,6 +47,7 @@ namespace OpenSpeed::MW05 {
     struct ExportNode;
     struct ExportPolicyPair;
     struct HashMap;
+    struct Instance;
     struct Node;
     struct PointerNode;
     struct Private;
