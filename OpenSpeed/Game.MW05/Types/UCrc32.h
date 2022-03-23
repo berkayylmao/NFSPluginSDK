@@ -26,5 +26,8 @@ namespace OpenSpeed::MW05 {
 
     UCrc32() = default;
     UCrc32(std::uint32_t crc) : mCRC(crc) {}
+
+    operator std::uint32_t() const noexcept { return reinterpret_cast<std::uint32_t>(mCRC); }
+    operator const std::uint32_t() const noexcept { return reinterpret_cast<const std::uint32_t>(mCRC); }
   };
 }  // namespace OpenSpeed::MW05
