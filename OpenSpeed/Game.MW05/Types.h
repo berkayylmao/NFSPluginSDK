@@ -34,6 +34,7 @@ namespace OpenSpeed::MW05 {
   struct ActionQueue;
   struct AdaptivePIDControllerComplicated;
   struct AdaptivePIDControllerSimple;
+  struct AIAction;
   struct AIAvoidable;
   struct AIGoal;
   struct AIPerpVehicle;
