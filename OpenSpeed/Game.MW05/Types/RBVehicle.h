@@ -19,7 +19,6 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/_ptr.h>
 #include <OpenSpeed/Game.MW05/Types/IRBVehicle.h>
 #include <OpenSpeed/Game.MW05/Types/RigidBody.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/Gen/collisionreactions.h>

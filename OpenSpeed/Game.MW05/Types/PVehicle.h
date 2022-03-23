@@ -18,8 +18,6 @@
 // clang-format on
 
 #pragma once
-#include <type_traits>  // enable_if_t, is_base_of_v
-
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/bList.h>
 #include <OpenSpeed/Game.MW05/Types/IAttributeable.h>

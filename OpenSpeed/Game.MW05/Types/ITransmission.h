@@ -23,32 +23,21 @@
 
 namespace OpenSpeed::MW05 {
   struct ITransmission : UTL::COM::IUnknown {
-    enum class GearID {
-      Reverse = 0,
-      Neutral = 1,
-      First   = 2,
-      Second  = 3,
-      Third   = 4,
-      Fourth  = 5,
-      Fifth   = 6,
-      Sixth   = 7,
-      Seventh = 8,
-      Eighth  = 9
+    enum class GearID : std::uint32_t { Reverse, Neutral, First, Second, Third, Fourth, Fifth, Sixth, Seventh, Eighth };
+    enum class ShiftPotential : std::uint32_t {
+      None,
+      Down,
+      Up,
+      Good,
+      Perfect,
+      Miss,
     };
-    enum class ShiftPotential {
-      None    = 0,
-      Down    = 1,
-      Up      = 2,
-      Good    = 3,
-      Perfect = 4,
-      Miss    = 5,
-    };
-    enum class ShiftStatus {
-      None    = 0,
-      Normal  = 1,
-      Good    = 2,
-      Perfect = 3,
-      Missed  = 4,
+    enum class ShiftStatus : std::uint32_t {
+      None,
+      Normal,
+      Good,
+      Perfect,
+      Missed,
     };
 
     virtual ~ITransmission();

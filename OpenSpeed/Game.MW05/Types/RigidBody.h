@@ -19,7 +19,7 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/_ptr.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib/Gen/rigidbodyspecs.h>
 #include <OpenSpeed/Game.MW05/Types/Behavior.h>
 #include <OpenSpeed/Game.MW05/Types/bList.h>
 #include <OpenSpeed/Game.MW05/Types/CollisionGeometry.h>

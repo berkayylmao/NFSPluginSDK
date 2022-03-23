@@ -18,185 +18,20 @@
 // clang-format on
 
 #pragma once
-#include <algorithm>  // copy
-#include <cstdint>    // integer types
-#include <iterator>   // begin, end
+#include <algorithm>    // copy
+#include <cstdint>      // integer types
+#include <iterator>     // begin, end
+#include <type_traits>  // enable_if_t, is_base_of_v
 #if defined(_WIN32)
 #include <winnt.h>  // DEFINE_ENUM_FLAG_OPERATORS
 #endif
 
 #include <OpenSpeed/Game.MW05/Types/Math.h>
 #include <OpenSpeed/Game.MW05/Types/UMath.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib/Instance.h>  // AttributeStructPtr<T> specialization
 
 namespace OpenSpeed::MW05 {
-  struct ActionData;
-  struct ActionRef;
-  struct ActionQueue;
-  struct AdaptivePIDControllerComplicated;
-  struct AdaptivePIDControllerSimple;
-  struct AIAction;
-  struct AIAvoidable;
-  struct AIGoal;
-  struct AIPerpVehicle;
-  struct AISplinePath;
-  struct AITarget;
-  struct AIVehicle;
-  struct AIVehicleCopCar;
-  struct AIVehicleEmpty;
-  struct AIVehicleHelicopter;
-  struct AIVehicleHuman;
-  struct AIVehiclePursuit;
-  struct AIVehicleRacecar;
-  struct AIVehicleTraffic;
-  struct Attachments;
-  template <typename T>
-  struct AttributeStructPtr;
-  struct AttribVaultPackImage;
-  struct AudioSettings;
-  struct Behavior;
-  template <typename T>
-  struct BehaviorSpecsPtr;
-  struct bFile;
-  struct bList;
-  template <typename T>
-  struct bPList;
-  struct bPNode;
-  template <typename T>
-  struct bTList;
-  struct bNode;
-  template <typename T>
-  struct bTNode;
-  struct CareerPursuitScores;
-  struct CareerSettings;
-  struct CarPart;
-  struct cFinishedRaceStats;
-  struct cFrontEndDatabase;
-  struct Context;
-  struct CostToStateScores;
-  struct EmitterGroup;
-  struct eModel;
-  struct EventSequencer;
-  struct FECareerRecord;
-  struct FECarRecord;
-  struct FECustomizationRecord;
-  struct FEImpoundData;
-  struct FEInfractionsData;
-  struct FEKeyboardSettings;
-  struct FEngHud;
-  struct FEObject;
-  struct FEPlayerCarDB;
-  struct FinishedRaceStatsEntry;
-  struct FloatSpring;
-  struct GameplaySettings;
-  struct GCharacter;
-  struct GenericMessage;
-  struct GEventTimer;
-  struct GIcon;
-  struct GManager;
-  struct GMilestone;
-  struct GRaceBin;
-  struct GRaceIndexData;
-  struct GRaceParameters;
-  struct GRacerInfo;
-  template <typename T>
-  struct Grid;
-  struct GRuntimeInstance;
-  struct GSpeedTrap;
-  struct GTimer;
-  struct GTrigger;
-  struct GVault;
-  struct HACTIVITY__;
-  struct HCAUSE__;
-  struct HeliSheetCoordinate;
-  struct HighScoresDatabase;
-  struct HSIMABLE__;
-  struct HSIMPROFILE__;
-  struct HSIMSERVICE__;
-  struct HSIMTASK__;
-  struct HudElement;
-  struct IAIHelicopter;
-  struct IArticulatedVehicle;
-  struct IAttachable;
-  struct IAttributeable;
-  struct IAudible;
-  struct IBody;
-  struct ICause;
-  struct ICheater;
-  struct ICollisionBody;
-  struct IDamageable;
-  struct IDamagePhysics;
-  struct IDynamicsEntity;
-  struct IEngine;
-  struct IExplodeable;
-  struct IExplosion;
-  struct IFeedback;
-  struct IGarbageCollector;
-  struct IGenericMessage;
-  struct IHandle;
-  struct IHud;
-  struct IInput;
-  struct IInputPlayer;
-  struct IModel;
-  struct InputControls;
-  struct InputMapping;
-  struct InputPlayer;
-  struct IPerpetrator;
-  struct IPlayer;
-  struct IRacer;
-  struct IPursuit;
-  struct IPursuitAI;
-  struct IRBVehicle;
-  struct IRenderable;
-  struct IRigidBody;
-  struct IRoadBlock;
-  struct ISimable;
-  struct ISimpleChopper;
-  struct ISteeringWheel;
-  struct ISuspension;
-  struct ITrafficAI;
-  struct ITransmission;
-  struct IVehicle;
-  struct IVehicleAI;
-  struct IVehicleCache;
-  struct JukeboxEntry;
-  struct LocalPlayer;
-  struct MilestoneTypeInfo;
-  struct ObjectStateBlockHeader;
-  struct OptionsSettings;
-  struct PhysicsObject;
-  struct PidError;
-  struct PInput;
-  struct PlayerSettings;
-  struct PursuitScore;
-  struct PVehicle;
-  struct RacePreparationInfo;
-  struct RaceSettings;
-  struct RaceTypeHighScores;
-  struct RBTractor;
-  struct RBVehicle;
-  struct RideInfo;
-  struct RigidBody;
-  template <typename T>
-  struct ScratchPtr;
-  struct SimpleChopper;
-  struct SimSurface;
-  struct TimeOfDay;
-  struct Timer;
-  struct TopEvadedPursuitDetail;
-  struct TrackHighScore;
-  template <typename T, std::size_t N>
-  struct UCircularQueue;
-  struct UCrc32;
-  struct UserProfile;
-  struct VehicleBehavior;
-  struct VehicleParams;
-  struct VideoSettings;
-  struct WCollider;
-  struct WorldModel;
-  struct WRoadNav;
-  struct WTrigger;
-  struct WWorldPos;
-
+#pragma region Forward declarations
   namespace Attrib {
     using StringKey = std::uint32_t;
 
@@ -213,7 +48,6 @@ namespace OpenSpeed::MW05 {
     struct ExportNode;
     struct ExportPolicyPair;
     struct HashMap;
-    struct Instance;
     struct Node;
     struct PointerNode;
     struct Private;
@@ -343,6 +177,172 @@ namespace OpenSpeed::MW05 {
   namespace WCollisionMgr {
     struct WorldCollisionInfo;
   }  // namespace WCollisionMgr
+
+  struct ActionData;
+  struct ActionRef;
+  struct ActionQueue;
+  struct AdaptivePIDControllerComplicated;
+  struct AdaptivePIDControllerSimple;
+  struct AIAction;
+  struct AIAvoidable;
+  struct AIGoal;
+  struct AIPerpVehicle;
+  struct AISplinePath;
+  struct AITarget;
+  struct AIVehicle;
+  struct AIVehicleCopCar;
+  struct AIVehicleEmpty;
+  struct AIVehicleHelicopter;
+  struct AIVehicleHuman;
+  struct AIVehiclePursuit;
+  struct AIVehicleRacecar;
+  struct AIVehicleTraffic;
+  struct Attachments;
+  struct AttribVaultPackImage;
+  struct AudioSettings;
+  struct Behavior;
+  struct bFile;
+  struct bList;
+  template <typename T>
+  struct bPList;
+  struct bPNode;
+  template <typename T>
+  struct bTList;
+  struct bNode;
+  template <typename T>
+  struct bTNode;
+  struct CareerPursuitScores;
+  struct CareerSettings;
+  struct CarPart;
+  struct cFinishedRaceStats;
+  struct cFrontEndDatabase;
+  struct Context;
+  struct CostToStateScores;
+  struct EmitterGroup;
+  struct eModel;
+  struct EventSequencer;
+  struct FECareerRecord;
+  struct FECarRecord;
+  struct FECustomizationRecord;
+  struct FEImpoundData;
+  struct FEInfractionsData;
+  struct FEKeyboardSettings;
+  struct FEngHud;
+  struct FEObject;
+  struct FEPlayerCarDB;
+  struct FinishedRaceStatsEntry;
+  struct FloatSpring;
+  struct GameplaySettings;
+  struct GCharacter;
+  struct GenericMessage;
+  struct GEventTimer;
+  struct GIcon;
+  struct GManager;
+  struct GMilestone;
+  struct GRaceBin;
+  struct GRaceIndexData;
+  struct GRaceParameters;
+  struct GRacerInfo;
+  template <typename T>
+  struct Grid;
+  struct GRuntimeInstance;
+  struct GSpeedTrap;
+  struct GTimer;
+  struct GTrigger;
+  struct GVault;
+  struct HACTIVITY__;
+  struct HCAUSE__;
+  struct HeliSheetCoordinate;
+  struct HighScoresDatabase;
+  struct HSIMABLE__;
+  struct HSIMPROFILE__;
+  struct HSIMSERVICE__;
+  struct HSIMTASK__;
+  struct HudElement;
+  struct IAIHelicopter;
+  struct IArticulatedVehicle;
+  struct IAttachable;
+  struct IAttributeable;
+  struct IAudible;
+  struct IBody;
+  struct ICause;
+  struct ICheater;
+  struct ICollisionBody;
+  struct IDamageable;
+  struct IDamagePhysics;
+  struct IDynamicsEntity;
+  struct IEngine;
+  struct IExplodeable;
+  struct IExplosion;
+  struct IFeedback;
+  struct IGarbageCollector;
+  struct IGenericMessage;
+  struct IHandle;
+  struct IHud;
+  struct IInput;
+  struct IInputPlayer;
+  struct IModel;
+  struct InputControls;
+  struct InputMapping;
+  struct InputPlayer;
+  struct IPerpetrator;
+  struct IPlayer;
+  struct IRacer;
+  struct IPursuit;
+  struct IPursuitAI;
+  struct IRBVehicle;
+  struct IRenderable;
+  struct IRigidBody;
+  struct IRoadBlock;
+  struct ISimable;
+  struct ISimpleChopper;
+  struct ISteeringWheel;
+  struct ISuspension;
+  struct ITrafficAI;
+  struct ITransmission;
+  struct IVehicle;
+  struct IVehicleAI;
+  struct IVehicleCache;
+  struct JukeboxEntry;
+  struct LocalPlayer;
+  struct MilestoneTypeInfo;
+  struct ObjectStateBlockHeader;
+  struct OptionsSettings;
+  struct PhysicsObject;
+  struct PidError;
+  struct PInput;
+  struct PlayerSettings;
+  struct PursuitScore;
+  struct PVehicle;
+  struct RacePreparationInfo;
+  struct RaceSettings;
+  struct RaceTypeHighScores;
+  struct RBTractor;
+  struct RBVehicle;
+  struct RideInfo;
+  struct RigidBody;
+  struct SimpleChopper;
+  struct SimSurface;
+  struct TimeOfDay;
+  struct Timer;
+  struct TopEvadedPursuitDetail;
+  struct TrackHighScore;
+  template <typename T, std::size_t N>
+  struct UCircularQueue;
+  struct UCrc32;
+  struct UserProfile;
+  struct VehicleBehavior;
+  struct VehicleParams;
+  struct VideoSettings;
+  struct WCollider;
+  struct WorldModel;
+  struct WRoadNav;
+  struct WTrigger;
+  struct WWorldPos;
+
+#pragma endregion
+
+#pragma region Enums
 
   enum class CARPART_LOD : std::uint32_t { A, B, C, D, E, OFF = UINT32_MAX };
   enum class CarRenderUsage : std::uint32_t {
@@ -798,4 +798,32 @@ namespace OpenSpeed::MW05 {
   DEFINE_ENUM_FLAG_OPERATORS(JunkmanParts)
   DEFINE_ENUM_FLAG_OPERATORS(VehicleFX::LightID)
 #endif
+
+#pragma endregion
+
+#pragma Default types
+
+  template <typename T, typename = std::enable_if_t<std::is_base_of_v<Attrib::Instance, T>>>
+  class AttributeStructPtr : T {
+    Attrib::Instance* _getAsAttribInstance() { return reinterpret_cast<Attrib::Instance*>(this); }
+
+    template <typename T>
+    friend struct BehaviorSpecsPtr;
+  };
+  template <typename T>
+  struct BehaviorSpecsPtr : AttributeStructPtr<T> {
+    T& operator*() { return *AttributeStructPtr<T>::_getAsAttribInstance(); }
+    T* operator->() { return AttributeStructPtr<T>::_getAsAttribInstance(); }
+  };
+
+  template <typename T>
+  struct ScratchPtr {
+    T** mRef;
+
+    T& operator*() { return **mRef; }
+    T* operator->() { return *mRef; }
+    T* operator&() { return *mRef; }
+  };
+
+#pragma endregion
 }  // namespace OpenSpeed::MW05
