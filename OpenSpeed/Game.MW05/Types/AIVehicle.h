@@ -146,13 +146,12 @@ namespace OpenSpeed::MW05 {
 #pragma endregion
 
     inline void ClearGoal() {
-      if (mCurrentGoal) delete mCurrentGoal;
       mCurrentGoal = nullptr;
       mGoalName    = NULL;
     }
-    inline void SetGoal(UCrc32 goal) {
+    inline void SetGoal(const UCrc32& goal) {
       this->ClearGoal();
-      reinterpret_cast<void(__thiscall*)(AIVehicle*, UCrc32)>(0x422480)(this, goal);
+      reinterpret_cast<void(__thiscall*)(AIVehicle*, const UCrc32&)>(0x422480)(this, goal);
     }
 
     inline AIGoal*        GetGoal() { return mCurrentGoal; }
