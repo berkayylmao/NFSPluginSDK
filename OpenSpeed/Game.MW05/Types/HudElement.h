@@ -28,5 +28,8 @@ namespace OpenSpeed::MW05 {
     std::uint64_t    Mask;
     std::uint64_t    CurrentHudFeatures;
     bool             mCurrentlySetVisible;
+
+    virtual ~HudElement();
+    virtual void Update(IPlayer* player);
   };
 }  // namespace OpenSpeed::MW05
