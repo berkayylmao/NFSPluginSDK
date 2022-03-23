@@ -19,6 +19,7 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/AIGoal.h>
 #include <OpenSpeed/Game.MW05/Types/AIAvoidable.h>
 #include <OpenSpeed/Game.MW05/Types/FloatSpring.h>
 #include <OpenSpeed/Game.MW05/Types/IVehicleAI.h>
@@ -146,6 +147,7 @@ namespace OpenSpeed::MW05 {
 #pragma endregion
 
     inline void ClearGoal() {
+      if (mCurrentGoal) mCurrentGoal->~AIGoal();
       mCurrentGoal = nullptr;
       mGoalName    = NULL;
     }
