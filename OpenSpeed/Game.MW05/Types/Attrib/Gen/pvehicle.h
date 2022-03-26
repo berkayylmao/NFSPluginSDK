@@ -22,5 +22,13 @@
 #include <OpenSpeed/Game.MW05/Types/Attrib/Instance.h>
 
 namespace OpenSpeed::MW05::Attrib::Gen {
-  struct pvehicle : Instance {};
+  struct pvehicle : Instance {
+    static pvehicle TryGetInstance(const char* name) {
+      pvehicle instance;
+      reinterpret_cast<pvehicle*(__thiscall*)(pvehicle&, StringKey, bool, bool)>(0x4E4EA0)(instance, StringToKey(name),
+                                                                                           false, false);
+
+      return instance;
+    }
+  };
 }  // namespace OpenSpeed::MW05::Attrib::Gen
