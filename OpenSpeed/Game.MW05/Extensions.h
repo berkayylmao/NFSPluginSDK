@@ -33,6 +33,19 @@ namespace OpenSpeed::MW05 {
 
   namespace PVehicleEx {
     namespace details {
+      //                  //
+      // Internal structs //
+      //                  //
+
+      struct ChangedPVehicleInfo {
+        // Whether the change attempt was successful
+        bool WasSuccessful;
+        // The new PVehicle pointer, if the change was successful
+        PVehicle* NewPVehiclePtr;
+
+        ChangedPVehicleInfo() : WasSuccessful(false), NewPVehiclePtr(nullptr) {}
+      };
+
       //                   //
       // Validate PVehicle //
       //                   //
@@ -71,18 +84,19 @@ namespace OpenSpeed::MW05 {
     }
 
     // Change target PVehicle model
-    static bool ChangePVehicleInto(PVehicle* target, Attrib::StringKey vehicleKey,
-                                   FECustomizationRecord* customizations,
-                                   eVehicleParamFlags     flags = eVehicleParamFlags::SnapToGround |
-                                                              eVehicleParamFlags::CalcPerformance,
-                                   bool killAfterChange = true) {
+    static details::ChangedPVehicleInfo ChangePVehicleInto(
+        PVehicle* target, Attrib::StringKey vehicleKey, FECustomizationRecord* customizations,
+        eVehicleParamFlags flags           = eVehicleParamFlags::SnapToGround | eVehicleParamFlags::CalcPerformance,
+        bool               killAfterChange = true) {
+      details::ChangedPVehicleInfo ret;
+
       // Validate ptr
       PVehicle* pvehicle = target | ValidatePVehicle;
-      if (!pvehicle) return false;
+      if (!pvehicle) return ret;
 
       // if GRaceStatus is not ready, the PVehicle isn't ready either
       auto* race_status = GRaceStatus::Get();
-      if (!race_status) return false;
+      if (!race_status) return ret;
 
       // Get PVehicle details
       HSIMABLE__*    handle   = pvehicle->GetOwnerHandle();
@@ -99,7 +113,7 @@ namespace OpenSpeed::MW05 {
       auto* new_pvehicle =
           PVehicle::Construct(VehicleParams(pvehicle->GetDriverClass(), vehicleKey, direction, position, customizations,
                                             flags, static_cast<IVehicleCache*>(race_status)));
-      if (!new_pvehicle) return false;
+      if (!new_pvehicle) return ret;
 
       // Pass on details
       new_pvehicle->Attach(player);
@@ -120,6 +134,10 @@ namespace OpenSpeed::MW05 {
       // Get rid of old PVehicle
       pvehicle->Detach(player);
       if (killAfterChange) pvehicle->Kill();
+
+      ret.WasSuccessful  = true;
+      ret.NewPVehiclePtr = new_pvehicle;
+      return ret;
     }
   }  // namespace PVehicleEx
 
