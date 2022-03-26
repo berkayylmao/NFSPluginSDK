@@ -22,6 +22,7 @@
 
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/GRaceStatus.h>  // GRaceStatus
+#include <OpenSpeed/Game.MW05/Types/InputPlayer.h>  // InputPlayer, PInput, IInput
 #include <OpenSpeed/Game.MW05/Types/IPlayer.h>      // IPlayer
 #include <OpenSpeed/Game.MW05/Types/PVehicle.h>     // PVehicle
 #include <OpenSpeed/Game.MW05/Types/RBTractor.h>    // RBTractor, RBVehicle, RigidBody, IRigidBody
@@ -216,4 +217,60 @@ namespace OpenSpeed::MW05 {
       return nullptr;
     }
   }  // namespace RigidBodyEx
+
+  //        //
+  // IInput //
+  //        //
+
+  namespace InputEx {
+    namespace details {
+      //                      //
+      // Verified PInput cast //
+      //                      //
+
+      struct PInputCast_t {
+        PInput* operator()(IInput* i) const {
+          if (!i) return nullptr;
+          // Verify cast
+          auto* pi = static_cast<PInput*>(i);
+          if (*reinterpret_cast<std::uintptr_t*>(pi) == static_cast<std::uintptr_t>(0x8AB598)) return pi;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static PInput* operator|(IInput* i, PInputCast_t ext) { return ext(i); }
+
+      //                           //
+      // Verified InputPlayer cast //
+      //                           //
+
+      struct InputPlayerCast_t {
+        InputPlayer* operator()(IInput* i) const {
+          if (!i) return nullptr;
+          // Verify cast
+          auto* ip = static_cast<InputPlayer*>(i);
+          if (*reinterpret_cast<std::uintptr_t*>(ip) == static_cast<std::uintptr_t>(0x8AC6BC)) return ip;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static InputPlayer* operator|(IInput* i, InputPlayerCast_t ext) { return ext(i); }
+    }  // namespace details
+
+    // Try-get IInput as PInput
+    // Usage: PInput* myptr = GetInputPtr() | InputEx::AsPInput;
+    static inline const details::PInputCast_t AsPInput;
+
+    // Try-get IInput as InputPlayer
+    // Usage: InputPlayer* myptr = GetInputPtr() | InputEx::AsInputPlayer;
+    static inline const details::InputPlayerCast_t AsInputPlayer;
+
+    // Get a pointer to the player IRigidBody instance
+    static IInput* GetPlayerInstance() {
+      auto* pvehicle = PVehicleEx::GetPlayerInstance();
+      if (pvehicle) return pvehicle->mInput;
+
+      return nullptr;
+    }
+  }  // namespace InputEx
 }  // namespace OpenSpeed::MW05
