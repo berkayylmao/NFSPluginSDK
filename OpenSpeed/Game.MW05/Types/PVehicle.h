@@ -130,64 +130,6 @@ namespace OpenSpeed::MW05 {
     virtual void*                        _unkFunc() override;
 #pragma endregion
 
-    bool IsValid() { return mObjType != SimableType::Invalid && mDirty == false && this->mRigidBody != nullptr; }
-
-    template <typename T>
-    std::enable_if_t<std::is_base_of_v<IVehicleAI, T>, T*> GetAIAs() {
-      if (!IsValid()) return nullptr;
-      return static_cast<T*>(mAI);
-    }
-    template <typename T>
-    std::enable_if_t<std::is_base_of_v<IArticulatedVehicle, T>, T*> GetArticulatedVehicleAs() {
-      if (!IsValid()) return nullptr;
-      return static_cast<T*>(mArticulation);
-    }
-    template <typename T>
-    std::enable_if_t<std::is_base_of_v<IAudible, T>, T*> GetAudibleAs() {
-      if (!IsValid()) return nullptr;
-      return static_cast<T*>(mAudible);
-    }
-    template <typename T>
-    std::enable_if_t<std::is_base_of_v<ICollisionBody, T>, T*> GetCollisionBodyAs() {
-      if (!IsValid()) return nullptr;
-      return static_cast<T*>(mCollisionBody);
-    }
-    template <typename T>
-    std::enable_if_t<std::is_base_of_v<IDamageable, T>, T*> GetDamageableAs() {
-      if (!IsValid()) return nullptr;
-      return static_cast<T*>(mDamage);
-    }
-    template <typename T>
-    std::enable_if_t<std::is_base_of_v<IEngine, T>, T*> GetEngineAs() {
-      if (!IsValid()) return nullptr;
-      return static_cast<T*>(mEngine);
-    }
-    template <typename T>
-    std::enable_if_t<std::is_base_of_v<IInput, T>, T*> GetInputAs() {
-      if (!IsValid()) return nullptr;
-      return static_cast<T*>(mInput);
-    }
-    template <typename T>
-    std::enable_if_t<std::is_base_of_v<IRenderable, T>, T*> GetRenderableAs() {
-      if (!IsValid()) return nullptr;
-      return static_cast<T*>(mRenderable);
-    }
-    template <typename T>
-    std::enable_if_t<std::is_base_of_v<IRigidBody, T>, T*> GetRigidBodyAs() {
-      if (!IsValid()) return nullptr;
-      return static_cast<T*>(GetRigidBody());
-    }
-    template <typename T>
-    std::enable_if_t<std::is_base_of_v<ISuspension, T>, T*> GetSuspensionAs() {
-      if (!IsValid()) return nullptr;
-      return static_cast<T*>(mSuspension);
-    }
-    template <typename T>
-    std::enable_if_t<std::is_base_of_v<ITransmission, T>, T*> GetTransmissionAs() {
-      if (!IsValid()) return nullptr;
-      return static_cast<T*>(mTranny);
-    }
-
     static inline _InstanceLayout* g_mInstances = reinterpret_cast<_InstanceLayout*>(0x9352B0);
 
     static PVehicle* Construct(const VehicleParams& vehicleParams) {
@@ -206,20 +148,7 @@ namespace OpenSpeed::MW05 {
 
     static PVehicle* GetInstance(std::int32_t idx) {
       auto* _instance = g_mInstances[idx].mInstance;
-      if (_instance && _instance->IsValid()) return _instance;
-
-      return nullptr;
-    }
-
-    static PVehicle* GetPlayerInstance() {
-      auto* _instance = g_mInstances;
-      while (_instance->mInstance) {
-        if (_instance->mInstance->IsValid() &&
-            (_instance->mInstance->IsPlayer() || _instance->mInstance->IsOwnedByPlayer()))
-          return _instance->mInstance;
-
-        _instance++;
-      }
+      if (_instance) return _instance;
 
       return nullptr;
     }
