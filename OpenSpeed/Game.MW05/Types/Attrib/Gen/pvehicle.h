@@ -23,12 +23,12 @@
 
 namespace OpenSpeed::MW05::Attrib::Gen {
   struct pvehicle : Instance {
-    static pvehicle TryGetInstance(const char* name) {
+    static pvehicle TryGetInstance(StringKey key) {
       pvehicle instance;
-      reinterpret_cast<pvehicle*(__thiscall*)(pvehicle&, StringKey, bool, bool)>(0x4E4EA0)(instance, StringToKey(name),
-                                                                                           false, false);
+      reinterpret_cast<pvehicle*(__thiscall*)(pvehicle&, StringKey, bool, bool)>(0x4E4EA0)(instance, key, false, false);
 
       return instance;
     }
+    static pvehicle TryGetInstance(const char* name) { return TryGetInstance(StringToKey(name)); }
   };
 }  // namespace OpenSpeed::MW05::Attrib::Gen
