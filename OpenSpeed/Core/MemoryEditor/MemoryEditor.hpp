@@ -212,6 +212,27 @@ namespace MemoryEditor {
       return _ret;
     }
 
+    bool ValidateMemoryIsInitialized(std::uintptr_t address) {
+      UnlockMemory(address, sizeof(std::uint32_t));
+      {
+        // VC++ Magic Numbers //
+
+        // Guard bytes after allocated heap memory
+        if (*reinterpret_cast<std::uint32_t*>(address) == 0xABABABAB) return false;
+        // Uninitialized stack memory
+        if (*reinterpret_cast<std::uint32_t*>(address) == 0xCCCCCCCC) return false;
+        // Uninitialized heap memory
+        if (*reinterpret_cast<std::uint32_t*>(address) == 0xCDCDCDCD) return false;
+        // Guard bytes before & after allocated heap memory
+        if (*reinterpret_cast<std::uint32_t*>(address) == 0xFDFDFDFD) return false;
+        // Freed memory
+        if (*reinterpret_cast<std::uint32_t*>(address) == 0xFEEEFEEE) return false;
+      }
+      LockMemory(address);
+
+      return true;
+    }
+
     static inline const Editor& Get() {
       static Editor memory;
       return memory;
