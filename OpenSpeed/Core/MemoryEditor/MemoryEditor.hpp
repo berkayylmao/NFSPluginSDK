@@ -112,6 +112,23 @@ namespace MemoryEditor {
       return to - from - sizeof(std::uint32_t) - 1;
     }
 
+    bool ValidateMemoryIsInitializedInternal(std::uintptr_t address) const {
+      // VC++ Magic Numbers //
+
+      // Guard bytes after allocated heap memory
+      if (*reinterpret_cast<std::uint32_t*>(address) == 0xABABABAB) return false;
+      // Uninitialized stack memory
+      if (*reinterpret_cast<std::uint32_t*>(address) == 0xCCCCCCCC) return false;
+      // Uninitialized heap memory
+      if (*reinterpret_cast<std::uint32_t*>(address) == 0xCDCDCDCD) return false;
+      // Guard bytes before & after allocated heap memory
+      if (*reinterpret_cast<std::uint32_t*>(address) == 0xFDFDFDFD) return false;
+      // Freed memory
+      if (*reinterpret_cast<std::uint32_t*>(address) == 0xFEEEFEEE) return false;
+
+      return true;
+    }
+
     explicit Editor() {
 #if defined(__linux__) || defined(_LINUX)
 #error Base address cannot be dynamically acquired without hacks on linux systems. Call 'Get(baseAddress)' instead.
@@ -184,11 +201,23 @@ namespace MemoryEditor {
       LockMemory(from);
     }
 
+    bool ValidateMemoryIsInitialized(std::uintptr_t address) const {
+      UnlockMemory(address, sizeof(std::uint32_t));
+      bool _ret = ValidateMemoryIsInitializedInternal(address);
+      LockMemory(address);
+
+      return _ret;
+    }
+    template <typename PtrType>
+    bool ValidateMemoryIsInitialized(PtrType* ptr) const {
+      return ValidateMemoryIsInitialized(reinterpret_cast<std::uintptr_t>(ptr));
+    }
+
     template <typename PointedType>
     PointedType* ReadPointer(std::uintptr_t base, std::initializer_list<std::uintptr_t> offsets) const {
       PointedType* _ret = nullptr;
       UnlockMemory(base, sizeof(std::uintptr_t));
-      if (!base || !*reinterpret_cast<std::uintptr_t*>(base)) {
+      if (!base || !ValidateMemoryIsInitializedInternal(base) || !*reinterpret_cast<std::uintptr_t*>(base)) {
         LockMemory(base);
         return _ret;
       }
@@ -201,7 +230,7 @@ namespace MemoryEditor {
         std::uintptr_t  _offBase = _last + off;
         std::uintptr_t* _p       = reinterpret_cast<std::uintptr_t*>(_offBase);
         UnlockMemory(_offBase, sizeof(std::uintptr_t));
-        if (!_p || !*_p) {
+        if (!_p || !ValidateMemoryIsInitializedInternal(_p) || !*_p) {
           LockMemory(_offBase);
           _ret = nullptr;
           break;
@@ -210,27 +239,6 @@ namespace MemoryEditor {
         _ret  = reinterpret_cast<PointedType*>(_last);
       }
       return _ret;
-    }
-
-    bool ValidateMemoryIsInitialized(std::uintptr_t address) {
-      UnlockMemory(address, sizeof(std::uint32_t));
-      {
-        // VC++ Magic Numbers //
-
-        // Guard bytes after allocated heap memory
-        if (*reinterpret_cast<std::uint32_t*>(address) == 0xABABABAB) return false;
-        // Uninitialized stack memory
-        if (*reinterpret_cast<std::uint32_t*>(address) == 0xCCCCCCCC) return false;
-        // Uninitialized heap memory
-        if (*reinterpret_cast<std::uint32_t*>(address) == 0xCDCDCDCD) return false;
-        // Guard bytes before & after allocated heap memory
-        if (*reinterpret_cast<std::uint32_t*>(address) == 0xFDFDFDFD) return false;
-        // Freed memory
-        if (*reinterpret_cast<std::uint32_t*>(address) == 0xFEEEFEEE) return false;
-      }
-      LockMemory(address);
-
-      return true;
     }
 
     static inline const Editor& Get() {
