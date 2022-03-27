@@ -497,6 +497,22 @@ namespace OpenSpeed::MW05 {
       static AIVehiclePursuit* operator|(IVehicleAI* i, AIVehiclePursuitCast_t ext) { return ext(i); }
 
       //                                //
+      // Verified AIVehicleRacecar cast //
+      //                                //
+
+      struct AIVehicleRacecarCast_t {
+        AIVehicleRacecar* operator()(IVehicleAI* iAI) const {
+          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          // Verify cast
+          auto* ai = static_cast<AIVehicleRacecar*>(iAI);
+          if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x892720) return ai;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static AIVehicleRacecar* operator|(IVehicleAI* i, AIVehicleRacecarCast_t ext) { return ext(i); }
+
+      //                                //
       // Verified AIVehicleTraffic cast //
       //                                //
 
@@ -540,6 +556,10 @@ namespace OpenSpeed::MW05 {
     // Try-get IVehicleAI as AIVehiclePursuit
     // Usage: AIVehiclePursuit* myptr = GetAIPtr() | AIVehicleEx::AsAIVehiclePursuit;
     static inline const details::AIVehiclePursuitCast_t AsAIVehiclePursuit;
+
+    // Try-get IVehicleAI as AIVehicleRaceCar
+    // Usage: AIVehicleRaceCar* myptr = GetAIPtr() | AIVehicleEx::AsAIVehicleRaceCar;
+    static inline const details::AIVehicleRacecarCast_t AsAIVehicleRacecar;
 
     // Try-get IVehicleAI as AIVehicleTraffic
     // Usage: AIVehicleTraffic* myptr = GetAIPtr() | AIVehicleEx::AsAIVehicleTraffic;
