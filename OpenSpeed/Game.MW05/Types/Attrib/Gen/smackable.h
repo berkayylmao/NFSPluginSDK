@@ -19,16 +19,8 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib/Instance.h>
 
-namespace OpenSpeed::MW05 {
-  struct IRenderable : UTL::COM::IUnknown {
-    virtual ~IRenderable();
-    virtual bool          InView()         = 0;
-    virtual bool          IsRenderable()   = 0;
-    virtual HMODEL__*     GetModelHandle() = 0;
-    virtual const IModel* GetModel() const = 0;
-    virtual IModel*       GetModel()       = 0;
-    virtual float         DistanceToView() = 0;
-  };
-}  // namespace OpenSpeed::MW05
+namespace OpenSpeed::MW05::Attrib::Gen {
+  struct smackable : Instance {};
+}  // namespace OpenSpeed::MW05::Attrib::Gen

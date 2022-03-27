@@ -22,13 +22,8 @@
 #include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
-  struct IRenderable : UTL::COM::IUnknown {
-    virtual ~IRenderable();
-    virtual bool          InView()         = 0;
-    virtual bool          IsRenderable()   = 0;
-    virtual HMODEL__*     GetModelHandle() = 0;
-    virtual const IModel* GetModel() const = 0;
-    virtual IModel*       GetModel()       = 0;
-    virtual float         DistanceToView() = 0;
+  struct IDisposable : UTL::COM::IUnknown {
+    virtual ~IDisposable();
+    virtual bool IsRequired() = 0;
   };
 }  // namespace OpenSpeed::MW05

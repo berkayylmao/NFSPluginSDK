@@ -30,7 +30,9 @@
 #include <OpenSpeed/Game.MW05/Types/InputPlayer.h>          // InputPlayer, PInput, IInput
 #include <OpenSpeed/Game.MW05/Types/IPlayer.h>              // IPlayer
 #include <OpenSpeed/Game.MW05/Types/PVehicle.h>             // PVehicle
-#include <OpenSpeed/Game.MW05/Types/RBTractor.h>            // RBTractor, RBVehicle, RigidBody, IRigidBody
+#include <OpenSpeed/Game.MW05/Types/RBSmackable.h>          // RBSmackable, RigidBody, IRigidBody
+#include <OpenSpeed/Game.MW05/Types/RBTractor.h>            // RBTractor, RBVehicle
+#include <OpenSpeed/Game.MW05/Types/SimpleRigidBody.h>      // SimpleRigidBody, ISimpleBody
 
 namespace OpenSpeed::MW05 {
   //          //
@@ -169,6 +171,22 @@ namespace OpenSpeed::MW05 {
       };
       static RigidBody* operator|(IRigidBody* iRB, RigidBodyCast_t ext) { return ext(iRB); }
 
+      //                           //
+      // Verified RBSmackable cast //
+      //                           //
+
+      struct RBSmackableCast_t {
+        RBSmackable* operator()(IRigidBody* iRB) const {
+          if (!iRB) return nullptr;
+          // Verify cast
+          auto* rb = static_cast<RBSmackable*>(iRB);
+          if (*reinterpret_cast<std::uintptr_t*>(rb) == static_cast<std::uintptr_t>(0x8AA6D0)) return rb;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static RBSmackable* operator|(IRigidBody* iRB, RBSmackableCast_t ext) { return ext(iRB); }
+
       //                         //
       // Verified RBVehicle cast //
       //                         //
@@ -200,19 +218,43 @@ namespace OpenSpeed::MW05 {
         }
       };
       static RBTractor* operator|(IRigidBody* iRB, RBTractorCast_t ext) { return ext(iRB); }
+
+      //                               //
+      // Verified SimpleRigidBody cast //
+      //                               //
+
+      struct SimpleRigidBodyCast_t {
+        SimpleRigidBody* operator()(IRigidBody* iRB) const {
+          if (!iRB) return nullptr;
+          // Verify cast
+          auto* rb = static_cast<SimpleRigidBody*>(iRB);
+          if (*reinterpret_cast<std::uintptr_t*>(rb) == static_cast<std::uintptr_t>(0x8AC5FC)) return rb;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static SimpleRigidBody* operator|(IRigidBody* iRB, SimpleRigidBodyCast_t ext) { return ext(iRB); }
     }  // namespace details
 
     // Try-get IRigidBody as RigidBody
     // Usage: RigidBody* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRigidBody;
     static inline const details::RigidBodyCast_t AsRigidBody;
 
+    // Try-get IRigidBody as RBSmackable
+    // Usage: RBSmackable* myptr = GetRigidBodyPtr() | RigidBodyEx::RBSmackable;
+    static inline const details::RBSmackableCast_t AsRBSmackable;
+
     // Try-get IRigidBody as RBVehicle
-    // Usage: RigidBody* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRBVehicle;
+    // Usage: RBVehicle* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRBVehicle;
     static inline const details::RBVehicleCast_t AsRBVehicle;
 
     // Try-get IRigidBody as RBTractor
-    // Usage: RigidBody* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRBTractor;
+    // Usage: RBTractor* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRBTractor;
     static inline const details::RBTractorCast_t AsRBTractor;
+
+    // Try-get IRigidBody as SimpleRigidBody
+    // Usage: SimpleRigidBody* myptr = GetRigidBodyPtr() | RigidBodyEx::AsSimpleRigidBody;
+    static inline const details::SimpleRigidBodyCast_t AsSimpleRigidBody;
 
     // Get a pointer to the player IRigidBody instance
     static IRigidBody* GetPlayerInstance() {
@@ -221,7 +263,48 @@ namespace OpenSpeed::MW05 {
 
       return nullptr;
     }
+
+    // Run a function on all RigidBody::Volatile instances
+    static void ForEachInstance(const std::function<void(RigidBody::Volatile* p)>& fn) {
+      auto* _instance = RigidBody::Volatile::g_mInstances;
+      while (auto* volatileData = *(_instance++)) fn(volatileData);
+    }
   }  // namespace RigidBodyEx
+
+  //             //
+  // ISimpleBody //
+  //             //
+
+  namespace SimpleBodyEx {
+    namespace details {
+
+      //                               //
+      // Verified SimpleRigidBody cast //
+      //                               //
+
+      struct SimpleRigidBodyCast_t {
+        SimpleRigidBody* operator()(ISimpleBody* iSRB) const {
+          if (!iSRB) return nullptr;
+          // Verify cast
+          auto* srb = static_cast<SimpleRigidBody*>(iSRB);
+          if (*reinterpret_cast<std::uintptr_t*>(srb) == static_cast<std::uintptr_t>(0x8AC5FC)) return srb;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static SimpleRigidBody* operator|(ISimpleBody* iSRB, SimpleRigidBodyCast_t ext) { return ext(iSRB); }
+    }  // namespace details
+
+    // Try-get ISimpleBody as SimpleRigidBody
+    // Usage: SimpleRigidBody* myptr = GetSimpleBodyPtr() | SimpleBodyEx::AsSimpleRigidBody;
+    static inline const details::SimpleRigidBodyCast_t AsSimpleRigidBody;
+
+    // Run a function on all SimpleRigidBody::Volatile instances
+    static void ForEachInstance(const std::function<void(SimpleRigidBody::Volatile* p)>& fn) {
+      auto* _instance = SimpleRigidBody::Volatile::g_mInstances;
+      while (auto* volatileData = *(_instance++)) fn(volatileData);
+    }
+  }  // namespace SimpleBodyEx
 
   //        //
   // IInput //
@@ -233,7 +316,7 @@ namespace OpenSpeed::MW05 {
       // Verified PInput cast //
       //                      //
 
-      struct PInputCast_t { 
+      struct PInputCast_t {
         PInput* operator()(IInput* iInput) const {
           if (!iInput) return nullptr;
           // Verify cast

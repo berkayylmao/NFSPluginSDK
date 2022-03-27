@@ -19,16 +19,14 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
+#include <OpenSpeed/Game.MW05/Types/RigidBody.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib/Gen/rigidbodyspecs.h>
 
 namespace OpenSpeed::MW05 {
-  struct IRenderable : UTL::COM::IUnknown {
-    virtual ~IRenderable();
-    virtual bool          InView()         = 0;
-    virtual bool          IsRenderable()   = 0;
-    virtual HMODEL__*     GetModelHandle() = 0;
-    virtual const IModel* GetModel() const = 0;
-    virtual IModel*       GetModel()       = 0;
-    virtual float         DistanceToView() = 0;
+  struct RBSmackable : RigidBody {
+    BehaviorSpecsPtr<Attrib::Gen::rigidbodyspecs> mSpecs;
+    std::uint32_t                                 mFrame;
+
+    virtual ~RBSmackable();
   };
 }  // namespace OpenSpeed::MW05

@@ -254,6 +254,7 @@ namespace OpenSpeed::MW05 {
   struct HCAUSE__;
   struct HeliSheetCoordinate;
   struct HighScoresDatabase;
+  struct HMODEL__;
   struct HSIMABLE__;
   struct HSIMPROFILE__;
   struct HSIMSERVICE__;
@@ -270,6 +271,7 @@ namespace OpenSpeed::MW05 {
   struct ICollisionBody;
   struct IDamageable;
   struct IDamagePhysics;
+  struct IDisposable;
   struct IDynamicsEntity;
   struct IEngine;
   struct IExplodeable;
@@ -295,6 +297,7 @@ namespace OpenSpeed::MW05 {
   struct IRigidBody;
   struct IRoadBlock;
   struct ISimable;
+  struct ISimpleBody;
   struct ISimpleChopper;
   struct ISteeringWheel;
   struct ISuspension;
@@ -322,7 +325,10 @@ namespace OpenSpeed::MW05 {
   struct RideInfo;
   struct RigidBody;
   struct SimpleChopper;
+  struct SimCollisionMap;
   struct SimSurface;
+  struct Smackable;
+  struct SmackableParams;
   struct TimeOfDay;
   struct Timer;
   struct TopEvadedPursuitDetail;

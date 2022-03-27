@@ -67,7 +67,7 @@ namespace OpenSpeed::MW05 {
     bool                     mStaging;
 
     virtual ~PVehicle();
-    virtual void OnDebugDraw() = 0;
+    virtual void OnDebugDraw();
 #pragma region overrides
     virtual bool                         OnTask(HSIMTASK__* p, float) override;
     virtual void                         Kill() override;

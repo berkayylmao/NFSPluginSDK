@@ -19,16 +19,25 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
+#include <OpenSpeed/Game.MW05/Types/Sim.h>
 
 namespace OpenSpeed::MW05 {
-  struct IRenderable : UTL::COM::IUnknown {
-    virtual ~IRenderable();
-    virtual bool          InView()         = 0;
-    virtual bool          IsRenderable()   = 0;
-    virtual HMODEL__*     GetModelHandle() = 0;
-    virtual const IModel* GetModel() const = 0;
-    virtual IModel*       GetModel()       = 0;
-    virtual float         DistanceToView() = 0;
+  struct SmackableParams : Sim::Param {
+    UMath::Matrix4 fMatrix;
+    bool           fVirginSpawn;
+    IModel*        fScenery;
+    bool           fSimplePhysics;
+
+    explicit SmackableParams(const UMath::Matrix4& matrix, bool isVirginSpawn = true, IModel* scenery = nullptr,
+                             bool isSimplePhysics = true) :
+        Sim::Param(0x0A6B47FAC),
+        fMatrix(matrix),
+        fVirginSpawn(isVirginSpawn),
+        fScenery(scenery),
+        fSimplePhysics(isSimplePhysics) {
+      AddTypeName(this);
+    }
+
+    static void AddTypeName(SmackableParams* to) { reinterpret_cast<void(__cdecl*)(SmackableParams*)>(0x620FF0)(to); }
   };
 }  // namespace OpenSpeed::MW05
