@@ -25,14 +25,13 @@
 namespace OpenSpeed::MW05 {
   struct IRBVehicle : UTL::COM::IUnknown {
     virtual ~IRBVehicle();
-    virtual void             SetCollisionMass(float mass)                                                       = 0;
-    virtual void             SetCollisionCOG(const UMath::Vector3& newCenterOfGravity)                          = 0;
-    virtual void             EnableObjectCollisions(bool isEnabled)                                             = 0;
-    virtual bool             AreObjectCollisionsEnabled()                                                       = 0;
-    virtual void             SetInvulnerability(eInvulnerability type, float durationInSeconds)                 = 0;
-    virtual eInvulnerability GetInvulnerability()                                                               = 0;
-    virtual void             SetReactions(DriverClass target, const Attrib::Gen::collisionreactions& reactions) = 0;
-    virtual const Attrib::Gen::collisionreactions& GetReactions(DriverClass target)                             = 0;
+    virtual void             SetCollisionMass(float mass)                                         = 0;
+    virtual void             SetCollisionCOG(const UMath::Vector3& newCenterOfGravity)            = 0;
+    virtual void             EnableObjectCollisions(bool isEnabled)                               = 0;
+    virtual void             SetInvulnerability(eInvulnerability type, float durationInSeconds)   = 0;
+    virtual eInvulnerability GetInvulnerability()                                                 = 0;
+    virtual void             SetPlayerReactions(const Attrib::Gen::collisionreactions& reactions) = 0;
+    virtual const Attrib::Gen::collisionreactions& GetPlayerReactions()                           = 0;
 
     static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4039E0)(); }
   };
