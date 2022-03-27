@@ -113,6 +113,21 @@ namespace MemoryEditor {
     }
 
     bool ValidateMemoryIsInitializedInternal(std::uintptr_t address) const {
+#if defined(_WIN32)
+      // Check if page is accessible
+      {
+        MEMORY_BASIC_INFORMATION mbi;
+        ZeroMemory(&mbi, sizeof(MEMORY_BASIC_INFORMATION));
+        if (!::VirtualQuery(reinterpret_cast<LPCVOID>(address), &mbi, sizeof(mbi))) return false;
+        // Ensure r/w/x
+        if (!(mbi.Protect & (PAGE_READONLY | PAGE_READWRITE | PAGE_WRITECOPY | PAGE_EXECUTE_READ |
+                             PAGE_EXECUTE_READWRITE | PAGE_EXECUTE_WRITECOPY)))
+          return false;
+        // Ensure no guard or no access
+        if (mbi.Protect & (PAGE_GUARD | PAGE_NOACCESS)) return false;
+      }
+#endif
+
       // VC++ Magic Numbers //
 
       // Guard bytes after allocated heap memory
@@ -210,6 +225,7 @@ namespace MemoryEditor {
     }
     template <typename PtrType>
     bool ValidateMemoryIsInitialized(PtrType* ptr) const {
+      if (!ptr) return false;
       return ValidateMemoryIsInitialized(reinterpret_cast<std::uintptr_t>(ptr));
     }
 
