@@ -42,8 +42,11 @@ namespace OpenSpeed::MW05 {
     }
     inline void TrackInternal(ISimable* who) { reinterpret_cast<void(__thiscall*)(AITarget*)>(0x4180F0)(this); }
 
-    explicit AITarget(ISimable* owner) {
-      reinterpret_cast<void(__thiscall*)(AITarget*, ISimable*)>(0x418000)(this, owner);
+    static AITarget Construct(ISimable* owner) {
+      AITarget ret;
+      reinterpret_cast<void(__thiscall*)(AITarget*, ISimable*)>(0x418000)(&ret, owner);
+
+      return ret;
     }
   };
 }  // namespace OpenSpeed::MW05
