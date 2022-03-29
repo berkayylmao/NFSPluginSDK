@@ -212,8 +212,7 @@ namespace OpenSpeed::MW05 {
 #pragma endregion
 
     static AIPursuit* Construct(const AIParams& aiParams) {
-      IPursuit* pSimable = reinterpret_cast<IPursuit*(__cdecl*)(AIParams, UCrc32)>(0x443270)(aiParams, aiParams.mName);
-      return static_cast<AIPursuit*>(pSimable);
+      return reinterpret_cast<AIPursuit*(__cdecl*)(AIParams, UCrc32)>(0x443270)(aiParams, aiParams.mName);
     }
   };
 }  // namespace OpenSpeed::MW05
