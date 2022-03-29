@@ -247,6 +247,9 @@ namespace OpenSpeed::MW05 {
   struct GRacerInfo;
   template <typename T>
   struct Grid;
+  struct LeaderSupport;
+  struct HeavySupport;
+  struct GroundSupportRequest;
   struct GRuntimeInstance;
   struct GSpeedTrap;
   struct GTimer;
@@ -318,6 +321,7 @@ namespace OpenSpeed::MW05 {
   struct PidError;
   struct PInput;
   struct PlayerSettings;
+  struct PursuitFormation;
   struct PursuitScore;
   struct PVehicle;
   struct RacePreparationInfo;
@@ -616,8 +620,9 @@ namespace OpenSpeed::MW05 {
     Level2,
     Level3,
     LevelUnique,
-    LevelUnspecified = UINT32_MAX,
+    LevelUnspecified = UINT32_MAX
   };
+  enum class eCrossState : std::uint32_t { Available, Spawned, Disabled };
   enum class eControllerConfig : std::uint32_t { MinConfig, Config1, Config2, Config3, Config4, MaxConfig, Config5 };
   enum class eCustomTuningType : std::uint32_t { Setting1, Setting2, Setting3 };
   enum class eFEGameModes : std::uint32_t {
@@ -676,6 +681,7 @@ namespace OpenSpeed::MW05 {
   enum class ePlayerList : std::uint32_t { All, Local, Remote };
   enum class ePlayerSettingsCameras : std::uint32_t { Bumper, Hood, Default, Close, Far, SuperFar, Drift, Pursuit };
   enum class ePostRaceOptions : std::uint32_t { NextRace, Quit, RestartRace, RestartEvent };
+  enum class ePursuitStatus : std::uint32_t { InitialChase, BackupRequested, Cooldown, Busted, Evaded };
   enum class eSplitTimeTypes : std::uint8_t { RaceLeader, LapRecord, BestLap, LastLap, Off };
   enum class eTrackDirection : std::uint8_t { Forward, Backward };
   enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
@@ -702,7 +708,7 @@ namespace OpenSpeed::MW05 {
   };
   enum class eWorldMapView : std::uint8_t { Navigation, Event, Race, Pursuit };
   enum class eWorldMapZoomLevels : std::uint8_t { All, Level1, Level2, Level4 };
-
+  enum class FormationType : std::uint32_t { None, Pit, BoxUn, RollingBlock, Follow, HeliPursuit, Herd, StaggerFollow };
   enum class GameFlowState : std::uint32_t {
     None,
     LoadingFrontEnd,
