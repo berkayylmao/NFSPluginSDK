@@ -18,6 +18,8 @@
 // clang-format on
 
 #pragma once
+#include <new>
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/bNode.h>
 
@@ -42,10 +44,16 @@ namespace OpenSpeed::MW05 {
     }
     inline void TrackInternal(ISimable* who) { reinterpret_cast<void(__thiscall*)(AITarget*)>(0x4180F0)(this); }
 
-    static AITarget Construct(ISimable* owner) {
-      AITarget ret;
-      reinterpret_cast<void(__thiscall*)(AITarget*, ISimable*)>(0x418000)(&ret, owner);
+    /// <summary>
+    /// Creates an AITarget object through game-code.
+    /// </summary>
+    /// <returns>A volatile pointer to a created <see cref="AITarget"/> object.</returns>
+    static AITarget* Construct(ISimable* owner) {
+      // A hacky way to create an object that we do not really have a control over
+      AITarget* ret = reinterpret_cast<AITarget*>(::operator new(sizeof(AITarget), std::nothrow));
+      if (!ret) return nullptr;
 
+      reinterpret_cast<void(__thiscall*)(AITarget*, ISimable*)>(0x418000)(ret, owner);
       return ret;
     }
   };

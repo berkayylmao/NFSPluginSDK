@@ -22,6 +22,6 @@
 #include <OpenSpeed/Game.MW05/Types/UTL/_Storage.h>
 
 namespace OpenSpeed::MW05::UTL {
-  template <typename T, std::uint32_t nT>
+  template <typename T, std::size_t nT>
   struct List : _Storage<T*, nT> {};
 }  // namespace OpenSpeed::MW05::UTL

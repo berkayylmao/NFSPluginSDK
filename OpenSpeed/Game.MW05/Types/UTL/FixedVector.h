@@ -22,7 +22,7 @@
 #include <OpenSpeed/Game.MW05/Types/UTL/Vector.h>
 
 namespace OpenSpeed::MW05::UTL {
-  template <typename T, std::uint32_t nT, std::uint32_t N>
+  template <typename T, std::size_t nT, std::size_t N>
   struct FixedVector : Vector<T, N> {
     std::int32_t mVectorSpace[nT];
   };

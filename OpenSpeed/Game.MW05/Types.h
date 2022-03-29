@@ -185,8 +185,10 @@ namespace OpenSpeed::MW05 {
   struct AdaptivePIDControllerSimple;
   struct AIAction;
   struct AIAvoidable;
+  struct AICopManager;
   struct AIGoal;
   struct AIPerpVehicle;
+  struct AISpawnManager;
   struct AISplinePath;
   struct AITarget;
   struct AIVehicle;
@@ -198,6 +200,7 @@ namespace OpenSpeed::MW05 {
   struct AIVehicleRacecar;
   struct AIVehicleTraffic;
   struct Attachments;
+  struct AttributeSet;
   struct AttribVaultPackImage;
   struct AudioSettings;
   struct Behavior;
@@ -269,6 +272,7 @@ namespace OpenSpeed::MW05 {
   struct ICause;
   struct ICheater;
   struct ICollisionBody;
+  struct ICopMgr;
   struct IDamageable;
   struct IDamagePhysics;
   struct IDisposable;

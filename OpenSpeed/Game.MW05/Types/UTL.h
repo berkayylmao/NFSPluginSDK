@@ -36,7 +36,7 @@ namespace OpenSpeed::MW05::UTL {
     };
   };
 
-  template <typename T, std::uint32_t nT, typename E, std::uint32_t nE>
+  template <typename T, std::size_t nT, typename E, std::size_t nE>
   struct ListableSet {
     _ListSet<T, nT, E, nE> mSet;
   };

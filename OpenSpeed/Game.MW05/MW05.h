@@ -36,6 +36,7 @@ namespace OpenSpeed {
     static MemoryFieldWrapper<bool>           IsInNIS{0x91606C, false};
     static MemoryFieldWrapper<std::uint16_t>  NOSFOVWidening{0x91112C, 0x666, 0x001, 0x3500};
     static MemoryFieldWrapper<bool>           StopUpdatingCamera{0x911020, false};
+    static MemoryFieldWrapper<AICopManager*>  TheOneCopManager{0x90D5F4, nullptr};
     static MemoryFieldWrapper<GameFlowState>  TheGameFlowManager{0x925E90, GameFlowState::InFrontEnd};
     static MemoryFieldWrapper<float>          Tweak_GameBreakerCollisionMass{0x901AEC, 2.0f, 0.0f, 100.0f};
     static MemoryFieldWrapper<float>          Tweak_GameSpeed{0x901B1C, 1.0f, 0.01f, 3.0f};
