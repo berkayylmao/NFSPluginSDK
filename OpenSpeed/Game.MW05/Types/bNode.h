@@ -27,20 +27,20 @@ namespace OpenSpeed::MW05 {
     bNode* Prev;
 
    public:
-    bNode* GetNext() { return Next; }
-    bNode* GetPrev() { return Prev; }
-    bNode* Remove() {
+    auto* GetNext() { return Next; }
+    auto* GetPrev() { return Prev; }
+    auto* Remove() {
       if (this->Prev) this->Prev->Next = this->Next;
       if (this->Next) this->Next->Prev = this->Prev;
       return this;
     }
-    bNode* AddAfter(bNode* node) {
+    auto* AddAfter(bNode* node) {
       node->Next = this->Next;
       node->Prev = this;
       this->Next = node;
       return this;
     }
-    bNode* AddBefore(bNode* node) {
+    auto* AddBefore(bNode* node) {
       node->Prev = this->Prev;
       node->Next = this;
       this->Prev = node;
@@ -61,20 +61,20 @@ namespace OpenSpeed::MW05 {
     bTNode<T>* Prev;
 
    public:
-    T* GetNext() { return Next; }
-    T* GetPrev() { return Prev; }
-    T* Remove() {
+    auto* GetNext() { return Next; }
+    auto* GetPrev() { return Prev; }
+    auto* Remove() {
       if (this->Prev) this->Prev->Next = this->Next;
       if (this->Next) this->Next->Prev = this->Prev;
       return this;
     }
-    T* AddAfter(T* node) {
+    auto* AddAfter(T* node) {
       node->Next = this->Next;
       node->Prev = this;
       this->Next = node;
       return this;
     }
-    T* AddBefore(T* node) {
+    auto* AddBefore(T* node) {
       node->Prev = this->Prev;
       node->Next = this;
       this->Prev = node;
