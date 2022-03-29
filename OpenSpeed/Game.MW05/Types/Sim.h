@@ -34,11 +34,13 @@ namespace OpenSpeed::MW05 {
     }  // namespace Collision
 
     struct IActivity : UTL::COM::IUnknown {
+      std::uint32_t _mHandle;  // from UTL::Instanceable<HACTIVITY__*, Sim::IActivity, n>
+
       virtual ~IActivity();
       virtual void         Release();
-      virtual bool         Attach(UTL::COM::IUnknown* object);
-      virtual bool         Detach(UTL::COM::IUnknown* object);
-      virtual Attachments* GetAttachments();
+      virtual bool         Attach(UTL::COM::IUnknown* object) = 0;
+      virtual bool         Detach(UTL::COM::IUnknown* object) = 0;
+      virtual Attachments* GetAttachments()                   = 0;
     };
     struct IEntity : UTL::COM::IUnknown {
       virtual ~IEntity();
@@ -54,11 +56,11 @@ namespace OpenSpeed::MW05 {
     };
     struct IServiceable : UTL::COM::IUnknown {
       virtual ~IServiceable();
-      virtual bool OnService(HSIMSERVICE__* p, Packet*) = 0;
+      virtual bool OnService(HSIMSERVICE__* hCon, Packet* pkt) = 0;
     };
     struct ITaskable : UTL::COM::IUnknown {
       virtual ~ITaskable();
-      virtual bool OnTask(HSIMTASK__* p, float);
+      virtual bool OnTask(HSIMTASK__* hTask, float deltaTime) = 0;
     };
 
     struct Object : UTL::COM::Object, IServiceable, ITaskable {
@@ -68,12 +70,23 @@ namespace OpenSpeed::MW05 {
 
       virtual ~Object();
       virtual bool OnService(HSIMSERVICE__* p, Packet*) override;
-      virtual bool OnTask(HSIMTASK__* p, float) override;
+      virtual bool OnTask(HSIMTASK__* hTask, float deltaTime) override;
     };
 
     struct Activity : Object, UTL::GarbageNode<Activity>, IActivity, IAttachable {
-      std::uint8_t _unk[0x4];
+      // std::uint8_t _unk[0x4];
       Attachments* mAttachments;
+
+      virtual ~Activity();
+#pragma region overrides
+      virtual void         Release();
+      virtual bool         Attach(UTL::COM::IUnknown* object) override;
+      virtual bool         Detach(UTL::COM::IUnknown* object) override;
+      virtual bool         IsAttached(UTL::COM::IUnknown* object) override;
+      virtual void         OnAttached(IAttachable* pOther) override;
+      virtual void         OnDetached(IAttachable* pOther) override;
+      virtual Attachments* GetAttachments() override;
+#pragma endregion
     };
 
     struct Entity : Object, UTL::GarbageNode<Entity>, IEntity, IAttachable {

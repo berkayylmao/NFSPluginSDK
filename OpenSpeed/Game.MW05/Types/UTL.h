@@ -27,12 +27,14 @@ namespace OpenSpeed::MW05::UTL {
   template <typename T>
   struct GarbageNode {
     struct Collector {
-      std::int8_t __unk[0x4];
+      _Storage<T, 40> _mDirty;
+      _Storage<T, 40> _mClean;
+      std::uint32_t   _mCount;
     };
 
     union {
-      bool      mDirty;
-      Collector mCollector;
+      bool       mDirty;
+      Collector* mCollector;
     };
   };
 

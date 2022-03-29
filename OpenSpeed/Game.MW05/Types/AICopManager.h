@@ -18,8 +18,6 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Core/EASTL/EASTL/list.h>
-
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/AISpawnManager.h>
 #include <OpenSpeed/Game.MW05/Types/ICopMgr.h>

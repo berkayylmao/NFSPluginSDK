@@ -141,7 +141,6 @@ namespace OpenSpeed::MW05 {
     }  // namespace Collision
 
     struct Activity;
-    struct Attachments;
     struct Entity;
     struct IActivity;
     struct IEntity;
