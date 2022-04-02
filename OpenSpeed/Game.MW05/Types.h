@@ -203,6 +203,7 @@ namespace OpenSpeed::MW05 {
   struct AttribVaultPackImage;
   struct AudioSettings;
   struct Behavior;
+  struct BehaviorParams;
   struct bFile;
   struct bList;
   template <typename T>
@@ -300,6 +301,7 @@ namespace OpenSpeed::MW05 {
   struct IPursuitAI;
   struct IRBVehicle;
   struct IRenderable;
+  struct IResetable;
   struct IRigidBody;
   struct IRoadBlock;
   struct ISimable;
