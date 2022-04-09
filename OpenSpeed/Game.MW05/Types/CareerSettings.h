@@ -38,6 +38,6 @@ namespace OpenSpeed::MW05 {
     inline std::uint8_t  GetCurrentBin() { return CurrentBin; }
     inline void          SetCurrentBin(std::uint8_t bin) { CurrentBin = bin; }
     inline std::uint32_t GetCurrentCar() { return CurrentCar; }
-    inline std::uint32_t SetCurrentCar(std::uint32_t handle) { CurrentCar = handle; }
+    inline void          SetCurrentCar(std::uint32_t handle) { CurrentCar = handle; }
   };
 }  // namespace OpenSpeed::MW05

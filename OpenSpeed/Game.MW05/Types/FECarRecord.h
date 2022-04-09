@@ -22,13 +22,13 @@
 
 namespace OpenSpeed::MW05 {
   struct FECarRecord {
-    std::uint32_t Handle;
-    std::uint32_t FEKey;
-    std::uint32_t VehicleKey;
-    std::uint32_t FilterBits;
-    std::uint8_t  Customization;
-    std::uint8_t  CareerHandle;
-    std::uint16_t Padd;
+    std::uint32_t mHandle;
+    std::uint32_t mFEKey;
+    std::uint32_t mVehicleKey;
+    std::uint32_t mFilterBits;
+    std::uint8_t  mCustomization;
+    std::uint8_t  mCareerHandle;
+    std::uint16_t mPadd;
 
     inline std::int32_t GetCost() { return reinterpret_cast<std::int32_t(__thiscall*)(FECarRecord*)>(0x581730)(this); }
     inline const char*  GetManufacturerName() {

@@ -29,16 +29,16 @@ namespace OpenSpeed::MW05 {
   struct UserProfile {
     char               m_aProfileName[32];
     bool               m_bNamed;
-    OptionsSettings    TheOptionsSettings;
-    CareerSettings     TheCareerSettings;
-    JukeboxEntry       Playlist[30];
-    FEPlayerCarDB      PlayersCarStable;
-    bool               CareerModeHasBeenCompletedAtLeastOnce;
-    HighScoresDatabase HighScores;
+    OptionsSettings    mTheOptionsSettings;
+    CareerSettings     mTheCareerSettings;
+    JukeboxEntry       mPlaylist[30];
+    FEPlayerCarDB      mPlayersCarStable;
+    bool               mCareerModeHasBeenCompletedAtLeastOnce;
+    HighScoresDatabase mHighScores;
 
-    inline OptionsSettings&    GetOptions() { return TheOptionsSettings; }
-    inline CareerSettings&     GetCareer() { return TheCareerSettings; }
-    inline HighScoresDatabase& GetHighScores() { return HighScores; }
+    inline OptionsSettings&    GetOptions() { return mTheOptionsSettings; }
+    inline CareerSettings&     GetCareer() { return mTheCareerSettings; }
+    inline HighScoresDatabase& GetHighScores() { return mHighScores; }
     inline void                SetProfileNamed(bool isNamed) { m_bNamed = isNamed; }
   };
 }  // namespace OpenSpeed::MW05

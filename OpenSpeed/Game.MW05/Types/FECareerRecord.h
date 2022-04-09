@@ -24,13 +24,13 @@
 
 namespace OpenSpeed::MW05 {
   struct FECareerRecord {
-    std::uint8_t      Handle;
-    FEImpoundData     TheImpoundData;
-    float             VehicleHeat;
-    std::uint32_t     Bounty;
-    std::uint16_t     NumEvadedPursuits;
-    std::uint16_t     NumBustedPursuits;
-    FEInfractionsData UnservedInfractions;
-    FEInfractionsData ServedInfractions;
+    std::uint8_t      mHandle;
+    FEImpoundData     mTheImpoundData;
+    float             mVehicleHeat;
+    std::uint32_t     mBounty;
+    std::uint16_t     mNumEvadedPursuits;
+    std::uint16_t     mNumBustedPursuits;
+    FEInfractionsData mUnservedInfractions;
+    FEInfractionsData mServedInfractions;
   };
 }  // namespace OpenSpeed::MW05

@@ -66,8 +66,9 @@ namespace OpenSpeed::MW05 {
     cFinishedRaceStats     FinishedRaceStats;
     ePostRaceOptions       PostRaceOptionChosen;
 
-    inline CareerSettings&   GetCareerSettings() { return CurrentUserProfiles[0]->GetCareer(); }
-    inline OptionsSettings&  GetOptionsSettings() { return CurrentUserProfiles[0]->GetOptions(); }
+    inline UserProfile*      GetUserProfile() { return CurrentUserProfiles[0]; }
+    inline CareerSettings&   GetCareerSettings() { return this->GetUserProfile()->GetCareer(); }
+    inline OptionsSettings&  GetOptionsSettings() { return this->GetUserProfile()->GetOptions(); }
     inline VideoSettings&    GetVideoSettings() { return this->GetOptionsSettings().GetVideoSettings(); }
     inline GameplaySettings& GetGameplaySettings() { return this->GetOptionsSettings().GetGameplaySettings(); }
     inline AudioSettings&    GetAudioSettings() { return this->GetOptionsSettings().GetAudioSettings(); }
