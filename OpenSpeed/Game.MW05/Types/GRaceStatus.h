@@ -73,7 +73,7 @@ namespace OpenSpeed::MW05 {
     GTrigger*                aSpeedTraps[16];
     bool                     mVehicleCacheLocked;
     bool                     bRaceRouteError;
-    std::int32_t             mTrafficDensity;
+    eTrafficDensity          mTrafficDensity;
     std::uint32_t            mTrafficPattern;
     bool                     mHasBeenWon;
 

@@ -56,7 +56,7 @@ namespace OpenSpeed::MW05 {
     RaceSettings           TheQuickRaceSettings[11];
     char*                  m_pCarStableBackup;
     char*                  m_pDBBackup;
-    std::uint32_t          FEGameMode;
+    eFEGameModes           FEGameMode;
     eLoadSaveGame          LoadSaveGame;
     FEKeyboardSettings     mFEKeyboardSettings;
     std::int32_t           iCurPauseSubOptionType;
