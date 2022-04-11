@@ -695,7 +695,7 @@ namespace OpenSpeed::MW05 {
   enum class ePursuitStatus : std::uint32_t { InitialChase, BackupRequested, Cooldown, Busted, Evaded };
   enum class eSplitTimeTypes : std::uint8_t { RaceLeader, LapRecord, BestLap, LastLap, Off };
   enum class eTireDamage : std::uint8_t { None, Punctured, Blown };
-  enum class eTireIdx : std::uint32_t { FrontLeft, FrontRight, RearRight, RearLeft };
+  enum class eTireIdx : std::uint32_t { FrontLeft, FrontRight, RearLeft, RearRight };
   enum class eTrackDirection : std::uint8_t { Forward, Backward };
   enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
   enum class eTransmissionType : std::uint8_t { Automatic, Manual, Sport, ManualClutch };
