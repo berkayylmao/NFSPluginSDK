@@ -19,8 +19,8 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/_ptr.h>
 #include <OpenSpeed/Game.MW05/Types/ISimpleChopper.h>
+#include <OpenSpeed/Game.MW05/Types/ITransmission.h>
 #include <OpenSpeed/Game.MW05/Types/VehicleBehavior.h>
 
 namespace OpenSpeed::MW05 {
@@ -34,9 +34,9 @@ namespace OpenSpeed::MW05 {
     BehaviorSpecsPtr<Attrib::Gen::chopperspecs> mChopperSpecs;
     BehaviorSpecsPtr<Attrib::Gen::pvehicle>     mVehicleSpecs;
     bool                                        mMaxDecelFlag;
-    IRigidBody*                                 mIrigidBody;
-    ICollisionBody*                             mIrbComplex;
-    IDamageable*                                mIdamage;
+    IRigidBody*                                 mIRigidBody;
+    ICollisionBody*                             mIRBComplex;
+    IDamageable*                                mIDamage;
 
     virtual ~SimpleChopper();
     virtual float GetPower();
@@ -44,7 +44,7 @@ namespace OpenSpeed::MW05 {
     virtual float GetMaxRPM();
     virtual float GetRedline();
     virtual float GetMinRPM();
-    virtual float GetMinGearRPM(std::int32_t gearidx);
+    virtual float GetMinGearRPM(ITransmission::GearID gearId);
     virtual void  MatchSpeed(float speed);
     virtual float GetNOSCapacity();
     virtual bool  IsNOSEngaged();

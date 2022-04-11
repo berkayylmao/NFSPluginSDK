@@ -19,20 +19,29 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
 
-namespace OpenSpeed::MW05 {
-  struct IDamageable : UTL::COM::IUnknown {
-    virtual ~IDamageable();
-    virtual void                  SetInShock(float)    = 0;
-    virtual void                  SetShockForce(float) = 0;
-    virtual float                 InShock()            = 0;
-    virtual void                  ResetDamage()        = 0;
-    virtual float                 GetHealth()          = 0;
-    virtual bool                  IsDestroyed()        = 0;
-    virtual void                  Destroy()            = 0;
-    virtual Sim::Collision::Info* GetZoneDamage()      = 0;
+namespace OpenSpeed::MW05::Attrib::Layouts {
+  struct damagespecslayout {
+    struct DamageScaleRecord {
+      float VisualScale;
+      float HitPointScale;
+    };
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x405000)(); }
+    DamageScaleRecord DZ_LFRONT;
+    DamageScaleRecord DZ_FRONT;
+    DamageScaleRecord DZ_BOTTOM;
+    DamageScaleRecord DZ_LEFT;
+    DamageScaleRecord DZ_RREAR;
+    DamageScaleRecord DZ_LREAR;
+    DamageScaleRecord DZ_RIGHT;
+    DamageScaleRecord DZ_REAR;
+    DamageScaleRecord DZ_TOP;
+    DamageScaleRecord DZ_RFRONT;
+    float             SHOCK_TIME;
+    float             HP_THRESHOLD;
+    float             SUPPRESS_DIST;
+    float             SHOCK_FORCE;
+    float             FORCE;
+    float             HIT_POINTS;
   };
-}  // namespace OpenSpeed::MW05
+}  // namespace OpenSpeed::MW05::Attrib::Layouts

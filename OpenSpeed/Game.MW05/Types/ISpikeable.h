@@ -22,17 +22,12 @@
 #include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
-  struct IDamageable : UTL::COM::IUnknown {
-    virtual ~IDamageable();
-    virtual void                  SetInShock(float)    = 0;
-    virtual void                  SetShockForce(float) = 0;
-    virtual float                 InShock()            = 0;
-    virtual void                  ResetDamage()        = 0;
-    virtual float                 GetHealth()          = 0;
-    virtual bool                  IsDestroyed()        = 0;
-    virtual void                  Destroy()            = 0;
-    virtual Sim::Collision::Info* GetZoneDamage()      = 0;
+  struct ISpikeable : UTL::COM::IUnknown {
+    virtual ~ISpikeable();
+    virtual eTireDamage  GetTireDamage(eTireIdx idx) = 0;
+    virtual std::int32_t GetNumBlowouts()            = 0;
+    virtual void         Puncture(eTireIdx idx)      = 0;
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x405000)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x68CC70)(); }
   };
 }  // namespace OpenSpeed::MW05

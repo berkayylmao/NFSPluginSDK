@@ -19,20 +19,20 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
+#include <OpenSpeed/Game.MW05/Types/DamageVehicle.h>
 
 namespace OpenSpeed::MW05 {
-  struct IDamageable : UTL::COM::IUnknown {
-    virtual ~IDamageable();
-    virtual void                  SetInShock(float)    = 0;
-    virtual void                  SetShockForce(float) = 0;
-    virtual float                 InShock()            = 0;
-    virtual void                  ResetDamage()        = 0;
-    virtual float                 GetHealth()          = 0;
-    virtual bool                  IsDestroyed()        = 0;
-    virtual void                  Destroy()            = 0;
-    virtual Sim::Collision::Info* GetZoneDamage()      = 0;
+  struct DamageCopCar : DamageVehicle {
+    float       mFlippedOver;
+    HSIMTASK__* mThinkTas;
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x405000)(); }
+    virtual ~DamageCopCar();
+
+#pragma region overrides
+    virtual bool OnTask(HSIMTASK__* hTask, float deltaTime) override;
+    virtual void OnImpact(const UMath::Vector3&, const UMath::Vector3&, float, float, const SimSurface&,
+                          ISimable*) override;
+    virtual void ResetDamage() override;
+#pragma endregion
   };
 }  // namespace OpenSpeed::MW05

@@ -19,20 +19,8 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib/Instance.h>
 
-namespace OpenSpeed::MW05 {
-  struct IDamageable : UTL::COM::IUnknown {
-    virtual ~IDamageable();
-    virtual void                  SetInShock(float)    = 0;
-    virtual void                  SetShockForce(float) = 0;
-    virtual float                 InShock()            = 0;
-    virtual void                  ResetDamage()        = 0;
-    virtual float                 GetHealth()          = 0;
-    virtual bool                  IsDestroyed()        = 0;
-    virtual void                  Destroy()            = 0;
-    virtual Sim::Collision::Info* GetZoneDamage()      = 0;
-
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x405000)(); }
-  };
-}  // namespace OpenSpeed::MW05
+namespace OpenSpeed::MW05::Attrib::Gen {
+  struct damagespecs : Instance {};
+}  // namespace OpenSpeed::MW05::Attrib::Gen

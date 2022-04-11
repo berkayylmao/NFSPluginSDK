@@ -31,6 +31,30 @@ namespace OpenSpeed::MW05 {
       struct IListener {
         virtual void OnCollision(const Info& cinfo);
       };
+      struct Info {
+        UMath::Vector3            position;
+        const Attrib::Collection* objAsurface;
+        UMath::Vector3            normal;
+        CollisionType             type : 3;
+        std::int32_t              objAImmobile : 1;
+        std::int32_t              objADetached : 1;
+        std::int32_t              objBImmobile : 1;
+        std::int32_t              objBDetached : 1;
+        std::int32_t              sliding : 1;
+        std::int32_t              unused : 24;
+        UMath::Vector3            closingVel;
+        float                     force;
+        UMath::Vector3            armA;
+        HSIMABLE__*               objA;
+        UMath::Vector3            armB;
+        HSIMABLE__*               objB;
+        UMath::Vector3            objAVel;
+        float                     impulseA;
+        UMath::Vector3            objBVel;
+        float                     impulseB;
+        UMath::Vector3            slidingVel;
+        const Attrib::Collection* objBsurface;
+      };
     }  // namespace Collision
 
     struct IActivity : UTL::COM::IUnknown {

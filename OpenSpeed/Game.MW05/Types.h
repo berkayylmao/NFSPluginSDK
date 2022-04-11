@@ -136,6 +136,8 @@ namespace OpenSpeed::MW05 {
 
   namespace Sim {
     namespace Collision {
+      enum class CollisionType : std::uint32_t { None, Object, World, Ground };
+
       struct Info;
       struct IListener;
     }  // namespace Collision
@@ -221,6 +223,11 @@ namespace OpenSpeed::MW05 {
   struct cFrontEndDatabase;
   struct Context;
   struct CostToStateScores;
+  struct DamageCopCar;
+  struct DamageDragster;
+  struct DamageHeli;
+  struct DamageRacer;
+  struct DamageVehicle;
   struct EmitterGroup;
   struct eModel;
   struct EventSequencer;
@@ -277,6 +284,7 @@ namespace OpenSpeed::MW05 {
   struct ICollisionBody;
   struct ICopMgr;
   struct IDamageable;
+  struct IDamageableVehicle;
   struct IDamagePhysics;
   struct IDisposable;
   struct IDynamicsEntity;
@@ -307,6 +315,7 @@ namespace OpenSpeed::MW05 {
   struct ISimable;
   struct ISimpleBody;
   struct ISimpleChopper;
+  struct ISpikeable;
   struct ISteeringWheel;
   struct ISuspension;
   struct ITrafficAI;
@@ -685,6 +694,8 @@ namespace OpenSpeed::MW05 {
   enum class ePostRaceOptions : std::uint32_t { NextRace, Quit, RestartRace, RestartEvent };
   enum class ePursuitStatus : std::uint32_t { InitialChase, BackupRequested, Cooldown, Busted, Evaded };
   enum class eSplitTimeTypes : std::uint8_t { RaceLeader, LapRecord, BestLap, LastLap, Off };
+  enum class eTireDamage : std::uint8_t { None, Punctured, Blown };
+  enum class eTireIdx : std::uint32_t { FrontLeft, FrontRight, RearRight, RearLeft };
   enum class eTrackDirection : std::uint8_t { Forward, Backward };
   enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
   enum class eTransmissionType : std::uint8_t { Automatic, Manual, Sport, ManualClutch };
@@ -778,6 +789,11 @@ namespace OpenSpeed::MW05 {
       Joint_Invert         = 1 << 13
     };
   }
+
+  namespace DamageZone {
+    enum class ID : std::uint32_t { Front, Rear, Left, Right, LeftFront, RightFront, LeftRear, RightRear, Top, Bottom };
+    struct Info;
+  }  // namespace DamageZone
 
   namespace VehicleFX {
     enum class LightID : std::uint32_t {

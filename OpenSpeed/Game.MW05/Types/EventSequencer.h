@@ -26,7 +26,7 @@ namespace OpenSpeed::MW05 {
     struct IEngine;
     struct IContext : UTL::COM::IUnknown {
       virtual ~IContext();
-      virtual bool GetDynamicData(void* System, void* pOutEventDynamicData) = 0;
+      virtual bool SetDynamicData(void* System, void* pOutEventDynamicData) = 0;
     };
   };
 }  // namespace OpenSpeed::MW05
