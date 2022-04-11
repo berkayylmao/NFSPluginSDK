@@ -19,9 +19,17 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib/RefSpec.h>
 
 namespace OpenSpeed::MW05::Attrib::Layouts {
   struct trafficpatternlayout {
+    struct Vehicles {
+      RefSpec       mVehicle;
+      float         mRate;
+      std::uint32_t mMaxInstances;
+      std::uint32_t mPercent;
+    };
+
     const char* CollectionName;
   };
 }  // namespace OpenSpeed::MW05::Attrib::Layouts
