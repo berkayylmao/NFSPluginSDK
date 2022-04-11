@@ -68,6 +68,7 @@ namespace OpenSpeed::MW05 {
       struct rigidbodyspecs;
       struct simsurface;
       struct timeofdaylighting;
+      struct trafficpattern;
     }  // namespace Gen
   }    // namespace Attrib
 
