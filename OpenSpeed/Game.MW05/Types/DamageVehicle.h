@@ -18,13 +18,15 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/EASTL/EASTL/slist.h>
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/Gen/damagespecs.h>
+#include <OpenSpeed/Game.MW05/Types/DamageZone.h>
 #include <OpenSpeed/Game.MW05/Types/EventSequencer.h>
 #include <OpenSpeed/Game.MW05/Types/IDamageable.h>
 #include <OpenSpeed/Game.MW05/Types/IDamageableVehicle.h>
 #include <OpenSpeed/Game.MW05/Types/VehicleBehavior.h>
-#include <OpenSpeed/Game.MW05/Types/Sim.h>
 
 namespace OpenSpeed::MW05 {
   struct DamageVehicle : VehicleBehavior,
@@ -40,9 +42,9 @@ namespace OpenSpeed::MW05 {
     ICollisionBody*                            mIRBComplex;
     IRigidBody*                                mRB;
     IRenderable*                               mRenderable;
-    Sim::Collision::Info                       mZoneDamage;
+    DamageZone::Info                           mZoneDamage;
     UMath::Vector3                             mLastImpactSpeed;
-    eastl::list<UCrc32>                        mBrokenParts;
+    eastl::slist<UCrc32>                       mBrokenParts;
     VehicleFX::LightID                         mLightDamage;
 
     virtual ~DamageVehicle();
