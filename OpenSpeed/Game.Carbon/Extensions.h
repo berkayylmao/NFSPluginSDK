@@ -23,22 +23,9 @@
 #include <OpenSpeed/Core/MemoryEditor/MemoryEditor.hpp>  // ValidateMemoryIsInitialized
 
 #include <OpenSpeed/Game.Carbon/Types.h>
-#include <OpenSpeed/Game.Carbon/Types/Attrib/Gen/pvehicle.h>
-//#include <OpenSpeed/Game.MW05/Types/AIVehicleCopCar.h>  // AIVehicleCopCar, AIVehiclePursuit, AIVehiclePid, AIVehicle
-//#include <OpenSpeed/Game.MW05/Types/AIVehicleEmpty.h>   // AIVehicleEmpty
-//#include <OpenSpeed/Game.MW05/Types/AIVehicleHelicopter.h>  // AIVehicleHelicopter
-//#include <OpenSpeed/Game.MW05/Types/AIVehicleHuman.h>       // AIVehicleHuman, AIVehicleRacecar
-//#include <OpenSpeed/Game.MW05/Types/AIVehicleTraffic.h>     // AIVehicleTraffic
-//#include <OpenSpeed/Game.MW05/Types/DamageCopCar.h>     // DamageCopCar, DamageVehicle, IDamageable,
-// IDamageableVehicle #include <OpenSpeed/Game.MW05/Types/DamageDragster.h>   // DamageDragster, DamageRacer, ISpikeable
-//#include <OpenSpeed/Game.MW05/Types/DamageHeli.h>       // DamageHeli
-//#include <OpenSpeed/Game.Carbon/Types/GRaceStatus.h>  // GRaceStatus
-//#include <OpenSpeed/Game.MW05/Types/InputPlayer.h>      // InputPlayer, PInput, IInput
-#include <OpenSpeed/Game.Carbon/Types/IPlayer.h>      // IPlayer
-#include <OpenSpeed/Game.Carbon/Types/PVehicle.h>     // PVehicle
-#include <OpenSpeed/Game.Carbon/Types/RBSmackable.h>  // RBSmackable, RigidBody, IRigidBody
-//#include <OpenSpeed/Game.MW05/Types/RBTractor.h>        // RBTractor, RBVehicle
-//#include <OpenSpeed/Game.MW05/Types/SimpleRigidBody.h>  // SimpleRigidBody, ISimpleBody
+#include <OpenSpeed/Game.Carbon/Types/IPlayer.h>     // IPlayer
+#include <OpenSpeed/Game.Carbon/Types/PVehicle.h>    // PVehicle
+#include <OpenSpeed/Game.Carbon/Types/IRigidBody.h>  // IRigidBody
 
 namespace OpenSpeed::Carbon {
   //          //
@@ -122,10 +109,6 @@ namespace OpenSpeed::Carbon {
 
       if (!instance.mCollection) return ret;
 
-      // if GRaceStatus is not ready, the PVehicle isn't ready either
-      // auto* race_status = GRaceStatus::Get();
-      // if (!race_status) return ret;
-
       // Get PVehicle details
       HSIMABLE__*    handle   = pvehicle->GetOwnerHandle();
       IPlayer*       player   = pvehicle->GetPlayer();
@@ -147,17 +130,6 @@ namespace OpenSpeed::Carbon {
       new_pvehicle->Attach(player);
       new_pvehicle->GetRigidBody()->SetLinearVelocity(linear_vel);
       new_pvehicle->GetRigidBody()->SetAngularVelocity(angular_vel);
-
-      // Change handles if in race (values will sync at the next checkpoint)
-      // if (race_status->mPlayMode == GRaceStatus::PlayMode::Racing) {
-      //  for (std::int32_t i = 0; i < race_status->mRacerCount; i++) {
-      //    auto& racer_handle = race_status->mRacerInfo[i].mhSimable;
-      //    if (racer_handle == handle) {
-      //      racer_handle = new_pvehicle->GetOwnerHandle();
-      //      break;
-      //    }
-      //  }
-      //}
 
       // Get rid of old PVehicle
       pvehicle->Detach(player);

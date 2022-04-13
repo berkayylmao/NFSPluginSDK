@@ -448,6 +448,7 @@ namespace OpenSpeed::Carbon {
     LevelUnique,
     LevelUnspecified = UINT32_MAX
   };
+  enum class ePlayerHudType : std::uint32_t { None, Standard, Drag, Split1, Split2, DragSplit1, DragSplit2 };
   enum class eVehicleParamFlags : std::uint32_t {
     Spooled         = 1 << 0,
     SnapToGround    = 1 << 1,
