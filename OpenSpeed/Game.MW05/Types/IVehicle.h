@@ -57,7 +57,7 @@ namespace OpenSpeed::MW05 {
     virtual void                         SetDriverClass(DriverClass newDriverClass)                       = 0;
     virtual DriverClass                  GetDriverClass()                                                 = 0;
     virtual bool                         IsLoading()                                                      = 0;
-    virtual float                        GetOffscreenTime()                                               = 0;
+    virtual float                        GetOffScreenTime()                                               = 0;
     virtual float                        GetOnScreenTime()                                                = 0;
     virtual bool                         SetVehicleOnGround(const UMath::Vector3&, const UMath::Vector3&) = 0;
     virtual void                         ForceStopOn(ForceStopType type)                                  = 0;

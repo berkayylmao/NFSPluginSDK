@@ -97,7 +97,7 @@ namespace OpenSpeed::MW05 {
     virtual void                         SetDriverClass(DriverClass newDriverClass) override;
     virtual DriverClass                  GetDriverClass() override;
     virtual bool                         IsLoading() override;
-    virtual float                        GetOffscreenTime() override;
+    virtual float                        GetOffScreenTime() override;
     virtual float                        GetOnScreenTime() override;
     virtual bool                         SetVehicleOnGround(const UMath::Vector3&, const UMath::Vector3&) override;
     virtual void                         ForceStopOn(ForceStopType type) override;
