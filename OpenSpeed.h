@@ -54,7 +54,7 @@ namespace OpenSpeed {
       case SpeedGame::MW05:
         return {0x8B0050, 0x0, 0x982BDC, 0x982D14};
       case SpeedGame::Carbon:
-        return {0x9E3648, 0x0, 0xAB0ABC, 0x0};
+        return {0x9E3648, 0x0, 0xAB0ABC, 0xB1F5CC};
     }
     return {};
   }
