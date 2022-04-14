@@ -30,4 +30,4 @@ namespace OpenSpeed::Carbon {
     operator std::uint32_t() const noexcept { return mCRC; }
     operator const std::uint32_t() const noexcept { return mCRC; }
   };
-}  // namespace OpenSpeed::MW05
+}  // namespace OpenSpeed::Carbon

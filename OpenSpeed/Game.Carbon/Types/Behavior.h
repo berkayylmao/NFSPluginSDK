@@ -50,4 +50,4 @@ namespace OpenSpeed::Carbon {
     virtual void         OnPause();
     virtual void         OnUnPause();
   };
-}  // namespace OpenSpeed::MW05
+}  // namespace OpenSpeed::Carbon

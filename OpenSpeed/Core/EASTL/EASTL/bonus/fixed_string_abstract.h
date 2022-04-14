@@ -418,9 +418,10 @@ namespace eastl {
 
   template <typename T, int nodeCount, bool bEnableOverflow, typename OverflowAllocator>
   inline void fixed_string<T, nodeCount, bEnableOverflow, OverflowAllocator>::set_capacity(size_type n) {
-    const size_type nPrevSize     = (size_type)(mpEnd - mpBegin);
-    const size_type nPrevCapacity = (size_type)(
-        (mpCapacity - mpBegin) - 1);  // -1 because the terminating 0 isn't included in the calculated capacity value.
+    const size_type nPrevSize = (size_type)(mpEnd - mpBegin);
+    const size_type nPrevCapacity =
+        (size_type)((mpCapacity - mpBegin) -
+                    1);  // -1 because the terminating 0 isn't included in the calculated capacity value.
 
     if (n == npos)  // If the user means to set the capacity so that it equals the size (i.e. free
                     // excess capacity)...

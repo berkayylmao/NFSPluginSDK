@@ -24,10 +24,10 @@ namespace OpenSpeed::Carbon::Attrib {
   struct Instance {
     enum class Flags : std::uint16_t { Dynamic = 1 };
 
-    Collection*         mCollection;
-    void*               mLayoutPtr;
-    std::uint32_t       mMsgPort;
-    Flags               mFlags;
-    std::uint16_t       mLocks;
+    Collection*   mCollection;
+    void*         mLayoutPtr;
+    std::uint32_t mMsgPort;
+    Flags         mFlags;
+    std::uint16_t mLocks;
   };
 }  // namespace OpenSpeed::Carbon::Attrib

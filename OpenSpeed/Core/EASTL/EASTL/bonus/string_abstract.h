@@ -1574,7 +1574,7 @@ namespace eastl {
 
         const size_t nCapacity = (size_t)((n + 1) - nInitialSize);
         nReturnValue           = eastl::Vsnprintf(mpBegin + nInitialSize, nCapacity, pFormat,
-                                        arguments);  // '+1' because vsnprintf wants to know the size of the
+                                                  arguments);  // '+1' because vsnprintf wants to know the size of the
                                                                // buffer including the terminating zero.
 
         if (nReturnValue == (int)(unsigned)nCapacity) {
