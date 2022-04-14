@@ -749,7 +749,7 @@ namespace OpenSpeed::MW05 {
           static_cast<std::uint32_t>(Induction) | static_cast<std::uint32_t>(NOS)
   };
   enum class PhysicsMode : std::uint32_t { Inactive, Simulated, Emulated };
-  enum class Region : std::uint8_t { College, Coastal, City, None = UINT32_MAX };
+  enum class Region : std::uint8_t { College, Coastal, City, None = UINT8_MAX };
   enum class SimableType : std::uint32_t {
     Invalid,
     Vehicle,
@@ -835,7 +835,7 @@ namespace OpenSpeed::MW05 {
 
 #pragma endregion
 
-#pragma Default types
+#pragma region Default types
 
   template <typename T, typename = std::enable_if_t<std::is_base_of_v<Attrib::Instance, T>>>
   class AttributeStructPtr : T {
