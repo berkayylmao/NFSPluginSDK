@@ -22,7 +22,7 @@
 
 namespace OpenSpeed::Carbon {
   struct FECustomizationRecord {
-    std::uint8_t __unk_FECustomizationRecord_1__[0x99960];
+    std::uint8_t __unk_FECustomizationRecord_1__[0x666];  // unksize
 
     inline void WriteRideIntoRecord(const RideInfo& rideInfo) {
       reinterpret_cast<void(__thiscall*)(FECustomizationRecord*, const RideInfo&)>(0x4C47F0)(this, rideInfo);

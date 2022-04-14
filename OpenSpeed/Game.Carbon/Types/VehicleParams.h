@@ -31,9 +31,9 @@ namespace OpenSpeed::Carbon {
     VehicleCustomizations*      mCustomization;
     IVehicleCache*              mVehicleCache;
     Physics::Info::Performance* mPerformanceMatch;
-    std::uint32_t               abc = 0;
+    std::uint32_t               __unk_VehicleParams_1__;
     eVehicleParamFlags          mFlags;
-    std::uint32_t               abc2 = 0;
+    std::uint32_t               __unk_VehicleParams_2__;
 
     explicit VehicleParams(DriverClass driverClass, const Attrib::Gen::pvehicle& attributes,
                            const UMath::Vector3& direction, const UMath::Vector3& position,
@@ -49,7 +49,9 @@ namespace OpenSpeed::Carbon {
         mCustomization(pCustomizations),
         mVehicleCache(pVehicleCache),
         mPerformanceMatch(pPerformanceMatch),
-        mFlags(flags) {
+        mFlags(flags),
+        __unk_VehicleParams_1__(0),
+        __unk_VehicleParams_2__(0) {
       AddTypeName(this);
     }
 
