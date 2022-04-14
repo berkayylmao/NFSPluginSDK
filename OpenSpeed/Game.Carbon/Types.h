@@ -148,6 +148,8 @@ namespace OpenSpeed::Carbon {
   struct AICopManager;
   struct AIGoal;
   struct AIPerpVehicle;
+  struct AIPursuit;
+  struct AIRoadBlock;
   struct AISpawnManager;
   struct AISplinePath;
   struct AITarget;
@@ -206,6 +208,7 @@ namespace OpenSpeed::Carbon {
   struct GenericMessage;
   struct GEventTimer;
   struct GIcon;
+  struct GIOpponent;
   struct GManager;
   struct GMilestone;
   struct GRaceBin;
@@ -321,6 +324,7 @@ namespace OpenSpeed::Carbon {
   struct WCollider;
   struct WorldModel;
   struct WRoadNav;
+  struct WRoadNavInfluence;
   struct WTrigger;
   struct WWorldPos;
 
@@ -593,7 +597,10 @@ namespace OpenSpeed::Carbon {
     LevelUnique,
     LevelUnspecified = UINT32_MAX
   };
+  enum class eLaneSelection : std::uint32_t { CenterLane, CurrentLane, ValidLane };
   enum class ePlayerHudType : std::uint32_t { None, Standard, Drag, Split1, Split2, DragSplit1, DragSplit2 };
+  enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
+  enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class eVehicleParamFlags : std::uint32_t {
     Spooled         = 1 << 0,
     SnapToGround    = 1 << 1,

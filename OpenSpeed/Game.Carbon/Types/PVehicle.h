@@ -29,7 +29,6 @@
 
 namespace OpenSpeed::Carbon {
   struct PVehicle : PhysicsObject, IVehicle, EventSequencer::IContext, IExplodeable, IAttributeable, bTNode<PVehicle*> {
-    // std::uint8_t             __unk_pvehicle_1__[0x4];
     Attrib::Gen::pvehicle    mAttributes;
     FECustomizationRecord*   mCustomization;
     IInput*                  mInput;
@@ -120,7 +119,7 @@ namespace OpenSpeed::Carbon {
     virtual bool                         IsAnimating() override;
     virtual void                         SetAnimating(bool isAnimating) override;
     virtual bool                         IsOffWorld() override;
-    virtual FECustomizationRecord*       GetCustomizations() override;
+    virtual VehicleCustomizations*       GetCustomizations() override;
     virtual Physics::Tunings*            GetTunings() override;
     virtual void                         SetTunings(const Physics::Tunings& tunings) override;
     virtual bool                         GetPerformance(Physics::Info::CorrectedPerformance& to) override;

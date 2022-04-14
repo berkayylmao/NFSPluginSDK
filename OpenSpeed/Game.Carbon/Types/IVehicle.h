@@ -89,7 +89,7 @@ namespace OpenSpeed::Carbon {
     virtual bool                         IsAnimating()                                                              = 0;
     virtual void                         SetAnimating(bool isAnimating)                                             = 0;
     virtual bool                         IsOffWorld()                                                               = 0;
-    virtual FECustomizationRecord*       GetCustomizations()                                                        = 0;
+    virtual VehicleCustomizations*       GetCustomizations()                                                        = 0;
     virtual Physics::Tunings*            GetTunings()                                                               = 0;
     virtual void                         SetTunings(const Physics::Tunings& tunings)                                = 0;
     virtual bool                         GetPerformance(Physics::Info::CorrectedPerformance& to)                    = 0;

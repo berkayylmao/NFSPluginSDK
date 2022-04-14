@@ -23,9 +23,11 @@
 #include <OpenSpeed/Core/MemoryEditor/MemoryEditor.hpp>  // ValidateMemoryIsInitialized
 
 #include <OpenSpeed/Game.Carbon/Types.h>
-#include <OpenSpeed/Game.Carbon/Types/IPlayer.h>     // IPlayer
-#include <OpenSpeed/Game.Carbon/Types/PVehicle.h>    // PVehicle
-#include <OpenSpeed/Game.Carbon/Types/IRigidBody.h>  // IRigidBody
+#include <OpenSpeed/Game.Carbon/Types/GRaceStatus.h>  // GRaceStatus
+#include <OpenSpeed/Game.Carbon/Types/IPlayer.h>      // IPlayer
+#include <OpenSpeed/Game.Carbon/Types/PVehicle.h>     // PVehicle
+#include <OpenSpeed/Game.Carbon/Types/IRigidBody.h>   // IRigidBody
+#include <OpenSpeed/Game.Carbon/Types/IVehicleAI.h>   // IVehicleAI
 
 namespace OpenSpeed::Carbon {
   //          //
@@ -102,12 +104,15 @@ namespace OpenSpeed::Carbon {
         eVehicleParamFlags flags           = eVehicleParamFlags::SnapToGround | eVehicleParamFlags::CalcPerformance,
         bool               killAfterChange = true) {
       details::ChangedPVehicleInfo ret;
+      if (!instance.mCollection) return ret;
+
+      // if GRaceStatus is not ready, the PVehicle isn't ready either
+      auto* race_status = GRaceStatus::Get();
+      if (!race_status) return ret;
 
       // Validate ptr
       PVehicle* pvehicle = target | ValidatePVehicle;
       if (!pvehicle) return ret;
-
-      if (!instance.mCollection) return ret;
 
       // Get PVehicle details
       HSIMABLE__*    handle   = pvehicle->GetOwnerHandle();
@@ -121,9 +126,8 @@ namespace OpenSpeed::Carbon {
       pvehicle->GetAngularVelocity(angular_vel);
 
       // Create new PVehicle
-      auto* new_pvehicle =
-          PVehicle::Construct(VehicleParams(pvehicle->GetDriverClass(), instance, direction, position, customizations,
-                                            flags /*, static_cast<IVehicleCache*>(race_status)*/));
+      auto* new_pvehicle = PVehicle::Construct(
+          VehicleParams(pvehicle->GetDriverClass(), instance, direction, position, customizations, flags, race_status));
       if (!new_pvehicle) return ret;
 
       // Pass on details
@@ -131,9 +135,25 @@ namespace OpenSpeed::Carbon {
       new_pvehicle->GetRigidBody()->SetLinearVelocity(linear_vel);
       new_pvehicle->GetRigidBody()->SetAngularVelocity(angular_vel);
 
+      // Change handles if in race (values will sync at the next checkpoint)
+      if (race_status->mRacerCount > 0) {
+        for (std::int32_t i = 0; i < race_status->mRacerCount; i++) {
+          auto& racer_handle = race_status->mRacerInfo[i].mhSimable;
+          if (racer_handle == handle) {
+            racer_handle = new_pvehicle->GetOwnerHandle();
+            break;
+          }
+        }
+      }
+
       // Get rid of old PVehicle
       pvehicle->Detach(player);
-      if (killAfterChange) pvehicle->Kill();
+      if (killAfterChange) {
+        if (race_status->mRacerCount > 0)
+          pvehicle->Deactivate();
+        else
+          pvehicle->Kill();
+      }
 
       ret.WasSuccessful  = true;
       ret.NewPVehiclePtr = new_pvehicle;
