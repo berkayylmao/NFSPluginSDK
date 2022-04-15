@@ -702,6 +702,7 @@ namespace OpenSpeed::MW05 {
   enum class eTransmissionType : std::uint8_t { Automatic, Manual, Sport, ManualClutch };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class eVehicleParamFlags : std::uint32_t {
+    None,
     Spooled         = 1 << 0,
     SnapToGround    = 1 << 1,
     NosRemoved      = 1 << 2,
