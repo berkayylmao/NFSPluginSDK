@@ -181,7 +181,7 @@ namespace OpenSpeed::MW05 {
   }  // namespace WCollisionMgr
 
   struct ActionData;
-  struct ActionRef;
+  using ActionRef = ActionData*;
   struct ActionQueue;
   struct AdaptivePIDControllerComplicated;
   struct AdaptivePIDControllerSimple;
