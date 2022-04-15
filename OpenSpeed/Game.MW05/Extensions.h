@@ -33,7 +33,7 @@
 #include <OpenSpeed/Game.MW05/Types/DamageHeli.h>       // DamageHeli
 #include <OpenSpeed/Game.MW05/Types/GRaceStatus.h>      // GRaceStatus
 #include <OpenSpeed/Game.MW05/Types/InputPlayer.h>      // InputPlayer, PInput, IInput
-#include <OpenSpeed/Game.MW05/Types/IPlayer.h>          // IPlayer
+#include <OpenSpeed/Game.MW05/Types/LocalPlayer.h>      // LocalPlayer, IPlayer
 #include <OpenSpeed/Game.MW05/Types/PVehicle.h>         // PVehicle
 #include <OpenSpeed/Game.MW05/Types/RBSmackable.h>      // RBSmackable, RigidBody, IRigidBody
 #include <OpenSpeed/Game.MW05/Types/RBTractor.h>        // RBTractor, RBVehicle
@@ -578,7 +578,7 @@ namespace OpenSpeed::MW05 {
   }  // namespace AIVehicleEx
 
   //            //
-  // IVehicleAI //
+  // IDamageable //
   //            //
 
   namespace DamageableEx {
@@ -706,5 +706,61 @@ namespace OpenSpeed::MW05 {
       return nullptr;
     }
   }  // namespace DamageableEx
+
+  //            //
+  // IPlayer //
+  //            //
+
+  namespace PlayerEx {
+    namespace details {
+      //                  //
+      // Validate IPlayer //
+      //                  //
+
+      struct ValidatePlayer_t {
+        IPlayer* operator()(IPlayer* player) const {
+          if (!player || !MemoryEditor::Get().ValidateMemoryIsInitialized(player)) return nullptr;
+          // LocalPlayer
+          if (*reinterpret_cast<std::uintptr_t*>(player) == 0x8B0B10) return player;
+          // Bad ptr
+          return nullptr;
+        }
+      };
+      static IPlayer* operator|(IPlayer* player, ValidatePlayer_t ext) { return ext(player); }
+
+      //                           //
+      // Verified LocalPlayer cast //
+      //                           //
+
+      struct LocalPlayerCast_t {
+        LocalPlayer* operator()(IPlayer* player) const {
+          if (!(player | ValidatePlayer)) return nullptr;
+          // Verify cast
+          auto* local_player = static_cast<LocalPlayer*>(player);
+          // LocalPlayer
+          if (*reinterpret_cast<std::uintptr_t*>(local_player) == 0x8B0BB0) return local_player;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static LocalPlayer* operator|(IPlayer* i, LocalPlayerCast_t ext) { return ext(i); }
+    }  // namespace details
+
+    // Validate IPlayer pointer
+    // Usage: IPlayer* myptr = GetPlayerPtr() | PlayerEx::ValidateIPlayer;
+    static inline const details::ValidatePlayer_t ValidatePlayer;
+
+    // Try-get IPlayer as LocalPlayer
+    // Usage: LocalPlayer* myptr = GetPlayerPtr() | PlayerEx::AsLocalPlayer;
+    static inline const details::LocalPlayerCast_t AsLocalPlayer;
+
+    // Get a pointer to the player IPlayer instance
+    static IPlayer* GetPlayerInstance() {
+      auto* pvehicle = PVehicleEx::GetPlayerInstance();
+      if (pvehicle) return pvehicle->mPlayer | ValidatePlayer;
+
+      return nullptr;
+    }
+  }  // namespace PlayerEx
 
 }  // namespace OpenSpeed::MW05
