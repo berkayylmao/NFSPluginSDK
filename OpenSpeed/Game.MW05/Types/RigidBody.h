@@ -110,10 +110,10 @@ namespace OpenSpeed::MW05 {
       UMath::Vector3 InertiaTensor;
       Status         status;
       UMath::Vector3 force;
-      int8_t         leversInContact;
-      int8_t         mode;
-      int8_t         index;
-      int8_t         __unused2;
+      std::int8_t    leversInContact;
+      std::int8_t    mode;
+      std::int8_t    index;
+      std::int8_t    __unused2;
       UMath::Vector3 torque;
       float          radius;
       // World transformation matrix
@@ -127,13 +127,27 @@ namespace OpenSpeed::MW05 {
         return (static_cast<std::uint32_t>(this->status) & static_cast<std::uint32_t>(status)) ==
                static_cast<std::uint32_t>(status);
       }
+      bool GetStatusPrev(Status status) {
+        return (static_cast<std::uint32_t>(this->statusPrev) & static_cast<std::uint32_t>(status)) ==
+               static_cast<std::uint32_t>(status);
+      }
+
       void SetStatus(Status status) {
         this->status =
             static_cast<Status>(static_cast<std::uint32_t>(this->status) | static_cast<std::uint32_t>(status));
       }
+      void SetStatusPrev(Status status) {
+        this->status =
+            static_cast<Status>(static_cast<std::uint32_t>(this->statusPrev) | static_cast<std::uint32_t>(status));
+      }
+
       void RemoveStatus(Status status) {
         this->status =
             static_cast<Status>(static_cast<std::uint32_t>(this->status) ^ static_cast<std::uint32_t>(status));
+      }
+      void RemoveStatusPrev(Status status) {
+        this->status =
+            static_cast<Status>(static_cast<std::uint32_t>(this->statusPrev) ^ static_cast<std::uint32_t>(status));
       }
 
       static inline Volatile** g_mInstances = reinterpret_cast<Volatile**>(0x9383B0);
