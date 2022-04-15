@@ -734,7 +734,7 @@ namespace OpenSpeed::MW05 {
 
       struct LocalPlayerCast_t {
         LocalPlayer* operator()(IPlayer* player) const {
-          if (!(player | ValidatePlayer)) return nullptr;
+          if (!player || !MemoryEditor::Get().ValidateMemoryIsInitialized(player)) return nullptr;
           // Verify cast
           auto* local_player = static_cast<LocalPlayer*>(player);
           // LocalPlayer
