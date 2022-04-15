@@ -25,7 +25,7 @@
 namespace OpenSpeed::MW05 {
   struct InputPlayer : PInput, IInputPlayer {
     virtual ~InputPlayer();
-    virtual void OnAction(ActionRef*);
+    virtual bool OnAction(ActionRef action);
 
 #pragma region overrides
     virtual void ClearInput() override;
