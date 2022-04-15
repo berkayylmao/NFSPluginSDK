@@ -31,7 +31,6 @@ namespace OpenSpeed::MW05 {
     virtual void Reset() override;
     virtual void OnTaskSimulate(float deltaTime);
     virtual void OnBehaviorChange(const UCrc32& mechanic);
-    virtual void ClearInput() override;
     virtual bool IsLookBackButtonPressed() override;
     virtual bool IsPullBackButtonPressed() override;
     virtual bool IsAutomaticShift() override;
