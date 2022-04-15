@@ -27,7 +27,17 @@ namespace OpenSpeed::MW05 {
     virtual ~InputPlayer();
     virtual bool OnAction(ActionRef action);
 
-#pragma region overrides
+#pragma region overides
+    virtual void Reset() override;
+    virtual void OnTaskSimulate(float deltaTime);
+    virtual void OnBehaviorChange(const UCrc32& mechanic);
+    virtual void ClearInput() override;
+    virtual bool IsLookBackButtonPressed() override;
+    virtual bool IsPullBackButtonPressed() override;
+    virtual bool IsAutomaticShift() override;
+    virtual void BlockInput(bool block) override;
+    virtual bool IsBlocked() override;
+    virtual void FetchInput() override;
     virtual void ClearInput() override;
 #pragma endregion
   };

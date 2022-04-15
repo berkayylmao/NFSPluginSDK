@@ -24,9 +24,9 @@
 namespace OpenSpeed::MW05 {
   struct IInputPlayer : UTL::COM::IUnknown {
     virtual ~IInputPlayer();
-    virtual void BlockInput(bool isInputBlocked) = 0;
-    virtual bool IsBlocked()                     = 0;
-    virtual void FetchInput()                    = 0;
-    virtual void ClearInput()                    = 0;
+    virtual void BlockInput(bool block) = 0;
+    virtual bool IsBlocked()            = 0;
+    virtual void FetchInput()           = 0;
+    virtual void ClearInput()           = 0;
   };
 }  // namespace OpenSpeed::MW05

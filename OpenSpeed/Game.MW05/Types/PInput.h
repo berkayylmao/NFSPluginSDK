@@ -29,5 +29,26 @@ namespace OpenSpeed::MW05 {
     virtual ~PInput();
     virtual void SetControlStrafeVertical(float amount);
     virtual void SetControlStrafeHorizontal(float amount);
+#pragma region overides
+    virtual void           Reset() override;
+    virtual void           OnTaskSimulate(float deltaTime);
+    virtual void           OnBehaviorChange(const UCrc32& mechanic);
+    virtual void           ClearInput() override;
+    virtual InputControls& GetControls() override;
+    virtual float          GetControlHandBrake() override;
+    virtual float          GetControlActionButton() override;
+    virtual void           SetControlSteering(float amount) override;
+    virtual void           SetControlGas(float amount) override;
+    virtual void           SetControlBrake(float amount) override;
+    virtual void           SetControlNOS(bool isPressed) override;
+    virtual void           SetControlHandBrake(float amount) override;
+    virtual void           SetControlActionButton(bool isPressed) override;
+    virtual void           SetControlSteeringVertical(float amount) override;
+    virtual void           SetControlBanking(float amount) override;
+    virtual float          GetControlBanking() override;
+    virtual bool           IsLookBackButtonPressed() override;
+    virtual bool           IsPullBackButtonPressed() override;
+    virtual bool           IsAutomaticShift() override;
+#pragma endregion
   };
 }  // namespace OpenSpeed::MW05
