@@ -246,7 +246,7 @@ namespace MemoryEditor {
         std::uintptr_t  _offBase = _last + off;
         std::uintptr_t* _p       = reinterpret_cast<std::uintptr_t*>(_offBase);
         UnlockMemory(_offBase, sizeof(std::uintptr_t));
-        if (!_p || !ValidateMemoryIsInitializedInternal(_p) || !*_p) {
+        if (!_p || !ValidateMemoryIsInitializedInternal(*_p)) {
           LockMemory(_offBase);
           _ret = nullptr;
           break;
