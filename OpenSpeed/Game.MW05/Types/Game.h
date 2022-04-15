@@ -30,6 +30,10 @@ namespace OpenSpeed::MW05::Game {
   static inline void ForcePursuitStart() { reinterpret_cast<void(__cdecl*)()>(0x60AAC0)(); }
   // Game_AbandonRace
   static inline void AbandonRace() { reinterpret_cast<void(__cdecl*)()>(0x60DEB0)(); }
+  // Game_AwardPlayerBounty
+  static inline void AwardPlayerBounty(std::int32_t amount) {
+    reinterpret_cast<void(__cdecl*)(std::int32_t)>(0x612220)(amount);
+  }
   // Game_BlowEngine
   static inline void BlowEngine(ISimable* pTarget) { reinterpret_cast<void(__cdecl*)(ISimable*)>(0x60AB30)(pTarget); }
   // Game_ClearAIControl
