@@ -32,7 +32,6 @@ namespace OpenSpeed::Carbon {
     virtual void       Update(float deltaTime) override;
     virtual void       OnDebugDraw() override;
     virtual IVehicle*  GetLeader() override;
-    virtual AIWingman* GetWingman() override;
     virtual float      GetSkill() override;
     virtual float      GetBaseSkill() override;
     virtual void       PrepareForRace(const RacePreparationInfo& rpi) override;
