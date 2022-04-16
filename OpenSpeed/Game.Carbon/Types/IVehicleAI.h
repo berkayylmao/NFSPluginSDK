@@ -82,7 +82,7 @@ namespace OpenSpeed::Carbon {
     virtual UMath::Vector3&               GetPursuitOffset()                                                       = 0;
     virtual IRoadBlock*                   GetRoadBlock()                                                           = 0;
     virtual IVehicle*                     GetLeader()                                                              = 0;
-    virtual void*                         GetWingman()                                                             = 0;
+    virtual AIWingman*                    GetWingman()                                                             = 0;
     virtual float                         GetStunTime()                                                            = 0;
     virtual void                          SetStunTime(float stunTime)                                              = 0;
     virtual const UMath::Vector3&         GetSeekAheadPosition()                                                   = 0;

@@ -156,11 +156,12 @@ namespace OpenSpeed::Carbon {
   struct AIVehicle;
   struct AIVehicleCopCar;
   struct AIVehicleEmpty;
-  struct AIVehicleHelicopter;
+  struct AIVehicleGhost;
   struct AIVehicleHuman;
   struct AIVehiclePursuit;
   struct AIVehicleRacecar;
   struct AIVehicleTraffic;
+  struct AIWingman;
   struct Attachments;
   struct AttributeSet;
   struct AttribVaultPackImage;
@@ -227,7 +228,6 @@ namespace OpenSpeed::Carbon {
   struct GVault;
   struct HACTIVITY__;
   struct HCAUSE__;
-  struct HeliSheetCoordinate;
   struct HighScoresDatabase;
   struct HMODEL__;
   struct HSIMABLE__;
@@ -598,6 +598,9 @@ namespace OpenSpeed::Carbon {
     LevelUnspecified = UINT32_MAX
   };
   enum class eLaneSelection : std::uint32_t { CenterLane, CurrentLane, ValidLane };
+  enum class eLaneType : std::uint32_t { Racing, Traffic, Drag, Cop, CopReckless, Reset, StartingGrid, Any };
+  enum class eNavType : std::uint32_t { None, Traffic, Direction, Path };
+  enum class ePathType : std::uint32_t { Cop, None, Racer, GPS, Player, Chopper, RaceRoute };
   enum class ePlayerHudType : std::uint32_t { None, Standard, Drag, Split1, Split2, DragSplit1, DragSplit2 };
   enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
@@ -609,6 +612,7 @@ namespace OpenSpeed::Carbon {
     CalcPerformance = 1 << 3,
     NosAdded        = 1 << 4
   };
+  enum class eWingmanRole : std::uint32_t { Unknown, Leader, Blocky, Pathy, Speedy };
   enum class GameFlowState : std::uint32_t {
     None,
     LoadingFrontEnd,
@@ -633,6 +637,7 @@ namespace OpenSpeed::Carbon {
     Sentry,
     Fragment
   };
+  enum class SirenState : std::uint32_t { Wail, Yelp, Scream, Die, Off = UINT32_MAX };
 
   namespace VehicleFX {
     enum class LightID : std::uint32_t {
