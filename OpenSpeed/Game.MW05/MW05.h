@@ -35,6 +35,7 @@ namespace OpenSpeed {
     static MemoryFieldWrapper<bool>           IsFadeScreenOn{0x91CAE4, false};
     static MemoryFieldWrapper<bool>           IsInNIS{0x91606C, false};
     static MemoryFieldWrapper<std::uint16_t>  NOSFOVWidening{0x91112C, 0x666, 0x001, 0x3500};
+    static MemoryFieldWrapper<bool>           PrecullerMode{0x8FAE44, true};
     static MemoryFieldWrapper<bool>           StopUpdatingCamera{0x911020, false};
     static MemoryFieldWrapper<AICopManager*>  TheOneCopManager{0x90D5F4, nullptr};
     static MemoryFieldWrapper<GameFlowState>  TheGameFlowManager{0x925E90, GameFlowState::InFrontEnd};
