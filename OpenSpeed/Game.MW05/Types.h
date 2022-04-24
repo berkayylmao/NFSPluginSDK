@@ -159,7 +159,7 @@ namespace OpenSpeed::MW05 {
     struct _ListSet;
     template <typename T, std::size_t nT>
     struct _Storage;
-    template <typename T, std::size_t nT, std::size_t N = 16>
+    template <typename T, std::size_t nT>
     struct FixedVector;
     template <typename T>
     struct GarbageNode;
@@ -167,7 +167,7 @@ namespace OpenSpeed::MW05 {
     struct List;
     template <typename T, std::size_t nT, typename E, std::size_t nE>
     struct ListableSet;
-    template <typename T, std::size_t N = 16>
+    template <typename T, std::size_t N>
     struct Vector;
 
     namespace COM {

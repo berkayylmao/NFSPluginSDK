@@ -26,6 +26,8 @@ namespace OpenSpeed::MW05::UTL {
   struct _ListSet {
     List<T, nT> _buckets[nE];
 
+    List<T, nT>&       operator[](std::size_t index) noexcept { return _buckets[index]; }
+    const List<T, nT>& operator[](std::size_t index) const noexcept { return _buckets[index]; }
     List<T, nT>&       operator[](E index) noexcept { return _buckets[static_cast<std::size_t>(index)]; }
     const List<T, nT>& operator[](E index) const noexcept { return _buckets[static_cast<std::size_t>(index)]; }
   };

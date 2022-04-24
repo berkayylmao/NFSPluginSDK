@@ -26,5 +26,7 @@ namespace OpenSpeed::MW05::UTL {
     T*            mBegin;
     std::uint32_t mCapacity;
     std::uint32_t mSize;
+
+    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
   };
 }  // namespace OpenSpeed::MW05::UTL
