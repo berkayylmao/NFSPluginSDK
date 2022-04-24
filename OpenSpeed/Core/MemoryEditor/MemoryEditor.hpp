@@ -104,9 +104,7 @@ namespace MemoryEditor {
       constexpr MemoryAccessInfo(std::uintmax_t infoSize) : size(infoSize) {}
     };
 
-    std::uintptr_t                                               mBase;
-    mutable std::mutex                                           mMutex;
-    mutable std::unordered_map<std::uintptr_t, MemoryAccessInfo> mAccessInfos;
+    std::uintptr_t mBase;
 
     inline std::uint32_t CalcDistance(std::uintptr_t from, std::uintptr_t to) const {
       return to - from - sizeof(std::uint32_t) - 1;
@@ -156,27 +154,14 @@ namespace MemoryEditor {
    public:
     inline std::uintptr_t AbsRVA(std::uintptr_t rva) const { return mBase + rva; }
 
-    void LockMemory(std::uintptr_t address) const {
-      std::scoped_lock<std::mutex> _lock(mMutex);
-#if defined(_WIN32)
-      // Old memory access page is stored only in Windows.
-
-      MemoryAccessInfo& info = mAccessInfos[address];
-      VirtualProtect(reinterpret_cast<LPVOID>(address), static_cast<SIZE_T>(info.size), info.oldMemoryAccess,
-                     &info.oldMemoryAccess);
-#endif
-      mAccessInfos.erase(address);
-    }
+    void LockMemory(std::uintptr_t address) const {}
     void UnlockMemory(std::uintptr_t address, std::size_t size) const {
-      std::scoped_lock<std::mutex> _lock(mMutex);
-      MemoryAccessInfo             _info(size);
-
 #if defined(__linux__) || defined(_LINUX)
       mprotect(reinterpret_cast<void*>(address), size, PROT_READ | PROT_WRITE | PROT_EXEC);
 #elif defined(_WIN32)
-      VirtualProtect(reinterpret_cast<LPVOID>(address), size, PAGE_EXECUTE_READWRITE, &_info.oldMemoryAccess);
+      DWORD old;
+      VirtualProtect(reinterpret_cast<LPVOID>(address), size, PAGE_EXECUTE_READWRITE, &old);
 #endif
-      mAccessInfos[address] = _info;
     }
 
     std::unique_ptr<DetourInfo> Detour(std::uintptr_t from, std::uintptr_t to) const {
