@@ -67,10 +67,10 @@ namespace MemoryEditor {
       std::uintptr_t GetAddrDetour() const { return mAddrDetour; }
       bool           GetHasDetoured() const { return mHasDetoured; }
 
-      void Detour() {
+      void Detour(MakeType detourType = MakeType::Jump) {
         if (mHasDetoured) return;
 
-        Editor::Get().Make(MakeType::Jump, mAddrFrom, mAddrDetour);
+        Editor::Get().Make(detourType, mAddrFrom, mAddrDetour);
         mHasDetoured = true;
       }
       void Undetour() {
