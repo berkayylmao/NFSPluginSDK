@@ -28,7 +28,7 @@ namespace OpenSpeed::ProStreet {
     enum class PlayMode : std::uint32_t { Roaming, Racing };
 
     GRacerInfo   mRacerInfo[8];
-    GRacerInfo*  mRacerInfo[8];
+    GRacerInfo*  mLazyRacerInfo[8];
     std::int32_t mRacerCount;
     // unk
 

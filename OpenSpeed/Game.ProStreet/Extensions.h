@@ -102,7 +102,7 @@ namespace OpenSpeed::ProStreet {
     static details::ChangedPVehicleInfo ChangePVehicleInto(
         PVehicle* target, const Attrib::Gen::pvehicle& instance, RideInfo* rideInfo,
         eVehicleParamFlags flags           = eVehicleParamFlags::SnapToGround | eVehicleParamFlags::ComputePerformance,
-        bool               killAfterChange = true) {
+        bool               killAfterChange = false) {
       details::ChangedPVehicleInfo ret;
       if (!instance.mCollection) return ret;
 
@@ -135,17 +135,6 @@ namespace OpenSpeed::ProStreet {
       new_pvehicle->GetRigidBody()->SetLinearVelocity(linear_vel);
       new_pvehicle->GetRigidBody()->SetAngularVelocity(angular_vel);
 
-      // Change handles if in race (values will sync at the next checkpoint)
-      if (race_status->mRacerCount > 0) {
-        for (std::int32_t i = 0; i < race_status->mRacerCount; i++) {
-          auto& racer_handle = race_status->mRacerInfo[i].mhSimable;
-          if (racer_handle == handle) {
-            racer_handle = new_pvehicle->GetOwnerHandle();
-            break;
-          }
-        }
-      }
-
       // Get rid of old PVehicle
       pvehicle->Detach(player);
       if (killAfterChange) {
@@ -162,7 +151,7 @@ namespace OpenSpeed::ProStreet {
     static details::ChangedPVehicleInfo ChangePVehicleInto(
         PVehicle* target, Attrib::StringKey vehicleKey, RideInfo* rideInfo,
         eVehicleParamFlags flags           = eVehicleParamFlags::SnapToGround | eVehicleParamFlags::ComputePerformance,
-        bool               killAfterChange = true) {
+        bool               killAfterChange = false) {
       return ChangePVehicleInto(target, Attrib::Gen::pvehicle::TryGetInstance(vehicleKey), rideInfo, flags,
                                 killAfterChange);
     }
