@@ -23,10 +23,10 @@
 
 namespace OpenSpeed {
   namespace Carbon::Variables {
-    static MemoryFieldWrapper<UMath::Matrix4> CarScaleMatrix{0xB778D0, UMath::Matrix4()};
-    static MemoryFieldWrapper<bool>           DrawCars{0xA73008, true};
-    static MemoryFieldWrapper<bool>           DrawCarsReflections{0xA7300C, true};
-    static MemoryFieldWrapper<bool>           DrawCarShadow{0xA73010, true};
+    static MemoryFieldWrapper<Math::Matrix4> CarScaleMatrix{0xB778D0, Math::Matrix4()};
+    static MemoryFieldWrapper<bool>          DrawCars{0xA73008, true};
+    static MemoryFieldWrapper<bool>          DrawCarsReflections{0xA7300C, true};
+    static MemoryFieldWrapper<bool>          DrawCarShadow{0xA73010, true};
     // static MemoryFieldWrapper<bool>           DrawHUD{0x57CAA8, true};
     static MemoryFieldWrapper<bool>          DrawLightFlares{0xA6C088, true};
     static MemoryFieldWrapper<CARPART_LOD>   ForceCarLOD{0xA7309C, CARPART_LOD::A};
