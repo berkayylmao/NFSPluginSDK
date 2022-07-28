@@ -217,6 +217,10 @@ namespace OpenSpeed::MW05 {
   struct bNode;
   template <typename T>
   struct bTNode;
+  using bVector2    = Math::Vector2;
+  using bVector3    = Math::Vector3;
+  using bVector4    = Math::Vector4;
+  using bQuaternion = Math::Vector4;
   struct CareerPursuitScores;
   struct CareerSettings;
   struct CarPart;
@@ -235,12 +239,22 @@ namespace OpenSpeed::MW05 {
   struct FECareerRecord;
   struct FECarRecord;
   struct FECustomizationRecord;
+  struct FEImage;
   struct FEImpoundData;
   struct FEInfractionsData;
   struct FEKeyboardSettings;
+  struct FEMinList;
+  struct FEMinNode;
+  struct FEMultiImage;
   struct FEngHud;
+  struct FEScript;
   struct FEObject;
   struct FEPlayerCarDB;
+  struct FERenderObject;
+  using FEVector2    = Math::Vector2;
+  using FEVector3    = Math::Vector3;
+  using FEVector4    = Math::Vector4;
+  using FEQuaternion = Math::Vector4;
   struct FinishedRaceStatsEntry;
   struct FloatSpring;
   struct GameplaySettings;
@@ -327,6 +341,8 @@ namespace OpenSpeed::MW05 {
   struct JukeboxEntry;
   struct LocalPlayer;
   struct MilestoneTypeInfo;
+  struct MinimapItem;
+  struct Minimap;
   struct ObjectStateBlockHeader;
   struct OptionsSettings;
   struct PhysicsObject;
@@ -352,6 +368,7 @@ namespace OpenSpeed::MW05 {
   struct Timer;
   struct TopEvadedPursuitDetail;
   struct TrackHighScore;
+  struct TrackInfo;
   template <typename T, std::size_t N>
   struct UCircularQueue;
   struct UCrc32;
@@ -637,6 +654,11 @@ namespace OpenSpeed::MW05 {
   enum class eCrossState : std::uint32_t { Available, Spawned, Disabled };
   enum class eControllerConfig : std::uint32_t { MinConfig, Config1, Config2, Config3, Config4, MaxConfig, Config5 };
   enum class eCustomTuningType : std::uint32_t { Setting1, Setting2, Setting3 };
+  enum class eDriftType : std::uint32_t {
+    VS_AI,
+    DOWNHILL,
+    TEAM,
+  };
   enum class eFEGameModes : std::uint32_t {
     None,
     Career         = 1 << 0,
@@ -666,13 +688,21 @@ namespace OpenSpeed::MW05 {
     FromControlSwitch,
     FromPhysicsSwitch
   };
-  enum class eLaneSelection {
+  enum class eLaneSelection : std::uint32_t {
     CenterLane,
     CurrentLane,
     ValidLane,
   };
   enum class eLaneType : std::uint32_t { Racing, Traffic, Drag, Cop, CopReckless, Reset, StartingGrid, Any };
   enum class eLoadSaveGame : std::uint32_t { Load, Save };
+  enum class eLocationName : std::uint32_t {
+    UPPER_CLASS,
+    CITY_CORE,
+    SUBURBAN_HILLS,
+    INDUSTRIAL_PARK,
+    AIRPORT,
+    MODE_SPECIFIC,
+  };
   enum class eMiniMapModes : std::uint8_t { Static, Rotate, Off };
   enum class eNavType : std::uint32_t { None, Traffic, Direction, Path };
   enum class eOpponentStrength : std::uint8_t { Low, Medium, High };
@@ -697,6 +727,7 @@ namespace OpenSpeed::MW05 {
   enum class eSplitTimeTypes : std::uint8_t { RaceLeader, LapRecord, BestLap, LastLap, Off };
   enum class eTireDamage : std::uint8_t { None, Punctured, Blown };
   enum class eTireIdx : std::uint32_t { FrontLeft, FrontRight, RearLeft, RearRight };
+  enum class eTrackDifficulty : std::uint32_t { Easy, Medium, Hard };
   enum class eTrackDirection : std::uint8_t { Forward, Backward };
   enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
   enum class eTransmissionType : std::uint8_t { Automatic, Manual, Sport, ManualClutch };
@@ -723,6 +754,22 @@ namespace OpenSpeed::MW05 {
   };
   enum class eWorldMapView : std::uint8_t { Navigation, Event, Race, Pursuit };
   enum class eWorldMapZoomLevels : std::uint8_t { All, Level1, Level2, Level4 };
+  enum class FEObjType : std::uint32_t {
+    None,
+    Image,
+    String,
+    Model,
+    List,
+    Group,
+    CodeList,
+    Movie,
+    Effect,
+    ColoredImage,
+    AnimImage,
+    SimpleImage,
+    MultiImage,
+    UserMin = 256,
+  };
   enum class FormationType : std::uint32_t { None, Pit, BoxUn, RollingBlock, Follow, HeliPursuit, Herd, StaggerFollow };
   enum class GameFlowState : std::uint32_t {
     None,
