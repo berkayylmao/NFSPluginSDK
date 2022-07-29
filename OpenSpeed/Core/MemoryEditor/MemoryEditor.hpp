@@ -148,7 +148,7 @@ namespace MemoryEditor {
       }
 
       template <typename T>
-      const T GetValue() const {
+      T GetValue() const {
         T ret{};
 
         auto old = Unlock(sizeof(T));
@@ -210,6 +210,11 @@ namespace MemoryEditor {
 
       return true;
     }
+    template <typename T>
+    bool ValidateMemoryIsInitialized(T* ptr) const {
+      if (!ptr) return false;
+      return ValidateMemoryIsInitialized(reinterpret_cast<std::uintptr_t>(ptr));
+    }
 
     std::unique_ptr<DetourInfo> Detour(std::uintptr_t from, std::uintptr_t to, MakeType type = MakeType::Jump) const {
       return std::make_unique<DetourInfo>(from, to, type);
@@ -220,22 +225,22 @@ namespace MemoryEditor {
 
       std::uint8_t val = 0x00;
       switch (type) {
-        case MakeType::Call:
+        case MakeType::Call: {
           auto size = sizeof(std::uint32_t) + 1;
           if (auto old = m.Unlock(size)) {
             arr[0]                                     = 0xE8;
             *reinterpret_cast<std::uint32_t*>(&arr[1]) = CalculateRelativeDistance(from, to);
             m.Lock(size, old);
           }
-          break;
-        case MakeType::Jump:
+        } break;
+        case MakeType::Jump: {
           auto size = sizeof(std::uint32_t) + 1;
           if (auto old = m.Unlock(size)) {
             arr[0]                                     = 0xE9;
             *reinterpret_cast<std::uint32_t*>(&arr[1]) = CalculateRelativeDistance(from, to);
             m.Lock(size, old);
           }
-          break;
+        } break;
         case MakeType::NOP:
           val = 0x90;
           break;

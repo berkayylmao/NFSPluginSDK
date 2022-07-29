@@ -82,7 +82,7 @@ class MemoryFieldWrapper {
 
     auto m = MemoryEditor::Get().GetRawMemory(reinterpret_cast<std::uintptr_t>(mFieldPtr));
     m.SetValue<FieldType>(newValue);
-    return m.GetValue<FieldType>();
+    return GetField();
   }
 
   // Wrapped item semantics
