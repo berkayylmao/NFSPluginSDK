@@ -1,7 +1,7 @@
 // clang-format off
 //
 //    FieldWrapper: A header-only library to make fields/structs reflectable.
-//    Copyright (C) 2022 Berkay Yigit <berkaytgy@gmail.com>
+//    Copyright (C) 2022 Berkay Yigit <mail@berkay.link>
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as published
@@ -80,10 +80,9 @@ class MemoryFieldWrapper {
     if constexpr (std::is_arithmetic_v<FieldType> && !std::is_same_v<FieldType, bool>)
       if (newValue < GetFieldMinimumValue() || newValue > GetFieldMaximumValue()) return *mFieldPtr;
 
-    MemoryEditor::Get().UnlockMemory(reinterpret_cast<std::uintptr_t>(mFieldPtr), sizeof(FieldType));
-    *mFieldPtr = newValue;
-    MemoryEditor::Get().LockMemory(reinterpret_cast<std::uintptr_t>(mFieldPtr));
-    return *mFieldPtr;
+    auto m = MemoryEditor::Get().GetRawMemory(reinterpret_cast<std::uintptr_t>(mFieldPtr));
+    m.SetValue<FieldType>(newValue);
+    return m.GetValue<FieldType>();
   }
 
   // Wrapped item semantics

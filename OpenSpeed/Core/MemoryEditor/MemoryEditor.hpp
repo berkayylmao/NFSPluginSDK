@@ -1,7 +1,7 @@
 // clang-format off
 //
-//    MemoryEditor: A header-only cross-platform library to edit runtime memory. (C++11)
-//    Copyright (C) 2022 Berkay Yigit <berkaytgy@gmail.com>
+//    MemoryEditor: A header-only cross-platform library to edit runtime memory. (C++17)
+//    Copyright (C) 2022 Berkay Yigit <mail@berkay.link>
 //
 //    This program is free software: you can redistribute it and/or modify
 //    it under the terms of the GNU Affero General Public License as published
@@ -20,6 +20,7 @@
 
 #pragma once
 #include <array>
+#include <cassert>
 #include <cstdint>  // integer types
 #include <cstring>  // memcpy
 #include <initializer_list>
@@ -53,11 +54,20 @@ namespace MemoryEditor {
   };
 
   class Editor {
+    std::uintptr_t mBase;
+
+    explicit Editor() {
+#if defined(__linux__) || defined(_LINUX)
+#error Base address cannot be dynamically acquired without hacks on linux systems. Call 'Get(baseAddress)' instead.
+#elif defined(_WIN32)
+      mBase = reinterpret_cast<std::uintptr_t>(GetModuleHandleW(NULL));
+#endif
+    }
+    explicit Editor(std::uintptr_t base) : mBase(base) {}
+
    public:
     class DetourInfo {
-      bool mHasDetoured;
-
-     protected:
+      bool                                                mHasDetoured;
       std::array<std::uint8_t, sizeof(std::uint32_t) + 1> mOrigBytes;
       std::uintptr_t                                      mAddrFrom;
       std::uintptr_t                                      mAddrDetour;
@@ -73,21 +83,27 @@ namespace MemoryEditor {
         Editor::Get().Make(detourType, mAddrFrom, mAddrDetour);
         mHasDetoured = true;
       }
-      void Undetour() {
+      void Restore() {
         if (!mHasDetoured) return;
 
-        Editor::Get().UnlockMemory(mAddrFrom, sizeof(std::uint32_t) + 1);
-        std::memcpy(reinterpret_cast<void*>(mAddrFrom), mOrigBytes.data(), sizeof(std::uint32_t) + 1);
-        Editor::Get().LockMemory(mAddrFrom);
-        mHasDetoured = false;
+        auto              m    = Editor::Get().GetRawMemory(mAddrFrom);
+        const std::size_t size = sizeof(std::uint32_t) + 1;
+        if (auto old = m.Unlock(size)) {
+          std::memcpy(reinterpret_cast<void*>(mAddrFrom), mOrigBytes.data(), sizeof(std::uint32_t) + 1);
+          m.Lock(size, old);
+          mHasDetoured = false;
+        }
       }
 
       // Detours immediately
       explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour, MakeType detourType) :
           mHasDetoured(false), mAddrFrom(addrFrom), mAddrDetour(addrDetour) {
-        Editor::Get().UnlockMemory(mAddrFrom, sizeof(std::uint32_t) + 1);
-        std::memcpy(mOrigBytes.data(), reinterpret_cast<void*>(mAddrFrom), sizeof(std::uint32_t) + 1);
-        Editor::Get().LockMemory(mAddrFrom);
+        auto              m    = Editor::Get().GetRawMemory(mAddrFrom);
+        const std::size_t size = sizeof(std::uint32_t) + 1;
+        if (auto old = m.Unlock(size)) {
+          std::memcpy(mOrigBytes.data(), reinterpret_cast<void*>(mAddrFrom), sizeof(std::uint32_t) + 1);
+          m.Lock(size, old);
+        }
 
         Detour(detourType);
       }
@@ -96,25 +112,72 @@ namespace MemoryEditor {
       explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour) :
           DetourInfo(addrFrom, addrDetour, MakeType::Jump) {}
     };
+    class RawMemory {
+      std::uintptr_t mAddress;
 
-   protected:
-    struct MemoryAccessInfo {
+     public:
+      /// <summary>
+      /// Relocks memory at mAddress.
+      /// </summary>
+      /// <param name="size">How many bytes were unlocked</param>
+      /// <param name="oldProtect">Old memory protect value</param>
+      /// <returns>True if successful, false otherwise</returns>
+      bool Lock(std::size_t size, std::uint_least32_t oldProtect) const {
 #if defined(_WIN32)
-      DWORD oldMemoryAccess = NULL;
+        DWORD old;
+        return VirtualProtect(reinterpret_cast<LPVOID>(mAddress), size, static_cast<DWORD>(oldProtect), &old);
+#else
+        return false;
 #endif
-      std::uintmax_t size = NULL;
+      }
 
-      constexpr MemoryAccessInfo() = default;
-      constexpr MemoryAccessInfo(std::uintmax_t infoSize) : size(infoSize) {}
+      /// <summary>
+      /// Unlocks memory at mAddress.
+      /// </summary>
+      /// <param name="size">How many bytes to unlock</param>
+      /// <returns>Old memory protect value, NULL if failed</returns>
+      std::uint_least32_t Unlock(std::size_t size) const {
+#if defined(__linux__) || defined(_LINUX)
+        return mprotect(reinterpret_cast<void*>(mAddress), size, PROT_READ | PROT_WRITE | PROT_EXEC) == 0;
+#elif defined(_WIN32)
+        DWORD old;
+        if (VirtualProtect(reinterpret_cast<LPVOID>(mAddress), size, PAGE_EXECUTE_READWRITE, &old)) return old;
+
+        return NULL;
+#endif
+      }
+
+      template <typename T>
+      const T GetValue() const {
+        T ret{};
+
+        auto old = Unlock(sizeof(T));
+        if (!old) return ret;
+
+        ret = *reinterpret_cast<T*>(mAddress);
+        Lock(sizeof(T), old);
+        return ret;
+      }
+      template <typename T>
+      bool SetValue(const T& value) const {
+        auto old = Unlock(sizeof(T));
+        if (!old) return false;
+
+        *reinterpret_cast<T*>(mAddress) = value;
+        Lock(sizeof(T), old);
+        return true;
+      }
+
+      explicit RawMemory(std::uintptr_t address) : mAddress(address) {}
     };
 
-    std::uintptr_t mBase;
+    [[nodiscard]] inline RawMemory GetRawMemory(std::uintptr_t address) const { return RawMemory(address); }
 
-    inline std::uint32_t CalcDistance(std::uintptr_t from, std::uintptr_t to) const {
-      return to - from - sizeof(std::uint32_t) - 1;
+    inline std::uintptr_t AbsRVA(std::uintptr_t rva) const { return mBase + rva; }
+    inline std::uintptr_t CalculateRelativeDistance(std::uintptr_t from, std::uintptr_t to) const {
+      return to - from - sizeof(std::uintptr_t) - 1;
     }
-
-    bool ValidateMemoryIsInitializedInternal(std::uintptr_t address) const {
+    bool ValidateMemoryIsInitialized(std::uintptr_t address) const {
 #if defined(_WIN32)
       // Check if page is accessible
       {
@@ -132,118 +195,86 @@ namespace MemoryEditor {
 
       // VC++ Magic Numbers //
 
+      auto m = GetRawMemory(address);
+
       // Guard bytes after allocated heap memory
-      if (*reinterpret_cast<std::uint32_t*>(address) == 0xABABABAB) return false;
+      if (m.GetValue<std::uint32_t>() == 0xABABABAB) return false;
       // Uninitialized stack memory
-      if (*reinterpret_cast<std::uint32_t*>(address) == 0xCCCCCCCC) return false;
+      if (m.GetValue<std::uint32_t>() == 0xCCCCCCCC) return false;
       // Uninitialized heap memory
-      if (*reinterpret_cast<std::uint32_t*>(address) == 0xCDCDCDCD) return false;
+      if (m.GetValue<std::uint32_t>() == 0xCDCDCDCD) return false;
       // Guard bytes before & after allocated heap memory
-      if (*reinterpret_cast<std::uint32_t*>(address) == 0xFDFDFDFD) return false;
+      if (m.GetValue<std::uint32_t>() == 0xFDFDFDFD) return false;
       // Freed memory
-      if (*reinterpret_cast<std::uint32_t*>(address) == 0xFEEEFEEE) return false;
+      if (m.GetValue<std::uint32_t>() == 0xFEEEFEEE) return false;
 
       return true;
     }
 
-    explicit Editor() {
-#if defined(__linux__) || defined(_LINUX)
-#error Base address cannot be dynamically acquired without hacks on linux systems. Call 'Get(baseAddress)' instead.
-#elif defined(_WIN32)
-      mBase = reinterpret_cast<std::uintptr_t>(GetModuleHandleW(NULL));
-#endif
-    }
-    explicit Editor(std::uintptr_t base) : mBase(base) {}
-
-   public:
-    inline std::uintptr_t AbsRVA(std::uintptr_t rva) const { return mBase + rva; }
-
-    void LockMemory(std::uintptr_t address) const {}
-    void UnlockMemory(std::uintptr_t address, std::size_t size) const {
-#if defined(__linux__) || defined(_LINUX)
-      mprotect(reinterpret_cast<void*>(address), size, PROT_READ | PROT_WRITE | PROT_EXEC);
-#elif defined(_WIN32)
-      DWORD old;
-      VirtualProtect(reinterpret_cast<LPVOID>(address), size, PAGE_EXECUTE_READWRITE, &old);
-#endif
-    }
-
-    std::unique_ptr<DetourInfo> Detour(std::uintptr_t from, std::uintptr_t to) const {
-      return std::make_unique<DetourInfo>(from, to);
+    std::unique_ptr<DetourInfo> Detour(std::uintptr_t from, std::uintptr_t to, MakeType type = MakeType::Jump) const {
+      return std::make_unique<DetourInfo>(from, to, type);
     }
     void Make(MakeType type, std::uintptr_t from, std::uintptr_t to) const {
-      std::uint8_t* _arr = reinterpret_cast<std::uint8_t*>(from);
+      std::uint8_t* arr = reinterpret_cast<std::uint8_t*>(from);
+      auto          m   = GetRawMemory(from);
 
-      std::uint8_t _b = 0x00;
+      std::uint8_t val = 0x00;
       switch (type) {
         case MakeType::Call:
-          UnlockMemory(from, sizeof(std::uint32_t) + 1);
-          _arr[0]                                     = 0xE8;
-          *reinterpret_cast<std::uint32_t*>(&_arr[1]) = CalcDistance(from, to);
+          auto size = sizeof(std::uint32_t) + 1;
+          if (auto old = m.Unlock(size)) {
+            arr[0]                                     = 0xE8;
+            *reinterpret_cast<std::uint32_t*>(&arr[1]) = CalculateRelativeDistance(from, to);
+            m.Lock(size, old);
+          }
           break;
         case MakeType::Jump:
-          UnlockMemory(from, sizeof(std::uint32_t) + 1);
-          _arr[0]                                     = 0xE9;
-          *reinterpret_cast<std::uint32_t*>(&_arr[1]) = CalcDistance(from, to);
+          auto size = sizeof(std::uint32_t) + 1;
+          if (auto old = m.Unlock(size)) {
+            arr[0]                                     = 0xE9;
+            *reinterpret_cast<std::uint32_t*>(&arr[1]) = CalculateRelativeDistance(from, to);
+            m.Lock(size, old);
+          }
           break;
         case MakeType::NOP:
-          _b = 0x90;
+          val = 0x90;
           break;
         case MakeType::DebuggerTrap:
-          _b = 0xCC;
+          val = 0xCC;
           break;
         case MakeType::Return:
-          _b = 0xC3;
+          val = 0xC3;
           break;
       }
 
-      if (_b != 0x00 && (to - from) > 0) {
-        const std::uintptr_t _dist = to - from;
-        UnlockMemory(from, _dist);
-        for (std::uintptr_t i = from; i < _dist; i++) *reinterpret_cast<std::uint8_t*>(i) = _b;
+      if (val != 0x00 && (to - from) > 0) {
+        auto size = to - from;
+        if (auto old = m.Unlock(size)) {
+          std::memset(reinterpret_cast<void*>(from), val, size);
+          m.Lock(size, old);
+        }
       }
-      LockMemory(from);
-    }
-
-    bool ValidateMemoryIsInitialized(std::uintptr_t address) const {
-      UnlockMemory(address, sizeof(std::uint32_t));
-      bool _ret = ValidateMemoryIsInitializedInternal(address);
-      LockMemory(address);
-
-      return _ret;
-    }
-    template <typename PtrType>
-    bool ValidateMemoryIsInitialized(PtrType* ptr) const {
-      if (!ptr) return false;
-      return ValidateMemoryIsInitialized(reinterpret_cast<std::uintptr_t>(ptr));
     }
 
     template <typename PointedType>
     PointedType* ReadPointer(std::uintptr_t base, std::initializer_list<std::uintptr_t> offsets) const {
-      PointedType* _ret = nullptr;
-      UnlockMemory(base, sizeof(std::uintptr_t));
-      if (!base || !ValidateMemoryIsInitializedInternal(base) || !*reinterpret_cast<std::uintptr_t*>(base)) {
-        LockMemory(base);
-        return _ret;
+      PointedType* ret = nullptr;
+      if (!base || !ValidateMemoryIsInitialized(base) || !GetRawMemory(base).GetValue<std::uintptr_t>()) {
+        return ret;
       }
 
-      std::uintptr_t _last = *reinterpret_cast<std::uintptr_t*>(base);
-      LockMemory(base);
+      std::uintptr_t last = *reinterpret_cast<std::uintptr_t*>(base);
 
       for (const auto& off : offsets) {
-        LockMemory(_last);
-        std::uintptr_t  _offBase = _last + off;
-        std::uintptr_t* _p       = reinterpret_cast<std::uintptr_t*>(_offBase);
-        UnlockMemory(_offBase, sizeof(std::uintptr_t));
-        if (!_p || !ValidateMemoryIsInitializedInternal(*_p)) {
-          LockMemory(_offBase);
-          _ret = nullptr;
+        auto            m = GetRawMemory(last + off);
+        std::uintptr_t* p = m.GetValue<std::uintptr_t*>();
+        if (!p || !ValidateMemoryIsInitialized(*p)) {
+          ret = nullptr;
           break;
         }
-        _last = *_p;
-        _ret  = reinterpret_cast<PointedType*>(_last);
+        ret = reinterpret_cast<PointedType*>(*p);
       }
-      return _ret;
+      return ret;
     }
 
     static inline const Editor& Get() {
