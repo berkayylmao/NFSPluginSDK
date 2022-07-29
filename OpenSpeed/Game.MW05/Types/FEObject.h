@@ -38,5 +38,50 @@ namespace OpenSpeed::MW05 {
     FEMinList           Scripts;
     FEScript*           pCurrentScript;
     FERenderObject*     Cached;
+
+    /// VISIBLE
+
+    void SetVisible(bool visible) { reinterpret_cast<void(__cdecl*)(FEObject*)>(visible ? 0x514CC0 : 0x514C70)(this); }
+
+    /// COLOR
+
+    void SetColor(std::uint8_t r, std::uint8_t g, std::uint8_t b, std::uint8_t a) {
+      reinterpret_cast<void(__cdecl*)(FEObject*, std::uint8_t, std::uint8_t, std::uint8_t, std::uint8_t)>(0x5157E0)(
+          this, b, g, r, a);
+    }
+
+    /// CENTER
+
+    FEVector2 GetCenter() {
+      FEVector2 ret;
+      reinterpret_cast<void(__cdecl*)(FEObject*, float*, float*)>(0x524EE0)(this, &ret.x, &ret.y);
+
+      return ret;
+    }
+    void SetCenter(FEVector2 center) {
+      reinterpret_cast<void(__cdecl*)(FEObject*, float, float)>(0x525050)(this, center.x, center.y);
+    }
+
+    /// SIZE
+
+    FEVector2 GetSize() {
+      FEVector2 ret;
+      reinterpret_cast<void(__cdecl*)(FEObject*, float*, float*)>(0x515520)(this, &ret.x, &ret.y);
+
+      return ret;
+    }
+    void SetSize(FEVector2 size) {
+      reinterpret_cast<void(__cdecl*)(FEObject*, float, float)>(0x5155E0)(this, size.x, size.y);
+    }
+
+    /// ROTATION
+
+    void SetRotationZ(float rot) { reinterpret_cast<void(__cdecl*)(FEObject*, float)>(0x514E20)(this, rot); }
+
+    /// GET INSTANCE
+
+    static inline FEObject* GetObject(const char* fng, std::uint32_t hash) {
+      return reinterpret_cast<FEObject*(__cdecl*)(const char*, std::uint32_t)>(0x524850)(fng, hash);
+    }
   };
 }  // namespace OpenSpeed::MW05
