@@ -25,12 +25,15 @@ namespace OpenSpeed::ProStreet::Attrib {
   struct Collection {
     HashMap       mTable;
     Collection*   mParent;
+    std::uint32_t mKey;
     Class*        mClass;
     void*         mLayout;
-    std::uint32_t mRefCount;
-    std::uint32_t mKey;
     Vault*        mSource;
-    const char**  mNamePtr;
+
+    template <typename T>
+    inline T* GetData(StringKey fieldKey, std::int32_t idx = 0) {
+      return reinterpret_cast<T*(__thiscall*)(Collection*, StringKey, std::int32_t)>(0x52B5D0)(this, fieldKey, idx);
+    }
 
     template <typename T>
     inline T* GetLayout() {

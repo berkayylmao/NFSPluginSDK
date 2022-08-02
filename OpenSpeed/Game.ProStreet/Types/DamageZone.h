@@ -19,9 +19,10 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/UTL.h>
 
-namespace OpenSpeed::ProStreet::Attrib {
-  struct Vault {
-    /*undefined*/
+namespace OpenSpeed::ProStreet::DamageZone {
+  struct Info {
+    ID mValue;
   };
-}  // namespace OpenSpeed::ProStreet::Attrib
+}  // namespace OpenSpeed::ProStreet::DamageZone

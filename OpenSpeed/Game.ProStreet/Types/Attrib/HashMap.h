@@ -23,9 +23,10 @@
 namespace OpenSpeed::ProStreet::Attrib {
   struct HashMap {
     Node*         mTable;
-    std::uint32_t mTableSize;
-    std::uint32_t mNumEntries;
-    std::uint16_t mWorstCollision;
-    std::uint16_t mKeyShift;
+    std::uint16_t mTableSize;
+    std::uint16_t mNumEntries;
+    std::uint16_t mRefCount;
+    std::int8_t   mWorstCollision;
+    std::int8_t   mKeyShift;
   };
 }  // namespace OpenSpeed::ProStreet::Attrib

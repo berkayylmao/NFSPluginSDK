@@ -19,9 +19,14 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/UTL.h>
 
-namespace OpenSpeed::ProStreet::Attrib {
-  struct Vault {
-    /*undefined*/
+namespace OpenSpeed::ProStreet {
+  struct IWheelDamage : UTL::COM::IUnknown {
+    virtual ~IWheelDamage();
+
+    virtual eWheelDamage GetWheelDamage(eTireIdx idx /*might be WheelPositionIndex*/) = 0;
+    virtual std::int32_t GetNumDamagedWheels()                                        = 0;
+    virtual void         DamageWheel(eTireIdx idx /*might be WheelPositionIndex*/)    = 0;
   };
-}  // namespace OpenSpeed::ProStreet::Attrib
+}  // namespace OpenSpeed::ProStreet

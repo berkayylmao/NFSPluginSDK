@@ -22,8 +22,18 @@
 
 namespace OpenSpeed::ProStreet::Attrib {
   struct Database {
-    DatabasePrivate& mPrivates;
+    DatabasePrivate* mPrivates;
 
     virtual ~Database();
+
+    inline Class* GetClass(StringKey key) {
+      return reinterpret_cast<Class*(__thiscall*)(Database*, StringKey)>(0x52CA70)(this, key);
+    }
+
+    static inline Database** g_mThis = reinterpret_cast<Database**>(0xAB0E60);
+    static Database*         Get() {
+      if (!g_mThis) return nullptr;
+      return *g_mThis;
+    }
   };
 }  // namespace OpenSpeed::ProStreet::Attrib

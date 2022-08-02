@@ -28,9 +28,8 @@ namespace OpenSpeed::ProStreet {
     struct IContext {
       virtual UTL::COM::IUnknown* GetContextOwner()                                          = 0;
       virtual bool                GetDynamicData(System* system, void* pOutEventDynamicData) = 0;
-      virtual const char*         GetContextDebugName()                                      = 0;
+      virtual std::int32_t        GetContextDebugName(char* out, std::uint32_t len)          = 0;
       virtual ~IContext();
-      virtual void __null_sub__() = 0;
     };
   };
 }  // namespace OpenSpeed::ProStreet

@@ -23,11 +23,13 @@
 #include <OpenSpeed/Core/MemoryEditor/MemoryEditor.hpp>  // ValidateMemoryIsInitialized
 
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/GRaceStatus.h>  // GRaceStatus
-#include <OpenSpeed/Game.ProStreet/Types/IPlayer.h>      // IPlayer
-#include <OpenSpeed/Game.ProStreet/Types/IRigidBody.h>   // IRigidBody
-#include <OpenSpeed/Game.ProStreet/Types/PVehicle.h>     // PVehicle
-#include <OpenSpeed/Game.ProStreet/Types/RideInfo.h>     // RideInfo
+#include <OpenSpeed/Game.ProStreet/Types/DamageCopCar.h>  // DamageCopCar, DamageVehicle, IDamageable, IDamageableVehicle
+#include <OpenSpeed/Game.ProStreet/Types/DamageRacer.h>   // DamageRacer
+#include <OpenSpeed/Game.ProStreet/Types/GRaceStatus.h>   // GRaceStatus
+#include <OpenSpeed/Game.ProStreet/Types/IPlayer.h>       // IPlayer
+#include <OpenSpeed/Game.ProStreet/Types/IRigidBody.h>    // IRigidBody
+#include <OpenSpeed/Game.ProStreet/Types/PVehicle.h>      // PVehicle
+#include <OpenSpeed/Game.ProStreet/Types/RideInfo.h>      // RideInfo
 
 namespace OpenSpeed::ProStreet {
   //          //
@@ -156,4 +158,88 @@ namespace OpenSpeed::ProStreet {
                                 killAfterChange);
     }
   }  // namespace PVehicleEx
+
+  //            //
+  // IDamageable //
+  //            //
+
+  namespace DamageableEx {
+    namespace details {
+      //                             //
+      // Verified DamageVehicle cast //
+      //                             //
+
+      struct DamageVehicleCast_t {
+        DamageVehicle* operator()(IDamageable* iDamageable) const {
+          if (!iDamageable || !MemoryEditor::Get().ValidateMemoryIsInitialized(iDamageable)) return nullptr;
+          // Verify cast
+          auto* damageable = static_cast<DamageVehicle*>(iDamageable);
+          auto  vfptr      = *reinterpret_cast<std::uintptr_t*>(damageable);
+          // type: DamageVehicle
+          if (vfptr == 0x9F5EA0) return damageable;
+          // type: DamageCopCar
+          if (vfptr == 0x9F6330) return damageable;
+          // type: DamageRacer
+          if (vfptr == 0x9F6214) return damageable;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static DamageVehicle* operator|(IDamageable* i, DamageVehicleCast_t ext) { return ext(i); }
+
+      //                            //
+      // Verified DamageCopCar cast //
+      //                            //
+
+      struct DamageCopCarCast_t {
+        DamageCopCar* operator()(IDamageable* iDamageable) const {
+          if (!iDamageable || !MemoryEditor::Get().ValidateMemoryIsInitialized(iDamageable)) return nullptr;
+          // Verify cast
+          auto* damageable = static_cast<DamageCopCar*>(iDamageable);
+          if (*reinterpret_cast<std::uintptr_t*>(damageable) == 0x9F6330) return damageable;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static DamageCopCar* operator|(IDamageable* i, DamageCopCarCast_t ext) { return ext(i); }
+
+      //                           //
+      // Verified DamageRacer cast //
+      //                           //
+
+      struct DamageRacerCast_t {
+        DamageRacer* operator()(IDamageable* iDamageable) const {
+          if (!iDamageable || !MemoryEditor::Get().ValidateMemoryIsInitialized(iDamageable)) return nullptr;
+          // Verify cast
+          auto* damageable = static_cast<DamageRacer*>(iDamageable);
+          auto  vfptr      = *reinterpret_cast<std::uintptr_t*>(damageable);
+          // type: DamageRacer
+          if (vfptr == 0x9F6214) return damageable;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static DamageRacer* operator|(IDamageable* i, DamageRacerCast_t ext) { return ext(i); }
+    }  // namespace details
+
+    // Try-get IDamageable as DamageVehicle
+    // Usage: DamageVehicle* myptr = GetDamagePtr() | DamageableEx::AsDamageVehicle;
+    static inline const details::DamageVehicleCast_t AsDamageVehicle;
+
+    // Try-get IDamageable as DamageCopCar
+    // Usage: DamageCopCar* myptr = GetDamagePtr() | DamageableEx::AsDamageCopCar;
+    static inline const details::DamageCopCarCast_t AsDamageCopCar;
+
+    // Try-get IDamageable as DamageRacer
+    // Usage: DamageRacer* myptr = GetDamagePtr() | DamageableEx::AsDamageRacer;
+    static inline const details::DamageRacerCast_t AsDamageRacer;
+
+    // Get a pointer to the player IDamageable instance
+    static IDamageable* GetPlayerInstance() {
+      auto* pvehicle = PVehicleEx::GetPlayerInstance();
+      if (pvehicle) return pvehicle->mDamage;
+
+      return nullptr;
+    }
+  }  // namespace DamageableEx
 }  // namespace OpenSpeed::ProStreet

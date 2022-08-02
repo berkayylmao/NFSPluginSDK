@@ -38,7 +38,7 @@ namespace OpenSpeed::ProStreet {
                            const UMath::Vector3& direction, const UMath::Vector3& position,
                            RideInfo*          pRideInfo = nullptr,
                            eVehicleParamFlags flags     = eVehicleParamFlags::SnapToGround |
-                                                      eVehicleParamFlags::CalcPerformance,
+                                                      eVehicleParamFlags::ComputePerformance,
                            IVehicleCache*              pVehicleCache     = nullptr,
                            Physics::Info::Performance* pPerformanceMatch = nullptr) :
         mDriverClass(driverClass),

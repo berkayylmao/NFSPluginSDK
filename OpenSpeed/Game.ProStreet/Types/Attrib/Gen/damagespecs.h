@@ -19,9 +19,8 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/Attrib/Instance.h>
 
-namespace OpenSpeed::ProStreet::Attrib {
-  struct Vault {
-    /*undefined*/
-  };
-}  // namespace OpenSpeed::ProStreet::Attrib
+namespace OpenSpeed::ProStreet::Attrib::Gen {
+  struct damagespecs : Instance {};
+}  // namespace OpenSpeed::ProStreet::Attrib::Gen

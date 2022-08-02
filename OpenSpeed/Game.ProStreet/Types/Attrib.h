@@ -33,4 +33,14 @@ namespace OpenSpeed::ProStreet::Attrib {
   static inline StringKey StringToKey(const char* name) {
     return reinterpret_cast<StringKey(__cdecl*)(const char*)>(0x52B8D0)(name);
   }
+
+  static inline Collection* FindCollection(StringKey classKey, StringKey collectionKey) {
+    return reinterpret_cast<Collection*(__cdecl*)(StringKey, StringKey)>(0x52CD40)(classKey, collectionKey);
+  }
+  static inline Collection* FindCollection(const char* className, StringKey collectionKey) {
+    return FindCollection(StringToKey(className), collectionKey);
+  }
+  static inline Collection* FindCollection(const char* className, const char* collectionName) {
+    return FindCollection(StringToKey(className), StringToKey(collectionName));
+  }
 }  // namespace OpenSpeed::ProStreet::Attrib

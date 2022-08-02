@@ -22,8 +22,20 @@
 
 namespace OpenSpeed::ProStreet::Attrib {
   struct Class {
-    std::uint32_t mKey;
-    std::uint32_t mRefCount;
-    ClassPrivate& mPrivates;
+    std::uint32_t         mKey;
+    Attrib::ClassPrivate* mPrivates;
+
+    inline Collection* GetCollection(StringKey key) {
+      return reinterpret_cast<Collection*(__thiscall*)(Class*, StringKey)>(0x557C30)(this, key);
+    }
+    inline std::uint32_t GetNumCollections() {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(Class*)>(0x52B520)(this);
+    }
+    inline std::uint32_t GetFirstCollection() {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(Class*)>(0x402BC0)(this);
+    }
+    inline std::uint32_t GetNextCollection(StringKey key) {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(Class*, StringKey)>(0x4F4390)(this, key);
+    }
   };
 }  // namespace OpenSpeed::ProStreet::Attrib

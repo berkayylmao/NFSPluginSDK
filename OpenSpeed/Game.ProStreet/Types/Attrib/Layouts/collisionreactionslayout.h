@@ -32,8 +32,8 @@ namespace OpenSpeed::ProStreet::Attrib::Layouts {
     };
 
     CollisionReactionRecord REARSIDE_REACTION;
+    CollisionReactionRecord REAR_REACTION;
     CollisionReactionRecord FRONTSIDE_REACTION;
     CollisionReactionRecord FRONT_REACTION;
-    CollisionReactionRecord REAR_REACTION;
   };
 }  // namespace OpenSpeed::ProStreet::Attrib::Layouts

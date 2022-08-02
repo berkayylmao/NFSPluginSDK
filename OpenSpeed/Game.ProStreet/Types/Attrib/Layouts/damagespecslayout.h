@@ -18,10 +18,30 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.MW05/Types.h>
 
-namespace OpenSpeed::ProStreet::Attrib {
-  struct Vault {
-    /*undefined*/
+namespace OpenSpeed::MW05::Attrib::Layouts {
+  struct damagespecslayout {
+    struct DamageScaleRecord {
+      float VisualScale;
+      float HitPointScale;
+    };
+
+    DamageScaleRecord DZ_TOP;
+    DamageScaleRecord DZ_RREAR;
+    DamageScaleRecord DZ_RIGHT;
+    DamageScaleRecord DZ_RFRONT;
+    DamageScaleRecord DZ_REAR;
+    DamageScaleRecord DZ_LREAR;
+    DamageScaleRecord DZ_LFRONT;
+    DamageScaleRecord DZ_LEFT;
+    DamageScaleRecord DZ_FRONT;
+    DamageScaleRecord DZ_BOTTOM;
+    float             SUPPRESS_DIST;
+    float             SHOCK_TIME;
+    float             SHOCK_FORCE;
+    float             HP_THRESHOLD;
+    float             HIT_POINTS;
+    float             FORCE;
   };
-}  // namespace OpenSpeed::ProStreet::Attrib
+}  // namespace OpenSpeed::MW05::Attrib::Layouts

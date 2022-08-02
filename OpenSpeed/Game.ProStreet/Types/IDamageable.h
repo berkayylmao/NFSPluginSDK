@@ -24,15 +24,13 @@
 namespace OpenSpeed::ProStreet {
   struct IDamageable : UTL::COM::IUnknown {
     virtual ~IDamageable();
-    virtual void              SetInShock(float)    = 0;
-    virtual void              SetShockForce(float) = 0;
-    virtual float             InShock()            = 0;
-    virtual void              ResetDamagePrivate() = 0;
-    virtual float             GetHealth()          = 0;
-    virtual bool              IsDestroyed()        = 0;
-    virtual void              Destroy()            = 0;
-    virtual DamageZone::Info* GetZoneDamage()      = 0;
-
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x405000)(); }
+    virtual void             SetInShock(float)    = 0;
+    virtual void             SetShockForce(float) = 0;
+    virtual float            InShock()            = 0;
+    virtual void             ResetDamagePrivate() = 0;
+    virtual float            GetHealth()          = 0;
+    virtual bool             IsDestroyed()        = 0;
+    virtual void             Destroy()            = 0;
+    virtual DamageZone::Info GetZoneDamage()      = 0;
   };
 }  // namespace OpenSpeed::ProStreet

@@ -19,9 +19,20 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/DamageVehicle.h>
 
-namespace OpenSpeed::ProStreet::Attrib {
-  struct Vault {
-    /*undefined*/
+namespace OpenSpeed::ProStreet {
+  struct DamageCopCar : DamageVehicle {
+    float       mFlippedOver;
+    HSIMTASK__* mThinkTask;
+
+    virtual ~DamageCopCar();
+
+#pragma region overrides
+    virtual bool OnTask(HSIMTASK__* hTask, float deltaTime) override;
+    virtual void OnImpact(const UMath::Vector3&, const UMath::Vector3&, float, float, const SimSurface&,
+                          ISimable*) override;
+    virtual void ResetDamagePrivate() override;
+#pragma endregion
   };
-}  // namespace OpenSpeed::ProStreet::Attrib
+}  // namespace OpenSpeed::ProStreet

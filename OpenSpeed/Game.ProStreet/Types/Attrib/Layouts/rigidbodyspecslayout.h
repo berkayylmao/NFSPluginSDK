@@ -23,31 +23,31 @@
 
 namespace OpenSpeed::ProStreet::Attrib::Layouts {
   struct rigidbodyspecslayout {
-    UMath::Vector4 COLLISION_BOX_PAD;
-    UMath::Vector4 DRAG;
     UMath::Vector4 WORLD_MOMENT_SCALE;
-    UMath::Vector4 OBJ_MOMENT_SCALE;
-    UMath::Vector4 GROUND_ELASTICITY;
-    UMath::Vector4 OBJ_ELASTICITY;
-    UMath::Vector4 DRAG_ANGULAR;
     UMath::Vector4 WALL_ELASTICITY;
+    UMath::Vector4 OBJ_MOMENT_SCALE;
+    UMath::Vector4 OBJ_ELASTICITY;
     UMath::Vector4 GROUND_MOMENT_SCALE;
+    UMath::Vector4 GROUND_ELASTICITY;
+    UMath::Vector4 DRAG_ANGULAR;
+    UMath::Vector4 DRAG;
+    UMath::Vector4 COLLISION_BOX_PAD;
     UMath::Vector4 CG;
-    StringKey      BASE_MATERIAL;
     StringKey      DEFAULT_COL_BOX;
-    Private        _Array_OBJ_FRICTION;
-    float          OBJ_FRICTION[2];
+    StringKey      BASE_MATERIAL;
     Private        _Array_WALL_FRICTION;
     float          WALL_FRICTION[2];
+    Private        _Array_OBJ_FRICTION;
+    float          OBJ_FRICTION[2];
     Private        _Array_GROUND_FRICTION;
     float          GROUND_FRICTION[2];
-    float          GRAVITY;
-    float          NATURAL_ANGULAR_DAMPING;
     float          SLEEP_VELOCITY;
-    bool           NO_GROUND_COLLISIONS;
-    bool           IMMOBILE_OBJECT_COLLISIONS;
     bool           NO_WORLD_COLLISIONS;
-    bool           INSTANCE_COLLISIONS_3D;
     bool           NO_OBJ_COLLISIONS;
+    bool           NO_GROUND_COLLISIONS;
+    float          NATURAL_ANGULAR_DAMPING;
+    bool           INSTANCE_COLLISIONS_3D;
+    bool           IMMOBILE_OBJECT_COLLISIONS;
+    float          GRAVITY;
   };
 }  // namespace OpenSpeed::ProStreet::Attrib::Layouts

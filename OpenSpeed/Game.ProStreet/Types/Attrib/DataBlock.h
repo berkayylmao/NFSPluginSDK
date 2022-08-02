@@ -22,9 +22,8 @@
 
 namespace OpenSpeed::ProStreet::Attrib {
   struct DataBlock {
-    void*              mData;
-    IGarbageCollector* mGC;
-    std::uint32_t      mPolicyIndex;
-    std::uint32_t      mSize;
+    void*         mData;
+    std::uint32_t mSize : 24;
+    std::uint32_t mKind : 8;
   };
 }  // namespace OpenSpeed::ProStreet::Attrib

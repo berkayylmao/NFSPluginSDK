@@ -19,9 +19,19 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/UTL.h>
 
-namespace OpenSpeed::ProStreet::Attrib {
-  struct Vault {
-    /*undefined*/
+namespace OpenSpeed::ProStreet {
+  struct IDamageableVehicle : UTL::COM::IUnknown {
+    virtual ~IDamageableVehicle();
+    virtual bool IsLightDamaged(VehicleFX::LightID idx)             = 0;
+    virtual void DamageLight(VehicleFX::LightID idx, bool damage)   = 0;
+    virtual bool IsLightCracked(VehicleFX::LightID idx)             = 0;
+    virtual void CrackLight(VehicleFX::LightID idx, bool crack)     = 0;
+    virtual bool IsWindowDamaged(VehicleFX::WindowID idx)           = 0;
+    virtual void DamageWindow(VehicleFX::WindowID idx, bool damage) = 0;
+    virtual bool IsWindowCracked(VehicleFX::WindowID idx)           = 0;
+    virtual void CrackWindow(VehicleFX::WindowID idx, bool crack)   = 0;
+    virtual void SetHitPointsOverride(float hp)                     = 0;
   };
-}  // namespace OpenSpeed::ProStreet::Attrib
+}  // namespace OpenSpeed::ProStreet

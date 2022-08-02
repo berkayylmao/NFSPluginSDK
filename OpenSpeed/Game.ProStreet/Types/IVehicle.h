@@ -83,9 +83,9 @@ namespace OpenSpeed::ProStreet {
     virtual void                         SetSpeed(float newSpeed)                                                   = 0;
     virtual void                         SetVelocity(float x, float y, float z)                                     = 0;
     virtual float                        GetAbsoluteSpeed()                                                         = 0;
-    virtual bool                         IsGlareOn(VehicleFX::ID fxId)                                              = 0;
-    virtual void                         GlareOn(VehicleFX::ID fxId)                                                = 0;
-    virtual void                         GlareOff(VehicleFX::ID fxId)                                               = 0;
+    virtual bool                         IsGlareOn(VehicleFX::LightID fxId)                                         = 0;
+    virtual void                         GlareOn(VehicleFX::LightID fxId)                                           = 0;
+    virtual void                         GlareOff(VehicleFX::LightID fxId)                                          = 0;
     virtual bool                         IsCollidingWithSoftBarrier()                                               = 0;
     virtual IVehicleAI*                  GetAIVehiclePtr()                                                          = 0;
     virtual float                        GetSlipAngle()                                                             = 0;

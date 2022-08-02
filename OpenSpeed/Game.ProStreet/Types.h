@@ -83,8 +83,9 @@ namespace OpenSpeed::ProStreet {
   }  // namespace CollisionGeometry
 
   namespace DamageZone {
+    enum class ID : std::uint32_t { Front, Rear, Left, Right, LeftFront, RightFront, LeftRear, RightRear, Top, Bottom };
     struct Info;
-  }
+  }  // namespace DamageZone
 
   namespace Dynamics {
     namespace Collision {
@@ -255,6 +256,10 @@ namespace OpenSpeed::ProStreet {
   struct bNode;
   template <typename T>
   struct bTNode;
+  using bVector2    = Math::Vector2;
+  using bVector3    = Math::Vector3;
+  using bVector4    = Math::Vector4;
+  using bQuaternion = Math::Vector4;
   struct CareerPursuitScores;
   struct CareerSettings;
   struct CarPaintPart;
@@ -724,8 +729,21 @@ namespace OpenSpeed::ProStreet {
     Widebody,
   };
   enum class eCustomTuningType : std::uint32_t { Setting1, Setting2, Setting3 };
+  enum class eDecalType : std::uint32_t {
+    SkidConcrete,
+    SkidDirt,
+    SkidGrass,
+    SkidSand,
+    ScrapeMetal,
+    ScrapePlastic,
+    ScrapeWood,
+    ScrapeConcrete,
+    None = UINT32_MAX
+  };
   enum class eLaneSelection : std::uint32_t { CenterLane, CurrentLane, ValidLane };
   enum class ePlayerHudType : std::uint32_t { None, Standard, Drag, Split1, Split2, DragSplit1, DragSplit2 };
+  enum class eTireDamage : std::uint8_t { None, Punctured, Blown };
+  enum class eTireIdx : std::uint32_t { FrontLeft, FrontRight, RearLeft, RearRight };
   enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
   enum class eTransmissionOverride : std::uint32_t { None, Manual, ManualClutch, Automatic };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
@@ -740,6 +758,7 @@ namespace OpenSpeed::ProStreet {
     Critical           = 1 << 6,
     PhysicsOnly        = 1 << 7
   };
+  enum class eWheelDamage : std::uint32_t { None, Bent };
   enum class eWingmanRole : std::uint32_t { Unknown, Leader, Blocky, Pathy, Speedy };
   enum class GameFlowState : std::uint32_t {
     None,
@@ -754,6 +773,7 @@ namespace OpenSpeed::ProStreet {
     ExitDemoDisc
   };
   enum class PhysicsMode : std::uint32_t { Inactive, Simulated, Emulated };
+  enum class ScrapeSurfaces : std::uint32_t { None, Concrete, Metal, Rubber };
   enum class SimableType : std::uint32_t {
     Invalid,
     Vehicle,
@@ -766,6 +786,15 @@ namespace OpenSpeed::ProStreet {
     Fragment
   };
   enum class SirenState : std::uint32_t { Wail, Yelp, Scream, Die, Off = UINT32_MAX };
+  enum class SurfaceSFX : std::uint32_t {
+    None         = 0,
+    LightCrack   = 1,
+    TarStrip     = 3,
+    RoadsidePath = 5,
+    HeavyPath    = 6,
+    Dirt         = 7
+  };
+  enum class TireCondition : std::uint32_t { Grip, Wet, Flat, Drift, Drag };
 
   namespace CollisionGeometry {
     enum class BoundFlags : std::uint32_t {
@@ -788,7 +817,7 @@ namespace OpenSpeed::ProStreet {
   }
 
   namespace VehicleFX {
-    enum class ID : std::uint32_t {
+    enum class LightID : std::uint32_t {
       None,
       LeftHead         = 1 << 0,
       RightHead        = 1 << 1,
@@ -813,12 +842,22 @@ namespace OpenSpeed::ProStreet {
       RightSignal      = (std::uint32_t)RightFrontSignal | (std::uint32_t)RightRearSignal,
       Cop              = (std::uint32_t)CopRed | (std::uint32_t)CopBlue | (std::uint32_t)CopWhite
     };
+    enum class WindowID : std::uint32_t {
+      None,
+      Front      = 1 << 0,
+      FrontLeft  = 1 << 1,
+      RearLeft   = 1 << 2,
+      FrontRight = 1 << 3,
+      RearRight  = 1 << 4,
+      Rear       = 1 << 5
+    };
+    DEFINE_ENUM_FLAG_OPERATORS(LightID)
+    DEFINE_ENUM_FLAG_OPERATORS(WindowID)
   }  // namespace VehicleFX
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
   DEFINE_ENUM_FLAG_OPERATORS(eVehicleParamFlags)
   DEFINE_ENUM_FLAG_OPERATORS(CollisionGeometry::BoundFlags)
-  DEFINE_ENUM_FLAG_OPERATORS(VehicleFX::ID)
 #endif
 
 #pragma endregion

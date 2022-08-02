@@ -20,8 +20,9 @@
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
-namespace OpenSpeed::ProStreet::Attrib {
-  struct Vault {
-    /*undefined*/
+namespace OpenSpeed::ProStreet::Attrib::Layouts {
+  struct camerainfolayout {
+    float SunLatitude;
+    float SkyDomeRotation;
   };
-}  // namespace OpenSpeed::ProStreet::Attrib
+}  // namespace OpenSpeed::ProStreet::Attrib::Layouts

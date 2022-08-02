@@ -19,9 +19,13 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/UTL.h>
 
-namespace OpenSpeed::ProStreet::Attrib {
-  struct Vault {
-    /*undefined*/
+namespace OpenSpeed::ProStreet {
+  struct ISpikeable : UTL::COM::IUnknown {
+    virtual ~ISpikeable();
+    virtual eTireDamage  GetTireDamage(eTireIdx idx) = 0;
+    virtual std::int32_t GetNumBlowouts()            = 0;
+    virtual void         Puncture(eTireIdx idx)      = 0;
   };
-}  // namespace OpenSpeed::ProStreet::Attrib
+}  // namespace OpenSpeed::ProStreet

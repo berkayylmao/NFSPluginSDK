@@ -76,7 +76,7 @@ namespace OpenSpeed::ProStreet {
     DriverClass                         mDriverClass;
     DriverStyle                         mDriverStyle;
     bool                                mDriverStyleInitted;
-    VehicleFX::ID                       mGlareState;
+    VehicleFX::LightID                  mGlareState;
     float                               mStartingNOS;
     float                               mBrakeTime;
     IVehicle::ForceStopType             mForceStop;
@@ -166,9 +166,9 @@ namespace OpenSpeed::ProStreet {
     virtual void                         SetSpeed(float newSpeed) override;
     virtual void                         SetVelocity(float x, float y, float z) override;
     virtual float                        GetAbsoluteSpeed() override;
-    virtual bool                         IsGlareOn(VehicleFX::ID fxId) override;
-    virtual void                         GlareOn(VehicleFX::ID fxId) override;
-    virtual void                         GlareOff(VehicleFX::ID fxId) override;
+    virtual bool                         IsGlareOn(VehicleFX::LightID fxId) override;
+    virtual void                         GlareOn(VehicleFX::LightID fxId) override;
+    virtual void                         GlareOff(VehicleFX::LightID fxId) override;
     virtual bool                         IsCollidingWithSoftBarrier() override;
     virtual IVehicleAI*                  GetAIVehiclePtr() override;
     virtual float                        GetSlipAngle() override;
@@ -194,7 +194,7 @@ namespace OpenSpeed::ProStreet {
     virtual void                HidePart(UCrc32) override;
     virtual void                ResetPart(UCrc32) override;
     virtual UTL::COM::IUnknown* GetContextOwner() override;
-    virtual const char*         GetContextDebugName() override;
+    virtual std::int32_t        GetContextDebugName(char* out, std::uint32_t len) override;
 #pragma endregion
 
     static inline bTNode<PVehicle*>** g_mInstances = reinterpret_cast<bTNode<PVehicle*>**>(0xA6AE40);

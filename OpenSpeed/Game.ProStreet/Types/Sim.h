@@ -85,7 +85,7 @@ namespace OpenSpeed::ProStreet {
       virtual bool OnTask(HSIMTASK__* hTask, float deltaTime) = 0;
     };
 
-    struct Object : UTL::COM::Object, IServiceable, ITaskable {
+    struct Object : IServiceable, ITaskable, UTL::COM::Object {
       std::uint8_t  _unk[0x4];
       std::uint32_t mTaskCount;
       std::uint32_t mServiceCount;

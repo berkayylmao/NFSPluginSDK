@@ -28,6 +28,5 @@ namespace OpenSpeed::ProStreet::Attrib {
     void*         mLayoutPtr;
     std::uint32_t mMsgPort;
     Flags         mFlags;
-    std::uint16_t mLocks;
   };
 }  // namespace OpenSpeed::ProStreet::Attrib
