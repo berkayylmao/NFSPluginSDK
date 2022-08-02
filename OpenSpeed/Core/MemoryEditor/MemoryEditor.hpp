@@ -213,7 +213,10 @@ namespace MemoryEditor {
     template <typename T>
     bool ValidateMemoryIsInitialized(T* ptr) const {
       if (!ptr) return false;
-      return ValidateMemoryIsInitialized(reinterpret_cast<std::uintptr_t>(ptr));
+      bool ret = ValidateMemoryIsInitialized(reinterpret_cast<std::uintptr_t>(ptr));
+      if (*reinterpret_cast<std::uintptr_t*>(ptr) == 0) return ret;
+      ret |= ValidateMemoryIsInitialized(*reinterpret_cast<std::uintptr_t*>(ptr));
+      return ret;
     }
 
     std::unique_ptr<DetourInfo> Detour(std::uintptr_t from, std::uintptr_t to, MakeType type = MakeType::Jump) const {
