@@ -95,6 +95,9 @@ namespace OpenSpeed::MW05 {
       CopActivated        = 1 << 17,
       FireOnEntry         = 1 << 18
     };
+#if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
+    DEFINE_ENUM_FLAG_OPERATORS(TriggerFlags)
+#endif
 
     struct EventList;
     struct EventStaticData;
@@ -627,15 +630,9 @@ namespace OpenSpeed::MW05 {
     TAXI,
     MINIVAN,
     PICKUPA,
-    NONE = UINT32_MAX,
+    NONE = UINT32_MAX
   };
-  enum class CarUsageType : std::uint32_t {
-    Racing,
-    Cop,
-    Traffic,
-    Wheels,
-    Universal,
-  };
+  enum class CarUsageType : std::uint32_t { Racing, Cop, Traffic, Wheels, Universal };
   // GRace
   enum class CopDensity : std::uint8_t { Off, Light, Medium, Heavy };
   // GRace
@@ -654,11 +651,7 @@ namespace OpenSpeed::MW05 {
   enum class eCrossState : std::uint32_t { Available, Spawned, Disabled };
   enum class eControllerConfig : std::uint32_t { MinConfig, Config1, Config2, Config3, Config4, MaxConfig, Config5 };
   enum class eCustomTuningType : std::uint32_t { Setting1, Setting2, Setting3 };
-  enum class eDriftType : std::uint32_t {
-    VS_AI,
-    DOWNHILL,
-    TEAM,
-  };
+  enum class eDriftType : std::uint32_t { VsAI, Downhill, Team };
   enum class eFEGameModes : std::uint32_t {
     None,
     Career         = 1 << 0,
@@ -688,20 +681,16 @@ namespace OpenSpeed::MW05 {
     FromControlSwitch,
     FromPhysicsSwitch
   };
-  enum class eLaneSelection : std::uint32_t {
-    CenterLane,
-    CurrentLane,
-    ValidLane,
-  };
+  enum class eLaneSelection : std::uint32_t { CenterLane, CurrentLane, ValidLane };
   enum class eLaneType : std::uint32_t { Racing, Traffic, Drag, Cop, CopReckless, Reset, StartingGrid, Any };
   enum class eLoadSaveGame : std::uint32_t { Load, Save };
   enum class eLocationName : std::uint32_t {
-    UPPER_CLASS,
-    CITY_CORE,
-    SUBURBAN_HILLS,
-    INDUSTRIAL_PARK,
-    AIRPORT,
-    MODE_SPECIFIC,
+    UpperClass,
+    CityCore,
+    SuburbanHills,
+    IndustrialPark,
+    Airport,
+    ModeSpecific
   };
   enum class eMiniMapModes : std::uint8_t { Static, Rotate, Off };
   enum class eNavType : std::uint32_t { None, Traffic, Direction, Path };
@@ -768,7 +757,7 @@ namespace OpenSpeed::MW05 {
     AnimImage,
     SimpleImage,
     MultiImage,
-    UserMin = 256,
+    UserMin = 256
   };
   enum class FormationType : std::uint32_t { None, Pit, BoxUn, RollingBlock, Follow, HeliPursuit, Herd, StaggerFollow };
   enum class GameFlowState : std::uint32_t {
@@ -809,13 +798,7 @@ namespace OpenSpeed::MW05 {
     Sentry,
     Fragment
   };
-  enum class SirenState : std::uint32_t {
-    Wail,
-    Yelp,
-    Scream,
-    Die,
-    Off = UINT32_MAX,
-  };
+  enum class SirenState : std::uint32_t { Wail, Yelp, Scream, Die, Off = UINT32_MAX };
   enum class SpeedUnitType : std::uint8_t { MPH, KPH, MPS };
   // GRace
   enum class TrafficLevel : std::uint8_t { Off, Light, Medium, Heavy };
@@ -837,7 +820,10 @@ namespace OpenSpeed::MW05 {
       Male_Post            = 1 << 12,
       Joint_Invert         = 1 << 13
     };
-  }
+#if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
+    DEFINE_ENUM_FLAG_OPERATORS(BoundFlags)
+#endif
+  }  // namespace CollisionGeometry
 
   namespace DamageZone {
     enum class ID : std::uint32_t { Front, Rear, Left, Right, LeftFront, RightFront, LeftRear, RightRear, Top, Bottom };
@@ -870,15 +856,16 @@ namespace OpenSpeed::MW05 {
       RightSignal      = (std::uint32_t)RightFrontSignal | (std::uint32_t)RightRearSignal,
       Cop              = (std::uint32_t)CopRed | (std::uint32_t)CopBlue | (std::uint32_t)CopWhite
     };
+
+#if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
+    DEFINE_ENUM_FLAG_OPERATORS(LightID)
+#endif
   }  // namespace VehicleFX
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
   DEFINE_ENUM_FLAG_OPERATORS(eFEGameModes)
   DEFINE_ENUM_FLAG_OPERATORS(eVehicleParamFlags)
-  DEFINE_ENUM_FLAG_OPERATORS(CARP::TriggerFlags)
-  DEFINE_ENUM_FLAG_OPERATORS(CollisionGeometry::BoundFlags)
   DEFINE_ENUM_FLAG_OPERATORS(JunkmanParts)
-  DEFINE_ENUM_FLAG_OPERATORS(VehicleFX::LightID)
 #endif
 
 #pragma endregion
