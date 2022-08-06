@@ -28,7 +28,7 @@
 #include <OpenSpeed/Game.MW05/Types/Attrib/Gen/pvehicle.h>
 
 namespace OpenSpeed::MW05 {
-  struct PVehicle : PhysicsObject, IVehicle, EventSequencer::IContext, IExplodeable, IAttributeable, bTNode<PVehicle*> {
+  struct PVehicle : PhysicsObject, IVehicle, EventSequencer::IContext, IExplodeable, IAttributeable, bTNode<PVehicle> {
     struct _InstanceLayout {
       PVehicle* mInstance;
       bool      mIsEnabled;
