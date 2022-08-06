@@ -31,6 +31,7 @@ namespace OpenSpeed {
     static MemoryFieldWrapper<bool>          DrawLightFlares{0xA6C088, true};
     static MemoryFieldWrapper<CARPART_LOD>   ForceCarLOD{0xA7309C, CARPART_LOD::A};
     static MemoryFieldWrapper<CARPART_LOD>   ForceTireLOD{0xA730A0, CARPART_LOD::A};
+    // DALPauseStates::mPauseRequest
     static MemoryFieldWrapper<bool>          IsGameplayPaused{0xA8AD18, false};
     static MemoryFieldWrapper<bool>          IsInNIS{0xB42EBC, false};
     static MemoryFieldWrapper<std::uint16_t> NOSFOVWidening{0xA8AB60, 0x666, 0x001, 0x3500};

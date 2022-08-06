@@ -28,7 +28,7 @@
 #include <OpenSpeed/Game.Carbon/Types/Attrib/Gen/pvehicle.h>
 
 namespace OpenSpeed::Carbon {
-  struct PVehicle : PhysicsObject, IVehicle, EventSequencer::IContext, IExplodeable, IAttributeable, bTNode<PVehicle*> {
+  struct PVehicle : PhysicsObject, IVehicle, EventSequencer::IContext, IExplodeable, IAttributeable, bTNode<PVehicle> {
     Attrib::Gen::pvehicle    mAttributes;
     FECustomizationRecord*   mCustomization;
     IInput*                  mInput;
@@ -128,7 +128,7 @@ namespace OpenSpeed::Carbon {
     virtual const char* GetContextDebugName() override;
 #pragma endregion
 
-    static inline bTNode<PVehicle*>** g_mInstances = reinterpret_cast<bTNode<PVehicle*>**>(0xA9E728);
+    static inline bTNode<PVehicle>** g_mInstances = reinterpret_cast<bTNode<PVehicle>**>(0xA9E728);
 
     static PVehicle* Construct(VehicleParams vehicleParams) {
       ISimable* simable =
@@ -144,7 +144,7 @@ namespace OpenSpeed::Carbon {
       if (!pInstance) return amount;
 
       auto* instance = *pInstance;
-      while (instance != reinterpret_cast<bTNode<PVehicle*>*>(pInstance)) {
+      while (instance != reinterpret_cast<bTNode<PVehicle>*>(pInstance)) {
         amount++;
         instance = instance->GetNext();
       }
@@ -157,7 +157,7 @@ namespace OpenSpeed::Carbon {
 
       std::int32_t cur_idx  = 0;
       auto*        instance = *pInstance;
-      while (instance != reinterpret_cast<bTNode<PVehicle*>*>(pInstance)) {
+      while (instance != reinterpret_cast<bTNode<PVehicle>*>(pInstance)) {
         if (cur_idx == idx) return static_cast<PVehicle*>(instance);
 
         cur_idx++;
