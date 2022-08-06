@@ -24,11 +24,27 @@
 namespace OpenSpeed {
   enum class SpeedGame { NotSupported, U2, MW05, Carbon, ProStreet };
   struct SpeedGameInformation {
-    SpeedGame   mGame;
+    /// <summary>
+    /// Pointer to game's window name, <strong>const</strong>.
+    /// </summary>
+    SpeedGame mGame;
+    /// <summary>
+    /// Pointer to game's window name, const.
+    /// </summary>
     const char* mSzWindowName;
-    void**      mPHwnd;
-    void**      mPPD3DDevice;
-    void**      mPPDI8Device;
+    /// <summary>
+    /// Pointer to game's window handle.
+    /// </summary>
+    void** mPHwnd;
+    /// <summary>
+    /// Pointer to game's Direct3D device.
+    /// <para><em>NOTE: For ProStreet, this is a pointer to the pointer of the device.</em></para>
+    /// </summary>
+    void** mPPD3DDevice;
+    /// <summary>
+    /// Pointer to game's DirectInput8 device.
+    /// </summary>
+    void** mPPDI8Device;
 
     SpeedGameInformation() :
         mGame(SpeedGame::NotSupported),
@@ -65,7 +81,7 @@ namespace OpenSpeed {
       case SpeedGame::Carbon:
         return SpeedGameInformation(SpeedGame::Carbon, 0x9E3648, 0xAB0AD8, 0xAB0ABC, 0xB1F5CC);
       case SpeedGame::ProStreet:
-        return SpeedGameInformation(SpeedGame::ProStreet, 0x98D84C, 0xAC6ED8, 0xAC6ED4, 0);
+        return SpeedGameInformation(SpeedGame::ProStreet, 0x98D84C, 0xAC6ED8, 0xAC6ED4, 0xACDCAC);
     }
     return SpeedGameInformation();
   }
