@@ -24,8 +24,7 @@
 #include <cstdint>  // integer types
 #include <cstring>  // memcpy
 #include <initializer_list>
-#include <memory>  // unique_ptr
-#include <mutex>   // mutex, scoped_lock
+#include <mutex>  // mutex, scoped_lock
 #include <unordered_map>
 #include <type_traits>  // enable_if, is_arithmetic
 #include <tuple>
@@ -78,19 +77,18 @@ namespace MemoryEditor {
       bool           GetHasDetoured() const { return mHasDetoured; }
 
       void Detour(MakeType detourType = MakeType::Jump) {
-        if (mHasDetoured) return;
+        if (mHasDetoured || !mAddrFrom) return;
 
         Editor::Get().Make(detourType, mAddrFrom, mAddrDetour);
         mHasDetoured = true;
       }
       void Restore() {
-        if (!mHasDetoured) return;
+        if (!mHasDetoured || !mAddrFrom) return;
 
-        auto              m    = Editor::Get().GetRawMemory(mAddrFrom);
-        const std::size_t size = sizeof(std::uint32_t) + 1;
-        if (auto old = m.Unlock(size)) {
-          std::memcpy(reinterpret_cast<void*>(mAddrFrom), mOrigBytes.data(), sizeof(std::uint32_t) + 1);
-          m.Lock(size, old);
+        auto m = Editor::Get().GetRawMemory(mAddrFrom);
+        if (auto old = m.Unlock(5)) {
+          std::memcpy(reinterpret_cast<void*>(mAddrFrom), mOrigBytes.data(), 5);
+          m.Lock(5, old);
           mHasDetoured = false;
         }
       }
@@ -98,11 +96,10 @@ namespace MemoryEditor {
       // Detours immediately
       explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour, MakeType detourType) :
           mHasDetoured(false), mAddrFrom(addrFrom), mAddrDetour(addrDetour) {
-        auto              m    = Editor::Get().GetRawMemory(mAddrFrom);
-        const std::size_t size = sizeof(std::uint32_t) + 1;
-        if (auto old = m.Unlock(size)) {
-          std::memcpy(mOrigBytes.data(), reinterpret_cast<void*>(mAddrFrom), sizeof(std::uint32_t) + 1);
-          m.Lock(size, old);
+        auto m = Editor::Get().GetRawMemory(mAddrFrom);
+        if (auto old = m.Unlock(5)) {
+          std::memcpy(mOrigBytes.data(), reinterpret_cast<void*>(mAddrFrom), 5);
+          m.Lock(5, old);
         }
 
         Detour(detourType);
@@ -111,6 +108,8 @@ namespace MemoryEditor {
       // Detours immediately
       explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour) :
           DetourInfo(addrFrom, addrDetour, MakeType::Jump) {}
+
+      explicit DetourInfo() : DetourInfo(0, 0) {}
     };
     class RawMemory {
       std::uintptr_t mAddress;
@@ -219,8 +218,8 @@ namespace MemoryEditor {
       return ret;
     }
 
-    std::unique_ptr<DetourInfo> Detour(std::uintptr_t from, std::uintptr_t to, MakeType type = MakeType::Jump) const {
-      return std::make_unique<DetourInfo>(from, to, type);
+    DetourInfo Detour(std::uintptr_t from, std::uintptr_t to, MakeType type = MakeType::Jump) const {
+      return DetourInfo(from, to, type);
     }
     void Make(MakeType type, std::uintptr_t from, std::uintptr_t to) const {
       std::uint8_t* arr = reinterpret_cast<std::uint8_t*>(from);
@@ -229,19 +228,17 @@ namespace MemoryEditor {
       std::uint8_t val = 0x00;
       switch (type) {
         case MakeType::Call: {
-          auto size = sizeof(std::uint32_t) + 1;
-          if (auto old = m.Unlock(size)) {
+          if (auto old = m.Unlock(5)) {
             arr[0]                                     = 0xE8;
             *reinterpret_cast<std::uint32_t*>(&arr[1]) = CalculateRelativeDistance(from, to);
-            m.Lock(size, old);
+            m.Lock(5, old);
           }
         } break;
         case MakeType::Jump: {
-          auto size = sizeof(std::uint32_t) + 1;
-          if (auto old = m.Unlock(size)) {
+          if (auto old = m.Unlock(5)) {
             arr[0]                                     = 0xE9;
             *reinterpret_cast<std::uint32_t*>(&arr[1]) = CalculateRelativeDistance(from, to);
-            m.Lock(size, old);
+            m.Lock(5, old);
           }
         } break;
         case MakeType::NOP:
