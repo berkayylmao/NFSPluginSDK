@@ -19,14 +19,13 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/bNode.h>
+#include <OpenSpeed/Game.ProStreet/Types/ePoly.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+namespace OpenSpeed::ProStreet {
+  struct FERenderPoly : bTNode<FERenderPoly> {
+    TextureInfo* m_pTexture;
+    TextureInfo* m_pTextureMask;
+    ePoly        m_Poly;
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

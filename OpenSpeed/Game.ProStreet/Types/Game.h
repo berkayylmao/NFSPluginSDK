@@ -51,6 +51,11 @@ namespace OpenSpeed::ProStreet::Game {
     return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x436680)(cstring);
   }
 
+  // custom hashing for fe
+  static inline std::uint32_t FEHashUpper(const char* cstring) {
+    return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x6241D0)(cstring);
+  }
+
   // uses 0xABCDEF00 magic
   static inline std::uint32_t stringhash32(const char* cstring) {
     return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x465020)(cstring);

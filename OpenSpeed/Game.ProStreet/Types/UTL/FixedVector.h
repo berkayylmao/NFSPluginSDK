@@ -18,12 +18,21 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL/Vector.h>
+#include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/UTL/Vector.h>
 
-namespace OpenSpeed::MW05::UTL {
-  template <typename T, std::size_t nT, std::size_t N>
-  struct FixedVector : Vector<T, N> {
-    std::int32_t mVectorSpace[nT];
+namespace OpenSpeed::ProStreet::UTL {
+  template <typename T, std::size_t nT, std::size_t VectorCapacity>
+  struct FixedVector : Vector<T, VectorCapacity> {
+    T mVectorSpace[nT];
+
+    virtual ~FixedVector() {}
+    virtual T*          AllocVectorSpace() { return mVectorSpace; }
+    virtual void        FreeVectorSpace() { std::memset(mVectorSpace, 0, sizeof(T) * nT); }
+    virtual std::size_t GetGrowSize() { return nT; }
+    virtual std::size_t GetMaxCapacity() { return nT; }
+    virtual void        OnGrowRequest() {}
+
+    FixedVector() : Vector<T, nT>() { this->mBegin = mVectorSpace; }
   };
-}  // namespace OpenSpeed::MW05::UTL
+}  // namespace OpenSpeed::ProStreet::UTL

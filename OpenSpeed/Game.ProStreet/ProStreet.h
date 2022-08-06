@@ -22,5 +22,15 @@
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed {
-  namespace ProStreet::Variables {}  // namespace ProStreet::Variables
+  namespace ProStreet::Variables {
+    static MemoryFieldWrapper<Math::Matrix4> CarScaleMatrix{0xAEE180, Math::Matrix4()};
+    static MemoryFieldWrapper<bool>          DrawCars{0xA79CDC, true};
+    static MemoryFieldWrapper<CARPART_LOD>   ForceCarLOD{0xA79D7C, CARPART_LOD::A};
+    static MemoryFieldWrapper<CARPART_LOD>   ForceTireLOD{0xA79D80, CARPART_LOD::A};
+    // DALPauseStates::mPauseRequest
+    static MemoryFieldWrapper<bool>          IsGameplayPaused{0xAB0EDC, false};
+    static MemoryFieldWrapper<bool>          IsInNIS{0xAACF5F, false};
+    static MemoryFieldWrapper<GameFlowState> TheGameFlowManager{0xABB510, GameFlowState::InFrontEnd};
+    static MemoryFieldWrapper<float>         Tweak_GameBreakerCollisionMass{0xA9B678, 2.0f, FLT_MIN, FLT_MAX};
+  }  // namespace ProStreet::Variables
 }  // namespace OpenSpeed

@@ -19,14 +19,17 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/bNode.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
+namespace OpenSpeed::ProStreet {
+  struct eModel : bTNode<eModel> {
+    std::uint32_t         NameHash;
+    eSolid*               Solid;
+    eReplacementTextures* pReplacementTextureTable;
+    std::int16_t          LodLevel;
+    std::int16_t          Pad;
 
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+    // hash must be from bStringHash()
+    void Init(std::uint32_t hash) { reinterpret_cast<void(__thiscall*)(eModel*, std::uint32_t)>(0x454B50)(this, hash); }
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

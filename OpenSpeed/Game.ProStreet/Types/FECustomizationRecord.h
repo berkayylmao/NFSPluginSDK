@@ -63,13 +63,5 @@ namespace OpenSpeed::ProStreet {
     bool                  mBlueprintIsLocked[3];
     BluePrintNumber       mActiveBlueprint;
     bool                  mBlueprintUsed[3];
-
-    inline void WriteRideIntoRecord(const RideInfo& rideInfo) {
-      reinterpret_cast<void(__thiscall*)(FECustomizationRecord*, const RideInfo&)>(0x4C47F0)(this, rideInfo);
-    }
-    inline void WriteToGame(Attrib::StringKey collectionKey, VehicleCustomizations* out_VehicleParams) {
-      reinterpret_cast<void(__thiscall*)(FECustomizationRecord*, Attrib::StringKey, VehicleCustomizations*)>(0x4BAD10)(
-          this, collectionKey, out_VehicleParams);
-    }
   };
 }  // namespace OpenSpeed::ProStreet

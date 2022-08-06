@@ -18,15 +18,13 @@
 // clang-format on
 
 #pragma once
+#include <limits>
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+namespace OpenSpeed::ProStreet {
+  template <typename T, typename T2, typename T3, std::size_t nT, std::size_t n2 = std::numeric_limits<T2>::max(),
+            std::size_t n3 = std::numeric_limits<T3>::max()>
+  struct FELinkedPool {
+    T mPool[nT];
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

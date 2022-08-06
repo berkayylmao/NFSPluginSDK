@@ -30,7 +30,7 @@
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Gen/pvehicle.h>
 
 namespace OpenSpeed::ProStreet {
-  struct PVehicle : PhysicsObject, IVehicle, EventSequencer::IContext, IExplodeable, IAttributeable, bTNode<PVehicle*> {
+  struct PVehicle : PhysicsObject, IVehicle, EventSequencer::IContext, IExplodeable, IAttributeable, bTNode<PVehicle> {
     struct LaunchState {
       float mTime;
       float mAmount;
@@ -104,11 +104,11 @@ namespace OpenSpeed::ProStreet {
     /// <summary>
     /// Array members align with enum DriverAidType item indices.
     /// </summary>
-    std::int32_t      mSavedDriverAidLevel[9];
-    DriverAssistLevel mPreviousDriverAssistLevel;
-    std::int32_t      mPreviousPlayerTCSSetting;
-    std::int32_t      mPreviousPlayerABSSetting;
-    std::int32_t      mPreviousPlayerESCSetting;
+    std::int32_t       mSavedDriverAidLevel[9];
+    eDriverAssistLevel mPreviousDriverAssistLevel;
+    std::int32_t       mPreviousPlayerTCSSetting;
+    std::int32_t       mPreviousPlayerABSSetting;
+    std::int32_t       mPreviousPlayerESCSetting;
 
     virtual ~PVehicle();
     virtual void OnDebugDraw();
@@ -197,7 +197,7 @@ namespace OpenSpeed::ProStreet {
     virtual std::int32_t        GetContextDebugName(char* out, std::uint32_t len) override;
 #pragma endregion
 
-    static inline bTNode<PVehicle*>** g_mInstances = reinterpret_cast<bTNode<PVehicle*>**>(0xA6AE40);
+    static inline bTNode<PVehicle>** g_mInstances = reinterpret_cast<bTNode<PVehicle>**>(0xA6AE40);
 
     static PVehicle* Construct(VehicleParams vehicleParams) {
       ISimable* simable =
@@ -213,7 +213,7 @@ namespace OpenSpeed::ProStreet {
       if (!pInstance) return amount;
 
       auto* instance = *pInstance;
-      while (instance != reinterpret_cast<bTNode<PVehicle*>*>(pInstance)) {
+      while (instance != reinterpret_cast<bTNode<PVehicle>*>(pInstance)) {
         amount++;
         instance = instance->GetNext();
       }
@@ -226,7 +226,7 @@ namespace OpenSpeed::ProStreet {
 
       std::int32_t cur_idx  = 0;
       auto*        instance = *pInstance;
-      while (instance != reinterpret_cast<bTNode<PVehicle*>*>(pInstance)) {
+      while (instance != reinterpret_cast<bTNode<PVehicle>*>(pInstance)) {
         if (cur_idx == idx) return static_cast<PVehicle*>(instance);
 
         cur_idx++;

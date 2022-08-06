@@ -19,14 +19,18 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/FEKeyNode.h>
+#include <OpenSpeed/Game.ProStreet/Types/FERefList.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+namespace OpenSpeed::ProStreet {
+  struct FEKeyTrack {
+    std::int8_t  ParamType;
+    std::int8_t  ParamSize;
+    std::int8_t  InterpType;
+    std::int8_t  InterpAction;
+    std::int32_t LongOffset : 8;
+    std::int32_t Length : 24;
+    FEKeyNode    BaseKey;
+    FERefList    DeltaKeys;
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

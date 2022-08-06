@@ -19,14 +19,13 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/FEObject.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+namespace OpenSpeed::ProStreet {
+  struct FEStatsBar {
+    float     mMin;
+    float     mMax;
+    FEObject* mpBar;
+    FEObject* mpBacking;
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

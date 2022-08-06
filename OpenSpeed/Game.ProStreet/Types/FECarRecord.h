@@ -20,13 +20,18 @@
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
+namespace OpenSpeed::ProStreet {
+  struct FECarRecord {
+    std::uint32_t Handle;
+    std::uint32_t FEKey;
+    std::uint32_t VehicleKey;
+    std::uint32_t PresetKey;
+    std::uint32_t FilterBits;
+    std::uint8_t  Customization;
+    std::uint8_t  CareerHandle;
+    bool          IsPresetSkin;
+    std::uint8_t  Padd;
 
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+    bool IsUnlocked() { return reinterpret_cast<bool(__thiscall*)(FECarRecord*)>(0x548C00)(this); }
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

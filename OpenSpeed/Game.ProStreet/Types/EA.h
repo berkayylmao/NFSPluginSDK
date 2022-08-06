@@ -20,13 +20,26 @@
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
+namespace OpenSpeed::ProStreet::EA {
+  namespace Memcard {
+    struct MemcardChunk {
+      std::uint32_t ID;
+      std::int32_t  Size;
+      bool          isNestedChunk;
+    };
 
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
-  };
-}  // namespace OpenSpeed::ProStreet::UTL
+    struct IMemcardSavable {
+      std::uint32_t mNameHash;
+      MemcardChunk* mpChunk;
+      void*         mpEndOfBuffer;
+      void*         mpStartOfBuffer;
+      std::uint32_t mSize;
+
+      virtual ~IMemcardSavable();
+      virtual void RegisterForSave(const char*, std::int32_t);
+      virtual void SaveData(std::int32_t);
+      virtual bool LoadData(std::int32_t);
+      virtual void DefaultData(std::int32_t);
+    };
+  }  // namespace Memcard
+}  // namespace OpenSpeed::ProStreet::EA

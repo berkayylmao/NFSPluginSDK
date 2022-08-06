@@ -19,14 +19,11 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/UTL/FixedVector.h>
 
 namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+  template <typename T, std::size_t nT>
+  struct Listable {
+    struct List : FixedVector<T*, nT> {};
   };
 }  // namespace OpenSpeed::ProStreet::UTL

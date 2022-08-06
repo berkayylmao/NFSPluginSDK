@@ -19,14 +19,21 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/RideInfo.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+namespace OpenSpeed::ProStreet {
+  struct GarageCarLoader {
+    RideInfo      PendingRideInfo;
+    RideInfo      LoadingRideInfo;
+    RideInfo      CurrentRideInfo;
+    bool          IsPendingRide;
+    bool          IsLoadingRide;
+    bool          IsCurrentRide;
+    std::int32_t  LoadingCar;
+    std::int32_t  CurrentCar;
+    bool          IsDifferent;
+    std::int32_t  CurrentSkinNumber;
+    bool          VinylLayerOpened;
+    std::uint32_t CurrentCompositeSkinNameHash;
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

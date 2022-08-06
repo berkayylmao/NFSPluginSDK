@@ -19,14 +19,26 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/FEMinList.h>
+#include <OpenSpeed/Game.ProStreet/Types/FERenderObject.h>
+#include <OpenSpeed/Game.ProStreet/Types/FEScript.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+namespace OpenSpeed::ProStreet {
+  struct FEObject : FEMinNode {
+    std::uint32_t   GUID;
+    std::uint32_t   NameHash;
+    char*           pName;
+    FEObjType       Type;
+    std::uint32_t   Flags;
+    std::uint16_t   RenderContext;
+    std::uint16_t   ResourceIndex;
+    std::uint32_t   Handle;
+    std::uint32_t   UserParam;
+    char*           pData;
+    std::uint32_t   DataSize;
+    FEMinList       Responses;
+    FEMinList       Scripts;
+    FEScript*       pCurrentScript;
+    FERenderObject* Cached;
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

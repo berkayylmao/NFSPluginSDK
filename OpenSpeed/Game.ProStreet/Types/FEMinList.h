@@ -19,14 +19,14 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/FEMinNode.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
+namespace OpenSpeed::ProStreet {
+  struct FEMinList {
+    std::uint32_t numElements;
+    FEMinNode*    head;
+    FEMinNode*    tail;
 
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+    virtual ~FEMinList();
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

@@ -82,6 +82,12 @@ namespace OpenSpeed::ProStreet {
     struct IBoundable;
   }  // namespace CollisionGeometry
 
+  namespace DALVehicleCommands {
+    enum class RaceMode : std::uint32_t { Grip, Drift, Drag, Speed };
+    enum class DriveTrain : std::uint32_t { FWD, RWD, AWD };
+    struct CreateCustomizableCar;
+  }  // namespace DALVehicleCommands
+
   namespace DamageZone {
     enum class ID : std::uint32_t { Front, Rear, Left, Right, LeftFront, RightFront, LeftRear, RightRear, Top, Bottom };
     struct Info;
@@ -183,19 +189,15 @@ namespace OpenSpeed::ProStreet {
   }  // namespace Sim
 
   namespace UTL {
-    template <typename T, std::size_t nT, typename E, std::size_t nE>
-    struct _ListSet;
-    template <typename T, std::size_t nT>
-    struct _Storage;
-    template <typename T, std::size_t nT, std::size_t N = 16>
+    template <typename T, std::size_t nT, std::size_t VectorCapacity = 16>
     struct FixedVector;
-    template <typename T>
+    template <typename T, std::size_t nT>
     struct GarbageNode;
     template <typename T, std::size_t nT>
-    struct List;
+    struct Listable;
     template <typename T, std::size_t nT, typename E, std::size_t nE>
     struct ListableSet;
-    template <typename T, std::size_t N = 16>
+    template <typename T, std::size_t N>
     struct Vector;
 
     namespace COM {
@@ -248,6 +250,7 @@ namespace OpenSpeed::ProStreet {
   struct BehaviorParams;
   struct bFile;
   struct bList;
+  struct BlueprintShareable;
   template <typename T>
   struct bPList;
   struct bPNode;
@@ -260,12 +263,14 @@ namespace OpenSpeed::ProStreet {
   using bVector3    = Math::Vector3;
   using bVector4    = Math::Vector4;
   using bQuaternion = Math::Vector4;
+  using bMatrix4    = Math::Matrix4;
   struct CareerPursuitScores;
   struct CareerSettings;
   struct CarPaintPart;
   struct CarPaintPartRecord;
   struct CarPaintPartRecordPacked;
   struct CarPart;
+  struct CarRenderInfo;
   struct cFinishedRaceStats;
   struct cFrontEndDatabase;
   struct Context;
@@ -277,9 +282,12 @@ namespace OpenSpeed::ProStreet {
   struct DamageVehicle;
   struct DBCarPart;
   struct DecalLayerPartInfo;
+  struct DLCommandObject;
   struct EmitterGroup;
   struct eLightMaterial;
   struct eModel;
+  struct eSolid;
+  struct eReplacementTextures;
   struct EventSequencer;
   struct FECareerRecord;
   struct FECarRecord;
@@ -289,6 +297,7 @@ namespace OpenSpeed::ProStreet {
   struct FEKeyboardSettings;
   struct FEngHud;
   struct FEObject;
+  struct FEPackage;
   struct FEPlayerCarDB;
   struct FinishedRaceStatsEntry;
   struct FloatSpring;
@@ -377,6 +386,7 @@ namespace OpenSpeed::ProStreet {
   struct IVehicleAI;
   struct IVehicleCache;
   struct JukeboxEntry;
+  using Jukebox = UTL::FixedVector<JukeboxEntry, 40, 16>;
   struct LocalPlayer;
   struct MilestoneTypeInfo;
   struct ObjectStateBlockHeader;
@@ -398,11 +408,13 @@ namespace OpenSpeed::ProStreet {
   struct RBVehicle;
   struct RideInfo;
   struct RigidBody;
+  struct SelectCarCameraMover;
   struct SimpleChopper;
   struct SimCollisionMap;
   struct SimSurface;
   struct Smackable;
   struct SmackableParams;
+  struct TextureInfo;
   struct TimeOfDay;
   struct Timer;
   struct TopEvadedPursuitDetail;
@@ -686,26 +698,6 @@ namespace OpenSpeed::ProStreet {
     VIPER,
     CUDA,
     CHALLENGERN,
-    NISSAN_370ZN,
-    FERRARI_458ITALIA,
-    FERRARI_488GTB,
-    FERRARI_599GTO,
-    FERRARI_812SF,
-    CIVICSI86,
-    CIVICTYPER15,
-    ENZO,
-    F12BERLINETTA,
-    F50,
-    IMPREZAGV,
-    JZX90,
-    LAFERRARI,
-    NSX17,
-    NSXR92,
-    R35NFS,
-    SKYLINER31,
-    SKYLINER33,
-    SUPRA92,
-    XJ220,
     NONE = UINT32_MAX
   };
   enum class DriverAidType : std::uint32_t {
@@ -719,15 +711,9 @@ namespace OpenSpeed::ProStreet {
     RacelineAssist,
     BrakingAssist
   };
-  enum class DriverAssistLevel : std::uint32_t { Family, Racer, King };
   enum class DriverClass : std::uint32_t { Human, Traffic, Cop, Racer, None, NIS, Remote, RemoteRacer, Ghost, Hub };
   enum class DriverStyle : std::uint32_t { Racing, Drag, Drift, HighSpeed, Traffic, None = UINT32_MAX };
-  enum class KitType : std::int32_t {
-    Base,
-    Stock,
-    Autosculpt,
-    Widebody,
-  };
+  enum class eControllerConfig : std::uint8_t { Config1, Config2, MouseWheel };
   enum class eCustomTuningType : std::uint32_t { Setting1, Setting2, Setting3 };
   enum class eDecalType : std::uint32_t {
     SkidConcrete,
@@ -740,12 +726,192 @@ namespace OpenSpeed::ProStreet {
     ScrapeConcrete,
     None = UINT32_MAX
   };
+  enum class eDriverAssistLevel : std::uint8_t { Family, Racer, King };
+  enum class eFECarsBlueprintsOptionID : std::uint32_t {
+    Customize,
+    Summary,
+    Delete,
+    Reset,
+    SetActive,
+    ApplyToCar,
+    PurchaseCar
+  };
+  enum class eHandlingMode : std::uint8_t { Classic, Extreme };
   enum class eLaneSelection : std::uint32_t { CenterLane, CurrentLane, ValidLane };
+  enum class eMenuSoundTriggers : std::uint32_t {
+    UISND_NONE                             = UINT32_MAX,
+    UISND_COMMON_UP                        = 0x0,
+    UISND_COMMON_DOWN                      = 0x1,
+    UISND_COMMON_SELECT                    = 0x2,
+    UISND_COMMON_BACK                      = 0x3,
+    UISND_COMMON_LEFT_AND_RIGHT            = 0x4,
+    UISND_COMMON_WRONG                     = 0x5,
+    UISND_COMMON_TRIGGER_LEFT              = 0x6,
+    UISND_COMMON_TRIGGER_RIGHT             = 0x7,
+    UISND_COMMON_DLGBOX_APPEAR             = 0x8,
+    UISND_COMMON_DLGBOX_DISAPPEAR          = 0x9,
+    UISND_COMMON_DLGBOX_DOWN               = 0xA,
+    UISND_COMMON_DLGBOX_LEFT               = 0xB,
+    UISND_COMMON_DLGBOX_RIGHT              = 0xC,
+    UISND_COMMON_DLGBOX_UP                 = 0xD,
+    UISND_ENTER_TRIGGER                    = 0x18,
+    UISND_COMMON_ExpandingTree_Left_BASIC  = 0x1F,
+    UISND_COMMON_ExpandingTree_Left_P0     = 0x20,
+    UISND_COMMON_ExpandingTree_Left_P1     = 0x21,
+    UISND_COMMON_ExpandingTree_Left_P2     = 0x22,
+    UISND_COMMON_ExpandingTree_Left_P3     = 0x23,
+    UISND_COMMON_ExpandingTree_Left_P4     = 0x24,
+    UISND_COMMON_ExpandingTree_Left_P5     = 0x25,
+    UISND_COMMON_ExpandingTree_Left_P6     = 0x26,
+    UISND_COMMON_ExpandingTree_Left_P7     = 0x27,
+    UISND_COMMON_ExpandingTree_Left_P8     = 0x28,
+    UISND_COMMON_ExpandingTree_Left_P9     = 0x29,
+    UISND_COMMON_ExpandingTree_Right_BASIC = 0x2A,
+    UISND_COMMON_ExpandingTree_Right_P0    = 0x2B,
+    UISND_COMMON_ExpandingTree_Right_P1    = 0x2C,
+    UISND_COMMON_ExpandingTree_Right_P2    = 0x2D,
+    UISND_COMMON_ExpandingTree_Right_P3    = 0x2E,
+    UISND_COMMON_ExpandingTree_Right_P4    = 0x2F,
+    UISND_COMMON_ExpandingTree_Right_P5    = 0x30,
+    UISND_COMMON_ExpandingTree_Right_P6    = 0x31,
+    UISND_COMMON_ExpandingTree_Right_P7    = 0x32,
+    UISND_COMMON_ExpandingTree_Right_P8    = 0x33,
+    UISND_COMMON_ExpandingTree_Right_P9    = 0x34,
+    UISND_COMMON_e3_Transition             = 0x49,
+    UISND_COMMON_e3_Move_Left              = 0x4A,
+    UISND_COMMON_LIGHT_TREE_TICK           = 0x4C,
+    UISND_COMMON_LIGHT_TREE_GO             = 0x4D,
+    UISND_COMMON_OPTION_SLIDER_TICK        = 0x4E,
+    UISND_HUD_RACE_COMPLETE_IN             = 0x4F,
+    UISND_HUD_COUNTDOWN                    = 0x50,
+    UISND_HUD_COUNTDOWN_GO                 = 0x53,
+    UISND_HUD_MATCHUP_TEXT_IN              = 0x54,
+    UISND_HUD_MATCHUP_TEXT_OUT             = 0x55,
+    UISND_HUD_STUTTER_TEXT_OVERLAY_IN      = 0x56,
+    UISND_HUD_STUTTER_TEXT_OVERLAY_OUT     = 0x57,
+    UISND_HUD_BURNOUT_RATING_IN            = 0x58,
+    UISND_HUD_BURNOUT_RATING_OUT           = 0x59,
+    UISND_HUD_DRAG_COUNTDOWN               = 0x5C,
+    UISND_HUD_DRAG_COUNTDOWN_GO            = 0x5D,
+    UISND_COMMON_CHYRON_IN                 = 0x5E,
+    UISND_COMMON_CHYRON_OUT                = 0x5F,
+    UISND_COMMON_CHYRON_NOTIFICATION       = 0x60,
+    UISND_HUD_COUNTDOWN_1                  = 0x61,
+    UISND_HUD_COUNTDOWN_2                  = 0x62,
+    UISND_HUD_COUNTDOWN_3                  = 0x63,
+    UISND_COMMON_MUSIC_CHYRON_IN           = 0x64,
+    UISND_COMMON_MUSIC_CHYRON_OUT          = 0x65,
+    UISND_COMMON_LARGE_MENU_IN             = 0x66,
+    UISND_COMMON_LARGE_MENU_OUT            = 0x67,
+    UISND_COMMON_PAUSE_MENU_IN             = 0x68,
+    UISND_COMMON_PAUSE_MENU_OUT            = 0x69,
+    UISND_COMMON_YOU_WON                   = 0x6A,
+    UISND_COMMON_MAX_NUM                   = 0xC7,
+    UISND_MAIN_UP_AND_DOWN                 = 0xC8,
+    UISND_MAIN_LEFT_AND_RIGHT              = 0xC9,
+    UISND_MAIN_SCROLL_LEFT                 = 0xCA,
+    UISND_MAIN_SCROLL_RIGHT                = 0xCB,
+    UISND_MAIN_SELECT                      = 0xCC,
+    UISND_MAIN_BACK                        = 0xCD,
+    UISND_MAIN_WRONG                       = 0xCF,
+    UISND_MAIN_TRANSITION_IN               = 0xD0,
+    UISND_MAIN_TRANSITION_OUT              = 0xD1,
+    UISND_MAIN_DLGBOX_IN                   = 0xD2,
+    UISND_MAIN_DLGBOX_OUT                  = 0xD3,
+    UISND_UGNEW_KBTYPE                     = 0xE0,
+    UISND_UGNEW_ENTER                      = 0xE1,
+    UISND_UGNEW_DELETE                     = 0xE2,
+    UISND_MAIN_END_OF_LIST                 = 0xE4,
+    UISND_MAIN_KBCURSOR_UPDOWN             = 0xE6,
+    UISND_MAIN_KBCURSOR_LEFTRIGHT          = 0xE7,
+    UISND_MAIN_TRANSITION_ANIMATION_1      = 0xE8,
+    UISND_MAIN_TRANSITION_ANIMATION_2      = 0xE9,
+    UISND_MAIN_TRANSITION_ANIMATION_3      = 0xEA,
+    UISND_MAIN_TRANSITION_ANIMATION_4      = 0xEB,
+    UISND_MAIN_TRANSITION_ANIMATION_5      = 0xEC,
+    UISND_MAIN_TRANSITION_ANIMATION_6      = 0xED,
+    UISND_MAIN_TRANSITION_ANIMATION_7      = 0xEE,
+    UISND_MAIN_TRANSITION_ANIMATION_8      = 0xEF,
+    UISND_MAIN_TRANSITION_ANIMATION_9      = 0xF0,
+    UISND_MAIN_CUST_INST_PAINT             = 0x132,
+    UISND_MAIN_CUST_PAINT_COLOUR_LEFT      = 0x133,
+    UISND_MAIN_CUST_PAINT_COLOUR_RIGHT     = 0x134,
+    UISND_MAIN_CUST_PAINT_COLOUR_UP        = 0x135,
+    UISND_MAIN_CUST_PAINT_COLOUR_DOWN      = 0x136,
+    UISND_MAIN_CUST_VINYL_INSTALL          = 0x137,
+    UISND_CUST_INST_EXHAUST                = 0x13C,
+    UISND_CUST_INST_GENERIC                = 0x13D,
+    UISND_CUST_INST_TURBO                  = 0x13E,
+    UISND_CUST_INST_NOS                    = 0x13F,
+    UISND_CUST_INST_TRANSMISSION           = 0x140,
+    UISND_CUST_INST_TIRES                  = 0x141,
+    UISND_EA_MSGR_OPEN                     = 0x142,
+    UISND_EA_MSGR_LOGOFF                   = 0x143,
+    UISND_EA_MSGR_CHAT_REQ                 = 0x144,
+    UISND_EA_MSGR_MAIL_RECEIVE             = 0x145,
+    UISND_EA_MSGR_CHALLENGE_REQ            = 0x146,
+    UISND_MAIN_MENU_ENTER                  = 0x15A,
+    UISND_MAIN_MENU_EXIT                   = 0x15B,
+    UISND_MAIN_SUB_ENTER                   = 0x15C,
+    UISND_MAIN_SUB_EXIT                    = 0x15D,
+    UISND_MAIN_MAP_AREA_SELECT             = 0x15E,
+    UISND_MAIN_MAP_MENU_APPEAR             = 0x15F,
+    UISND_MAIN_MAP_MENU_DISAPPEAR          = 0x160,
+    UISND_MAIN_MAP_MENU_NAV_UP             = 0x161,
+    UISND_MAIN_MAP_MENU_NAV_DOWN           = 0x162,
+    UISND_MAIN_MAP_MENU_NAV_LEFT           = 0x163,
+    UISND_MAIN_MAP_MENU_NAV_RIGHT          = 0x164,
+    UISND_MAIN_MAP_ZOOM_IN                 = 0x165,
+    UISND_MAIN_MAP_ZOOM_OUT                = 0x166,
+    UISND_MAIN_KEYBOARD_ACCEPT             = 0x167,
+    UISND_MAIN_KEYBOARD_BACK               = 0x168,
+    UISND_MAIN_KEYBOARD_NAV                = 0x169,
+    UISND_MAIN_KEYBOARD_SELECT             = 0x16A,
+    UISND_MAIN_MAP_MENU_NAV_LEFTRIGHT      = 0x16B,
+    UISND_MAIN_MAP_MENU_NAV_UPDOWN         = 0x16C,
+    UISND_MAIN_FEICECAM_CAM1               = 0x170,
+    UISND_MAIN_FEICECAM_CAM1BCK            = 0x171,
+    UISND_MAIN_FEICECAM_CAM2               = 0x172,
+    UISND_MAIN_FEICECAM_CAM2BCK            = 0x173,
+    UISND_MAIN_FEICECAM_CAM3               = 0x174,
+    UISND_MAIN_FEICECAM_CAM3BCK            = 0x175,
+    UISND_MAIN_FEICECAM_CAM4               = 0x176,
+    UISND_MAIN_FEICECAM_CAM4BCK            = 0x177,
+    UISND_MAIN_FEICECAM_CAM5               = 0x178,
+    UISND_MAIN_FEICECAM_CAM5BCK            = 0x179,
+    UISND_MAIN_FEICECAM_CAM6               = 0x17A,
+    UISND_MAIN_FEICECAM_CAM6BCK            = 0x17B,
+    UISND_MAIN_FEICECAM_CAM7               = 0x17C,
+    UISND_MAIN_FEICECAM_CAM7BCK            = 0x17D,
+    UISND_MAIN_FEICECAM_CAM8               = 0x17E,
+    UISND_MAIN_FEICECAM_CAM8BCK            = 0x17F,
+    UISND_MAIN_FEICECAM_CAM9               = 0x180,
+    UISND_MAIN_FEICECAM_CAM9BCK            = 0x181,
+    UISND_MAIN_FEICECAM_CAM10              = 0x182,
+    UISND_MAIN_FEICECAM_CAM10BCK           = 0x183,
+    UISND_MAIN_SWIRLING_MENU_INTRO         = 0x184,
+    UISND_MAIN_UNLOCK                      = 0x185,
+    UISND_FRONTEND_MAX_NUM                 = 0x18F,
+    UISND_COMMON_DRIFT_NICE                = 0x190,
+    UISND_COMMON_DRIFT_GOOD                = 0x190,
+    UISND_COMMON_DRIFT_AWESOME             = 0x191,
+    UISND_COMMON_DRIFT_AMAZING             = 0x191,
+    UISND_COMMON_DRIFT_GREAT               = 0x191,
+    UISND_COMMON_DRIFT_OUTRAGEOUS          = 0x192,
+    UISND_COMMON_DRIFT_MULTIPLIER          = 0x193,
+    UISND_COMMON_DRIFT_DRIFT_ENDED         = 0x194,
+    UISND_COMMON_DRIFT_PERFECT_ENTRY       = 0x195
+  };
+  enum class eMiniMapModes : std::uint8_t { Off, Static };
   enum class ePlayerHudType : std::uint32_t { None, Standard, Drag, Split1, Split2, DragSplit1, DragSplit2 };
+  enum class ePlayerSettingsCameras : std::uint8_t { Bumper, Hood, Close, Far, Drift, Staging, Pause, CarSlot, Tuning };
+  enum class eSensitivitySetting : std::uint8_t { Low, Medium, High };
+  enum class eSplitTimeTypes : std::uint8_t { Off, RaceLeader, LapRecord, BestLap, LastLap };
   enum class eTireDamage : std::uint8_t { None, Punctured, Blown };
   enum class eTireIdx : std::uint32_t { FrontLeft, FrontRight, RearLeft, RearRight };
   enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
   enum class eTransmissionOverride : std::uint32_t { None, Manual, ManualClutch, Automatic };
+  enum class eTransmissionType : std::uint8_t { Automatic, Manual, ManualClutch };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class eVehicleParamFlags : std::uint32_t {
     None,
@@ -760,6 +926,38 @@ namespace OpenSpeed::ProStreet {
   };
   enum class eWheelDamage : std::uint32_t { None, Bent };
   enum class eWingmanRole : std::uint32_t { Unknown, Leader, Blocky, Pathy, Speedy };
+  enum class eWorldMapView : std::uint8_t { Navigation, Pursuit };
+  enum class eWorldMapZoomLevels : std::uint8_t { All, Level1, Level2, Level4 };
+  enum class FEKeyTrack_Indices : std::uint32_t {
+    Color,
+    Pivot,
+    Position,
+    Rotation,
+    Size,
+    UpperLeft,
+    LowerRight,
+    FrameNumber,
+    Color1,
+    Color2,
+    Color3,
+    Color4
+  };
+  enum class FEObjType : std::uint32_t {
+    None,
+    Image,
+    String,
+    Model,
+    List,
+    Group,
+    CodeList,
+    Movie,
+    Effect,
+    ColoredImage,
+    AnimImage,
+    SimpleImage,
+    MultiImage,
+    UserMin = 256,
+  };
   enum class GameFlowState : std::uint32_t {
     None,
     LoadingFrontEnd,
@@ -771,6 +969,12 @@ namespace OpenSpeed::ProStreet {
     UnloadingTrack,
     UnloadingRegion,
     ExitDemoDisc
+  };
+  enum class KitType : std::int32_t {
+    Base,
+    Stock,
+    Autosculpt,
+    Widebody,
   };
   enum class PhysicsMode : std::uint32_t { Inactive, Simulated, Emulated };
   enum class ScrapeSurfaces : std::uint32_t { None, Concrete, Metal, Rubber };
@@ -786,6 +990,7 @@ namespace OpenSpeed::ProStreet {
     Fragment
   };
   enum class SirenState : std::uint32_t { Wail, Yelp, Scream, Die, Off = UINT32_MAX };
+  enum class SpeedUnitType : std::uint8_t { MPH, KPH, MPS };
   enum class SurfaceSFX : std::uint32_t {
     None         = 0,
     LightCrack   = 1,

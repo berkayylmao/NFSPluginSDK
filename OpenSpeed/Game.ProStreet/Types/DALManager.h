@@ -19,14 +19,20 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/DALInterface.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
+namespace OpenSpeed::ProStreet {
+  struct DALManager : DALInterface {
+    DALInterface* mInterfaces[22];
+    bool          mInited;
 
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+    virtual ~DALManager();
+    virtual void HandleCommand(DLCommandObject*, const int);
+    virtual void CancelCommand(DLCommandObject*, const int);
+
+    static inline DALManager* gDALManager = reinterpret_cast<DALManager*>(0xA50AD0);
+    static DALManager*        Get() {
+      return gDALManager;
+    }
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

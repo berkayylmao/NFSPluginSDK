@@ -19,14 +19,17 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/bList.h>
+#include <OpenSpeed/Game.ProStreet/Types/FERenderPoly.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+namespace OpenSpeed::ProStreet {
+  struct FERenderObject : bTNode<FERenderObject> {
+    FEObject*            mpobOwner;
+    std::uint32_t        mulFlags;
+    std::uint32_t        mulNumTimesRendered;
+    TextureInfo*         mpobTexture;
+    bTList<FERenderPoly> mobPolyList;
+    std::uint32_t        mPolyCount;
+    bMatrix4             mstTransform;
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

@@ -20,24 +20,23 @@
 #pragma once
 #include <OpenSpeed/Core/EASTL/EASTL/vector.h>
 
-#include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL/_ListSet.h>
+#include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/UTL/FixedVector.h>
 
 namespace OpenSpeed::ProStreet::UTL {
-  template <typename T>
+  template <typename T, std::size_t nT>
   struct GarbageNode {
     struct Collector {
-      _Storage<T, 40> _mDirty;
-      _Storage<T, 40> _mClean;
-      std::uint32_t   _mCount;
+      struct _Node {
+        T*           myptr;
+        std::int32_t refcount;
+      };
+      UTL::FixedVector<GarbageNode<T, nT>::Collector::_Node, nT> _mDirty;
+      UTL::FixedVector<GarbageNode<T, nT>::Collector::_Node, nT> _mClean;
+      std::uint32_t                                              _mCount;
     };
 
     bool mDirty;
-  };
-
-  template <typename T, std::size_t nT, typename E, std::size_t nE>
-  struct ListableSet {
-    _ListSet<T, nT, E, nE> mSet;
   };
 
   namespace COM {
@@ -53,7 +52,7 @@ namespace OpenSpeed::ProStreet::UTL {
       struct _IList : eastl::vector<UTL::COM::Object::_IPair> {
         template <typename T>
         T* Find() {
-          return reinterpret_cast<T*(__thiscall*)(_IList*, IHandle*)>(0x5D59F0)(this, T::GetIHandle());
+          return reinterpret_cast<T*(__thiscall*)(_IList*, IHandle*)>(0x4614B0)(this, T::GetIHandle());
         }
       };
 

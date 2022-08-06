@@ -19,14 +19,24 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/bNode.h>
+#include <OpenSpeed/Game.ProStreet/Types/RideInfo.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+namespace OpenSpeed::ProStreet {
+  struct FrontEndRenderingCar : bTNode<FrontEndRenderingCar> {
+    RideInfo               mRideInfo;
+    CarRenderInfo*         RenderInfo;
+    std::int32_t           ViewID;
+    float                  Height;
+    /* +0x21F0 */ bVector3 Position;
+    bMatrix4               BodyMatrix;
+    bMatrix4               TireMatrices[4];
+    bMatrix4               BrakeMatrices[4];
+    /* +0x2440 */ eModel*  OverrideModel;
+    std::int32_t           Visible;
+    std::int32_t           nPasses;
+    std::int32_t           Reflection;
+    std::int32_t           LightsOn;
+    std::int32_t           CopLightsOn;
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

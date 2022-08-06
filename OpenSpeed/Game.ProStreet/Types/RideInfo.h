@@ -50,8 +50,8 @@ namespace OpenSpeed::ProStreet {
     CARPART_LOD               mMinReflectionLodLevel;
     CARPART_LOD               mMaxInteriorLodLevel;
     CARPART_LOD               mMinInteriorLodLevel;
-    std::uint8_t              mCompositeSkinHash;
-    std::uint8_t              mCompositeWheelHash[2];
+    std::uint32_t             mCompositeSkinHash;
+    std::uint32_t             mCompositeWheelHash[2];
     DBCarPart                 mPartsTable[165];
     char                      mPartsEnabled[165];
     DBCarPart*                PreviewPart;

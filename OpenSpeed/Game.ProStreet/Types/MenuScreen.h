@@ -19,14 +19,24 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/ScreenConstructorData.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
+namespace OpenSpeed::ProStreet {
+  struct MenuScreen {
+    bool                  mPlaySound;
+    std::uint32_t         mDirectionForNextSound;
+    const char*           PackageFilename;
+    ScreenConstructorData ConstructData;
+    bool                  IsGarageScreen;
 
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+    virtual ~MenuScreen();
+    virtual eMenuSoundTriggers NotifySoundMessage(std::uint32_t, eMenuSoundTriggers);
+    virtual void               SetInitialOption(int);
+    virtual void               SetInitialOptionUsingDescHash(int);
+    virtual void               ShowHelpbar(char*);
+    virtual void               ShowScreen(bool);
+    virtual void               InitInstance();
+    virtual void               SetAspectRatio();
+    virtual void               __unk_related_to_lan_raceday();
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

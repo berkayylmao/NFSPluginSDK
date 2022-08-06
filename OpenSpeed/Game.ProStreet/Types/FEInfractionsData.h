@@ -20,13 +20,15 @@
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+namespace OpenSpeed::ProStreet {
+  struct FEInfractionsData {
+    std::uint16_t Speeding;
+    std::uint16_t Racing;
+    std::uint16_t Reckless;
+    std::uint16_t Assault;
+    std::uint16_t HitAndRun;
+    std::uint16_t Damage;
+    std::uint16_t Resist;
+    std::uint16_t OffRoad;
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

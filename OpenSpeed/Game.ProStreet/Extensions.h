@@ -79,7 +79,7 @@ namespace OpenSpeed::ProStreet {
       if (!pInstance) return nullptr;
 
       auto* instance = *pInstance;
-      while (instance != reinterpret_cast<bTNode<PVehicle*>*>(pInstance)) {
+      while (instance != reinterpret_cast<bTNode<PVehicle>*>(pInstance)) {
         if (auto* pvehicle = static_cast<PVehicle*>(instance) | ValidatePVehicle) {
           if (pvehicle->IsPlayer() && pvehicle->IsOwnedByPlayer()) return pvehicle;
         }
@@ -94,7 +94,7 @@ namespace OpenSpeed::ProStreet {
       if (!pInstance) return;
 
       auto* instance = *pInstance;
-      while (instance != reinterpret_cast<bTNode<PVehicle*>*>(pInstance)) {
+      while (instance != reinterpret_cast<bTNode<PVehicle>*>(pInstance)) {
         if (auto* pvehicle = static_cast<PVehicle*>(instance) | ValidatePVehicle) fn(pvehicle);
         instance = instance->GetNext();
       }

@@ -19,14 +19,15 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/FEModifiedColour.h>
+#include <OpenSpeed/Game.ProStreet/Types/VinylSystem.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+namespace OpenSpeed::ProStreet {
+  struct FEVinylRecord {
+    VinylSystem::VinylTransformPacked mTransform;
+    std::uint16_t                     mValue : 15;
+    std::uint16_t                     mIsMirrored : 1;
+    std::uint16_t                     mNextElement;
+    FEModifiedColour                  mc[4];
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

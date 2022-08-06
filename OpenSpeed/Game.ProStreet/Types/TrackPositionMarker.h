@@ -19,14 +19,16 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/bNode.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
-
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+namespace OpenSpeed::ProStreet {
+  struct TrackPositionMarker : bTNode<TrackPositionMarker> {
+    std::uint32_t NameHash;
+    std::int32_t  Param;
+    bVector3      Position;
+    std::int32_t  TrackNumber;
+    char          SceneryGroupNumber[9];
+    char          NumSceneryGroups;
+    std::uint16_t Angle;
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet

@@ -31,7 +31,7 @@ namespace OpenSpeed::ProStreet {
                          ISimable,
                          IBody,
                          IAttachable,
-                         UTL::GarbageNode<PhysicsObject>,
+                         UTL::GarbageNode<PhysicsObject, 256>,
                          Behavior::Container {
     WWorldPos*             mWPos;
     SimableType            mObjType;

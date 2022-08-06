@@ -20,13 +20,30 @@
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
-namespace OpenSpeed::ProStreet::UTL {
-  template <typename T, std::size_t N>
-  struct Vector {
-    T*            mBegin;
-    std::uint32_t mCapacity;
-    std::uint32_t mSize;
+namespace OpenSpeed::ProStreet::Gameplay {
+  struct GHubRecord {
+    enum class ePlayMode : std::uint32_t { Solo, Split, Multiplayer };
+    enum class eCarMode : std::uint32_t { Grip, Drift, Drag, Speed, Backup, Invalid };
 
-    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
+    struct GEventRecord {
+      std::uint32_t Key;
+      std::uint32_t Laps;
+      std::uint32_t Heats;
+    };
+
+    std::uint32_t mTrackKey;
+    std::uint32_t mDifficulty;
+    std::uint32_t mRepairMarkerCount;
+    std::uint32_t mEventCount;
+    GEventRecord  mEvents[8];
+    char          mSaveName[32];
+    ePlayMode     mPlayMode;
+    std::int32_t  mIsShared;
+    bool          mIsSaved;
+    char          mGUID[21];
+    std::uint32_t mPresetCars[5];
+    eCarMode      mBackupCarMode;
+    bool          mIsChallengeCustomHub;
+    std::uint32_t mCreatorFeslID;
   };
-}  // namespace OpenSpeed::ProStreet::UTL
+}  // namespace OpenSpeed::ProStreet::Gameplay
