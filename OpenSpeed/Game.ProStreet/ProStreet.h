@@ -23,13 +23,18 @@
 
 namespace OpenSpeed {
   namespace ProStreet::Variables {
-    static MemoryFieldWrapper<Math::Matrix4> CarScaleMatrix{0xAEE180, Math::Matrix4()};
+    static MemoryFieldWrapper<Math::Matrix4> CarGuysForceLODS{0xBFBC43, Math::Matrix4()};
+    static MemoryFieldWrapper<Math::Matrix4> CarScaleMatrix{0xA79ED4, Math::Matrix4()};
     static MemoryFieldWrapper<bool>          DrawCars{0xA79CDC, true};
+    static MemoryFieldWrapper<bool>          EnableEnvMap{0xA61884, true};
     static MemoryFieldWrapper<CARPART_LOD>   ForceCarLOD{0xA79D7C, CARPART_LOD::A};
+    static MemoryFieldWrapper<bool>          ForceCarLODPrint{0xAEB6E2, false};
     static MemoryFieldWrapper<CARPART_LOD>   ForceTireLOD{0xA79D80, CARPART_LOD::A};
     // DALPauseStates::mPauseRequest
     static MemoryFieldWrapper<bool>          IsGameplayPaused{0xAB0EDC, false};
-    static MemoryFieldWrapper<bool>          IsInNIS{0xAACF5F, false};
+    static MemoryFieldWrapper<bool>          IsRacing{0xAACF5F, false};
+    static MemoryFieldWrapper<bool>          RearViewModel{0xAEB728, false};
+    static MemoryFieldWrapper<bool>          ShowCarLODScreenPrint{0xAEB6E0, false};
     static MemoryFieldWrapper<GameFlowState> TheGameFlowManager{0xABB510, GameFlowState::InFrontEnd};
     static MemoryFieldWrapper<float>         Tweak_GameBreakerCollisionMass{0xA9B678, 2.0f, FLT_MIN, FLT_MAX};
   }  // namespace ProStreet::Variables

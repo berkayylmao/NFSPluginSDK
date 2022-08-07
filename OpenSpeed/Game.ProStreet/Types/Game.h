@@ -31,6 +31,8 @@ namespace OpenSpeed::ProStreet::Game {
   static inline void ClearAIControl(bool _unk = true) { reinterpret_cast<void(__cdecl*)(bool)>(0x6EA760)(_unk); }
   // Game_ForceAIControl
   static inline void ForceAIControl(bool _unk = true) { reinterpret_cast<void(__cdecl*)(bool)>(0x6EA6F0)(_unk); }
+  // Game_KnockoutRacer
+  static inline void KnockoutRacer(ISimable* racer) { reinterpret_cast<void(__cdecl*)(ISimable*)>(0x6E99B0)(racer); }
   // Game_JumpToCarLot
   static inline void JumpToCarLot() { reinterpret_cast<void(__cdecl*)()>(0x6DEE30)(); }
   // Game_JumpToSafehouse
@@ -45,6 +47,8 @@ namespace OpenSpeed::ProStreet::Game {
   }
   // Game_ShowPauseMenu
   static inline void ShowPauseMenu() { reinterpret_cast<void(__cdecl*)()>(0x6DEBA0)(); }
+  // Game_TotalRacer
+  static inline void TotalRacer(ISimable* racer) { KnockoutRacer(racer); }
 
   // custom hashing
   static inline std::uint32_t bStringHash(const char* cstring) {
