@@ -24,7 +24,7 @@
 namespace OpenSpeed {
   namespace ProStreet::Variables {
     static MemoryFieldWrapper<bool>          CarGuysForceLODS{0xBFBC43, false};
-    static MemoryFieldWrapper<Math::Matrix4> CarScaleMatrix{0xA79ED4, Math::Matrix4()};
+    static MemoryFieldWrapper<Math::Matrix4> CarScaleMatrix{0xAEE180, Math::Matrix4()};
     static MemoryFieldWrapper<bool>          DrawCars{0xA79CDC, true};
     static MemoryFieldWrapper<bool>          EnableEnvMap{0xA61884, true};
     static MemoryFieldWrapper<CARPART_LOD>   ForceCarLOD{0xA79D7C, CARPART_LOD::A};
