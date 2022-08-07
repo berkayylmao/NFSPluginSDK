@@ -28,7 +28,6 @@ namespace OpenSpeed::ProStreet {
     virtual void          GetLinearVelocity(UMath::Vector3& to)  = 0;
     virtual void          GetAngularVelocity(UMath::Vector3& to) = 0;
     virtual void          GetDimension(UMath::Vector3& to)       = 0;
-    virtual std::uint32_t GetWorldID();
-    virtual void          __null_sub__() = 0;
+    virtual std::uint32_t GetWorldID()                           = 0;
   };
 }  // namespace OpenSpeed::ProStreet
