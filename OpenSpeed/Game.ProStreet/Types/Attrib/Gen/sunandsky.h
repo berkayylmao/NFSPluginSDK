@@ -22,5 +22,5 @@
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Instance.h>
 
 namespace OpenSpeed::ProStreet::Attrib::Gen {
-  struct rigidbodyspecs : Instance {};
+  struct sunandsky : Instance {};
 }  // namespace OpenSpeed::ProStreet::Attrib::Gen
