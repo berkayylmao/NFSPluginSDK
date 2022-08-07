@@ -21,7 +21,7 @@
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::Attrib::Layouts {
-  struct camerainfolayout {
+  struct sunandskylayout {
     float SunLatitude;
     float SkyDomeRotation;
   };
