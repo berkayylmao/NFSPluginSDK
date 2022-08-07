@@ -185,7 +185,7 @@ namespace OpenSpeed::ProStreet {
     virtual const char*            GetCacheName() override;
     virtual bool                   GetDynamicData(EventSequencer::System* system, void* pOutEventDynamicData) override;
     virtual bool                   IsDriverAidOn(DriverAidType) override;
-    virtual void                   SetDriverAidLevel(DriverAidType, int, bool) override;
+    virtual void                   SetDriverAidLevel(DriverAidType, eDriverAssistLevel, bool) override;
     virtual int                    GetDriverAidLevel(DriverAidType) override;
     virtual int                    GetDriverAidMaxLevel(DriverAidType) override;
     virtual void                   RestoreDriverAidLevels_All() override;

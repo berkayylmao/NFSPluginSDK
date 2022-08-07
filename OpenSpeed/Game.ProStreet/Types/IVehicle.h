@@ -104,7 +104,7 @@ namespace OpenSpeed::ProStreet {
     virtual const char* GetCacheName()                                                             = 0;
     virtual bool        GetDynamicData(EventSequencer::System* system, void* pOutEventDynamicData) = 0;
     virtual bool        IsDriverAidOn(DriverAidType)                                               = 0;
-    virtual void        SetDriverAidLevel(DriverAidType, int, bool)                                = 0;
+    virtual void        SetDriverAidLevel(DriverAidType, eDriverAssistLevel, bool)                 = 0;
     virtual int         GetDriverAidLevel(DriverAidType)                                           = 0;
     virtual int         GetDriverAidMaxLevel(DriverAidType)                                        = 0;
     virtual void        RestoreDriverAidLevels_All()                                               = 0;
