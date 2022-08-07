@@ -22,5 +22,5 @@
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Instance.h>
 
 namespace OpenSpeed::ProStreet::Attrib::Gen {
-  struct trafficpattern : Instance {};
+  struct rigidbodyspecs : Instance {};
 }  // namespace OpenSpeed::ProStreet::Attrib::Gen
