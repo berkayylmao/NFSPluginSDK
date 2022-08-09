@@ -167,6 +167,10 @@ namespace MemoryEditor {
     };
 
     [[nodiscard]] inline RawMemory GetRawMemory(std::uintptr_t address) const { return RawMemory(address); }
+    // Casts ptr to a uinptr_t
+    [[nodiscard]] inline RawMemory GetRawMemory(void* ptr) const {
+      return RawMemory(reinterpret_cast<std::uintptr_t>(ptr));
+    }
 
     inline std::uintptr_t AbsRVA(std::uintptr_t rva) const { return mBase + rva; }
     inline std::uintptr_t CalculateRelativeDistance(std::uintptr_t from, std::uintptr_t to) const {
