@@ -26,7 +26,7 @@ namespace OpenSpeed::ProStreet::Attrib {
     Attrib::ClassPrivate* mPrivates;
 
     inline Collection* GetCollection(StringKey key) {
-      return reinterpret_cast<Collection*(__thiscall*)(Class*, StringKey)>(0x557C30)(this, key);
+      return reinterpret_cast<Collection*(__thiscall*)(Class*, StringKey)>(0x52C820)(this, key);
     }
     inline std::uint32_t GetNumCollections() {
       return reinterpret_cast<std::uint32_t(__thiscall*)(Class*)>(0x52B520)(this);
