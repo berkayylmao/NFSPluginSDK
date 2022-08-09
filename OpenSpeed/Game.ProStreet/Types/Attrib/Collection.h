@@ -19,7 +19,7 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/Attrib/HashMap.h>
+#include <OpenSpeed/Game.ProStreet/Types/Attrib.h>
 
 namespace OpenSpeed::ProStreet::Attrib {
   struct Collection {
@@ -34,10 +34,25 @@ namespace OpenSpeed::ProStreet::Attrib {
     inline T* GetData(StringKey fieldKey, std::int32_t idx = 0) {
       return reinterpret_cast<T*(__thiscall*)(Collection*, StringKey, std::int32_t)>(0x52B5D0)(this, fieldKey, idx);
     }
+    template <typename T>
+    inline T* GetData(const char* fieldName, std::int32_t idx = 0) {
+      return GetData<T>(StringToKey(fieldName), idx);
+    }
 
     template <typename T>
     inline T* GetLayout() {
       return reinterpret_cast<T*>(mLayout);
+    }
+
+    template <typename T>
+    inline bool TrySetData(StringKey fieldKey, T value, std::int32_t idx = 0) {
+      auto* p = GetData<T>(fieldKey, idx);
+      if (p) MemoryEditor::Get().GetRawMemory(p).SetValue(value);
+      return p != nullptr;
+    }
+    template <typename T>
+    inline bool TrySetData(const char* fieldName, T value, std::int32_t idx = 0) {
+      return TrySetData(StringToKey(fieldName), value, idx);
     }
   };
 }  // namespace OpenSpeed::ProStreet::Attrib

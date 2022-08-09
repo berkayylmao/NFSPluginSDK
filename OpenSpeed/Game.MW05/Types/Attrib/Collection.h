@@ -19,7 +19,7 @@
 
 #pragma once
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/Attrib/HashMap.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib.h>
 
 namespace OpenSpeed::MW05::Attrib {
   struct Collection {
@@ -36,10 +36,25 @@ namespace OpenSpeed::MW05::Attrib {
     inline T* GetData(StringKey fieldKey, std::int32_t idx = 0) {
       return reinterpret_cast<T*(__thiscall*)(Collection*, StringKey, std::int32_t)>(0x454190)(this, fieldKey, idx);
     }
+    template <typename T>
+    inline T* GetData(const char* fieldName, std::int32_t idx = 0) {
+      return GetData<T>(StringToKey(fieldName), idx);
+    }
 
     template <typename T>
     inline T* GetLayout() {
       return reinterpret_cast<T*>(mLayout);
+    }
+
+    template <typename T>
+    inline bool TrySetData(StringKey fieldKey, T value, std::int32_t idx = 0) {
+      auto* p = GetData<T>(fieldKey, idx);
+      if (p) MemoryEditor::Get().GetRawMemory(p).SetValue(value);
+      return p != nullptr;
+    }
+    template <typename T>
+    inline bool TrySetData(const char* fieldName, T value, std::int32_t idx = 0) {
+      return TrySetData(StringToKey(fieldName), value, idx);
     }
   };
 }  // namespace OpenSpeed::MW05::Attrib
