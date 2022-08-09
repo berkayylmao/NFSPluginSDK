@@ -28,19 +28,3 @@
 #include <OpenSpeed/Game.Carbon/Types/Attrib/Private.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/RefSpec.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/RGBA.h>
-
-namespace OpenSpeed::Carbon::Attrib {
-  static inline StringKey StringToKey(const char* name) {
-    return reinterpret_cast<StringKey(__cdecl*)(const char*)>(0x4639D0)(name);
-  }
-
-  static inline Collection* FindCollection(StringKey classKey, StringKey collectionKey) {
-    return reinterpret_cast<Collection*(__cdecl*)(StringKey, StringKey)>(0x465930)(classKey, collectionKey);
-  }
-  static inline Collection* FindCollection(const char* className, StringKey collectionKey) {
-    return FindCollection(StringToKey(className), collectionKey);
-  }
-  static inline Collection* FindCollection(const char* className, const char* collectionName) {
-    return FindCollection(StringToKey(className), StringToKey(collectionName));
-  }
-}  // namespace OpenSpeed::Carbon::Attrib

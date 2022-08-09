@@ -18,8 +18,10 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/MemoryEditor/MemoryEditor.hpp>
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/Attrib.h>
+#include <OpenSpeed/Game.ProStreet/Types/Attrib/HashMap.h>
 
 namespace OpenSpeed::ProStreet::Attrib {
   struct Collection {

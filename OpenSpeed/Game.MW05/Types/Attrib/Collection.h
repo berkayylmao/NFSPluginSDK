@@ -18,8 +18,10 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/MemoryEditor/MemoryEditor.hpp>
+
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/Attrib.h>
+#include <OpenSpeed/Game.MW05/Types/Attrib/HashMap.h>
 
 namespace OpenSpeed::MW05::Attrib {
   struct Collection {

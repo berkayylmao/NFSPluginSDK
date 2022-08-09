@@ -18,8 +18,10 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/MemoryEditor/MemoryEditor.hpp>
+
 #include <OpenSpeed/Game.Carbon/Types.h>
-#include <OpenSpeed/Game.Carbon/Types/Attrib.h>
+#include <OpenSpeed/Game.Carbon/Types/Attrib/HashMap.h>
 
 namespace OpenSpeed::Carbon::Attrib {
   struct Collection {
