@@ -163,6 +163,35 @@ namespace MemoryEditor {
         return true;
       }
 
+      RawMemory& operator-(std::uintptr_t offset) {
+        mAddress -= offset;
+        return *this;
+      }
+      RawMemory& operator+(std::uintptr_t offset) {
+        mAddress += offset;
+        return *this;
+      }
+
+      RawMemory& operator--() {
+        mAddress--;
+        return *this;
+      }
+      RawMemory& operator++() {
+        mAddress++;
+        return *this;
+      }
+
+      RawMemory operator--(std::int32_t) {
+        auto ret = *this;
+        --(*this);
+        return ret;
+      }
+      RawMemory operator++(std::int32_t) {
+        auto ret = *this;
+        ++(*this);
+        return ret;
+      }
+
       explicit RawMemory(std::uintptr_t address) : mAddress(address) {}
     };
 
