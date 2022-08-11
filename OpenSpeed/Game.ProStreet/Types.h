@@ -921,6 +921,7 @@ namespace OpenSpeed::ProStreet {
   enum class ePlayerSettingsCameras : std::uint8_t { Bumper, Hood, Close, Far, Drift, Staging, Pause, CarSlot, Tuning };
   enum class eSensitivitySetting : std::uint8_t { Low, Medium, High };
   enum class eSkyStyle : std::uint32_t {
+    None,
     Style1,
     Style2,
     Style3,
