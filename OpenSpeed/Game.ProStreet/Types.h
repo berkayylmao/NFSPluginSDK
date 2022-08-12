@@ -18,9 +18,7 @@
 // clang-format on
 
 #pragma once
-#include <algorithm>    // copy
 #include <cstdint>      // integer types
-#include <iterator>     // begin, end
 #include <type_traits>  // enable_if_t, is_base_of_v
 #if defined(_WIN32)
 #include <winnt.h>  // DEFINE_ENUM_FLAG_OPERATORS

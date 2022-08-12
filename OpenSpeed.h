@@ -40,28 +40,27 @@ namespace OpenSpeed {
     /// Pointer to game's Direct3D device.
     /// <para><em>NOTE: For ProStreet, this is a pointer to the pointer of the device.</em></para>
     /// </summary>
-    void** mPPD3DDevice;
+    void** mPD3DDevice;
     /// <summary>
     /// Pointer to game's DirectInput8 device.
     /// </summary>
-    void** mPPDI8Device;
+    void** mPDI8Device;
 
     SpeedGameInformation() :
         mGame(SpeedGame::NotSupported),
         mSzWindowName(nullptr),
         mPHwnd(nullptr),
-        mPPD3DDevice(nullptr),
-        mPPDI8Device(nullptr) {}
-    SpeedGameInformation(SpeedGame game, const char* szWindowName, void** hWnd, void** ppD3DDevice,
-                         void** ppDI8Device) :
-        mGame(game), mSzWindowName(szWindowName), mPHwnd(hWnd), mPPD3DDevice(ppD3DDevice), mPPDI8Device(ppDI8Device) {}
+        mPD3DDevice(nullptr),
+        mPDI8Device(nullptr) {}
+    SpeedGameInformation(SpeedGame game, const char* szWindowName, void** hWnd, void** pD3DDevice, void** pDI8Device) :
+        mGame(game), mSzWindowName(szWindowName), mPHwnd(hWnd), mPD3DDevice(pD3DDevice), mPDI8Device(pDI8Device) {}
     SpeedGameInformation(SpeedGame game, std::uintptr_t szWindowName, std::uintptr_t addrHWND,
-                         std::uintptr_t addrPPD3DDevice, std::uintptr_t addrPPDI8Device) :
+                         std::uintptr_t addrPD3DDevice, std::uintptr_t addrPDI8Device) :
         mGame(game),
         mSzWindowName(reinterpret_cast<const char*>(szWindowName)),
         mPHwnd(reinterpret_cast<void**>(addrHWND)),
-        mPPD3DDevice(reinterpret_cast<void**>(addrPPD3DDevice)),
-        mPPDI8Device(reinterpret_cast<void**>(addrPPDI8Device)) {}
+        mPD3DDevice(reinterpret_cast<void**>(addrPD3DDevice)),
+        mPDI8Device(reinterpret_cast<void**>(addrPDI8Device)) {}
   };
 
   static inline SpeedGame GetCurrentSpeedGame() {

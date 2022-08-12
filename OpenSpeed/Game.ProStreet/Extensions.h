@@ -25,11 +25,7 @@
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/DamageCopCar.h>  // DamageCopCar, DamageVehicle, IDamageable, IDamageableVehicle
 #include <OpenSpeed/Game.ProStreet/Types/DamageRacer.h>   // DamageRacer
-#include <OpenSpeed/Game.ProStreet/Types/GRaceStatus.h>   // GRaceStatus
-#include <OpenSpeed/Game.ProStreet/Types/IPlayer.h>       // IPlayer
-#include <OpenSpeed/Game.ProStreet/Types/IRigidBody.h>    // IRigidBody
 #include <OpenSpeed/Game.ProStreet/Types/PVehicle.h>      // PVehicle
-#include <OpenSpeed/Game.ProStreet/Types/RideInfo.h>      // RideInfo
 
 namespace OpenSpeed::ProStreet {
   //          //
@@ -38,19 +34,6 @@ namespace OpenSpeed::ProStreet {
 
   namespace PVehicleEx {
     namespace details {
-      //                  //
-      // Internal structs //
-      //                  //
-
-      struct ChangedPVehicleInfo {
-        // Whether the change attempt was successful
-        bool WasSuccessful;
-        // The new PVehicle pointer, if the change was successful
-        PVehicle* NewPVehiclePtr;
-
-        ChangedPVehicleInfo() : WasSuccessful(false), NewPVehiclePtr(nullptr) {}
-      };
-
       //                   //
       // Validate PVehicle //
       //                   //
@@ -98,64 +81,6 @@ namespace OpenSpeed::ProStreet {
         if (auto* pvehicle = static_cast<PVehicle*>(instance) | ValidatePVehicle) fn(pvehicle);
         instance = instance->GetNext();
       }
-    }
-
-    // Change target PVehicle model
-    static details::ChangedPVehicleInfo ChangePVehicleInto(
-        PVehicle* target, const Attrib::Gen::pvehicle& instance, RideInfo* rideInfo,
-        eVehicleParamFlags flags           = eVehicleParamFlags::SnapToGround | eVehicleParamFlags::ComputePerformance,
-        bool               killAfterChange = false) {
-      details::ChangedPVehicleInfo ret;
-      if (!instance.mCollection) return ret;
-
-      // if GRaceStatus is not ready, the PVehicle isn't ready either
-      auto* race_status = GRaceStatus::Get();
-      if (!race_status) return ret;
-
-      // Validate ptr
-      PVehicle* pvehicle = target | ValidatePVehicle;
-      if (!pvehicle) return ret;
-
-      // Get PVehicle details
-      HSIMABLE__*    handle   = pvehicle->GetOwnerHandle();
-      IPlayer*       player   = pvehicle->GetPlayer();
-      UMath::Vector3 position = pvehicle->GetPosition();
-      UMath::Vector3 direction;
-      pvehicle->GetRigidBody()->GetForwardVector(direction);
-      UMath::Vector3 linear_vel;
-      pvehicle->GetLinearVelocity(linear_vel);
-      UMath::Vector3 angular_vel;
-      pvehicle->GetAngularVelocity(angular_vel);
-
-      // Create new PVehicle
-      auto* new_pvehicle = PVehicle::Construct(
-          VehicleParams(pvehicle->GetDriverClass(), instance, direction, position, rideInfo, flags, race_status));
-      if (!new_pvehicle) return ret;
-
-      // Pass on details
-      new_pvehicle->Attach(player);
-      new_pvehicle->GetRigidBody()->SetLinearVelocity(linear_vel);
-      new_pvehicle->GetRigidBody()->SetAngularVelocity(angular_vel);
-
-      // Get rid of old PVehicle
-      pvehicle->Detach(player);
-      if (killAfterChange) {
-        if (race_status->mRacerCount > 0)
-          pvehicle->Deactivate();
-        else
-          pvehicle->Kill();
-      }
-
-      ret.WasSuccessful  = true;
-      ret.NewPVehiclePtr = new_pvehicle;
-      return ret;
-    }
-    static details::ChangedPVehicleInfo ChangePVehicleInto(
-        PVehicle* target, Attrib::StringKey vehicleKey, RideInfo* rideInfo,
-        eVehicleParamFlags flags           = eVehicleParamFlags::SnapToGround | eVehicleParamFlags::ComputePerformance,
-        bool               killAfterChange = false) {
-      return ChangePVehicleInto(target, Attrib::Gen::pvehicle::TryGetInstance(vehicleKey), rideInfo, flags,
-                                killAfterChange);
     }
   }  // namespace PVehicleEx
 
