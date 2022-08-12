@@ -23,9 +23,10 @@
 
 namespace OpenSpeed::MW05::Attrib::Gen {
   struct pvehicle : Instance {
-    static pvehicle TryGetInstance(StringKey key) {
+    static pvehicle TryGetInstance(std::uint32_t key) {
       pvehicle instance;
-      reinterpret_cast<pvehicle*(__thiscall*)(pvehicle&, StringKey, bool, bool)>(0x4E4EA0)(instance, key, false, false);
+      reinterpret_cast<pvehicle*(__thiscall*)(pvehicle&, std::uint32_t, bool, bool)>(0x4E4EA0)(instance, key, false,
+                                                                                               false);
 
       return instance;
     }

@@ -18,7 +18,7 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Core/MemoryFieldWrapper/MemoryFieldWrapper.hpp>
+#include <OpenSpeed/Core/MemoryFieldWrapper.hpp>
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed {

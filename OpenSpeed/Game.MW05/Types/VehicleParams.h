@@ -24,7 +24,7 @@
 namespace OpenSpeed::MW05 {
   struct VehicleParams : Sim::Param {
     DriverClass                 mDriverClass;
-    Attrib::StringKey           mVehicleKey;
+    std::uint32_t               mVehicleKey;
     const UMath::Vector3*       mDirection;
     const UMath::Vector3*       mPosition;
     FECustomizationRecord*      mCustomization;
@@ -32,7 +32,7 @@ namespace OpenSpeed::MW05 {
     Physics::Info::Performance* mPerformanceMatch;
     eVehicleParamFlags          mFlags;
 
-    explicit VehicleParams(DriverClass driverClass, Attrib::StringKey vehicleKey, const UMath::Vector3& direction,
+    explicit VehicleParams(DriverClass driverClass, std::uint32_t vehicleKey, const UMath::Vector3& direction,
                            const UMath::Vector3& position, FECustomizationRecord* pFECR = nullptr,
                            eVehicleParamFlags flags = eVehicleParamFlags::SnapToGround |
                                                       eVehicleParamFlags::CalcPerformance,

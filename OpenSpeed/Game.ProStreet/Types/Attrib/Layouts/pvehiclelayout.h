@@ -23,8 +23,8 @@
 
 namespace OpenSpeed::ProStreet::Attrib::Layouts {
   struct pvehiclelayout {
-    Attrib::StringKey            MODEL;
-    Attrib::RefSpec              frontend;
+    StringKey                    MODEL;
+    RefSpec                      frontend;
     const char*                  DefaultPresetRide;
     const char*                  CollectionName;
     std::int32_t                 transmission_upgrades;

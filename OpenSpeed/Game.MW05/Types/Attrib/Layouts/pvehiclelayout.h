@@ -56,21 +56,21 @@ namespace OpenSpeed::MW05::Attrib::Layouts {
       Cadillac    = 1 << 30
     };
 
-    UMath::Vector4 TENSOR_SCALE;
-    StringKey      MODEL;
-    const char*    DefaultPresetRide;
-    const char*    CollectionName;
-    std::int32_t   engine_upgrades;
-    std::int32_t   transmission_upgrades;
-    std::int32_t   nos_upgrades;
-    std::int32_t   brakes_upgrades;
-    float          MASS;
-    std::int32_t   tires_upgrades;
-    CarType        VerbalType;
-    std::int32_t   induction_upgrades;
-    std::int32_t   chassis_upgrades;
-    std::uint8_t   HornType;
-    std::uint8_t   TrafficEngType;
+    Math::Vector4 TENSOR_SCALE;
+    StringKey     MODEL;
+    const char*   DefaultPresetRide;
+    const char*   CollectionName;
+    std::int32_t  engine_upgrades;
+    std::int32_t  transmission_upgrades;
+    std::int32_t  nos_upgrades;
+    std::int32_t  brakes_upgrades;
+    float         MASS;
+    std::int32_t  tires_upgrades;
+    CarType       VerbalType;
+    std::int32_t  induction_upgrades;
+    std::int32_t  chassis_upgrades;
+    std::uint8_t  HornType;
+    std::uint8_t  TrafficEngType;
   };
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS

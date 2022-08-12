@@ -20,7 +20,7 @@
 #pragma once
 #include <functional>  // std::function
 
-#include <OpenSpeed/Core/MemoryEditor/MemoryEditor.hpp>  // ValidateMemoryIsInitialized
+#include <OpenSpeed/Core/MemoryEditor.hpp>  // ValidateMemoryIsInitialized
 
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/AIVehicleCopCar.h>   // AIVehicleCopCar, AIVehiclePursuit, AIVehiclePid, AIVehicle

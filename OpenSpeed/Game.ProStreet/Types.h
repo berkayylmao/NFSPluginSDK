@@ -24,13 +24,19 @@
 #include <winnt.h>  // DEFINE_ENUM_FLAG_OPERATORS
 #endif
 
-#include <OpenSpeed/Game.ProStreet/Types/Math.h>
-#include <OpenSpeed/Game.ProStreet/Types/UMath.h>
+#include <OpenSpeed/Core/Math.hpp>
+#include <OpenSpeed/Core/UMath.hpp>
 
 namespace OpenSpeed::ProStreet {
 #pragma region Forward declarations
   namespace Attrib {
-    using StringKey = std::uint32_t;
+    struct StringKey {
+      std::uint32_t mHash32;
+      const char*   mString;
+
+      StringKey(std::uint32_t hash, const char* str) : mHash32(hash), mString(str) {}
+      StringKey() : StringKey(0, nullptr) {}
+    };
 
     struct ChunkBlock;
     struct Class;
@@ -69,14 +75,14 @@ namespace OpenSpeed::ProStreet {
       struct trafficpattern;
     }  // namespace Gen
 
-    static inline StringKey StringToKey(const char* name) {
-      return reinterpret_cast<StringKey(__cdecl*)(const char*)>(0x52B8D0)(name);
+    static inline std::uint32_t StringToKey(const char* name) {
+      return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x52B8D0)(name);
     }
 
-    static inline Collection* FindCollection(StringKey classKey, StringKey collectionKey) {
-      return reinterpret_cast<Collection*(__cdecl*)(StringKey, StringKey)>(0x52CD40)(classKey, collectionKey);
+    static inline Collection* FindCollection(std::uint32_t classKey, std::uint32_t collectionKey) {
+      return reinterpret_cast<Collection*(__cdecl*)(std::uint32_t, std::uint32_t)>(0x52CD40)(classKey, collectionKey);
     }
-    static inline Collection* FindCollection(const char* className, StringKey collectionKey) {
+    static inline Collection* FindCollection(const char* className, std::uint32_t collectionKey) {
       return FindCollection(StringToKey(className), collectionKey);
     }
     static inline Collection* FindCollection(const char* className, const char* collectionName) {
@@ -114,6 +120,20 @@ namespace OpenSpeed::ProStreet {
 
     struct IEntity;
   }  // namespace Dynamics
+
+  namespace Math {
+    using Vector2 = OpenSpeed::Vector2;
+    using Vector3 = OpenSpeed::Vector3;
+    using Vector4 = OpenSpeed::Vector4;
+    using Matrix4 = OpenSpeed::Matrix4;
+
+  }  // namespace Math
+  namespace UMath {
+    using Vector2 = OpenSpeed::UVector2;
+    using Vector3 = OpenSpeed::UVector3;
+    using Vector4 = OpenSpeed::UVector4;
+    using Matrix4 = OpenSpeed::UMatrix4;
+  }  // namespace UMath
 
   namespace Physics {
     enum class ePerformanceType : std::uint32_t {

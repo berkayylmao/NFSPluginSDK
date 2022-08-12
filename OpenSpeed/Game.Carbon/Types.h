@@ -24,8 +24,8 @@
 #include <winnt.h>  // DEFINE_ENUM_FLAG_OPERATORS
 #endif
 
-#include <OpenSpeed/Game.Carbon/Types/Math.h>
-#include <OpenSpeed/Game.Carbon/Types/UMath.h>
+#include <OpenSpeed/Core/Math.hpp>
+#include <OpenSpeed/Core/UMath.hpp>
 
 namespace OpenSpeed::Carbon {
 #pragma region Forward declarations
@@ -93,6 +93,20 @@ namespace OpenSpeed::Carbon {
 
     struct IEntity;
   }  // namespace Dynamics
+
+  namespace Math {
+    using Vector2 = OpenSpeed::Vector2;
+    using Vector3 = OpenSpeed::Vector3;
+    using Vector4 = OpenSpeed::Vector4;
+    using Matrix4 = OpenSpeed::Matrix4;
+
+  }  // namespace Math
+  namespace UMath {
+    using Vector2 = OpenSpeed::UVector2;
+    using Vector3 = OpenSpeed::UVector3;
+    using Vector4 = OpenSpeed::UVector4;
+    using Matrix4 = OpenSpeed::UMatrix4;
+  }  // namespace UMath
 
   namespace Physics {
     struct Tunings;

@@ -18,7 +18,7 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Core/MemoryEditor/MemoryEditor.hpp>
+#include <OpenSpeed/Core/MemoryEditor.hpp>
 
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/HashMap.h>
@@ -35,8 +35,8 @@ namespace OpenSpeed::MW05::Attrib {
     const char**  mNamePtr;
 
     template <typename T>
-    inline T* GetData(StringKey fieldKey, std::int32_t idx = 0) {
-      return reinterpret_cast<T*(__thiscall*)(Collection*, StringKey, std::int32_t)>(0x454190)(this, fieldKey, idx);
+    inline T* GetData(std::uint32_t fieldKey, std::int32_t idx = 0) {
+      return reinterpret_cast<T*(__thiscall*)(Collection*, std::uint32_t, std::int32_t)>(0x454190)(this, fieldKey, idx);
     }
     template <typename T>
     inline T* GetData(const char* fieldName, std::int32_t idx = 0) {
@@ -49,7 +49,7 @@ namespace OpenSpeed::MW05::Attrib {
     }
 
     template <typename T>
-    inline bool TrySetData(StringKey fieldKey, T value, std::int32_t idx = 0) {
+    inline bool TrySetData(std::uint32_t fieldKey, T value, std::int32_t idx = 0) {
       auto* p = GetData<T>(fieldKey, idx);
       if (p) MemoryEditor::Get().GetRawMemory(p).SetValue(value);
       return p != nullptr;

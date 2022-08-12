@@ -18,6 +18,8 @@
 // clang-format on
 
 #pragma once
+#include <iterator>
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/Private.h>
 

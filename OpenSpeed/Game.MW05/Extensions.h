@@ -20,7 +20,7 @@
 #pragma once
 #include <functional>  // std::function
 
-#include <OpenSpeed/Core/MemoryEditor/MemoryEditor.hpp>  // ValidateMemoryIsInitialized
+#include <OpenSpeed/Core/MemoryEditor.hpp>  // ValidateMemoryIsInitialized
 
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/AIVehicleCopCar.h>  // AIVehicleCopCar, AIVehiclePursuit, AIVehiclePid, AIVehicle
@@ -98,7 +98,7 @@ namespace OpenSpeed::MW05 {
 
     // Change target PVehicle model
     static details::ChangedPVehicleInfo ChangePVehicleInto(
-        PVehicle* target, Attrib::StringKey vehicleKey, FECustomizationRecord* customizations,
+        PVehicle* target, std::uint32_t vehicleKey, FECustomizationRecord* customizations,
         eVehicleParamFlags flags           = eVehicleParamFlags::SnapToGround | eVehicleParamFlags::CalcPerformance,
         bool               killAfterChange = true) {
       details::ChangedPVehicleInfo ret;

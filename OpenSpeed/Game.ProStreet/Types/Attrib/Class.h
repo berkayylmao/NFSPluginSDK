@@ -25,8 +25,8 @@ namespace OpenSpeed::ProStreet::Attrib {
     std::uint32_t         mKey;
     Attrib::ClassPrivate* mPrivates;
 
-    inline Collection* GetCollection(StringKey key) {
-      return reinterpret_cast<Collection*(__thiscall*)(Class*, StringKey)>(0x52C820)(this, key);
+    inline Collection* GetCollection(std::uint32_t key) {
+      return reinterpret_cast<Collection*(__thiscall*)(Class*, std::uint32_t)>(0x52C820)(this, key);
     }
     inline std::uint32_t GetNumCollections() {
       return reinterpret_cast<std::uint32_t(__thiscall*)(Class*)>(0x52B520)(this);
@@ -34,8 +34,8 @@ namespace OpenSpeed::ProStreet::Attrib {
     inline std::uint32_t GetFirstCollection() {
       return reinterpret_cast<std::uint32_t(__thiscall*)(Class*)>(0x402BC0)(this);
     }
-    inline std::uint32_t GetNextCollection(StringKey key) {
-      return reinterpret_cast<std::uint32_t(__thiscall*)(Class*, StringKey)>(0x4F4390)(this, key);
+    inline std::uint32_t GetNextCollection(std::uint32_t key) {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(Class*, std::uint32_t)>(0x4F4390)(this, key);
     }
   };
 }  // namespace OpenSpeed::ProStreet::Attrib
