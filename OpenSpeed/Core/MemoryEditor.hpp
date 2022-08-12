@@ -93,7 +93,7 @@ namespace MemoryEditor {
         }
       }
 
-      explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour, MakeType detourType) :
+      explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour) :
           mHasDetoured(false), mAddrFrom(addrFrom), mAddrDetour(addrDetour) {
         auto m = Editor::Get().GetRawMemory(mAddrFrom);
         if (auto old = m.Unlock(5)) {
@@ -101,10 +101,6 @@ namespace MemoryEditor {
           m.Lock(5, old);
         }
       }
-
-      explicit DetourInfo(std::uintptr_t addrFrom, std::uintptr_t addrDetour) :
-          DetourInfo(addrFrom, addrDetour, MakeType::Jump) {}
-
       explicit DetourInfo() : DetourInfo(0, 0) {}
     };
     class RawMemory {
@@ -249,10 +245,8 @@ namespace MemoryEditor {
       return ret;
     }
 
-    DetourInfo GetDetour(std::uintptr_t from, std::uintptr_t to, MakeType type = MakeType::Jump) const {
-      return DetourInfo(from, to, type);
-    }
-    void Make(MakeType type, std::uintptr_t from, std::uintptr_t to) const {
+    DetourInfo GetDetour(std::uintptr_t from, std::uintptr_t to) const { return DetourInfo(from, to); }
+    void       Make(MakeType type, std::uintptr_t from, std::uintptr_t to) const {
       std::uint8_t* arr = reinterpret_cast<std::uint8_t*>(from);
       auto          m   = GetRawMemory(from);
 
