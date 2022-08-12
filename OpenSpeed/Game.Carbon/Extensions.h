@@ -164,7 +164,7 @@ namespace OpenSpeed::Carbon {
       return ret;
     }
     static details::ChangedPVehicleInfo ChangePVehicleInto(
-        PVehicle* target, Attrib::StringKey vehicleKey, VehicleCustomizations* customizations,
+        PVehicle* target, std::uint32_t vehicleKey, VehicleCustomizations* customizations,
         eVehicleParamFlags flags           = eVehicleParamFlags::SnapToGround | eVehicleParamFlags::CalcPerformance,
         bool               killAfterChange = true) {
       return ChangePVehicleInto(target, Attrib::Gen::pvehicle::TryGetInstance(vehicleKey), customizations, flags,

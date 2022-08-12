@@ -30,7 +30,13 @@
 namespace OpenSpeed::Carbon {
 #pragma region Forward declarations
   namespace Attrib {
-    using StringKey = std::uint32_t;
+    struct StringKey {
+      std::uint32_t mHash32;
+      const char*   mString;
+
+      StringKey(std::uint32_t hash32, const char* str) : mHash32(hash32), mString(str) {}
+      StringKey() : StringKey(0, nullptr) {}
+    };
 
     struct ChunkBlock;
     struct Class;
@@ -69,14 +75,14 @@ namespace OpenSpeed::Carbon {
       struct trafficpattern;
     }  // namespace Gen
 
-    static inline StringKey StringToKey(const char* name) {
-      return reinterpret_cast<StringKey(__cdecl*)(const char*)>(0x4639D0)(name);
+    static inline std::uint32_t StringToKey(const char* name) {
+      return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x4639D0)(name);
     }
 
-    static inline Collection* FindCollection(StringKey classKey, StringKey collectionKey) {
-      return reinterpret_cast<Collection*(__cdecl*)(StringKey, StringKey)>(0x465930)(classKey, collectionKey);
+    static inline Collection* FindCollection(std::uint32_t classKey, std::uint32_t collectionKey) {
+      return reinterpret_cast<Collection*(__cdecl*)(std::uint32_t, std::uint32_t)>(0x465930)(classKey, collectionKey);
     }
-    static inline Collection* FindCollection(const char* className, StringKey collectionKey) {
+    static inline Collection* FindCollection(const char* className, std::uint32_t collectionKey) {
       return FindCollection(StringToKey(className), collectionKey);
     }
     static inline Collection* FindCollection(const char* className, const char* collectionName) {

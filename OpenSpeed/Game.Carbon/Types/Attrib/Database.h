@@ -26,8 +26,8 @@ namespace OpenSpeed::Carbon::Attrib {
 
     virtual ~Database();
 
-    inline Class* GetClass(StringKey key) {
-      return reinterpret_cast<Class*(__thiscall*)(Database*, StringKey)>(0x4655E0)(this, key);
+    inline Class* GetClass(std::uint32_t key) {
+      return reinterpret_cast<Class*(__thiscall*)(Database*, std::uint32_t)>(0x4655E0)(this, key);
     }
 
     static inline Database** g_mThis = reinterpret_cast<Database**>(0xA8499C);

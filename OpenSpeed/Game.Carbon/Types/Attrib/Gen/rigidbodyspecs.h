@@ -19,16 +19,8 @@
 
 #pragma once
 #include <OpenSpeed/Game.Carbon/Types.h>
-#include <OpenSpeed/Game.Carbon/Types/Attrib.h>
+#include <OpenSpeed/Game.Carbon/Types/Attrib/Instance.h>
 
 namespace OpenSpeed::Carbon::Attrib::Gen {
-  struct pvehicle : Instance {
-    static pvehicle TryGetInstance(std::uint32_t key) {
-      pvehicle instance;
-      reinterpret_cast<pvehicle*(__thiscall*)(pvehicle&, std::uint32_t, bool)>(0x412520)(instance, key, false);
-
-      return instance;
-    }
-    static pvehicle TryGetInstance(const char* name) { return TryGetInstance(StringToKey(name)); }
-  };
+  struct rigidbodyspecs : Instance {};
 }  // namespace OpenSpeed::Carbon::Attrib::Gen

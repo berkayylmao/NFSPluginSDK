@@ -26,8 +26,8 @@ namespace OpenSpeed::Carbon::Attrib {
     std::uint32_t mRefCount;
     ClassPrivate& mPrivates;
 
-    inline Collection* GetCollection(StringKey key) {
-      return reinterpret_cast<Collection*(__thiscall*)(Class*, StringKey)>(0x465220)(this, key);
+    inline Collection* GetCollection(std::uint32_t key) {
+      return reinterpret_cast<Collection*(__thiscall*)(Class*, std::uint32_t)>(0x465220)(this, key);
     }
     inline std::uint32_t GetNumCollections() {
       return reinterpret_cast<std::uint32_t(__thiscall*)(Class*)>(0x463360)(this);
@@ -35,8 +35,8 @@ namespace OpenSpeed::Carbon::Attrib {
     inline std::uint32_t GetFirstCollection() {
       return reinterpret_cast<std::uint32_t(__thiscall*)(Class*)>(0x4652E0)(this);
     }
-    inline std::uint32_t GetNextCollection(StringKey key) {
-      return reinterpret_cast<std::uint32_t(__thiscall*)(Class*, StringKey)>(0x465300)(this, key);
+    inline std::uint32_t GetNextCollection(std::uint32_t key) {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(Class*, std::uint32_t)>(0x465300)(this, key);
     }
   };
 }  // namespace OpenSpeed::Carbon::Attrib
