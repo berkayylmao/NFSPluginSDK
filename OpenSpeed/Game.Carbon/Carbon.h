@@ -28,9 +28,10 @@ namespace OpenSpeed {
     static MemoryFieldWrapper<bool>          DrawCarsReflections{0xA7300C, true};
     static MemoryFieldWrapper<bool>          DrawCarShadow{0xA73010, true};
     // static MemoryFieldWrapper<bool>           DrawHUD{0x57CAA8, true};
-    static MemoryFieldWrapper<bool>          DrawLightFlares{0xA6C088, true};
-    static MemoryFieldWrapper<CARPART_LOD>   ForceCarLOD{0xA7309C, CARPART_LOD::A};
-    static MemoryFieldWrapper<CARPART_LOD>   ForceTireLOD{0xA730A0, CARPART_LOD::A};
+    static MemoryFieldWrapper<bool>        DrawLightFlares{0xA6C088, true};
+    static MemoryFieldWrapper<float>       FogCurrentBrightness{0xA650E0, 1.0f};
+    static MemoryFieldWrapper<CARPART_LOD> ForceCarLOD{0xA7309C, CARPART_LOD::A};
+    static MemoryFieldWrapper<CARPART_LOD> ForceTireLOD{0xA730A0, CARPART_LOD::A};
     // DALPauseStates::mPauseRequest
     static MemoryFieldWrapper<bool>          IsGameplayPaused{0xA8AD18, false};
     static MemoryFieldWrapper<bool>          IsInNIS{0xB42EBC, false};
