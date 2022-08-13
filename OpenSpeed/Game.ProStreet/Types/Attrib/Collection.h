@@ -47,14 +47,19 @@ namespace OpenSpeed::ProStreet::Attrib {
     }
 
     template <typename T>
-    inline bool TrySetData(std::uint32_t fieldKey, T value, std::int32_t idx = 0) {
+    inline bool TrySetData(std::uint32_t fieldKey, T value, bool safe = true, std::int32_t idx = 0) {
       auto* p = GetData<T>(fieldKey, idx);
-      if (p) MemoryEditor::Get().GetRawMemory(p).SetValue(value);
+      if (p) {
+        if (safe)
+          MemoryEditor::Get().GetRawMemory(p).SetValue(value);
+        else
+          *p = value;
+      }
       return p != nullptr;
     }
     template <typename T>
-    inline bool TrySetData(const char* fieldName, T value, std::int32_t idx = 0) {
-      return TrySetData(StringToKey(fieldName), value, idx);
+    inline bool TrySetData(const char* fieldName, T value, bool safe = true, std::int32_t idx = 0) {
+      return TrySetData(StringToKey(fieldName), value, safe idx);
     }
   };
 }  // namespace OpenSpeed::ProStreet::Attrib
