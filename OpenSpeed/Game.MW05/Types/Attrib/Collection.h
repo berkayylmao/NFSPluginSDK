@@ -61,7 +61,7 @@ namespace OpenSpeed::MW05::Attrib {
     }
     template <typename T>
     inline bool TrySetData(const char* fieldName, T value, bool safe = true, std::int32_t idx = 0) {
-      return TrySetData(StringToKey(fieldName), value, safe idx);
+      return TrySetData(StringToKey(fieldName), value, safe, idx);
     }
   };
 }  // namespace OpenSpeed::MW05::Attrib
