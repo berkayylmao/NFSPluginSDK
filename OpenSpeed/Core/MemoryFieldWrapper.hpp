@@ -19,15 +19,10 @@
 // clang-format on
 
 #pragma once
-#include <cstdint>      // integer types
-#include <map>          // map
-#include <memory>       // make_shared, shared_ptr
-#include <stdexcept>    // out_of_range
-#include <string>       // string
-#include <type_traits>  // is_arithmetic, is_enum
-#include <typeindex>    // type_index
-#include <vector>       // vector
-// MemoryEditor
+#ifndef OPENSPEED_CORE_MEMORYFIELDWRAPPER_H
+#define OPENSPEED_CORE_MEMORYFIELDWRAPPER_H
+
+#include <type_traits>  // is_arithmetic
 #include <OpenSpeed/Core/MemoryEditor.hpp>
 
 namespace details {
@@ -70,12 +65,10 @@ class MemoryFieldWrapper {
   details::__MakeRef<const FieldType> GetFieldMaximumValue() const { return mFieldMaxVal; }
 
 #pragma region operators
-  // Wrapped item casts
   inline operator details::__MakeRef<FieldType>() const {
     return *reinterpret_cast<details::__MakePtr<FieldType>>(mFieldPtr);
   }
 
-  // Wrapped item assignments
   details::__MakeRef<FieldType> operator=(details::__MakeRef<const FieldType> newValue) const {
     if constexpr (std::is_arithmetic_v<FieldType> && !std::is_same_v<FieldType, bool>)
       if (newValue < GetFieldMinimumValue() || newValue > GetFieldMaximumValue()) return *mFieldPtr;
@@ -85,8 +78,9 @@ class MemoryFieldWrapper {
     return GetField();
   }
 
-  // Wrapped item semantics
   inline details::__MakePtr<FieldType> operator&() const { return mFieldPtr; }
   inline details::__MakeRef<FieldType> operator->() const { return *mFieldPtr; }
 #pragma endregion
 };
+
+#endif
