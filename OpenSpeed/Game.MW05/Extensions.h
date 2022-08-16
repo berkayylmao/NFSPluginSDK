@@ -20,7 +20,7 @@
 #pragma once
 #include <functional>  // std::function
 
-#include <OpenSpeed/Core/MemoryEditor.hpp>  // ValidateMemoryIsInitialized
+#include <OpenSpeed/Core/MemoryEditor.hpp>  // ValidateMemory
 
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/AIVehicleCopCar.h>  // AIVehicleCopCar, AIVehiclePursuit, AIVehiclePid, AIVehicle
@@ -65,7 +65,7 @@ namespace OpenSpeed::MW05 {
 
       struct ValidatePVehicle_t {
         PVehicle* operator()(PVehicle* pvehicle) const {
-          if (!pvehicle || !MemoryEditor::Get().ValidateMemoryIsInitialized(pvehicle)) return nullptr;
+          if (!pvehicle || !MemoryEditor::Get().ValidateMemory(pvehicle)) return nullptr;
           // Validate ptr
           if (pvehicle->mObjType != SimableType::Invalid && pvehicle->mDirty == false &&
               pvehicle->mRigidBody != nullptr)
@@ -166,7 +166,7 @@ namespace OpenSpeed::MW05 {
 
       struct RigidBodyCast_t {
         RigidBody* operator()(IRigidBody* iRB) const {
-          if (!iRB || !MemoryEditor::Get().ValidateMemoryIsInitialized(iRB)) return nullptr;
+          if (!iRB || !MemoryEditor::Get().ValidateMemory(iRB)) return nullptr;
           // Verify cast
           auto* rb    = static_cast<RigidBody*>(iRB);
           auto  vfptr = *reinterpret_cast<std::uintptr_t*>(rb);
@@ -190,7 +190,7 @@ namespace OpenSpeed::MW05 {
 
       struct RBSmackableCast_t {
         RBSmackable* operator()(IRigidBody* iRB) const {
-          if (!iRB || !MemoryEditor::Get().ValidateMemoryIsInitialized(iRB)) return nullptr;
+          if (!iRB || !MemoryEditor::Get().ValidateMemory(iRB)) return nullptr;
           // Verify cast
           auto* rb = static_cast<RBSmackable*>(iRB);
           if (*reinterpret_cast<std::uintptr_t*>(rb) == 0x8AA6D0) return rb;
@@ -206,7 +206,7 @@ namespace OpenSpeed::MW05 {
 
       struct RBVehicleCast_t {
         RBVehicle* operator()(IRigidBody* iRB) const {
-          if (!iRB || !MemoryEditor::Get().ValidateMemoryIsInitialized(iRB)) return nullptr;
+          if (!iRB || !MemoryEditor::Get().ValidateMemory(iRB)) return nullptr;
           // Verify cast
           auto* rb    = static_cast<RBVehicle*>(iRB);
           auto  vfptr = *reinterpret_cast<std::uintptr_t*>(rb);
@@ -226,7 +226,7 @@ namespace OpenSpeed::MW05 {
 
       struct RBTractorCast_t {
         RBTractor* operator()(IRigidBody* iRB) const {
-          if (!iRB || !MemoryEditor::Get().ValidateMemoryIsInitialized(iRB)) return nullptr;
+          if (!iRB || !MemoryEditor::Get().ValidateMemory(iRB)) return nullptr;
           // Verify cast
           auto* rb = static_cast<RBTractor*>(iRB);
           if (*reinterpret_cast<std::uintptr_t*>(rb) == 0x8ACBA8) return rb;
@@ -242,7 +242,7 @@ namespace OpenSpeed::MW05 {
 
       struct SimpleRigidBodyCast_t {
         SimpleRigidBody* operator()(IRigidBody* iRB) const {
-          if (!iRB || !MemoryEditor::Get().ValidateMemoryIsInitialized(iRB)) return nullptr;
+          if (!iRB || !MemoryEditor::Get().ValidateMemory(iRB)) return nullptr;
           // Verify cast
           auto* rb = static_cast<SimpleRigidBody*>(iRB);
           if (*reinterpret_cast<std::uintptr_t*>(rb) == 0x8AC5FC) return rb;
@@ -285,7 +285,7 @@ namespace OpenSpeed::MW05 {
     static void ForEachInstance(const std::function<void(RigidBody::Volatile* p)>& fn) {
       auto* _instance = RigidBody::Volatile::g_mInstances;
       while (auto* volatileData = *(_instance++))
-        if (MemoryEditor::Get().ValidateMemoryIsInitialized(volatileData)) fn(volatileData);
+        if (MemoryEditor::Get().ValidateMemory(volatileData)) fn(volatileData);
     }
   }  // namespace RigidBodyEx
 
@@ -302,7 +302,7 @@ namespace OpenSpeed::MW05 {
 
       struct SimpleRigidBodyCast_t {
         SimpleRigidBody* operator()(ISimpleBody* iSRB) const {
-          if (!iSRB || !MemoryEditor::Get().ValidateMemoryIsInitialized(iSRB)) return nullptr;
+          if (!iSRB || !MemoryEditor::Get().ValidateMemory(iSRB)) return nullptr;
           // Verify cast
           auto* srb = static_cast<SimpleRigidBody*>(iSRB);
           if (*reinterpret_cast<std::uintptr_t*>(srb) == 0x8AC5FC) return srb;
@@ -321,7 +321,7 @@ namespace OpenSpeed::MW05 {
     static void ForEachInstance(const std::function<void(SimpleRigidBody::Volatile* p)>& fn) {
       auto* _instance = SimpleRigidBody::Volatile::g_mInstances;
       while (auto* volatileData = *(_instance++))
-        if (MemoryEditor::Get().ValidateMemoryIsInitialized(volatileData)) fn(volatileData);
+        if (MemoryEditor::Get().ValidateMemory(volatileData)) fn(volatileData);
     }
   }  // namespace SimpleBodyEx
 
@@ -337,7 +337,7 @@ namespace OpenSpeed::MW05 {
 
       struct PInputCast_t {
         PInput* operator()(IInput* iInput) const {
-          if (!iInput || !MemoryEditor::Get().ValidateMemoryIsInitialized(iInput)) return nullptr;
+          if (!iInput || !MemoryEditor::Get().ValidateMemory(iInput)) return nullptr;
           // Verify cast
           auto* pi = static_cast<PInput*>(iInput);
           if (*reinterpret_cast<std::uintptr_t*>(pi) == 0x8AB598) return pi;
@@ -353,7 +353,7 @@ namespace OpenSpeed::MW05 {
 
       struct InputPlayerCast_t {
         InputPlayer* operator()(IInput* iInput) const {
-          if (!iInput || !MemoryEditor::Get().ValidateMemoryIsInitialized(iInput)) return nullptr;
+          if (!iInput || !MemoryEditor::Get().ValidateMemory(iInput)) return nullptr;
           // Verify cast
           auto* ip = static_cast<InputPlayer*>(iInput);
           if (*reinterpret_cast<std::uintptr_t*>(ip) == 0x8AC6BC) return ip;
@@ -393,7 +393,7 @@ namespace OpenSpeed::MW05 {
 
       struct AIVehicleCast_t {
         AIVehicle* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicle*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x891A80) return ai;
@@ -409,7 +409,7 @@ namespace OpenSpeed::MW05 {
 
       struct AIVehicleCopCarCast_t {
         AIVehicleCopCar* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleCopCar*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x892560) return ai;
@@ -425,7 +425,7 @@ namespace OpenSpeed::MW05 {
 
       struct AIVehicleEmptyCast_t {
         AIVehicleEmpty* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleEmpty*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x892E28) return ai;
@@ -441,7 +441,7 @@ namespace OpenSpeed::MW05 {
 
       struct AIVehicleHelicopterCast_t {
         AIVehicleHelicopter* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleHelicopter*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x8920D8) return ai;
@@ -457,7 +457,7 @@ namespace OpenSpeed::MW05 {
 
       struct AIVehicleHumanCast_t {
         AIVehicleHuman* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleHuman*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x892AD0) return ai;
@@ -473,7 +473,7 @@ namespace OpenSpeed::MW05 {
 
       struct AIVehiclePidCast_t {
         AIVehiclePid* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehiclePid*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x891BB8) return ai;
@@ -489,7 +489,7 @@ namespace OpenSpeed::MW05 {
 
       struct AIVehiclePursuitCast_t {
         AIVehiclePursuit* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehiclePursuit*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x891EC0) return ai;
@@ -505,7 +505,7 @@ namespace OpenSpeed::MW05 {
 
       struct AIVehicleRacecarCast_t {
         AIVehicleRacecar* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleRacecar*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x892720) return ai;
@@ -521,7 +521,7 @@ namespace OpenSpeed::MW05 {
 
       struct AIVehicleTrafficCast_t {
         AIVehicleTraffic* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleTraffic*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x891CF8) return ai;
@@ -589,7 +589,7 @@ namespace OpenSpeed::MW05 {
 
       struct DamageVehicleCast_t {
         DamageVehicle* operator()(IDamageable* iDamageable) const {
-          if (!iDamageable || !MemoryEditor::Get().ValidateMemoryIsInitialized(iDamageable)) return nullptr;
+          if (!iDamageable || !MemoryEditor::Get().ValidateMemory(iDamageable)) return nullptr;
           // Verify cast
           auto* damageable = static_cast<DamageVehicle*>(iDamageable);
           auto  vfptr      = *reinterpret_cast<std::uintptr_t*>(damageable);
@@ -615,7 +615,7 @@ namespace OpenSpeed::MW05 {
 
       struct DamageCopCarCast_t {
         DamageCopCar* operator()(IDamageable* iDamageable) const {
-          if (!iDamageable || !MemoryEditor::Get().ValidateMemoryIsInitialized(iDamageable)) return nullptr;
+          if (!iDamageable || !MemoryEditor::Get().ValidateMemory(iDamageable)) return nullptr;
           // Verify cast
           auto* damageable = static_cast<DamageCopCar*>(iDamageable);
           if (*reinterpret_cast<std::uintptr_t*>(damageable) == 0x8AD438) return damageable;
@@ -631,7 +631,7 @@ namespace OpenSpeed::MW05 {
 
       struct DamageHeliCast_t {
         DamageHeli* operator()(IDamageable* iDamageable) const {
-          if (!iDamageable || !MemoryEditor::Get().ValidateMemoryIsInitialized(iDamageable)) return nullptr;
+          if (!iDamageable || !MemoryEditor::Get().ValidateMemory(iDamageable)) return nullptr;
           // Verify cast
           auto* damageable = static_cast<DamageHeli*>(iDamageable);
           if (*reinterpret_cast<std::uintptr_t*>(damageable) == 0x8AD3C4) return damageable;
@@ -647,7 +647,7 @@ namespace OpenSpeed::MW05 {
 
       struct DamageRacerCast_t {
         DamageRacer* operator()(IDamageable* iDamageable) const {
-          if (!iDamageable || !MemoryEditor::Get().ValidateMemoryIsInitialized(iDamageable)) return nullptr;
+          if (!iDamageable || !MemoryEditor::Get().ValidateMemory(iDamageable)) return nullptr;
           // Verify cast
           auto* damageable = static_cast<DamageRacer*>(iDamageable);
           auto  vfptr      = *reinterpret_cast<std::uintptr_t*>(damageable);
@@ -667,7 +667,7 @@ namespace OpenSpeed::MW05 {
 
       struct DamageDragsterCast_t {
         DamageDragster* operator()(IDamageable* iDamageable) const {
-          if (!iDamageable || !MemoryEditor::Get().ValidateMemoryIsInitialized(iDamageable)) return nullptr;
+          if (!iDamageable || !MemoryEditor::Get().ValidateMemory(iDamageable)) return nullptr;
           // Verify cast
           auto* damageable = static_cast<DamageDragster*>(iDamageable);
           if (*reinterpret_cast<std::uintptr_t*>(damageable) == 0x8AD6AC) return damageable;
@@ -719,7 +719,7 @@ namespace OpenSpeed::MW05 {
 
       struct ValidatePlayer_t {
         IPlayer* operator()(IPlayer* player) const {
-          if (!player || !MemoryEditor::Get().ValidateMemoryIsInitialized(player)) return nullptr;
+          if (!player || !MemoryEditor::Get().ValidateMemory(player)) return nullptr;
           // LocalPlayer
           if (*reinterpret_cast<std::uintptr_t*>(player) == 0x8B0B10) return player;
           // Bad ptr
@@ -734,7 +734,7 @@ namespace OpenSpeed::MW05 {
 
       struct LocalPlayerCast_t {
         LocalPlayer* operator()(IPlayer* player) const {
-          if (!player || !MemoryEditor::Get().ValidateMemoryIsInitialized(player)) return nullptr;
+          if (!player || !MemoryEditor::Get().ValidateMemory(player)) return nullptr;
           // Verify cast
           auto* local_player = static_cast<LocalPlayer*>(player);
           // LocalPlayer

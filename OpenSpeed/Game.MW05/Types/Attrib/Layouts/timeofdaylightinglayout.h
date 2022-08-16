@@ -37,68 +37,68 @@ namespace OpenSpeed::MW05::Attrib::Layouts {
     RGBA         FogSkyColour;
 
     timeofdaylightinglayout operator+(const timeofdaylightinglayout& rhs) {
-      timeofdaylightinglayout _result = *this;
-      _result.SpecularColour += rhs.SpecularColour;
-      _result.DiffuseColour += rhs.DiffuseColour;
-      _result.AmbientColour += rhs.AmbientColour;
-      _result.FogHazeColour += rhs.FogHazeColour;
-      _result.FixedFunctionSkyColour += rhs.FixedFunctionSkyColour;
-      _result.FogDistanceScale += rhs.FogDistanceScale;
-      _result.FogSkyColourScale += rhs.FogSkyColourScale;
-      _result.FogHazeColourScale += rhs.FogHazeColourScale;
-      _result.EnvSkyBrightness += rhs.EnvSkyBrightness;
-      _result.CarSpecScale += rhs.CarSpecScale;
-      _result.FogSkyColour += rhs.FogSkyColour;
+      timeofdaylightinglayout ret = *this;
+      ret.SpecularColour += rhs.SpecularColour;
+      ret.DiffuseColour += rhs.DiffuseColour;
+      ret.AmbientColour += rhs.AmbientColour;
+      ret.FogHazeColour += rhs.FogHazeColour;
+      ret.FixedFunctionSkyColour += rhs.FixedFunctionSkyColour;
+      ret.FogDistanceScale += rhs.FogDistanceScale;
+      ret.FogSkyColourScale += rhs.FogSkyColourScale;
+      ret.FogHazeColourScale += rhs.FogHazeColourScale;
+      ret.EnvSkyBrightness += rhs.EnvSkyBrightness;
+      ret.CarSpecScale += rhs.CarSpecScale;
+      ret.FogSkyColour += rhs.FogSkyColour;
 
-      return _result;
+      return ret;
     }
     timeofdaylightinglayout operator-(const timeofdaylightinglayout& rhs) {
-      timeofdaylightinglayout _result = *this;
-      _result.SpecularColour -= rhs.SpecularColour;
-      _result.DiffuseColour -= rhs.DiffuseColour;
-      _result.AmbientColour -= rhs.AmbientColour;
-      _result.FogHazeColour -= rhs.FogHazeColour;
-      _result.FixedFunctionSkyColour -= rhs.FixedFunctionSkyColour;
-      _result.FogDistanceScale -= rhs.FogDistanceScale;
-      _result.FogSkyColourScale -= rhs.FogSkyColourScale;
-      _result.FogHazeColourScale -= rhs.FogHazeColourScale;
-      _result.EnvSkyBrightness -= rhs.EnvSkyBrightness;
-      _result.CarSpecScale -= rhs.CarSpecScale;
-      _result.FogSkyColour -= rhs.FogSkyColour;
+      timeofdaylightinglayout ret = *this;
+      ret.SpecularColour -= rhs.SpecularColour;
+      ret.DiffuseColour -= rhs.DiffuseColour;
+      ret.AmbientColour -= rhs.AmbientColour;
+      ret.FogHazeColour -= rhs.FogHazeColour;
+      ret.FixedFunctionSkyColour -= rhs.FixedFunctionSkyColour;
+      ret.FogDistanceScale -= rhs.FogDistanceScale;
+      ret.FogSkyColourScale -= rhs.FogSkyColourScale;
+      ret.FogHazeColourScale -= rhs.FogHazeColourScale;
+      ret.EnvSkyBrightness -= rhs.EnvSkyBrightness;
+      ret.CarSpecScale -= rhs.CarSpecScale;
+      ret.FogSkyColour -= rhs.FogSkyColour;
 
-      return _result;
+      return ret;
     }
     timeofdaylightinglayout operator*(float rhs) {
-      timeofdaylightinglayout _result = *this;
-      _result.SpecularColour *= rhs;
-      _result.DiffuseColour *= rhs;
-      _result.AmbientColour *= rhs;
-      _result.FogHazeColour *= rhs;
-      _result.FixedFunctionSkyColour *= rhs;
-      _result.FogDistanceScale *= rhs;
-      _result.FogSkyColourScale *= rhs;
-      _result.FogHazeColourScale *= rhs;
-      _result.EnvSkyBrightness *= rhs;
-      _result.CarSpecScale *= rhs;
-      _result.FogSkyColour *= rhs;
+      timeofdaylightinglayout ret = *this;
+      ret.SpecularColour *= rhs;
+      ret.DiffuseColour *= rhs;
+      ret.AmbientColour *= rhs;
+      ret.FogHazeColour *= rhs;
+      ret.FixedFunctionSkyColour *= rhs;
+      ret.FogDistanceScale *= rhs;
+      ret.FogSkyColourScale *= rhs;
+      ret.FogHazeColourScale *= rhs;
+      ret.EnvSkyBrightness *= rhs;
+      ret.CarSpecScale *= rhs;
+      ret.FogSkyColour *= rhs;
 
-      return _result;
+      return ret;
     }
     timeofdaylightinglayout operator/(float rhs) {
-      timeofdaylightinglayout _result = *this;
-      _result.SpecularColour /= rhs;
-      _result.DiffuseColour /= rhs;
-      _result.AmbientColour /= rhs;
-      _result.FogHazeColour /= rhs;
-      _result.FixedFunctionSkyColour /= rhs;
-      _result.FogDistanceScale /= rhs;
-      _result.FogSkyColourScale /= rhs;
-      _result.FogHazeColourScale /= rhs;
-      _result.EnvSkyBrightness /= rhs;
-      _result.CarSpecScale /= rhs;
-      _result.FogSkyColour /= rhs;
+      timeofdaylightinglayout ret = *this;
+      ret.SpecularColour /= rhs;
+      ret.DiffuseColour /= rhs;
+      ret.AmbientColour /= rhs;
+      ret.FogHazeColour /= rhs;
+      ret.FixedFunctionSkyColour /= rhs;
+      ret.FogDistanceScale /= rhs;
+      ret.FogSkyColourScale /= rhs;
+      ret.FogHazeColourScale /= rhs;
+      ret.EnvSkyBrightness /= rhs;
+      ret.CarSpecScale /= rhs;
+      ret.FogSkyColour /= rhs;
 
-      return _result;
+      return ret;
     }
 
     void operator=(const timeofdaylightinglayout& rhs) {

@@ -18,7 +18,7 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Core/UMath.hpp>
+#include <OpenSpeed/Shared/UMath.h>
 
 namespace OpenSpeed::MW05::UMath {
   using Vector2 = OpenSpeed::UVector2;

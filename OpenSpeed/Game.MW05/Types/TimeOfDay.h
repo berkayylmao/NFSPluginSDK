@@ -22,10 +22,11 @@
 
 namespace OpenSpeed::MW05 {
   struct TimeOfDay {
-    float         mSkyboxSpeedMultiplier;
-    std::int32_t  mTimeOfDaySpeedMultiplier;
-    float         mTimeOfDayValue;
-    Math::Vector2 mSunOrbitAxis;
+    float        mUpdateRate;
+    std::int32_t mUpdateDirection;
+    float        mCurrentTimeOfDay;
+    float        mSunAzimuth;
+    float        mSunLatitude;
 
     static inline TimeOfDay** g_ppInstance = reinterpret_cast<TimeOfDay**>(0x9B392C);
     static TimeOfDay*         GetInstance() {

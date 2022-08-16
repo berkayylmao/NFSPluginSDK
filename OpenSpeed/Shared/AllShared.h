@@ -18,21 +18,11 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Game.Carbon/Types.h>
+#ifndef OPENSPEED_ALLSHARED_H
+#define OPENSPEED_ALLSHARED_H
 
-namespace OpenSpeed::Carbon {
-  struct TimeOfDay {
-    float        mUpdateRate;
-    std::int32_t mUpdateDirection;
-    float        mCurrentTimeOfDay;
-    float        mSunAzimuth;
-    float        mSunLatitude;
+#include "Enums.h"
+#include "Math.h"
+#include "UMath.h"
 
-    static inline TimeOfDay** g_ppInstance = reinterpret_cast<TimeOfDay**>(0xB77F34);
-    static TimeOfDay*         GetInstance() {
-      if (g_ppInstance && *g_ppInstance) return *g_ppInstance;
-
-      return nullptr;
-    }
-  };
-}  // namespace OpenSpeed::Carbon
+#endif

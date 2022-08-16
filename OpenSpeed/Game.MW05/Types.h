@@ -24,7 +24,7 @@
 #include <winnt.h>  // DEFINE_ENUM_FLAG_OPERATORS
 #endif
 
-#include <OpenSpeed/Core/Math.hpp>
+#include <OpenSpeed/Shared/AllShared.h>
 #include <OpenSpeed/Game.MW05/Types/UMath.h>
 
 namespace OpenSpeed::MW05 {
@@ -416,17 +416,6 @@ namespace OpenSpeed::MW05 {
 
 #pragma region Enums
 
-  enum class CARPART_LOD : std::uint32_t { A, B, C, D, E, OFF = UINT32_MAX };
-  enum class CarRenderUsage : std::uint32_t {
-    Player,
-    RemotePlayer,
-    AIRacer,
-    AICop,
-    AITraffic,
-    AIHeli,
-    NISCar,
-    Invalid
-  };
   enum class CarSlotId : std::uint32_t {
     Base,
     DamageModel_FrontWindow,
@@ -660,10 +649,6 @@ namespace OpenSpeed::MW05 {
     NONE = UINT32_MAX
   };
   enum class CarUsageType : std::uint32_t { Racing, Cop, Traffic, Wheels, Universal };
-  // GRace
-  enum class CopDensity : std::uint8_t { Off, Light, Medium, Heavy };
-  // GRace
-  enum class Difficulty : std::uint8_t { Easy, Medium, Hard };
   enum class DriverClass : std::uint32_t { Human, Traffic, Cop, Racer, None, NIS, Remote };
   enum class DriverStyle : std::uint32_t { Racing, Drag };
   enum class eAIDifficultyModifier : std::uint8_t { Easy, SomewhatEasy, Normal };
@@ -677,7 +662,6 @@ namespace OpenSpeed::MW05 {
   };
   enum class eCrossState : std::uint32_t { Available, Spawned, Disabled };
   enum class eControllerConfig : std::uint32_t { MinConfig, Config1, Config2, Config3, Config4, MaxConfig, Config5 };
-  enum class eCustomTuningType : std::uint32_t { Setting1, Setting2, Setting3 };
   enum class eDriftType : std::uint32_t { VsAI, Downhill, Team };
   enum class eFEGameModes : std::uint32_t {
     None,
@@ -698,8 +682,6 @@ namespace OpenSpeed::MW05 {
     PostRival      = 1 << 17,
     BeatGame       = 1 << 18
   };
-  enum class eGPSState : std::uint32_t { Down, Searching, Tracking };
-  enum class eHandlingMode : std::uint8_t { Classic, Extreme };
   enum class eImpoundReasons : std::int8_t { None, BustedByCross, StrikeLimitReached, InsufficientFunds, Released };
   enum class eInvulnerability : std::uint32_t {
     None,
@@ -708,8 +690,6 @@ namespace OpenSpeed::MW05 {
     FromControlSwitch,
     FromPhysicsSwitch
   };
-  enum class eLaneSelection : std::uint32_t { CenterLane, CurrentLane, ValidLane };
-  enum class eLaneType : std::uint32_t { Racing, Traffic, Drag, Cop, CopReckless, Reset, StartingGrid, Any };
   enum class eLoadSaveGame : std::uint32_t { Load, Save };
   enum class eLocationName : std::uint32_t {
     UpperClass,
@@ -720,7 +700,6 @@ namespace OpenSpeed::MW05 {
     ModeSpecific
   };
   enum class eMiniMapModes : std::uint8_t { Static, Rotate, Off };
-  enum class eNavType : std::uint32_t { None, Traffic, Direction, Path };
   enum class eOpponentStrength : std::uint8_t { Low, Medium, High };
   enum class eOptionsCategory : std::uint32_t {
     Audio,
@@ -734,20 +713,14 @@ namespace OpenSpeed::MW05 {
     Credits,
     Online
   };
-  enum class ePathType : std::uint32_t { Cop, None, Racer, GPS, Player, Chopper, RaceRoute };
-  enum class ePlayerHudType : std::uint32_t { None, Standard, Drag, Split1, Split2, DragSplit1, DragSplit2 };
   enum class ePlayerList : std::uint32_t { All, Local, Remote };
   enum class ePlayerSettingsCameras : std::uint32_t { Bumper, Hood, Default, Close, Far, SuperFar, Drift, Pursuit };
   enum class ePostRaceOptions : std::uint32_t { NextRace, Quit, RestartRace, RestartEvent };
   enum class ePursuitStatus : std::uint32_t { InitialChase, BackupRequested, Cooldown, Busted, Evaded };
   enum class eSplitTimeTypes : std::uint8_t { RaceLeader, LapRecord, BestLap, LastLap, Off };
-  enum class eTireDamage : std::uint8_t { None, Punctured, Blown };
-  enum class eTireIdx : std::uint32_t { FrontLeft, FrontRight, RearLeft, RearRight };
   enum class eTrackDifficulty : std::uint32_t { Easy, Medium, Hard };
   enum class eTrackDirection : std::uint8_t { Forward, Backward };
-  enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
   enum class eTransmissionType : std::uint8_t { Automatic, Manual, Sport, ManualClutch };
-  enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class eVehicleParamFlags : std::uint32_t {
     None,
     Spooled         = 1 << 0,
@@ -769,36 +742,7 @@ namespace OpenSpeed::MW05 {
     Trailers
   };
   enum class eWorldMapView : std::uint8_t { Navigation, Event, Race, Pursuit };
-  enum class eWorldMapZoomLevels : std::uint8_t { All, Level1, Level2, Level4 };
-  enum class FEObjType : std::uint32_t {
-    None,
-    Image,
-    String,
-    Model,
-    List,
-    Group,
-    CodeList,
-    Movie,
-    Effect,
-    ColoredImage,
-    AnimImage,
-    SimpleImage,
-    MultiImage,
-    UserMin = 256
-  };
   enum class FormationType : std::uint32_t { None, Pit, BoxUn, RollingBlock, Follow, HeliPursuit, Herd, StaggerFollow };
-  enum class GameFlowState : std::uint32_t {
-    None,
-    LoadingFrontEnd,
-    UnloadingFrontEnd,
-    InFrontEnd,
-    LoadingRegion,
-    LoadingTrack,
-    Racing,
-    UnloadingTrack,
-    UnloadingRegion,
-    ExitDemoDisc
-  };
   enum class JunkmanParts : std::uint32_t {
     None         = 0,
     Tires        = 1 << 0,
@@ -812,82 +756,12 @@ namespace OpenSpeed::MW05 {
           static_cast<std::uint32_t>(Transmission) | static_cast<std::uint32_t>(Engine) |
           static_cast<std::uint32_t>(Induction) | static_cast<std::uint32_t>(NOS)
   };
-  enum class PhysicsMode : std::uint32_t { Inactive, Simulated, Emulated };
   enum class Region : std::uint8_t { College, Coastal, City, None = UINT8_MAX };
-  enum class SimableType : std::uint32_t {
-    Invalid,
-    Vehicle,
-    Smackable,
-    Explosion,
-    Human,
-    Weapon,
-    Newton,
-    Sentry,
-    Fragment
-  };
-  enum class SirenState : std::uint32_t { Wail, Yelp, Scream, Die, Off = UINT32_MAX };
-  enum class SpeedUnitType : std::uint8_t { MPH, KPH, MPS };
-  // GRace
-  enum class TrafficLevel : std::uint8_t { Off, Light, Medium, Heavy };
-
-  namespace CollisionGeometry {
-    enum class BoundFlags : std::uint32_t {
-      Disabled             = 1 << 0,
-      PrimVsWorld          = 1 << 1,
-      PrimVsObjects        = 1 << 2,
-      PrimVsGround         = 1 << 3,
-      MeshVsGround         = 1 << 4,
-      Internal             = 1 << 5,
-      Box                  = 1 << 6,
-      Sphere               = 1 << 7,
-      Constraint_Conical   = 1 << 8,
-      Constraint_Prismatic = 1 << 9,
-      Joint_Female         = 1 << 10,
-      Joint_Male           = 1 << 11,
-      Male_Post            = 1 << 12,
-      Joint_Invert         = 1 << 13
-    };
-#if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
-    DEFINE_ENUM_FLAG_OPERATORS(BoundFlags)
-#endif
-  }  // namespace CollisionGeometry
 
   namespace DamageZone {
     enum class ID : std::uint32_t { Front, Rear, Left, Right, LeftFront, RightFront, LeftRear, RightRear, Top, Bottom };
     struct Info;
   }  // namespace DamageZone
-
-  namespace VehicleFX {
-    enum class LightID : std::uint32_t {
-      None,
-      LeftHead         = 1 << 0,
-      RightHead        = 1 << 1,
-      CenterHead       = 1 << 2,
-      LeftBrake        = 1 << 3,
-      RightBrake       = 1 << 4,
-      CenterBrake      = 1 << 5,
-      LeftReverse      = 1 << 6,
-      RightReverse     = 1 << 7,
-      LeftRearSignal   = 1 << 8,
-      RightRearSignal  = 1 << 9,
-      LeftFrontSignal  = 1 << 10,
-      RightFrontSignal = 1 << 11,
-      CopRed           = 1 << 12,
-      CopBlue          = 1 << 13,
-      CopWhite         = 1 << 14,
-      Headlights       = (std::uint32_t)LeftHead | (std::uint32_t)RightHead | (std::uint32_t)CenterHead,
-      Brakelights      = (std::uint32_t)LeftBrake | (std::uint32_t)RightBrake | (std::uint32_t)CenterBrake,
-      RunningLights    = (std::uint32_t)Headlights | (std::uint32_t)Brakelights,
-      Reverse          = (std::uint32_t)LeftReverse | (std::uint32_t)RightReverse,
-      LeftSignal       = (std::uint32_t)LeftFrontSignal | (std::uint32_t)LeftRearSignal,
-      RightSignal      = (std::uint32_t)RightFrontSignal | (std::uint32_t)RightRearSignal,
-      Cop              = (std::uint32_t)CopRed | (std::uint32_t)CopBlue | (std::uint32_t)CopWhite
-    };
-
-#if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
-    DEFINE_ENUM_FLAG_OPERATORS(LightID)
-#endif
-  }  // namespace VehicleFX
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
   DEFINE_ENUM_FLAG_OPERATORS(eFEGameModes)

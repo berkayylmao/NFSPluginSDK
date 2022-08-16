@@ -20,7 +20,7 @@
 #pragma once
 #include <functional>  // std::function
 
-#include <OpenSpeed/Core/MemoryEditor.hpp>  // ValidateMemoryIsInitialized
+#include <OpenSpeed/Core/MemoryEditor.hpp>  // ValidateMemory
 
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/DamageCopCar.h>  // DamageCopCar, DamageVehicle, IDamageable, IDamageableVehicle
@@ -40,7 +40,7 @@ namespace OpenSpeed::ProStreet {
 
       struct ValidatePVehicle_t {
         PVehicle* operator()(PVehicle* pvehicle) const {
-          if (!pvehicle || !MemoryEditor::Get().ValidateMemoryIsInitialized(pvehicle)) return nullptr;
+          if (!pvehicle || !MemoryEditor::Get().ValidateMemory(pvehicle)) return nullptr;
           // Validate ptr
           if (pvehicle->mObjType != SimableType::Invalid && pvehicle->mDirty == false &&
               pvehicle->mRigidBody != nullptr)
@@ -96,7 +96,7 @@ namespace OpenSpeed::ProStreet {
 
       struct DamageVehicleCast_t {
         DamageVehicle* operator()(IDamageable* iDamageable) const {
-          if (!iDamageable || !MemoryEditor::Get().ValidateMemoryIsInitialized(iDamageable)) return nullptr;
+          if (!iDamageable || !MemoryEditor::Get().ValidateMemory(iDamageable)) return nullptr;
           // Verify cast
           auto* damageable = static_cast<DamageVehicle*>(iDamageable);
           auto  vfptr      = *reinterpret_cast<std::uintptr_t*>(damageable);
@@ -118,7 +118,7 @@ namespace OpenSpeed::ProStreet {
 
       struct DamageCopCarCast_t {
         DamageCopCar* operator()(IDamageable* iDamageable) const {
-          if (!iDamageable || !MemoryEditor::Get().ValidateMemoryIsInitialized(iDamageable)) return nullptr;
+          if (!iDamageable || !MemoryEditor::Get().ValidateMemory(iDamageable)) return nullptr;
           // Verify cast
           auto* damageable = static_cast<DamageCopCar*>(iDamageable);
           if (*reinterpret_cast<std::uintptr_t*>(damageable) == 0x9F6330) return damageable;
@@ -134,7 +134,7 @@ namespace OpenSpeed::ProStreet {
 
       struct DamageRacerCast_t {
         DamageRacer* operator()(IDamageable* iDamageable) const {
-          if (!iDamageable || !MemoryEditor::Get().ValidateMemoryIsInitialized(iDamageable)) return nullptr;
+          if (!iDamageable || !MemoryEditor::Get().ValidateMemory(iDamageable)) return nullptr;
           // Verify cast
           auto* damageable = static_cast<DamageRacer*>(iDamageable);
           auto  vfptr      = *reinterpret_cast<std::uintptr_t*>(damageable);

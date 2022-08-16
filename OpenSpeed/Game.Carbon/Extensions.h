@@ -20,7 +20,7 @@
 #pragma once
 #include <functional>  // std::function
 
-#include <OpenSpeed/Core/MemoryEditor.hpp>  // ValidateMemoryIsInitialized
+#include <OpenSpeed/Core/MemoryEditor.hpp>  // ValidateMemory
 
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/AIVehicleCopCar.h>   // AIVehicleCopCar, AIVehiclePursuit, AIVehiclePid, AIVehicle
@@ -59,7 +59,7 @@ namespace OpenSpeed::Carbon {
 
       struct ValidatePVehicle_t {
         PVehicle* operator()(PVehicle* pvehicle) const {
-          if (!pvehicle || !MemoryEditor::Get().ValidateMemoryIsInitialized(pvehicle)) return nullptr;
+          if (!pvehicle || !MemoryEditor::Get().ValidateMemory(pvehicle)) return nullptr;
           // Validate ptr
           if (pvehicle->mObjType != SimableType::Invalid && pvehicle->mDirty == false &&
               pvehicle->mRigidBody != nullptr)
@@ -184,7 +184,7 @@ namespace OpenSpeed::Carbon {
 
       struct AIVehicleCast_t {
         AIVehicle* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicle*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x9C3D80) return ai;
@@ -200,7 +200,7 @@ namespace OpenSpeed::Carbon {
 
       struct AIVehicleCopCarCast_t {
         AIVehicleCopCar* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleCopCar*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x9C4A40) return ai;
@@ -216,7 +216,7 @@ namespace OpenSpeed::Carbon {
 
       struct AIVehicleEmptyCast_t {
         AIVehicleEmpty* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleEmpty*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x9C47D0) return ai;
@@ -232,7 +232,7 @@ namespace OpenSpeed::Carbon {
 
       struct AIVehicleGhostCast_t {
         AIVehicleGhost* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleGhost*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x9C45E0) return ai;
@@ -248,7 +248,7 @@ namespace OpenSpeed::Carbon {
 
       struct AIVehicleHumanCast_t {
         AIVehicleHuman* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleHuman*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x9C5260) return ai;
@@ -264,7 +264,7 @@ namespace OpenSpeed::Carbon {
 
       struct AIVehiclePidCast_t {
         AIVehiclePid* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehiclePid*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x9C3F70) return ai;
@@ -280,7 +280,7 @@ namespace OpenSpeed::Carbon {
 
       struct AIVehiclePursuitCast_t {
         AIVehiclePursuit* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehiclePursuit*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x9C4360) return ai;
@@ -296,7 +296,7 @@ namespace OpenSpeed::Carbon {
 
       struct AIVehicleRacecarCast_t {
         AIVehicleRacecar* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleRacecar*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x9C4F58) return ai;
@@ -312,7 +312,7 @@ namespace OpenSpeed::Carbon {
 
       struct AIVehicleTrafficCast_t {
         AIVehicleTraffic* operator()(IVehicleAI* iAI) const {
-          if (!iAI || !MemoryEditor::Get().ValidateMemoryIsInitialized(iAI)) return nullptr;
+          if (!iAI || !MemoryEditor::Get().ValidateMemory(iAI)) return nullptr;
           // Verify cast
           auto* ai = static_cast<AIVehicleTraffic*>(iAI);
           if (*reinterpret_cast<std::uintptr_t*>(ai) == 0x9C4170) return ai;
@@ -380,7 +380,7 @@ namespace OpenSpeed::Carbon {
 
       struct ValidateIInput_t {
         IInput* operator()(IInput* input) const {
-          if (!input || !MemoryEditor::Get().ValidateMemoryIsInitialized(input)) return nullptr;
+          if (!input || !MemoryEditor::Get().ValidateMemory(input)) return nullptr;
           // Validate ptr
           auto vfptr = *reinterpret_cast<std::uintptr_t*>(input);
           // type: AIVehicle
@@ -413,7 +413,7 @@ namespace OpenSpeed::Carbon {
 
       struct ValidateIInputPlayer_t {
         IInputPlayer* operator()(IInputPlayer* inputplayer) const {
-          if (!inputplayer || !MemoryEditor::Get().ValidateMemoryIsInitialized(inputplayer)) return nullptr;
+          if (!inputplayer || !MemoryEditor::Get().ValidateMemory(inputplayer)) return nullptr;
           // Validate ptr
           if (*reinterpret_cast<std::uintptr_t*>(inputplayer) == 0x9C4FF0) return inputplayer;
           // Bad cast
