@@ -20,28 +20,24 @@
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
-namespace OpenSpeed::ProStreet::Attrib::Layouts {
-  struct damagespecslayout {
-    struct DamageScaleRecord {
-      float VisualScale;
-      float HitPointScale;
-    };
-
-    DamageScaleRecord DZ_TOP;
-    DamageScaleRecord DZ_RREAR;
-    DamageScaleRecord DZ_RIGHT;
-    DamageScaleRecord DZ_RFRONT;
-    DamageScaleRecord DZ_REAR;
-    DamageScaleRecord DZ_LREAR;
-    DamageScaleRecord DZ_LFRONT;
-    DamageScaleRecord DZ_LEFT;
-    DamageScaleRecord DZ_FRONT;
-    DamageScaleRecord DZ_BOTTOM;
-    float             SUPPRESS_DIST;
-    float             SHOCK_TIME;
-    float             SHOCK_FORCE;
-    float             HP_THRESHOLD;
-    float             HIT_POINTS;
-    float             FORCE;
+namespace OpenSpeed::ProStreet {
+  struct GRaceIndexData {
+    std::uint32_t mKey;
+    char          mEventID[10];
+    std::uint32_t mRaceHash;
+    std::uint32_t mFlags;
+    float         mLength;
+    std::int16_t  mLocalizationTag;
+    float16       mCash;
+    std::uint16_t mRivalBest;  // 16-bit 10.2 fixed point
+    std::int8_t   mNumLaps;
+    GRace::Type   mRaceType;
+    std::int8_t   mNumHeats;
+    std::uint32_t mPlayerCarTypeHash;
+    float         mTrackRecord;
+    std::uint32_t mTrack;
+    std::uint32_t mTrackLayout;
+    std::uint32_t mParentKey;
+    std::uint32_t mTrackRecordHolder;
   };
-}  // namespace OpenSpeed::ProStreet::Attrib::Layouts
+}  // namespace OpenSpeed::ProStreet

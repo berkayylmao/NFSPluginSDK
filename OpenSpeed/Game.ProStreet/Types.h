@@ -247,6 +247,7 @@ namespace OpenSpeed::ProStreet {
     enum class ePathType : std::uint32_t { Cop, None, Racer, GPS, Player, Chopper, RaceRoute };
   }  // namespace WRoadNav
 
+  struct AcidEffect;
   struct ActionData;
   struct ActionRef;
   struct ActionQueue;
@@ -340,6 +341,7 @@ namespace OpenSpeed::ProStreet {
   struct GIOpponent;
   struct GManager;
   struct GMilestone;
+  struct GObjectBlock;
   struct GRaceBin;
   struct GRaceIndexData;
   struct GRaceParameters;
@@ -745,6 +747,8 @@ namespace OpenSpeed::ProStreet {
     ScrapeConcrete,
     None = UINT32_MAX
   };
+  enum class eDriftChainState : std::uint32_t { Running, HitAWall, SpanOut, TimeOut, OffBounds };
+  enum class eDriftDirection : std::uint32_t { NotDrifting, Left, Right };
   enum class eDriverAssistLevel : std::uint8_t { Family, Racer, King };
   enum class eFECarsBlueprintsOptionID : std::uint32_t {
     Customize,
@@ -756,6 +760,310 @@ namespace OpenSpeed::ProStreet {
     PurchaseCar
   };
   enum class eHandlingMode : std::uint8_t { Classic, Extreme };
+  enum class eLiveryID : std::uint32_t {
+    NONE = UINT32_MAX,
+    BM_ORGOPP_240SX01,
+    BM_ORGOPP_GTI01,
+    BM_ORGOPP_COROLLA01,
+    BM_ORGOPP_COBALTSS01,
+    BM_ORGOPP_GTO01,
+    BM_ORGOPP_CHEVELLE01,
+    SHOWDOWN_KING_DDAY,
+    SMR_SDENTOUR_LANCEREVO9,
+    NOISE_BOMB_DRIFTKING_RX7,
+    NOISE_BOMB_DRIFTENT_COROLLA,
+    MAX_ATTACK_SPEEDENT_SUPRA,
+    MAX_ATTACK_SPEEDENT_CORVETTEZ06,
+    DRAG_CHEVELLE,
+    SMR_GRIPENT_RS4,
+    NOISEBOMB_DRIFT_ENT_CAMARO,
+    DDAY_PLAYER_240SX,
+    DDAY_SHOWDOWN_KING_SKYLINE,
+    OUTLAWS_DRAGKING_MUSTANGGT,
+    LOST_PUPPET_240SX,
+    DRIFT_240SX,
+    GRIP_240SX,
+    SPEED_240SX,
+    DRIFT_350Z,
+    GRIP_350Z,
+    SPEED_350Z,
+    DRAG_350Z,
+    DRAG_CAMARO,
+    SPEED_CAMARO,
+    DRAG_CAMARON,
+    SPEED_CAMARON,
+    GRIP_CAMARO,
+    DRAG_CHALLENGER71,
+    SPEED_CHALLENGER71,
+    DRAG_CHARGER69,
+    SPEED_CHARGER69,
+    SPEED_CHEVELLE,
+    DRAG_CIVICHB,
+    SPEED_CIVICHB,
+    GRIP_CIVICHB,
+    DRAG_CIVICSI,
+    SPEED_CIVICSI,
+    GRIP_CIVICSI,
+    DRAG_COBALTSS,
+    SPEED_COBALTSS,
+    GRIP_COBALTSS,
+    DRIFT_COROLLA,
+    GRIP_COROLLA,
+    DRAG_CORVETTE_67,
+    GRIP_CORVETTE67,
+    DRAG_COSWORTH,
+    SPEED_COSWORTH,
+    GRIP_COSWORTH,
+    DRAG_CTSV,
+    GRIP_CTSV,
+    SPEED_CTSV,
+    DRAG_CUDA,
+    SPEED_CUDA,
+    DRAG_ECLIPSE,
+    SPEED_ECLIPSE,
+    GRIP_ECLIPSE,
+    NUMBER_FRONT,
+    DRAG_FOCUSST,
+    SPEED_FOCUSST,
+    GRIP_FOCUSST,
+    DRIFT_G35,
+    DRAG_G35,
+    SPEED_35,
+    GRIP_35,
+    DRAG_GTI,
+    SPEED_GTI,
+    GRIP_GTI,
+    GRIP_997GT2,
+    SPEED_997GT2,
+    GRIP_997GT3,
+    SPEED_997GT3,
+    GRIP_GT3RS,
+    SPEED_GT3RS,
+    GRIP_997T,
+    SPEED_997T,
+    GRIP_BMWM3,
+    SPEED_BMWM3,
+    GRIP_E92,
+    SPEED_E92,
+    GRIP_BMWZ4,
+    SPEED_BMWZ4,
+    GRIP_CARRERAGT,
+    SPEED_CARRERAGT,
+    GRIP_CAYMANS,
+    SPEED_CAYMANS,
+    SPEED_ZONDA,
+    DRAG_VIPER,
+    DRIFT_VIPER,
+    GRIP_VIPER,
+    SPEED_VIPER,
+    DRAG_SUPRA,
+    DRIFT_SUPRA,
+    GRIP_SUPRA,
+    SPEED_SUPA,
+    DRAG_SKYLINE,
+    GRIP_SKYLINE,
+    SPEED_SKYLINE,
+    DRIFT_SILVIA,
+    SPEED_SILVIA,
+    GRIP_S4,
+    SPEED_S4,
+    GRIP_S3,
+    SPEED_S3,
+    DRAG_RX8,
+    DRIFT_RX8,
+    GRIP_RX8,
+    SPEED_RX8,
+    DRAG_RX7,
+    DRIFT_RX7,
+    GRIP_RX7,
+    SPEED_RX7,
+    DRAG_RSX,
+    GRIP_RSX,
+    DRAG_R32,
+    GRIP_R32,
+    SPEED_R32,
+    GRIP_NSX,
+    SPEED_NSX,
+    DRAG_MUSTANGGT,
+    DRIFT_MUSTANGGT,
+    GRIP_MURCIELAGO,
+    SPEED_MURCIELAGO,
+    DRAG_MAZDA3,
+    GRIP_MAZDA3,
+    SPEED_MAZDA3,
+    DRAG_LANCEREVOX,
+    GRIP_LANCEREVOX,
+    SPEED_LANCEREVOX,
+    DRAG_LANCEREVO9,
+    GRIP_LANCEREVO9,
+    SPEED_LANCEREVO9,
+    DRAG_IS350,
+    GRIP_IS350,
+    SPEED_IS350,
+    DRAG_INTEGRATYPER,
+    GRIP_INTEGRATYPER,
+    SPEED_INTEGRATYPER,
+    DRAG_IMPREZA,
+    GRIP_IMPREZA,
+    SPEED_IMPREZA,
+    DRAG_GTO65,
+    SPEED_GTO65,
+    DRAG_GTO,
+    DRIFT_GTO,
+    GRIP_ELISE,
+    SPEED_ELISE,
+    GRIP_CORVETTE,
+    SPEED_CORVETTE,
+    DRAG_CORVETTEZ06,
+    GRIP_CORVETTEZ06,
+    SPEED_CORVETTEZ06,
+    HONDA_1INCHPUNCH_CIVICHB,
+    DODGE_8PACK_CHARGER69,
+    ADVANCE_CUDA,
+    AFTERMIX_CHALLENGER71,
+    AFTERMIX_CHEVELLE,
+    AFTERMIX_GTO,
+    AFTERMIX_MUSTANGGT,
+    APEXGLIDE_SILVIA,
+    APEXGLIDE_SKYLINE,
+    APEXGLIDE_LANCER,
+    APEXGLIDE_CIVICHB,
+    BOD_CHEVELLE,
+    BOUNDDYNAMIC_LANCER,
+    BOXCUT_GTO65,
+    BOXCUT_SUPRA,
+    BOXCUT_Z06,
+    BOXCUT_ZONDA,
+    CLIPZONE_FOCUSST,
+    DRIFTCLUB_SUPRA,
+    DRIFTINFANTRY_SILVIA,
+    FIREEFFECT_CAMARO,
+    FLOWONE_M3,
+    FUTOU_STI,
+    FULLMODE_997T,
+    GRIPENEMY_S3,
+    GRIPRUNNERS_997T,
+    GRIPRUNNERS_COSWORTH,
+    GRIPRUNNERS_S4,
+    GRIPRUNNERS_E92,
+    HANAMACHI_RX8,
+    HASHIRIYA_ECLIPSE,
+    JBRILLZ_Z06,
+    KOBELSTONE_SILVIA,
+    LATERFIRE_240SX,
+    LATERALFIRE_G35,
+    LIBERTY_SHELBY,
+    MOSHI_350Z,
+    NIGHTSTALK_GTO,
+    RACEBOY_CAYMANS,
+    RAPIDCITY_MURCIELAGO,
+    RALYESS_S4,
+    RUBBERDUX_SKYLINE,
+    SOFTPUPPET_Z06,
+    SQUADSIS_COROLLA,
+    STUFFED_RX7,
+    PORSCHE_3FFF_CAYMANS,
+    NISSAN_8610_R32,
+    TEAMGO_GTO,
+    PHAT_350Z,
+    THROTTLEBODY_VIPER,
+    TOGUEUNION_350Z,
+    TOGUEUNION_CAMARO,
+    TOGUEUNION_COROLLA,
+    TOGUEUNION_RX7,
+    TOGUECOMISSION_EVOX,
+    TUFFBLAST_CHALLENGER71,
+    VELOCITY_VIPER,
+    WAKABAYASHI_COROLLA,
+    ZERO_RX7,
+    ZIPSTYLE_SUPRA,
+    DRAG_MUSTANGSHLBYN,
+    DRIFT_MUSTANGSHLBYN,
+    SPEED_MUSTANGSHLBYN,
+    DRAG_MUSTANGSHLBYO,
+    TEAMGO_MUSTANGSHLBYO,
+    TEAMGO_CHARGER69,
+    HASHIRIYA_240SX,
+    SOFTPUPPET_CORVETTE,
+    THROTTLEBODY_MUSTANGGT,
+    TOUGECOM_LANCEREVO9,
+    ZERO_RX8,
+    RUBBERDUX_350Z,
+    FUTOUBATTLE_COROLLA,
+    BOD_CHARGER69,
+    TEAMGO_CHALLENGER71,
+    SPEED_TTN,
+    GRIP_TTN,
+    GRIP_INTEGRALS,
+    DRIFT_IS350,
+    DRIFT_NSX,
+    SPEED_RS4,
+    DRIFT_SOLSTICEGXP,
+    ENERGIZER_VIPER,
+    COKE_ZERO,
+    COMMERCIAL_S15,
+    COMMERCIAL_EVO9,
+    LATERALFIRE_CIVICHB,
+    PREAMP_FORDGT,
+    WEB_TTN,
+    WEB_RSX,
+    WEB_IMPREZA,
+    WEB_FOCUSST,
+    GENERIC_CIVICHB,
+    GENERIC_COBALTSS,
+    GENERIC_CHEVELLE,
+    GENERIC_350Z,
+    GENERIC_GTI,
+    GENERIC_IS350,
+    GENERIC_BMWM3,
+    GENERIC_G35,
+    GENERIC_GTO,
+    GENERIC_SILVIA,
+    GENERIC_SOLSTICEGXP,
+    GENERIC_SUPRA,
+    GENERIC_CAYMANS,
+    GENERIC_CORVETTEZ06,
+    GENERIC_VIPER,
+    GENERIC_SKYLINE,
+    GENERIC_RS4,
+    GENERIC_NSX,
+    HUB_CIVICHB,
+    HUB_COBALTSS,
+    HUB_GTI,
+    HUB_CHEVELLE,
+    HUB_350Z,
+    HUB_IS350,
+    HUB_SILVIA,
+    HUB_SOLSTICEGXP,
+    HUB_SUPRA,
+    HUB_BMWM3E92,
+    HUB_G35,
+    HUB_GTO,
+    HUB_CAYMANS,
+    HUB_CORVETTEZ06,
+    HUB_VIPER,
+    HUB_SKYLINE,
+    HUB_NSX,
+    HUB_RS4,
+    RAYLESS_ELISE,
+    RAYLESS_BMWM3E92,
+    VELOCITY_CORVETTE67,
+    TEAM8610_RSX,
+    GRIPENEMY_S3B,
+    TEAMGO_INTEGRALS,
+    TEAM8610_INTEGRATYPER,
+    TEAM8610_BMWM3,
+    RACEBOY_TTN,
+    RACEBOY_CAMARON,
+    RACEBOY_BMWM3E92,
+    TOUGECOM_NSX,
+    ZIPSTYLE_NSX,
+    PREAMP_FORDGTB,
+    WAKABAYASHI_SUPRA,
+    BOUNDDYNAMIC_RX7,
+    COMMERCIAL_S4,
+    COMMERCIAL_GTRPROTO
+  };
   enum class eMenuSoundTriggers : std::uint32_t {
     NONE                             = UINT32_MAX,
     COMMON_UP                        = 0x0,
@@ -922,6 +1230,7 @@ namespace OpenSpeed::ProStreet {
   };
   enum class eMiniMapModes : std::uint8_t { Off, Static };
   enum class ePlayerSettingsCameras : std::uint8_t { Bumper, Hood, Close, Far, Drift, Staging, Pause, CarSlot, Tuning };
+  enum class ePresetCarFilter : std::uint32_t { Bonus, Custom, AI, Debug };
   enum class eSensitivitySetting : std::uint8_t { Low, Medium, High };
   enum class eSkyStyle : std::uint32_t {
     None,
@@ -990,29 +1299,112 @@ namespace OpenSpeed::ProStreet {
   };
   enum class TireCondition : std::uint32_t { Grip, Wet, Flat, Drift, Drag };
 
-  namespace CollisionGeometry {
-    enum class BoundFlags : std::uint32_t {
-      Disabled            = 1 << 0,
-      PrimVsWorld         = 1 << 1,
-      PrimVsObjects       = 1 << 2,
-      PrimVsGround        = 1 << 3,
-      MeshVsGround        = 1 << 4,
-      Internal            = 1 << 5,
-      Box                 = 1 << 6,
-      Sphere              = 1 << 7,
-      ConstraintConical   = 1 << 8,
-      ConstraintPrismatic = 1 << 9,
-      JointFemale         = 1 << 10,
-      JointMale           = 1 << 11,
-      MalePost            = 1 << 12,
-      JointInvert         = 1 << 13,
-      PrimVsOwnParts      = 1 << 14
+  namespace GRace {
+    enum class AI_AggressionLevel : std::uint32_t { Careful, Intermediate, Aggressive };
+    enum class AI_MistakeLevel : std::uint32_t { Rookie, Intermediate, Veteran };
+    enum class Behaviour : std::uint32_t { None, Single, Dual };
+    enum class CareerElementDrawStyle : std::uint32_t { Box, Ellipse, Diamond };
+    enum class Context : std::uint32_t { QuickRace, TimeTrial, Online, Career };
+    enum class CopDensity : std::uint32_t {
+      Off,
+      Light,
+      Medium,
+      Heavy,
     };
-  }
+    enum class Difficulty : std::uint32_t { Easy, Medium, Hard, Insane };
+    enum class EventStyle : std::uint32_t { BestRound, Elimination };
+    enum class HandicapMode : std::uint32_t { None, Performance, Group };
+    enum class Mode : std::uint32_t { None, Grip, HighSpeedChallenge, Drag, Drift };
+    enum class OpponentGender : std::uint32_t { Male, Female, Ambiguous };
+    enum class OpponentTeam : std::uint32_t {
+      Default,
+      ApexGlide,
+      AfterMix,
+      TougeUnion,
+      GripRunners,
+      Boxcut,
+      LaterFire
+    };
+    enum class OpponentType : std::uint32_t { Default, Challenge, Rival, King };
+    enum class RaceCarClass : std::uint32_t { None, Exotic, Muscle, Tuner };
+    enum class RaceLigthingMode : std::uint32_t { Normal, Drift, Canyon };
+    enum class RaceRouteFlags : std::uint32_t {
+      OK,
+      NoRoute           = 1 << 0,
+      ShorcutInFirstLeg = 1 << 1,
+      CantTakeShortcut  = 1 << 3
+    };
+    enum class ShortcutType : std::uint32_t {
+      None,
+      ParkRight,
+      AlleyRight,
+      SideStreetRight,
+      TunnelRight,
+      GenericRight,
+      ParkLeft,
+      AlleyLeft,
+      SideStreetLeft,
+      TunnelLeft,
+      GenericLeft
+    };
+    enum class Tier : std::uint32_t { None, Tier1, Tier2, Tier3 };
+    enum class Type : std::uint32_t {
+      None                   = UINT32_MAX,
+      P2P                    = 0,
+      SpeedChallenge_HeadsUp = P2P,
+      SpeedChallenge_Mixed   = 1,
+      SpeedChallenge_Class   = 2,
+      TopSpeed_HeadsUp       = 3,
+      TopSpeed_Mixed         = 4,
+      TopSpeed_Class         = 5,
+      Circuit_HeadsUp        = 6,
+      Circuit_Mixed          = 7,
+      Circuit_Class          = 8,
+      SectorShootout_HeadsUp = 9,
+      SectorShootout_Mixed   = 10,
+      SectorShootout_Class   = 11,
+      TimeAttack_HeadsUp     = 12,
+      TimeAttack_Mixed       = 13,
+      TimeAttack_Class       = 14,
+      Drag_HeadsUp           = 16,
+      Drag_Mixed             = 17,
+      Drag_Class             = 18,
+      Drag_Wheelie_HeadsUp   = 19,
+      Drag_Wheelie_Mixed     = 20,
+      Drag_Wheelie_Class     = 21,
+      Drift_Solo_HeadsUp     = 23,
+      Drift_Solo_Mixed       = 24,
+      Drift_Solo_Class       = 25,
+      Drift_Race_HeadsUp     = 26,
+      Drift_Race_Mixed       = 27,
+      Drift_Race_Class       = 28,
+      Drift_Tandem_HeadsUp   = 29,
+      Drift_Tandem_Mixed     = 30,
+      Drift_Tandem_Class     = 31,
+      Knockout               = 33,
+      SpeedTrap              = 34,
+      Checkpoint             = 35,
+      Challenge              = 36
+    };
+    enum class Variant : std::uint32_t {
+      None,
+      SpeedChallenge,
+      TopSpeed,
+      Circuit,
+      SectorShootout,
+      TimeAttack,
+      Drag,
+      DragWheelie,
+      DriftSolo,
+      DriftRace,
+      DriftTandem,
+      Invalid = UINT32_MAX
+    };
+    enum class WingmanShortcutTriggerHint : std::uint32_t { None, Init, Entry, Pos, Exit };
+  }  // namespace GRace
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
   DEFINE_ENUM_FLAG_OPERATORS(eVehicleParamFlags)
-  DEFINE_ENUM_FLAG_OPERATORS(CollisionGeometry::BoundFlags)
 #endif
 
 #pragma endregion
@@ -1039,6 +1431,25 @@ namespace OpenSpeed::ProStreet {
     T& operator*() { return **mRef; }
     T* operator->() { return *mRef; }
     T* operator&() { return *mRef; }
+  };
+
+  struct float16 {
+    std::uint16_t buf;
+
+    operator float() const {
+      return ((buf & 0x7C00 == 0) ? 0 : ((buf & 0x7FFF) << 13) + 0x38000000) | ((buf & 0x8000) << 16);
+    }
+
+    float16() = default;
+    float16(float value) {
+      std::uint32_t i = *reinterpret_cast<std::uint32_t*>(&value);
+      std::uint32_t e = i & 0x7F800000;
+      std::uint32_t m = (((i & 0x7FFFFFFF) >> 13) - 0x1C000);
+
+      m   = (e < 0x38800000) ? 0 : m;
+      m   = (e > 0x47000000) ? 0x7BFF : m;
+      buf = m | ((i & 0x80000000) >> 16);
+    }
   };
 
 #pragma endregion

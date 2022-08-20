@@ -138,11 +138,11 @@ namespace OpenSpeed::ProStreet {
 
     struct IBoundable : UTL::COM::IUnknown {
       virtual ~IBoundable();
-      virtual Bounds* GetGeometryNode()                                 = 0;
+      virtual Bounds* GetGeometryNode()                                             = 0;
       virtual bool AddCollisionPrimitive(UCrc32, UMath::Vector3&, float, UMath::Vector3&, SimSurface*, UMath::Vector4*,
-                                         CollisionGeometry::BoundFlags) = 0;
-      virtual bool AddCollisionMesh(UCrc32, UMath::Vector4&, std::uint32_t, SimSurface*, CollisionGeometry::BoundFlags,
-                                    bool)                               = 0;
+                                         OpenSpeed::CollisionGeometry::BoundFlags)  = 0;
+      virtual bool AddCollisionMesh(UCrc32, UMath::Vector4&, std::uint32_t, SimSurface*,
+                                    OpenSpeed::CollisionGeometry::BoundFlags, bool) = 0;
     };
   }  // namespace CollisionGeometry
 }  // namespace OpenSpeed::ProStreet

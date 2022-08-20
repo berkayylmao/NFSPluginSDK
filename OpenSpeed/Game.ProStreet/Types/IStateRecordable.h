@@ -20,28 +20,16 @@
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
-namespace OpenSpeed::ProStreet::Attrib::Layouts {
-  struct damagespecslayout {
-    struct DamageScaleRecord {
-      float VisualScale;
-      float HitPointScale;
-    };
-
-    DamageScaleRecord DZ_TOP;
-    DamageScaleRecord DZ_RREAR;
-    DamageScaleRecord DZ_RIGHT;
-    DamageScaleRecord DZ_RFRONT;
-    DamageScaleRecord DZ_REAR;
-    DamageScaleRecord DZ_LREAR;
-    DamageScaleRecord DZ_LFRONT;
-    DamageScaleRecord DZ_LEFT;
-    DamageScaleRecord DZ_FRONT;
-    DamageScaleRecord DZ_BOTTOM;
-    float             SUPPRESS_DIST;
-    float             SHOCK_TIME;
-    float             SHOCK_FORCE;
-    float             HP_THRESHOLD;
-    float             HIT_POINTS;
-    float             FORCE;
+namespace OpenSpeed::ProStreet {
+  struct IStateRecordable {
+    virtual void      Reset()               = 0;
+    virtual void      Rewind()              = 0;
+    virtual void      Restart()             = 0;
+    virtual void      Record_Frame(float)   = 0;
+    virtual void      Playback_Frame(float) = 0;
+    virtual void      PrepareForRecord()    = 0;
+    virtual void      PrepareForPlayback()  = 0;
+    virtual ISimable* GetSimable()          = 0;
+    virtual void      CreateGhostSimable()  = 0;
   };
-}  // namespace OpenSpeed::ProStreet::Attrib::Layouts
+}  // namespace OpenSpeed::ProStreet

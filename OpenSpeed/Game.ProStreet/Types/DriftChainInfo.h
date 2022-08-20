@@ -18,30 +18,23 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/EASTL/EASTL/list.h>
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
-namespace OpenSpeed::ProStreet::Attrib::Layouts {
-  struct damagespecslayout {
-    struct DamageScaleRecord {
-      float VisualScale;
-      float HitPointScale;
-    };
-
-    DamageScaleRecord DZ_TOP;
-    DamageScaleRecord DZ_RREAR;
-    DamageScaleRecord DZ_RIGHT;
-    DamageScaleRecord DZ_RFRONT;
-    DamageScaleRecord DZ_REAR;
-    DamageScaleRecord DZ_LREAR;
-    DamageScaleRecord DZ_LFRONT;
-    DamageScaleRecord DZ_LEFT;
-    DamageScaleRecord DZ_FRONT;
-    DamageScaleRecord DZ_BOTTOM;
-    float             SUPPRESS_DIST;
-    float             SHOCK_TIME;
-    float             SHOCK_FORCE;
-    float             HP_THRESHOLD;
-    float             HIT_POINTS;
-    float             FORCE;
+namespace OpenSpeed::ProStreet {
+  struct DriftChainInfo {
+    eDriftChainState           reason;
+    std::uint32_t              totalPoints;
+    std::uint32_t              awardedPoints;
+    bool                       driftBeganInSectionEntryZone;
+    std::uint32_t              sectionIndex;
+    std::uint32_t              lapIndex;
+    float                      duration;
+    float                      currentDriftDuration;
+    float                      lastDriftDuration;
+    float                      length;
+    bool                       seamlessBonusAchieved;
+    eastl::list<std::uint32_t> driftPoints;
   };
-}  // namespace OpenSpeed::ProStreet::Attrib::Layouts
+}  // namespace OpenSpeed::ProStreet

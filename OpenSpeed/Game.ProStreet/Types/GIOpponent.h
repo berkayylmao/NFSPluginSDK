@@ -19,29 +19,15 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/UTL.h>
 
-namespace OpenSpeed::ProStreet::Attrib::Layouts {
-  struct damagespecslayout {
-    struct DamageScaleRecord {
-      float VisualScale;
-      float HitPointScale;
+namespace OpenSpeed::ProStreet {
+  struct GIOpponent : UTL::COM::IUnknown {
+    enum class DamageSeverity : std::uint32_t { None, Cosmetic, Light, Heavy, Totalled };
+    enum class Flags : std::uint32_t {
+      LowResolution = 1 << 1,
     };
-
-    DamageScaleRecord DZ_TOP;
-    DamageScaleRecord DZ_RREAR;
-    DamageScaleRecord DZ_RIGHT;
-    DamageScaleRecord DZ_RFRONT;
-    DamageScaleRecord DZ_REAR;
-    DamageScaleRecord DZ_LREAR;
-    DamageScaleRecord DZ_LFRONT;
-    DamageScaleRecord DZ_LEFT;
-    DamageScaleRecord DZ_FRONT;
-    DamageScaleRecord DZ_BOTTOM;
-    float             SUPPRESS_DIST;
-    float             SHOCK_TIME;
-    float             SHOCK_FORCE;
-    float             HP_THRESHOLD;
-    float             HIT_POINTS;
-    float             FORCE;
+    enum class OpponentStatus : std::uint32_t { Free, Joining, Valid, Disconnected, Clean };
+    enum class PerformanceLevel : std::uint32_t { Min, Current, Max };
   };
-}  // namespace OpenSpeed::ProStreet::Attrib::Layouts
+}  // namespace OpenSpeed::ProStreet

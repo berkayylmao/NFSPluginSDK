@@ -19,29 +19,23 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/Attrib/Gen/gameplay.h>
+#include <OpenSpeed/Game.ProStreet/Types/GRaceIndexData.h>
+#include <OpenSpeed/Game.ProStreet/Types/GVault.h>
 
-namespace OpenSpeed::ProStreet::Attrib::Layouts {
-  struct damagespecslayout {
-    struct DamageScaleRecord {
-      float VisualScale;
-      float HitPointScale;
-    };
+namespace OpenSpeed::ProStreet {
+  struct GRaceParameters {
+    enum class ScoreUnitType : std::uint32_t { None, Time, Speed, Points };
 
-    DamageScaleRecord DZ_TOP;
-    DamageScaleRecord DZ_RREAR;
-    DamageScaleRecord DZ_RIGHT;
-    DamageScaleRecord DZ_RFRONT;
-    DamageScaleRecord DZ_REAR;
-    DamageScaleRecord DZ_LREAR;
-    DamageScaleRecord DZ_LFRONT;
-    DamageScaleRecord DZ_LEFT;
-    DamageScaleRecord DZ_FRONT;
-    DamageScaleRecord DZ_BOTTOM;
-    float             SUPPRESS_DIST;
-    float             SHOCK_TIME;
-    float             SHOCK_FORCE;
-    float             HP_THRESHOLD;
-    float             HIT_POINTS;
-    float             FORCE;
+    GRaceIndexData*        mIndex;
+    Attrib::Gen::gameplay* mRaceRecord;
+    GVault*                mParentVault;
+    GVault*                mChildVault;
+    GVault*                mTrackVault;
+    GVault*                mRegionVault;
+
+    virtual void GetCheckpointPosition(std::uint32_t, UMath::Vector3&);
+    virtual void GetCheckpointDirection(std::uint32_t, UMath::Vector3&);
+    virtual ~GRaceParameters();
   };
-}  // namespace OpenSpeed::ProStreet::Attrib::Layouts
+}  // namespace OpenSpeed::ProStreet

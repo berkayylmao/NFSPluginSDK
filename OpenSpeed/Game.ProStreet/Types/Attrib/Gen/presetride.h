@@ -22,5 +22,13 @@
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Instance.h>
 
 namespace OpenSpeed::ProStreet::Attrib::Gen {
-  struct presetride : Instance {};
+  struct presetride : Instance {
+    static presetride TryGetInstance(std::uint32_t key) {
+      presetride instance;
+      reinterpret_cast<presetride*(__thiscall*)(presetride&, std::uint32_t, bool)>(0x4D4120)(instance, key, false);
+
+      return instance;
+    }
+    static presetride TryGetInstance(const char* name) { return TryGetInstance(StringToKey(name)); }
+  };
 }  // namespace OpenSpeed::ProStreet::Attrib::Gen

@@ -20,28 +20,18 @@
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
-namespace OpenSpeed::ProStreet::Attrib::Layouts {
-  struct damagespecslayout {
-    struct DamageScaleRecord {
-      float VisualScale;
-      float HitPointScale;
-    };
+namespace OpenSpeed::ProStreet {
+  struct GElapsedCallback;
 
-    DamageScaleRecord DZ_TOP;
-    DamageScaleRecord DZ_RREAR;
-    DamageScaleRecord DZ_RIGHT;
-    DamageScaleRecord DZ_RFRONT;
-    DamageScaleRecord DZ_REAR;
-    DamageScaleRecord DZ_LREAR;
-    DamageScaleRecord DZ_LFRONT;
-    DamageScaleRecord DZ_LEFT;
-    DamageScaleRecord DZ_FRONT;
-    DamageScaleRecord DZ_BOTTOM;
-    float             SUPPRESS_DIST;
-    float             SHOCK_TIME;
-    float             SHOCK_FORCE;
-    float             HP_THRESHOLD;
-    float             HIT_POINTS;
-    float             FORCE;
+  struct GCallbackTimer {
+    float             mInterval;
+    bool              mRunning;
+    float             mElapsed;
+    std::uint32_t     mNameHash;
+    char              mName[20];
+    GElapsedCallback* mCallback;
   };
-}  // namespace OpenSpeed::ProStreet::Attrib::Layouts
+  struct GElapsedCallback {
+    virtual void Elapsed(GCallbackTimer*);
+  };
+}  // namespace OpenSpeed::ProStreet

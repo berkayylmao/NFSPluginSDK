@@ -19,29 +19,18 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/Attrib/RefSpec.h>
 
 namespace OpenSpeed::ProStreet::Attrib::Layouts {
-  struct damagespecslayout {
-    struct DamageScaleRecord {
-      float VisualScale;
-      float HitPointScale;
-    };
-
-    DamageScaleRecord DZ_TOP;
-    DamageScaleRecord DZ_RREAR;
-    DamageScaleRecord DZ_RIGHT;
-    DamageScaleRecord DZ_RFRONT;
-    DamageScaleRecord DZ_REAR;
-    DamageScaleRecord DZ_LREAR;
-    DamageScaleRecord DZ_LFRONT;
-    DamageScaleRecord DZ_LEFT;
-    DamageScaleRecord DZ_FRONT;
-    DamageScaleRecord DZ_BOTTOM;
-    float             SUPPRESS_DIST;
-    float             SHOCK_TIME;
-    float             SHOCK_FORCE;
-    float             HP_THRESHOLD;
-    float             HIT_POINTS;
-    float             FORCE;
+  struct presetridelayout {
+    RefSpec          CarType;
+    const char*      PresetName;
+    float            RideHeight;
+    ePresetCarFilter PresetCarFilter;
+    std::uint32_t    PresetCar;
+    eLiveryID        Livery;
+    KitType          KitType;
+    std::uint32_t    KitNumber;
+    BluePrintType    BluePrint;
   };
 }  // namespace OpenSpeed::ProStreet::Attrib::Layouts
