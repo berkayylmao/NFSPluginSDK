@@ -152,9 +152,9 @@ namespace OpenSpeed::ProStreet {
     virtual bool                         IsLoading() override;
     virtual float                        GetOffScreenTime() override;
     virtual float                        GetOnScreenTime() override;
-    virtual bool                   SetVehicleOnGround(const UMath::Vector3&, const UMath::Vector3&, bool) override;
-    virtual void                   ForceStopOn(ForceStopType type) override;
-    virtual void                   ForceStopOff(ForceStopType type) override;
+    virtual bool SetVehicleOnGround(const UMath::Vector3& position, const UMath::Vector3& direction, bool) override;
+    virtual void ForceStopOn(ForceStopType type) override;
+    virtual void ForceStopOff(ForceStopType type) override;
     virtual ForceStopType          GetForceStop() override;
     virtual bool                   InShock() override;
     virtual bool                   IsDestroyed() override;
