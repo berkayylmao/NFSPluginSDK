@@ -18,6 +18,8 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/EASTL/EASTL/map.h>
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Gen/rigidbodyspecs.h>
 #include <OpenSpeed/Game.ProStreet/Types/Behavior.h>
@@ -46,28 +48,30 @@ namespace OpenSpeed::ProStreet {
         ONESIDED  = 1 << 4,
       };
 
-      const Math::Vector4       mOrientation;
-      const Math::Vector3       mDimension;
-      const char                mShape;
-      const Math::Vector3       mOffset;
-      const UCrc32              mName;
-      Math::Vector3             mPrevPosition;
+      UMath::Vector4            mOrientation;
+      UMath::Vector3            mDimension;
+      std::uint32_t             mShape;
+      UMath::Vector3            mOffset;
+      UCrc32                    mName;
+      UMath::Vector3            mPrevPosition;
       Flags                     mFlags;
       const Attrib::Collection* mMaterial;
       HCOLPRIM__*               mHandle;
     };
     struct PrimList : bTList<RigidBody::Primitive> {
-      float         mRadius;
-      std::uint32_t mSize;
+      eastl::map<HCOLPRIM__*, Primitive*, eastl::less<HCOLPRIM__*>> mMap;
+      unsigned char                                                 _mapPad[4];
+      float                                                         mRadius;
+      std::uint32_t                                                 mSize;
     };
 
     struct Mesh : bTNode<Mesh> {
-      enum class Flags {
+      enum class Flags : std::uint16_t {
         DISABLED = 1 << 0,
         FREEABLE = 1 << 2,
       };
 
-      Math::Vector4*            mVerts;
+      UMath::Vector4*           mVerts;
       const std::uint16_t       mNumVertices;
       Flags                     mFlags;
       const Attrib::Collection* mMaterial;
@@ -161,7 +165,7 @@ namespace OpenSpeed::ProStreet {
     UMath::Vector3                                mCenterOfGravity;
     const CollisionGeometry::Bounds*              mGeoms;
     RBGrid*                                       mGrid;
-    unsigned int                                  mCollisionMask;
+    std::uint32_t                                 mCollisionMask;
     SimableType                                   mSimableType;
     float                                         mDetachForce;
     PrimList                                      mPrimitives;

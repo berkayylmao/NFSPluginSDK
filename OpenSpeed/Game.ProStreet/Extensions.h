@@ -26,6 +26,8 @@
 #include <OpenSpeed/Game.ProStreet/Types/DamageCopCar.h>  // DamageCopCar, DamageVehicle, IDamageable, IDamageableVehicle
 #include <OpenSpeed/Game.ProStreet/Types/DamageRacer.h>   // DamageRacer
 #include <OpenSpeed/Game.ProStreet/Types/PVehicle.h>      // PVehicle
+#include <OpenSpeed/Game.ProStreet/Types/RBSmackable.h>   // RBSmackable, RigidBody, IRigidBody
+#include <OpenSpeed/Game.ProStreet/Types/RBVehicle.h>     // RBVehicle
 
 namespace OpenSpeed::ProStreet {
   //          //
@@ -83,6 +85,90 @@ namespace OpenSpeed::ProStreet {
       }
     }
   }  // namespace PVehicleEx
+
+  //            //
+  // IRigidBody //
+  //            //
+
+  namespace RigidBodyEx {
+    namespace details {
+      //                         //
+      // Verified RigidBody cast //
+      //                         //
+
+      struct RigidBodyCast_t {
+        RigidBody* operator()(IRigidBody* iRB) const {
+          if (!iRB || !MemoryEditor::Get().ValidateMemory(iRB)) return nullptr;
+          // Verify cast
+          auto* rb    = static_cast<RigidBody*>(iRB);
+          auto  vfptr = *reinterpret_cast<std::uintptr_t*>(rb);
+          // type: RigidBody
+          if (vfptr == 0x9F4ACC) return rb;
+          // type: RBSmackable
+          if (vfptr == 0x992F24) return rb;
+          // type: RBVehicle
+          if (vfptr == 0x9F50C4) return rb;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static RigidBody* operator|(IRigidBody* iRB, RigidBodyCast_t ext) { return ext(iRB); }
+
+      //                           //
+      // Verified RBSmackable cast //
+      //                           //
+
+      struct RBSmackableCast_t {
+        RBSmackable* operator()(IRigidBody* iRB) const {
+          if (!iRB || !MemoryEditor::Get().ValidateMemory(iRB)) return nullptr;
+          // Verify cast
+          auto* rb = static_cast<RBSmackable*>(iRB);
+          if (*reinterpret_cast<std::uintptr_t*>(rb) == 0x992F24) return rb;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static RBSmackable* operator|(IRigidBody* iRB, RBSmackableCast_t ext) { return ext(iRB); }
+
+      //                         //
+      // Verified RBVehicle cast //
+      //                         //
+
+      struct RBVehicleCast_t {
+        RBVehicle* operator()(IRigidBody* iRB) const {
+          if (!iRB || !MemoryEditor::Get().ValidateMemory(iRB)) return nullptr;
+          // Verify cast
+          auto* rb    = static_cast<RBVehicle*>(iRB);
+          auto  vfptr = *reinterpret_cast<std::uintptr_t*>(rb);
+          // type: RBVehicle
+          if (vfptr == 0x9F50C4) return rb;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static RBVehicle* operator|(IRigidBody* iRB, RBVehicleCast_t ext) { return ext(iRB); }
+    }  // namespace details
+
+    // Try-get IRigidBody as RigidBody
+    // Usage: RigidBody* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRigidBody;
+    static inline const details::RigidBodyCast_t AsRigidBody;
+
+    // Try-get IRigidBody as RBSmackable
+    // Usage: RBSmackable* myptr = GetRigidBodyPtr() | RigidBodyEx::RBSmackable;
+    static inline const details::RBSmackableCast_t AsRBSmackable;
+
+    // Try-get IRigidBody as RBVehicle
+    // Usage: RBVehicle* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRBVehicle;
+    static inline const details::RBVehicleCast_t AsRBVehicle;
+
+    // Get a pointer to the player IRigidBody instance
+    static IRigidBody* GetPlayerInstance() {
+      auto* pvehicle = PVehicleEx::GetPlayerInstance();
+      if (pvehicle) return pvehicle->GetRigidBody();
+
+      return nullptr;
+    }
+  }  // namespace RigidBodyEx
 
   //            //
   // IDamageable //
