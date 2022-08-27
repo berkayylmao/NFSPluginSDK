@@ -683,13 +683,6 @@ namespace OpenSpeed::MW05 {
     BeatGame       = 1 << 18
   };
   enum class eImpoundReasons : std::int8_t { None, BustedByCross, StrikeLimitReached, InsufficientFunds, Released };
-  enum class eInvulnerability : std::uint32_t {
-    None,
-    FromManualReset,
-    FromReset,
-    FromControlSwitch,
-    FromPhysicsSwitch
-  };
   enum class eLoadSaveGame : std::uint32_t { Load, Save };
   enum class eLocationName : std::uint32_t {
     UpperClass,
