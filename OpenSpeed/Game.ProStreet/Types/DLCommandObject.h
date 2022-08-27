@@ -28,6 +28,6 @@ namespace OpenSpeed::ProStreet {
 
     virtual ~DLCommandObject();
     virtual void Cancel();
-    virtual void Execute() = 0;
+    virtual void Execute();
   };
 }  // namespace OpenSpeed::ProStreet
