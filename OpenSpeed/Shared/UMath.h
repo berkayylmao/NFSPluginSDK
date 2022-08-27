@@ -27,10 +27,20 @@ namespace OpenSpeed {
   struct UVector2 {
     float y, x;
 
-    inline UVector2 Normalize() {
+    float GetDistance(const UVector2& other) const noexcept {
+      float dx = other.x - x;
+      float dy = other.y - y;
+      return std::sqrt(dx * dx + dy * dy);
+    }
+    UVector2 Normalize() const noexcept {
       float t = std::sqrt(x * x + y * y);
       return UVector2(x / t, y / t);
     }
+
+    inline bool operator<(const UVector2& r) const noexcept { return (x < r.x) && (y < r.y); }
+    inline bool operator>(const UVector2& r) const noexcept { return r < *this; }
+    inline bool operator<=(const UVector2& r) const noexcept { return !(*this > r); }
+    inline bool operator>=(const UVector2& r) const noexcept { return !(*this < r); }
 
     inline UVector2 operator+(const UVector2& r) const noexcept {
       UVector2 ret = *this;
@@ -75,18 +85,18 @@ namespace OpenSpeed {
       return ret;
     }
 
-    inline UVector2& operator=(const UVector2& r) {
+    inline UVector2& operator=(const UVector2& r) noexcept {
       x = r.x;
       y = r.y;
 
       return *this;
     }
-    inline void operator+=(const UVector2& r) { *this = *this + r; }
-    inline void operator-=(const UVector2& r) { *this = *this - r; }
-    inline void operator*=(const UVector2& r) { *this = *this * r; }
-    inline void operator/=(const UVector2& r) { *this = *this / r; }
-    inline void operator*=(float r) { *this = *this * r; }
-    inline void operator/=(float r) { *this = *this / r; }
+    inline void operator+=(const UVector2& r) noexcept { *this = *this + r; }
+    inline void operator-=(const UVector2& r) noexcept { *this = *this - r; }
+    inline void operator*=(const UVector2& r) noexcept { *this = *this * r; }
+    inline void operator/=(const UVector2& r) noexcept { *this = *this / r; }
+    inline void operator*=(float r) noexcept { *this = *this * r; }
+    inline void operator/=(float r) noexcept { *this = *this / r; }
 
     inline              operator float*() noexcept { return reinterpret_cast<float*>(this); }
     inline              operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
@@ -101,10 +111,21 @@ namespace OpenSpeed {
   struct UVector3 {
     float y, z, x;
 
-    UVector3 Normalize() {
+    float GetDistance(const UVector3& other) const noexcept {
+      float dx = other.x - x;
+      float dy = other.y - y;
+      float dz = other.z - z;
+      return std::sqrt(dx * dx + dy * dy + dz * dz);
+    }
+    UVector3 Normalize() const noexcept {
       float t = std::sqrt(x * x + y * y + z * z);
       return UVector3(x / t, y / t, z / t);
     }
+
+    inline bool operator<(const UVector3& r) const noexcept { return (x < r.x) && (y < r.y) && (z < r.z); }
+    inline bool operator>(const UVector3& r) const noexcept { return r < *this; }
+    inline bool operator<=(const UVector3& r) const noexcept { return !(*this > r); }
+    inline bool operator>=(const UVector3& r) const noexcept { return !(*this < r); }
 
     inline UVector3 operator+(const UVector3& r) const noexcept {
       UVector3 ret = *this;
@@ -155,19 +176,19 @@ namespace OpenSpeed {
       return ret;
     }
 
-    inline UVector3& operator=(const UVector3& r) {
+    inline UVector3& operator=(const UVector3& r) noexcept {
       x = r.x;
       y = r.y;
       z = r.z;
 
       return *this;
     }
-    inline void operator+=(const UVector3& r) { *this = *this + r; }
-    inline void operator-=(const UVector3& r) { *this = *this - r; }
-    inline void operator*=(const UVector3& r) { *this = *this * r; }
-    inline void operator/=(const UVector3& r) { *this = *this / r; }
-    inline void operator*=(float r) { *this = *this * r; }
-    inline void operator/=(float r) { *this = *this / r; }
+    inline void operator+=(const UVector3& r) noexcept { *this = *this + r; }
+    inline void operator-=(const UVector3& r) noexcept { *this = *this - r; }
+    inline void operator*=(const UVector3& r) noexcept { *this = *this * r; }
+    inline void operator/=(const UVector3& r) noexcept { *this = *this / r; }
+    inline void operator*=(float r) noexcept { *this = *this * r; }
+    inline void operator/=(float r) noexcept { *this = *this / r; }
 
     inline              operator float*() noexcept { return reinterpret_cast<float*>(this); }
     inline              operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
@@ -182,10 +203,22 @@ namespace OpenSpeed {
   struct UVector4 {
     float y, z, x, w;
 
-    UVector4 Normalize() {
+    float GetDistance(const UVector4& other) const noexcept {
+      float dx = other.x - x;
+      float dy = other.y - y;
+      float dz = other.z - z;
+      float dw = other.w - w;
+      return std::sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
+    }
+    UVector4 Normalize() const noexcept {
       float t = std::sqrt(x * x + y * y + z * z + w * w);
       return UVector4(x / t, y / t, z / t, w / t);
     }
+
+    inline bool operator<(const UVector4& r) const noexcept { return (x < r.x) && (y < r.y) && (z < r.z) && (w < r.w); }
+    inline bool operator>(const UVector4& r) const noexcept { return r < *this; }
+    inline bool operator<=(const UVector4& r) const noexcept { return !(*this > r); }
+    inline bool operator>=(const UVector4& r) const noexcept { return !(*this < r); }
 
     inline UVector4 operator+(const UVector4& r) const noexcept {
       UVector4 ret = *this;
@@ -242,7 +275,7 @@ namespace OpenSpeed {
       return ret;
     }
 
-    inline UVector4& operator=(const UVector4& r) {
+    inline UVector4& operator=(const UVector4& r) noexcept {
       x = r.x;
       y = r.y;
       z = r.z;
@@ -250,12 +283,12 @@ namespace OpenSpeed {
 
       return *this;
     }
-    inline void operator+=(const UVector4& r) { *this = *this + r; }
-    inline void operator-=(const UVector4& r) { *this = *this - r; }
-    inline void operator*=(const UVector4& r) { *this = *this * r; }
-    inline void operator/=(const UVector4& r) { *this = *this / r; }
-    inline void operator*=(float r) { *this = *this * r; }
-    inline void operator/=(float r) { *this = *this / r; }
+    inline void operator+=(const UVector4& r) noexcept { *this = *this + r; }
+    inline void operator-=(const UVector4& r) noexcept { *this = *this - r; }
+    inline void operator*=(const UVector4& r) noexcept { *this = *this * r; }
+    inline void operator/=(const UVector4& r) noexcept { *this = *this / r; }
+    inline void operator*=(float r) noexcept { *this = *this * r; }
+    inline void operator/=(float r) noexcept { *this = *this / r; }
 
     inline              operator float*() noexcept { return reinterpret_cast<float*>(this); }
     inline              operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }
@@ -270,7 +303,7 @@ namespace OpenSpeed {
   struct UMatrix4 {
     UVector4 v0, v1, v2, v3;
 
-    inline UMatrix4 operator+(const UMatrix4& r) {
+    inline UMatrix4 operator+(const UMatrix4& r) const noexcept {
       UMatrix4 ret = *this;
       ret.v0 += r.v0;
       ret.v1 += r.v1;
@@ -279,7 +312,7 @@ namespace OpenSpeed {
 
       return ret;
     }
-    inline UMatrix4 operator-(const UMatrix4& r) {
+    inline UMatrix4 operator-(const UMatrix4& r) const noexcept {
       UMatrix4 ret = *this;
       ret.v0 -= r.v0;
       ret.v1 -= r.v1;
@@ -288,7 +321,7 @@ namespace OpenSpeed {
 
       return ret;
     }
-    inline UMatrix4 operator*(const UMatrix4& r) {
+    inline UMatrix4 operator*(const UMatrix4& r) const noexcept {
       UMatrix4 ret = *this;
       ret.v0 *= r.v0;
       ret.v1 *= r.v1;
@@ -297,7 +330,7 @@ namespace OpenSpeed {
 
       return ret;
     }
-    inline UMatrix4 operator/(const UMatrix4& r) {
+    inline UMatrix4 operator/(const UMatrix4& r) const noexcept {
       UMatrix4 ret = *this;
       ret.v0 /= r.v0;
       ret.v1 /= r.v1;
@@ -306,7 +339,7 @@ namespace OpenSpeed {
 
       return ret;
     }
-    inline UMatrix4 operator*(float r) {
+    inline UMatrix4 operator*(float r) const noexcept {
       UMatrix4 ret = *this;
       ret.v0 *= r;
       ret.v1 *= r;
@@ -315,7 +348,7 @@ namespace OpenSpeed {
 
       return ret;
     }
-    inline UMatrix4 operator/(float r) {
+    inline UMatrix4 operator/(float r) const noexcept {
       UMatrix4 ret = *this;
       ret.v0 /= r;
       ret.v1 /= r;
@@ -325,7 +358,7 @@ namespace OpenSpeed {
       return ret;
     }
 
-    inline UMatrix4& operator=(const UMatrix4& r) {
+    inline UMatrix4& operator=(const UMatrix4& r) noexcept {
       v0 = r.v0;
       v1 = r.v1;
       v2 = r.v2;
@@ -333,12 +366,12 @@ namespace OpenSpeed {
 
       return *this;
     }
-    inline void operator+=(const UMatrix4& r) { *this = *this + r; }
-    inline void operator-=(const UMatrix4& r) { *this = *this - r; }
-    inline void operator*=(const UMatrix4& r) { *this = *this * r; }
-    inline void operator/=(const UMatrix4& r) { *this = *this / r; }
-    inline void operator*=(float r) { *this = *this * r; }
-    inline void operator/=(float r) { *this = *this / r; }
+    inline void operator+=(const UMatrix4& r) noexcept { *this = *this + r; }
+    inline void operator-=(const UMatrix4& r) noexcept { *this = *this - r; }
+    inline void operator*=(const UMatrix4& r) noexcept { *this = *this * r; }
+    inline void operator/=(const UMatrix4& r) noexcept { *this = *this / r; }
+    inline void operator*=(float r) noexcept { *this = *this * r; }
+    inline void operator/=(float r) noexcept { *this = *this / r; }
 
     inline                 operator float*() noexcept { return reinterpret_cast<float*>(this); }
     inline                 operator const float*() const noexcept { return reinterpret_cast<const float*>(this); }

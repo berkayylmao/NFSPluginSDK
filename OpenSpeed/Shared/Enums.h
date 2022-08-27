@@ -44,6 +44,13 @@ namespace OpenSpeed {
   enum class eCustomTuningType : std::uint32_t { Setting1, Setting2, Setting3 };
   enum class eGPSState : std::uint32_t { Down, Searching, Tracking };
   enum class eHandlingMode : std::uint8_t { Classic, Extreme };
+  enum class eInvulnerability : std::uint32_t {
+    None,
+    FromManualReset,
+    FromReset,
+    FromControlSwitch,
+    FromPhysicsSwitch
+  };
   enum class eLaneSelection : std::uint32_t { CenterLane, CurrentLane, ValidLane };
   enum class eLaneType : std::uint32_t { Racing, Traffic, Drag, Cop, CopReckless, Reset, StartingGrid, Any };
   enum class eNavType : std::uint32_t { None, Traffic, Direction, Path };
@@ -55,6 +62,23 @@ namespace OpenSpeed {
   enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class eWorldMapZoomLevels : std::uint8_t { All, Level1, Level2, Level4 };
+  enum class FEObjFlags : std::uint32_t {
+    MouseObject           = 0x20000,
+    SaveStaticTracks      = 0x40000,
+    DontNavigate          = 0x80000,
+    UsesLibraryObject     = 0x100000,
+    CodeSuppliedResource  = 0x200000,
+    DirtyCode             = 0x400000,
+    DirtyColor            = 0x800000,
+    DirtyTransform        = 0x1000000,
+    Dirty                 = 0x2000000,
+    IgnoreButton          = 0x4000000,
+    ObjectLocked          = 0x8000000,
+    IsButton              = 0x10000000,
+    PerspectiveProjection = 0x20000000,
+    AffectAllScripts      = 0x40000000,
+    HideInEdit            = 0x80000000
+  };
   enum class FEObjType : std::uint32_t {
     None,
     Image,
