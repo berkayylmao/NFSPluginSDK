@@ -23,6 +23,8 @@
 namespace OpenSpeed::ProStreet::Game {
   // ECameraShake
   static inline void ShakeCamera() { reinterpret_cast<void(__cdecl*)()>(0x69A020)(); }
+  // ERefreshHUD
+  static inline void RefreshHUD() { reinterpret_cast<void(__cdecl*)()>(0x69DE30)(); }
   // Game_AbandonRace
   static inline void AbandonRace() { reinterpret_cast<void(__cdecl*)()>(0x6E5570)(); }
   // Game_BlowEngine
