@@ -137,7 +137,7 @@ namespace OpenSpeed::ProStreet::DALVehicleCommands {
       auto ret    = std::unique_ptr<RemoveCustomizableCar>{reinterpret_cast<RemoveCustomizableCar*>(dummy.release())};
       ret->mState = DLCommandObject::CommandState::WaitingToExecute;
 
-      *reinterpret_cast<std::uintptr_t*>(ret.get()) = 0x5636F0;
+      *reinterpret_cast<std::uintptr_t*>(ret.get()) = 0x99E870;
       return ret;
     }
   };
