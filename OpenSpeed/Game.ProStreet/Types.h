@@ -120,6 +120,10 @@ namespace OpenSpeed::ProStreet {
     struct IEntity;
   }  // namespace Dynamics
 
+  namespace Hermes {
+    using _h_HHANDLER__ = std::uint32_t;
+  }
+
   namespace Math {
     using Vector2 = OpenSpeed::Vector2;
     using Vector3 = OpenSpeed::Vector3;

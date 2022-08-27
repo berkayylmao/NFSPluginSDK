@@ -20,25 +20,13 @@
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEObject.h>
-#include <OpenSpeed/Game.ProStreet/Types/FEWideString.h>
 
 namespace OpenSpeed::ProStreet {
-  struct FEString : FEObject {
-    char*         pLabelName;
-    std::uint32_t LabelHash;
-    FEWideString  string;
-    std::uint32_t Format;
-    std::int32_t  Leading;
-    std::uint32_t MaxWidth;
+  struct FEGroup : FEObject {
+    FEMinList Children;
 
-    template <typename... Arguments>
-    static void Printf(const char* fngName, std::uint32_t objectHash, const char* format, Arguments... args) {
-      reinterpret_cast<void(__cdecl*)(const char*, std::uint32_t, const char*, Arguments...)>(0x5CE4F0)(
-          fngName, objectHash, format, args...);
-    }
-    static void SetLanguageHash(const char* fngName, std::uint32_t objectHash, std::uint32_t languageHash) {
-      reinterpret_cast<void(__cdecl*)(const char*, std::uint32_t, std::uint32_t)>(0x5BE5F0)(fngName, objectHash,
-                                                                                            languageHash);
+    bool ForAllChildren(const FEObjectCallback& callbackFn) {
+      return reinterpret_cast<bool(__thiscall*)(FEGroup*, const FEObjectCallback&)>(0x623C30)(this, callbackFn);
     }
   };
 }  // namespace OpenSpeed::ProStreet

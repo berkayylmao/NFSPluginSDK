@@ -18,6 +18,7 @@
 // clang-format on
 
 #pragma once
+#include <functional>
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEMinList.h>
 #include <OpenSpeed/Game.ProStreet/Types/FERenderObject.h>
@@ -25,11 +26,20 @@
 
 namespace OpenSpeed::ProStreet {
   struct FEObject : FEMinNode {
+    struct FEObjectCallback {
+      std::function<bool(FEObject*)> fnCallback;
+
+      virtual ~FEObjectCallback() = default;
+      virtual bool Callback(FEObject* object) { return fnCallback(object); }
+
+      FEObjectCallback(const std::function<bool(FEObject*)>& callback) : fnCallback(callback) {}
+    };
+
     std::uint32_t   GUID;
     std::uint32_t   NameHash;
     char*           pName;
     FEObjType       Type;
-    std::uint32_t   Flags;
+    FEObjFlags      Flags;
     std::uint16_t   RenderContext;
     std::uint16_t   ResourceIndex;
     std::uint32_t   Handle;
@@ -40,5 +50,26 @@ namespace OpenSpeed::ProStreet {
     FEMinList       Scripts;
     FEScript*       pCurrentScript;
     FERenderObject* Cached;
+
+    static FEObject* FindObject(const char* fngName, std::uint32_t objectHash) {
+      return reinterpret_cast<FEObject*(__cdecl*)(const char*, std::uint32_t)>(0x5BD520)(fngName, objectHash);
+    }
+
+    static void SetScript(const char* fngName, std::uint32_t objectHash, std::uint32_t scriptHash, bool reset) {
+      reinterpret_cast<void(__cdecl*)(const char*, std::uint32_t, std::uint32_t, bool)>(0x5BD590)(fngName, objectHash,
+                                                                                                  scriptHash, reset);
+    }
+    static void SetVisibility(FEObject* object, bool isVisible) {
+      reinterpret_cast<void(__cdecl*)(FEObject*, bool)>(0x58DBE0)(object, isVisible);
+    }
+
+    FEScript* FindScript(std::uint32_t scriptHash) {
+      return reinterpret_cast<FEScript*(__thiscall*)(FEObject*, std::uint32_t)>(0x624F10)(this, scriptHash);
+    }
+
+    void SetScript(FEScript* script, bool reset) {
+      if (script) reinterpret_cast<void(__thiscall*)(FEObject*, FEScript*, bool)>(0x629070)(this, script, reset);
+    }
+    void SetVisibility(bool isVisible) { SetVisibility(this, isVisible); }
   };
 }  // namespace OpenSpeed::ProStreet
