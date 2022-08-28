@@ -232,7 +232,7 @@ namespace MemoryEditor {
           std::memset(mem.get(), 0xCC, size);
           break;
         case MakeType::Return:
-          std::memset(mem.get(), 0xCC, size);
+          std::memset(mem.get(), 0xC3, size);
           break;
         default:
           return;
