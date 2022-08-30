@@ -19,17 +19,13 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/DALInterface.h>
 
 namespace OpenSpeed::ProStreet {
-  struct DALManager : DALInterface {
-    DALInterface* mInterfaces[22];
-    bool          mInited;
-
-    virtual ~DALManager();
-    virtual void HandleCommand(DLCommandObject*, const std::int32_t unk1 = -1);
-    virtual void CancelCommand(DLCommandObject*, const std::int32_t unk1 = -1);
-
-    static DALManager* Get() { return reinterpret_cast<DALManager*>(0xA50AD0); }
+  struct GEventTimer {
+    float         mInterval;
+    bool          mRunning;
+    float         mElapsed;
+    std::uint32_t mNameHash;
+    char          mName[20];
   };
 }  // namespace OpenSpeed::ProStreet

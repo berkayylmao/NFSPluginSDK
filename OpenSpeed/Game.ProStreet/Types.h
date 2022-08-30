@@ -338,6 +338,7 @@ namespace OpenSpeed::ProStreet {
   struct FinishedRaceStatsEntry;
   struct FloatSpring;
   struct GameplaySettings;
+  struct GActivity;
   struct GCharacter;
   struct GenericMessage;
   struct GEventTimer;

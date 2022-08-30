@@ -21,6 +21,12 @@
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::EA {
+  namespace Localizer::LocalizerManager {
+    static const char* const GetPackedString(std::uint32_t labelHash) {
+      return reinterpret_cast<const char* const(__cdecl*)(std::uint32_t)>(0x5B8410)(labelHash);
+    }
+  }  // namespace Localizer::LocalizerManager
+
   namespace Memcard {
     struct MemcardChunk {
       std::uint32_t ID;

@@ -28,6 +28,10 @@
 namespace OpenSpeed::ProStreet::DALRacerCommands {
   struct IStatPrintable {
     enum class ePrintType : std::uint32_t { Off, Time, Score, Speed, Percent, OutOf };
+    
+    static void Print(char* buf, std::int32_t unk1, float unk2, ePrintType type){
+      reinterpret_cast<void(__cdecl*)(char*, std::int32_t, float, ePrintType)>(0x5CE6B0)(buf, unk1, unk2, type);
+    }
   };
 
   struct RaceInformationCmd : DLCommandObject, IStatPrintable {

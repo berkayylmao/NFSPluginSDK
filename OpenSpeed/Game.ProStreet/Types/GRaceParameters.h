@@ -37,5 +37,7 @@ namespace OpenSpeed::ProStreet {
     virtual void GetCheckpointPosition(std::uint32_t, UMath::Vector3&);
     virtual void GetCheckpointDirection(std::uint32_t, UMath::Vector3&);
     virtual ~GRaceParameters();
+
+    std::int8_t GetNumLaps() { return reinterpret_cast<std::int8_t(__thiscall*)(GRaceParameters*)>(0x657CF0)(this); }
   };
 }  // namespace OpenSpeed::ProStreet

@@ -19,17 +19,17 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/DALInterface.h>
+#include <OpenSpeed/Game.ProStreet/Types/GRacerInfo.h>
+#include <OpenSpeed/Game.ProStreet/Types/IPlayer.h>
+#include <OpenSpeed/Game.ProStreet/Types/MenuScreen.h>
 
 namespace OpenSpeed::ProStreet {
-  struct DALManager : DALInterface {
-    DALInterface* mInterfaces[22];
-    bool          mInited;
-
-    virtual ~DALManager();
-    virtual void HandleCommand(DLCommandObject*, const std::int32_t unk1 = -1);
-    virtual void CancelCommand(DLCommandObject*, const std::int32_t unk1 = -1);
-
-    static DALManager* Get() { return reinterpret_cast<DALManager*>(0xA50AD0); }
+  struct FENISFlasher : MenuScreen {
+    IPlayer*       mPlayer1;
+    IPlayer*       mPlayer2;
+    GRace::Variant mRaceVariant;
+    GRacerInfo*    mRacerInfo;
+    std::int32_t   mRacerIndex;
+    bool           mIsSplitScreen;
   };
 }  // namespace OpenSpeed::ProStreet

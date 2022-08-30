@@ -18,6 +18,10 @@
 // clang-format on
 
 #pragma once
+#ifdef _WIN32
+#include <winnt.h>  // DEFINE_ENUM_FLAG_OPERATORS
+#endif
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/DriftScoring.h>
 #include <OpenSpeed/Game.ProStreet/Types/GCallbackTimer.h>
@@ -129,6 +133,19 @@ namespace OpenSpeed::ProStreet {
       GArbitratedRacerStats arbitrated;
       GLocalRacerStats      local;
     };
+    struct GRacerHeatStats {
+      std::int32_t mRanking;
+      std::int32_t mPlayerIndex;
+      float        mResult;
+      float        mPoints;
+      float        mRaceTime;
+      FinishReason mReason;
+    };
+    struct GRacerPoints {
+      std::int32_t mRankingPoints;
+      std::int32_t mDamagePoints;
+      std::int32_t mEventBonus;
+    };
 
     State          mState;
     RacerStateFlag mFlags;
@@ -174,5 +191,15 @@ namespace OpenSpeed::ProStreet {
     UMath::Vector3 mLastOnRoadDirection;
     float          mFirstLapTimeEstimate;
     float          mSubsequentLapTimesEstimate;
+
+    ISimable* GetSimable() { return reinterpret_cast<ISimable*(__thiscall*)(GRacerInfo*)>(0x667290)(this); }
+
+    bool IsFinishReason(FinishReason reason) {
+      return reinterpret_cast<bool(__thiscall*)(GRacerInfo*, FinishReason)>(0x656AD0)(this, reason);
+    }
   };
+
+#ifdef _WIN32
+  DEFINE_ENUM_FLAG_OPERATORS(GRacerInfo::RacerStateFlag);
+#endif
 }  // namespace OpenSpeed::ProStreet

@@ -128,9 +128,10 @@ namespace OpenSpeed::ProStreet {
     virtual void                OnRemovedVehicleCache(IVehicle* ivehicle) override;
     virtual void GetEnabledSelectionSets(GPresentationController&, eastl::list<std::uint32_t>&, bool) override;
 
-    static inline GRaceStatus** g_This = reinterpret_cast<GRaceStatus**>(0xAB9D7C);
-    static GRaceStatus*         Get() {
-              if (!g_This) return nullptr;
+    static GRaceStatus* Get() {
+      static GRaceStatus** g_This = reinterpret_cast<GRaceStatus**>(0xAB9D7C);
+      if (!g_This) return nullptr;
+
       return *g_This;
     }
   };
