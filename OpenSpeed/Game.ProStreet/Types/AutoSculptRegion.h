@@ -22,6 +22,7 @@
 
 namespace OpenSpeed::ProStreet {
   struct AutoSculptRegion {
+    // AutoSculpt::ZoneID as key
     float mSculptZoneBlendAmount[11];
     bool  mModified;
   };

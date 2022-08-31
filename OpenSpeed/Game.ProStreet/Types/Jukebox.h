@@ -19,15 +19,10 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/FEModifiedColour.h>
-#include <OpenSpeed/Game.ProStreet/Types/VinylSystem.h>
+#include <OpenSpeed/Game.ProStreet/Types/EA.h>
+#include <OpenSpeed/Game.ProStreet/Types/JukeboxEntry.h>
+#include <OpenSpeed/Game.ProStreet/Types/UTL/FixedVector.h>
 
 namespace OpenSpeed::ProStreet {
-  struct FEVinylRecord {
-    VinylSystem::VinylTransformPacked mTransform;
-    std::uint16_t                     mValue;
-    std::uint16_t                     mIsMirrored;
-    std::uint16_t                     mNextElement;
-    FEModifiedColour                  mc[4];
-  };
+  struct Jukebox : UTL::FixedVector<JukeboxEntry, 40, 16>, EA::Memcard::IMemcardSavable {};
 }  // namespace OpenSpeed::ProStreet

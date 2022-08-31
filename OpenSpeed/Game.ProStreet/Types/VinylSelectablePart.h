@@ -19,15 +19,20 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/FEModifiedColour.h>
+#include <OpenSpeed/Game.ProStreet/Types/ISelectablePart.h>
 #include <OpenSpeed/Game.ProStreet/Types/VinylSystem.h>
 
 namespace OpenSpeed::ProStreet {
-  struct FEVinylRecord {
+  struct VinylSelectablePart : ISelectablePart {
+    enum class TransformType : std::uint32_t { TranslateX, TranslateY, Rotate, ShearX, ShearY, ScaleX, ScaleY };
+
+    std::int32_t                      mCurrentEditingLayer;
+    DBCarPart                         mCurrentPart;
     VinylSystem::VinylTransformPacked mTransform;
-    std::uint16_t                     mValue;
-    std::uint16_t                     mIsMirrored;
-    std::uint16_t                     mNextElement;
-    FEModifiedColour                  mc[4];
+    FECust::ColourPartData            mColorData[4];
+    bool                              mIsMirrored;
+    bool                              mIsEditingLayer;
+    bool                              mIsEmptyFromDeletion;
+    bool                              mIsDecal;
   };
 }  // namespace OpenSpeed::ProStreet

@@ -23,19 +23,19 @@
 
 namespace OpenSpeed::ProStreet::Attrib::Layouts {
   struct pvehiclelayout {
-    StringKey                    MODEL;
-    RefSpec                      frontend;
-    const char*                  DefaultPresetRide;
-    const char*                  CollectionName;
-    std::int32_t                 transmission_upgrades;
-    std::int32_t                 tires_upgrades;
-    bool                         RandomOpponent;
-    std::int32_t /*GRace::Tier*/ RacingTier;
-    std::int32_t                 nos_upgrades;
-    bool                         isRateable;
-    std::int32_t                 induction_upgrades;
-    std::int32_t                 engine_upgrades;
-    std::int32_t                 chassis_upgrades;
-    std::int32_t                 brakes_upgrades;
+    StringKey    MODEL;
+    RefSpec      frontend;
+    const char*  DefaultPresetRide;
+    const char*  CollectionName;
+    std::int32_t transmission_upgrades;
+    std::int32_t tires_upgrades;
+    bool         RandomOpponent;
+    GRace::Tier  RacingTier;
+    std::int32_t nos_upgrades;
+    bool         isRateable;
+    std::int32_t induction_upgrades;
+    std::int32_t engine_upgrades;
+    std::int32_t chassis_upgrades;
+    std::int32_t brakes_upgrades;
   };
 }  // namespace OpenSpeed::ProStreet::Attrib::Layouts

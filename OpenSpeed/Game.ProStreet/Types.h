@@ -120,15 +120,34 @@ namespace OpenSpeed::ProStreet {
     struct IEntity;
   }  // namespace Dynamics
 
+  namespace FECust {
+    enum class VinylAreas : std::uint32_t { Colour0 = 0x0, Colour1 = 0x1, Colour2 = 0x2, Colour3 = 0x3 };
+    enum class SelectableRegion : std::uint32_t {
+      Front,
+      Rear,
+      Side,
+      FrontBumper = Front,
+      RearBumper  = Rear,
+      Skirt       = Side,
+      FrontWheel  = Front,
+      RearWheel   = Rear,
+      FrontTire   = Front,
+      RearTire    = Rear,
+    };
+  }  // namespace FECust
+
   namespace Hermes {
     using _h_HHANDLER__ = std::uint32_t;
   }
 
   namespace Math {
-    using Vector2 = OpenSpeed::Vector2;
-    using Vector3 = OpenSpeed::Vector3;
-    using Vector4 = OpenSpeed::Vector4;
-    using Matrix4 = OpenSpeed::Matrix4;
+    using AxlePair      = OpenSpeed::AxlePair;
+    using Curve         = OpenSpeed::Curve;
+    using VariableArray = OpenSpeed::VariableArray;
+    using Vector2       = OpenSpeed::Vector2;
+    using Vector3       = OpenSpeed::Vector3;
+    using Vector4       = OpenSpeed::Vector4;
+    using Matrix4       = OpenSpeed::Matrix4;
 
   }  // namespace Math
   namespace UMath {
@@ -424,7 +443,6 @@ namespace OpenSpeed::ProStreet {
   struct IVehicleAI;
   struct IVehicleCache;
   struct JukeboxEntry;
-  using Jukebox = UTL::FixedVector<JukeboxEntry, 40, 16>;
   struct LocalPlayer;
   struct MilestoneTypeInfo;
   struct ObjectStateBlockHeader;

@@ -22,13 +22,15 @@
 
 namespace OpenSpeed::ProStreet {
   namespace VinylSystem {
+#pragma pack(push, 1)
     struct VinylTransformPacked {
-      std::int16_t translationX;
-      std::int16_t translationY;
-      std::uint8_t rotation;
-      std::uint8_t shear;
-      std::uint8_t scaleX;
-      std::uint8_t scaleY;
+      std::int16_t mTranslationX;
+      std::int16_t mTranslationY;
+      std::int8_t  mRotation;
+      std::int8_t  mShear;
+      std::int8_t  mScaleX;
+      std::int8_t  mScaleY;
     };
+#pragma pack(pop)
   }  // namespace VinylSystem
 }  // namespace OpenSpeed::ProStreet

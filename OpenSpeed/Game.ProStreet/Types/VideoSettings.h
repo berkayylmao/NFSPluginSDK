@@ -27,7 +27,7 @@ namespace OpenSpeed::ProStreet {
     float ScreenOffsetX;
     float ScreenOffsetY;
     bool  WideScreen;
-    float TimeOfDay;
-    float Brightness;
+    // float TimeOfDay;
+    // float Brightness;
   };
 }  // namespace OpenSpeed::ProStreet

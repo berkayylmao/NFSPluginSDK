@@ -59,6 +59,7 @@ namespace OpenSpeed {
   enum class ePrecullerMode : std::uint8_t { Off, On, Blinking, HighSpeed };
   enum class eTireDamage : std::uint8_t { None, Punctured, Blown };
   enum class eTireIdx : std::uint32_t { FrontLeft, FrontRight, RearLeft, RearRight };
+  enum class TractionControlStates : std::uint8_t { Off, Level1, Level2, Level3, Level4, ThrottleControl };
   enum class eTrafficDensity : std::uint8_t { Off, Low, Medium, High };
   enum class eVehicleCacheResult : std::uint32_t { Want, DontCare };
   enum class eWorldMapZoomLevels : std::uint8_t { All, Level1, Level2, Level4 };
@@ -94,6 +95,22 @@ namespace OpenSpeed {
     SimpleImage,
     MultiImage,
     UserMin = 256
+  };
+  enum class FEPlayerCarDBFilterBits : std::uint32_t {
+    FILTER_LIST_STOCK        = 0x1,
+    FILTER_LIST_CUSTOMIZABLE = 0x2,
+    FILTER_LIST_SHARED       = 0x4,
+    FILTER_LIST_BONUS        = 0x8,
+    FILTER_LIST_PRESET       = 0x10,
+    FILTER_LIST_DEBUG        = 0x20,
+    FILTER_PINKSLIP          = 0x40,
+    FILTER_LIST_MASK         = 0xFFFF,
+    FILTER_REGION_AMERICA    = 0x10000,
+    FILTER_REGION_EUROPE     = 0x20000,
+    FILTER_REGION_JAPAN      = 0x40000,
+    FILTER_REGION_DEBUG      = 0x80000,
+    FILTER_REGION_ALL        = 0xF0000,
+    FILTER_REGION_MASK       = 0xFFFF0000
   };
   enum class GameFlowState : std::uint32_t {
     None,
@@ -185,6 +202,10 @@ namespace OpenSpeed {
     DEFINE_ENUM_FLAG_OPERATORS(WindowID)
 #endif
   }  // namespace VehicleFX
+
+#ifdef _WIN32
+  DEFINE_ENUM_FLAG_OPERATORS(FEPlayerCarDBFilterBits)
+#endif
 }  // namespace OpenSpeed
 
 #endif

@@ -28,27 +28,27 @@
 #include <OpenSpeed/Game.ProStreet/Types/FEVinylRecord.h>
 
 namespace OpenSpeed::ProStreet {
-  // member array sizes are not valid, some members may end up in uninitialized memory
   struct FEPlayerCarDB {
-    FECarRecord                                                       CarTable[410];
-    FECustomizationRecord                                             Customizations[80];
-    FECareerRecord                                                    CareerRecords[80];
-    FELinkedPool<FECarPartRecord, std::uint16_t, std::uint16_t, 4925> CarParts;
-    // FELinkedPool<FEVinylRecord, std::uint16_t, std::uint16_t, 12>     Vinyls;
-    std::uint32_t     SoldHistoryBounty;
-    std::uint16_t     SoldHistoryNumEvadedPursuits;
-    std::uint16_t     SoldHistoryNumBustedPursuits;
-    FEInfractionsData SoldHistoryUnservedInfractions;
-    FEInfractionsData SoldHistoryServedInfractions;
-    std::uint32_t     LastAwardedKingCarHistoryCarHandle;
-    BluePrintType     LastAwardedKingCarHistoryCarMode;
-    bool              mInitializingCarStable;
+    FECarRecord                                                                 CarTable[410];
+    FECustomizationRecord                                                       Customizations[80];
+    FECareerRecord                                                              CareerRecords[80];
+    FELinkedPool<FECarPartRecord, std::uint16_t, std::uint16_t, 9500 /*14000*/> CarParts;
+    FELinkedPool<FEVinylRecord, std::uint16_t, std::uint16_t, 700 /*760*/>      Vinyls;
+    std::uint32_t                                                               SoldHistoryBounty;
+    std::uint16_t                                                               SoldHistoryNumEvadedPursuits;
+    std::uint16_t                                                               SoldHistoryNumBustedPursuits;
+    FEInfractionsData                                                           SoldHistoryUnservedInfractions;
+    FEInfractionsData                                                           SoldHistoryServedInfractions;
+    unsigned char                                                               __pad[0x4768];
+    std::uint32_t                                                               LastAwardedKingCarHistoryCarHandle;
+    BluePrintType                                                               LastAwardedKingCarHistoryCarMode;
+    std::int8_t                                                                 mInitializingCarStable;
 
     FECarRecord* GetCarRecordByHandle(std::uint32_t handle) {
-      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::size_t)>(0x5332F0)(this, handle);
+      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5332F0)(this, handle);
     }
-    FECarRecord* GetCarByIndex(std::size_t idx) {
-      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::size_t)>(0x5333B0)(this, idx);
+    FECarRecord* GetCarByIndex(std::uint32_t idx) {
+      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5333B0)(this, idx);
     }
   };
 }  // namespace OpenSpeed::ProStreet

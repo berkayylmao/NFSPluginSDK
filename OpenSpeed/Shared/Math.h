@@ -24,6 +24,24 @@
 #include <cmath>
 
 namespace OpenSpeed {
+  struct AxlePair {
+    float Front;
+    float Rear;
+  };
+  struct VariableArray {
+    float*        mArray;
+    std::uint32_t mLength;
+  };
+  struct Curve {
+    float         xMin;
+    float         xMax;
+    float         yMin;
+    float         yMax;
+    VariableArray X;
+    VariableArray Y;
+    VariableArray Y2;
+    bool          allocatedMemory;
+  };
   struct Vector2 {
     float x, y;
 

@@ -29,9 +29,10 @@ namespace OpenSpeed::ProStreet::Attrib {
     inline Class* GetClass(std::uint32_t key) {
       return reinterpret_cast<Class*(__thiscall*)(Database*, std::uint32_t)>(0x52CA70)(this, key);
     }
+    inline Class* GetClass(const char* key) { return GetClass(StringToKey(key)); }
 
-    static inline Database** g_mThis = reinterpret_cast<Database**>(0xAB0E60);
-    static Database*         Get() {
+    static Database* Get() {
+      static Database** g_mThis = reinterpret_cast<Database**>(0xAB0E60);
       if (!g_mThis) return nullptr;
       return *g_mThis;
     }

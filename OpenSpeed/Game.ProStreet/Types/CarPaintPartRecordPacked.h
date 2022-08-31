@@ -21,10 +21,12 @@
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet {
+#pragma pack(push, 1)
   struct CarPaintPartRecordPacked {
-    std::uint16_t group;
-    std::uint16_t hue;
-    float         saturation;
-    float         variance;
+    std::uint16_t mGroup;
+    std::uint16_t mHue;
+    float         mSaturation;
+    float         mVariance;
   };
+#pragma pack(pop)
 }  // namespace OpenSpeed::ProStreet

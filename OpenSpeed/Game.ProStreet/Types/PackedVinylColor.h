@@ -21,9 +21,11 @@
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet {
+#pragma pack(push, 1)
   struct PackedVinylColor {
-    std::int16_t huePart;
-    std::uint8_t saturation;
-    std::uint8_t brightness;
+    std::int16_t mHuePart;
+    std::int8_t  mSaturation;
+    std::int8_t  mBrightness;
   };
+#pragma pack(pop)
 }  // namespace OpenSpeed::ProStreet

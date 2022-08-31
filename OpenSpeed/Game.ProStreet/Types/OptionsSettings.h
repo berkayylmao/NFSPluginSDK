@@ -31,6 +31,7 @@ namespace OpenSpeed::ProStreet {
     ForceFeedbackSettings TheForceFeedbackSettings;
     GameplaySettings      TheGameplaySettings;
     AudioSettings         TheAudioSettings;
+    unsigned char         __pad[0x4];
     PlayerSettings        ThePlayerSettings[4];
   };
 }  // namespace OpenSpeed::ProStreet

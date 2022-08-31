@@ -25,28 +25,28 @@
 
 namespace OpenSpeed::ProStreet {
   struct VehicleCustomizations {
-    std::int16_t             mGUID[5];
-    std::uint32_t            mCreatorId;
-    char                     mCreatorName[32];
-    std::uint32_t            mShareNumber;
-    std::int16_t             mInstalledParts[165];
-    std::uint8_t             mCustomPaintsValid[12];
-    CarPaintPartRecordPacked mCustomPaints[12];
-    std::uint8_t             mPartBaseMaterials[12];
-    BluePrintType            mBluePrintType;
-    KitType                  mKitType;
-    std::uint32_t            mKitNum;
-    float                    mRideHeight;
-    float                    mRidePitch;
-    PackedVinylLayer         mVinylLayers[20];
-    std::int32_t             mVinylMirrorBits;
-    std::int32_t             mNumVinylLayers;
-    PackedDecalLayer         mDecalLayers[20];
-    std::int32_t             mDecalMirrorBits;
-    std::int32_t             mNumDecalLayers;
-    std::int32_t             mLiveryID;
-    std::uint8_t             mMorphValues[11][40];
-    float                    mPhysicsTuning[31];
-    std::int32_t             mType;
+    std::int16_t mGUID[5];
+    alignas(4) std::uint32_t mCreatorId;
+    char          mCreatorName[32];
+    std::uint32_t mShareNumber;
+    std::int16_t  mInstalledParts[165];
+    std::int8_t   mCustomPaintsValid[12];
+    alignas(4) CarPaintPartRecordPacked mCustomPaints[12];
+    std::int8_t      mPartBaseMaterials[12];
+    BluePrintType    mBluePrintType;
+    KitType          mKitType;
+    std::uint32_t    mKitNum;
+    float            mRideHeight;
+    float            mRidePitch;
+    PackedVinylLayer mVinylLayers[20];
+    std::int32_t     mVinylMirrorBits;
+    std::int32_t     mNumVinylLayers;
+    PackedDecalLayer mDecalLayers[20];
+    std::int32_t     mDecalMirrorBits;
+    std::int32_t     mNumDecalLayers;
+    std::int32_t     mLiveryID;
+    std::int8_t      mMorphValues[40][11];
+    float            mPhysicsTuning[31];
+    std::int32_t     mType;
   };
 }  // namespace OpenSpeed::ProStreet

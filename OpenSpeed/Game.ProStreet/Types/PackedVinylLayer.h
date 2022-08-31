@@ -23,9 +23,11 @@
 #include <OpenSpeed/Game.ProStreet/Types/VinylSystem.h>
 
 namespace OpenSpeed::ProStreet {
+#pragma pack(push, 1)
   struct PackedVinylLayer {
-    std::int16_t                      vinylPart;
-    VinylSystem::VinylTransformPacked transform;
-    PackedVinylColor                  colors[4];
+    std::int16_t                      mVinylPart;
+    VinylSystem::VinylTransformPacked mTransform;
+    PackedVinylColor                  mColors[4];
   };
+#pragma pack(pop)
 }  // namespace OpenSpeed::ProStreet

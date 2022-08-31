@@ -23,6 +23,50 @@
 
 namespace OpenSpeed::ProStreet {
   struct AutoSculpt {
+    enum class RegionID : std::uint32_t {
+      RegionFrontBumper,
+      RegionRearBumper,
+      RegionSkirtLeft,
+      RegionSkirtRight,
+      RegionRimsFront,
+      RegionRimsRear,
+      RegionDoorLeft,
+      RegionDoorRight,
+      RegionDoorRearLeft,
+      RegionDoorRearRight,
+      RegionFenderFrontLeft,
+      RegionFenderFrontRight,
+      RegionHoods,
+      RegionSpoilers,
+      RegionRoofScoops,
+      RegionRoofHeight,
+      RegionExhaust,
+      RegionFrontWindow,
+      RegionRearWindow,
+      RegionFrontLeftWindow,
+      RegionFrontRightWindow,
+      RegionRearLeftWindow,
+      RegionRearRightWindow,
+      RegionLeftDoor,
+      RegionRightDoor,
+      RegionInterior,
+      RegionDoorline,
+      RegionDamageFront,
+      RegionDamageRear,
+      RegionWindTunnelType1,
+      RegionWindTunnelType2,
+      RegionWindTunnelType3,
+      RegionWindTunnelType4,
+      RegionWindTunnelType5,
+      RegionWindTunnelType6,
+      RegionWindTunnelType7,
+      RegionWindTunnelType8,
+      RegionWindTunnelType9,
+      RegionWindTunnelType10,
+      RegionRearBumperExtra
+    };
+    enum class ZoneID : std::uint32_t { Zone0, Zone1, Zone2, Zone3, Zone4, Zone5, Zone6, Zone7, Zone8, Zone9, Zone10 };
+
     bool             mIsInitialized;
     AutoSculptRegion mRegionList[40];
   };

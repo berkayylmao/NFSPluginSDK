@@ -24,16 +24,16 @@
 
 namespace OpenSpeed::ProStreet {
   struct FECareerRecord {
-    std::uint8_t      Handle;
-    FEImpoundData     TheImpoundData;
-    float             VehicleHeat;
-    bool              HasNeverBeenInHub;
-    std::uint32_t     Bounty;
-    std::uint16_t     NumEvadedPursuits;
-    std::uint16_t     NumBustedPursuits;
-    float             DamageLevel;
-    std::int32_t      DamageCost;
-    FEInfractionsData UnservedInfractions;
-    FEInfractionsData ServedInfractions;
+    std::uint8_t      mHandle;
+    FEImpoundData     mTheImpoundData;
+    float             mVehicleHeat;
+    bool              mHasNeverBeenInHub;
+    std::uint32_t     mBounty;
+    std::uint16_t     mNumEvadedPursuits;
+    std::uint16_t     mNumBustedPursuits;
+    float             mDamageLevel;
+    std::int32_t      mDamageCost;
+    FEInfractionsData mUnservedInfractions;
+    FEInfractionsData mServedInfractions;
   };
 }  // namespace OpenSpeed::ProStreet

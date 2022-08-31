@@ -22,7 +22,7 @@
 #include <OpenSpeed/Game.ProStreet/Types/FEPlayerCarDB.h>
 #include <OpenSpeed/Game.ProStreet/Types/EA.h>
 #include <OpenSpeed/Game.ProStreet/Types/Gameplay.h>
-#include <OpenSpeed/Game.ProStreet/Types/JukeboxEntry.h>
+#include <OpenSpeed/Game.ProStreet/Types/Jukebox.h>
 #include <OpenSpeed/Game.ProStreet/Types/OptionsSettings.h>
 #include <OpenSpeed/Game.ProStreet/Types/RaceDaySettings.h>
 #include <OpenSpeed/Game.ProStreet/Types/UTL/FixedVector.h>  // Jukebox typedef
@@ -31,7 +31,6 @@ namespace OpenSpeed::ProStreet {
   struct UserProfile : EA::Memcard::IMemcardSavable {
     char                 mName[32];
     Jukebox              mPlaylist;
-    std::uint32_t        mEasterEggs;
     FEPlayerCarDB        mCarStable;
     OptionsSettings      mOptionsSettings;
     std::uint32_t        mNumRaceDaySaves;

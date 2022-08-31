@@ -19,15 +19,16 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/FEModifiedColour.h>
-#include <OpenSpeed/Game.ProStreet/Types/VinylSystem.h>
+#include <OpenSpeed/Game.ProStreet/Types/Attrib.h>
 
-namespace OpenSpeed::ProStreet {
-  struct FEVinylRecord {
-    VinylSystem::VinylTransformPacked mTransform;
-    std::uint16_t                     mValue;
-    std::uint16_t                     mIsMirrored;
-    std::uint16_t                     mNextElement;
-    FEModifiedColour                  mc[4];
+namespace OpenSpeed::ProStreet::Attrib::Gen {
+  struct vehicle : Instance {
+    static vehicle TryGetInstance(std::uint32_t key) {
+      vehicle instance;
+      reinterpret_cast<vehicle*(__thiscall*)(vehicle&, std::uint32_t, bool)>(0x4659A0)(instance, key, false);
+
+      return instance;
+    }
+    static vehicle TryGetInstance(const char* name) { return TryGetInstance(StringToKey(name)); }
   };
-}  // namespace OpenSpeed::ProStreet
+}  // namespace OpenSpeed::ProStreet::Attrib::Gen

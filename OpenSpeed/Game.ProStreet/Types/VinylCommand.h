@@ -18,16 +18,16 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/EASTL/EASTL/vector.h>
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/FEModifiedColour.h>
-#include <OpenSpeed/Game.ProStreet/Types/VinylSystem.h>
 
 namespace OpenSpeed::ProStreet {
-  struct FEVinylRecord {
-    VinylSystem::VinylTransformPacked mTransform;
-    std::uint16_t                     mValue;
-    std::uint16_t                     mIsMirrored;
-    std::uint16_t                     mNextElement;
-    FEModifiedColour                  mc[4];
+  struct VinylCommand {
+    virtual void Execute(RideInfo*);
+    virtual void Execute(FECustomizationRecord*, BluePrintNumber);
+  };
+  struct VinylCommandInvoker {
+    eastl::vector<VinylCommand*> mVector;
   };
 }  // namespace OpenSpeed::ProStreet

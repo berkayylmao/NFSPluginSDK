@@ -19,19 +19,33 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/FECustomizationRecord.h>
 
 namespace OpenSpeed::ProStreet {
   struct FECarRecord {
-    std::uint32_t Handle;
-    std::uint32_t FEKey;
-    std::uint32_t VehicleKey;
-    std::uint32_t PresetKey;
-    std::uint32_t FilterBits;
-    std::uint8_t  Customization;
-    std::uint8_t  CareerHandle;
-    bool          IsPresetSkin;
-    std::uint8_t  Padd;
+    std::uint32_t           Handle;
+    std::uint32_t           FEKey;
+    std::uint32_t           VehicleKey;
+    std::uint32_t           PresetKey;
+    FEPlayerCarDBFilterBits FilterBits;
+    std::uint8_t            Customization;
+    std::uint8_t            CareerHandle;
+    std::uint8_t            IsPresetSkin;
+    std::uint8_t            Padd;
 
     bool IsUnlocked() { return reinterpret_cast<bool(__thiscall*)(FECarRecord*)>(0x548C00)(this); }
+
+    DALVehicleCommands::DriveTrain GetDriveTrain() {
+      return reinterpret_cast<DALVehicleCommands::DriveTrain(__thiscall*)(FECarRecord*)>(0x548C40)(this);
+    }
+    FECustomizationRecord* GetCustomizationRecord() {
+      return reinterpret_cast<FECustomizationRecord*(__thiscall*)(FECarRecord*)>(0x533640)(this);
+    }
+    VehicleCustomizations* GetVCRecord() {
+      auto* fecr = GetCustomizationRecord();
+      if (!fecr) return nullptr;
+
+      return &fecr->mBluePrints[static_cast<std::uint32_t>(fecr->mActiveBlueprint)];
+    }
   };
 }  // namespace OpenSpeed::ProStreet

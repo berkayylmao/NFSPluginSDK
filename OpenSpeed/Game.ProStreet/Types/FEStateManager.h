@@ -66,7 +66,7 @@ namespace OpenSpeed::ProStreet {
     FEStateManager*       mChildManager;
     FEStateManager*       mNextManager;
     bTList<FEStateOption> mStateOptions;
-    bool                  mCanSkipMovie;
+    std::int8_t           mCanSkipMovie;
 
     virtual ~FEStateManager();
     virtual std::int32_t       JUICE_GetMaxStates();

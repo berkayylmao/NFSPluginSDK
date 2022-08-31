@@ -26,10 +26,10 @@
 
 namespace OpenSpeed::ProStreet::DALVehicleCommands {
   struct BlueprintInfo {
-    char name[64];
-    bool active;
-    bool used;
-    bool locked;
+    char         name[64];
+    bool         active;
+    bool         used;
+    bool         locked;
     std::uint8_t _padding[0x9];
   };
 
@@ -85,17 +85,17 @@ namespace OpenSpeed::ProStreet::DALVehicleCommands {
   struct GetCustomizableCars : DLCommandObject {
     eastl::vector<DALVehicleCommands::CarInfo> mVector;
     RaceMode                                   mMode;
-    std::uint32_t                              mFilterKey;
+    FEPlayerCarDBFilterBits                    mFilter;
 
     virtual ~GetCustomizableCars();
     virtual void Execute() override;
 
-    static std::unique_ptr<GetCustomizableCars> Construct(RaceMode mode, std::uint32_t filterKey) {
-      auto dummy      = std::make_unique<uint8_t[]>(sizeof(GetCustomizableCars));
-      auto ret        = std::unique_ptr<GetCustomizableCars>{reinterpret_cast<GetCustomizableCars*>(dummy.release())};
-      ret->mState     = DLCommandObject::CommandState::WaitingToExecute;
-      ret->mMode      = mode;
-      ret->mFilterKey = filterKey;
+    static std::unique_ptr<GetCustomizableCars> Construct(RaceMode mode, FEPlayerCarDBFilterBits filter) {
+      auto dummy   = std::make_unique<uint8_t[]>(sizeof(GetCustomizableCars));
+      auto ret     = std::unique_ptr<GetCustomizableCars>{reinterpret_cast<GetCustomizableCars*>(dummy.release())};
+      ret->mState  = DLCommandObject::CommandState::WaitingToExecute;
+      ret->mMode   = mode;
+      ret->mFilter = filter;
 
       *reinterpret_cast<std::uintptr_t*>(ret.get()) = 0x9708D8;
       return ret;

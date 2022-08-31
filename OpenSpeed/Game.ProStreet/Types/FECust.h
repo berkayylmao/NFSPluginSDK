@@ -19,15 +19,13 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/FEModifiedColour.h>
-#include <OpenSpeed/Game.ProStreet/Types/VinylSystem.h>
+#include <OpenSpeed/Game.ProStreet/Types/DBCarPart.h>
 
-namespace OpenSpeed::ProStreet {
-  struct FEVinylRecord {
-    VinylSystem::VinylTransformPacked mTransform;
-    std::uint16_t                     mValue;
-    std::uint16_t                     mIsMirrored;
-    std::uint16_t                     mNextElement;
-    FEModifiedColour                  mc[4];
+namespace OpenSpeed::ProStreet::FECust {
+  struct ColourPartData {
+    std::int8_t saturation;
+    std::int8_t brightness;
+    DBCarPart   hue;
+    DBCarPart   group;
   };
-}  // namespace OpenSpeed::ProStreet
+}  // namespace OpenSpeed::ProStreet::FECust

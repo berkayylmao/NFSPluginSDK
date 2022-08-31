@@ -24,8 +24,10 @@
 
 namespace OpenSpeed::ProStreet {
   struct PackedDecalLayer {
-    std::int16_t                      decalPart;
-    VinylSystem::VinylTransformPacked transform;
-    PackedVinylColor                  colors[4];
+#pragma pack(push, 1)
+    std::int16_t                      mDecalPart;
+    VinylSystem::VinylTransformPacked mTransform;
+    PackedVinylColor                  mColors;
+#pragma pack(pop)
   };
 }  // namespace OpenSpeed::ProStreet
