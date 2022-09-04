@@ -48,4 +48,16 @@ namespace OpenSpeed::ProStreet::EA {
       virtual void DefaultData(std::int32_t);
     };
   }  // namespace Memcard
+  namespace Thread {
+    struct alignas(8) EAMutexData {
+      std::uint8_t mData[32];
+      std::int32_t mnLockCount;
+      bool         mbIntraProcess;
+      void*        mThreadId;
+    };
+
+    struct Mutex {
+      EAMutexData mMutexData;
+    };
+  }  // namespace Thread
 }  // namespace OpenSpeed::ProStreet::EA

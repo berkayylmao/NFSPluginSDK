@@ -34,8 +34,11 @@ namespace OpenSpeed {
     static MemoryFieldWrapper<bool>          IsGameplayPaused{0xAB0EDC, false};
     static MemoryFieldWrapper<bool>          IsRacing{0xAACF5F, false};
     static MemoryFieldWrapper<bool>          RearViewModel{0xAEB728, false};
+    static MemoryFieldWrapper<bool>          ShowAllCarsInFE{0xBFBC6E, false};
     static MemoryFieldWrapper<bool>          ShowCarLODScreenPrint{0xAEB6E0, false};
+    static MemoryFieldWrapper<bool>          SkipCareerIntro{0xBFBC6C, false};
     static MemoryFieldWrapper<GameFlowState> TheGameFlowManager{0xABB510, GameFlowState::InFrontEnd};
     static MemoryFieldWrapper<float>         Tweak_GameBreakerCollisionMass{0xA9B678, 2.0f, FLT_MIN, FLT_MAX};
+    static MemoryFieldWrapper<bool>          UnlockAllThings{0xBFBC5B, false};
   }  // namespace ProStreet::Variables
 }  // namespace OpenSpeed

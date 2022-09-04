@@ -28,7 +28,10 @@ namespace OpenSpeed::ProStreet {
     std::int32_t mOption;
   };
 
+  template <typename EntryPoints = FEManager::eEntryPoints, typename State = FEManager::eState,
+            typename ExitPoints = std::uint32_t>
   struct FEStateManager {
+    enum class eGlobalStates : std::uint32_t { PushedToTop = UINT32_MAX };
     enum class ePadButton : std::uint32_t {
       Button_0,
       Button_1,
@@ -47,15 +50,14 @@ namespace OpenSpeed::ProStreet {
       PadButtonPressed,
       PadButtonUndefined,
     };
-    enum class eGlobalStates : std::uint32_t { PushedToTop = UINT32_MAX };
     enum class eSubStates : std::uint32_t { None, SwitchingDialog, ExitAll, Exiting, Invalid = UINT32_MAX };
 
-    std::int32_t          mCurState;
-    std::int32_t          mEntryPoint;
-    std::int32_t          mExitPoint;
-    std::int32_t          mNextState;
-    std::int32_t          mPrevState;
-    std::int32_t          mSubState;
+    State                 mCurState;
+    EntryPoints           mEntryPoint;
+    ExitPoints            mExitPoint;
+    State                 mNextState;
+    State                 mPrevState;
+    eSubStates            mSubState;
     char                  mLastScreenPushed[128];
     char*                 mNextScreen;
     bool                  mNextStateValid;
@@ -66,7 +68,7 @@ namespace OpenSpeed::ProStreet {
     FEStateManager*       mChildManager;
     FEStateManager*       mNextManager;
     bTList<FEStateOption> mStateOptions;
-    std::int8_t           mCanSkipMovie;
+    bool                  mCanSkipMovie;
 
     virtual ~FEStateManager();
     virtual std::int32_t       JUICE_GetMaxStates();

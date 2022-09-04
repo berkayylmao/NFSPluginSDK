@@ -24,12 +24,12 @@
 
 namespace OpenSpeed::ProStreet {
   struct FEString : FEObject {
-    char*         pLabelName;
-    std::uint32_t LabelHash;
-    FEWideString  string;
-    std::uint32_t Format;
-    std::int32_t  Leading;
-    std::uint32_t MaxWidth;
+    char*              pLabelName;
+    std::uint32_t      LabelHash;
+    FEWideString       string;
+    FEStringFormatting Format;
+    std::int32_t       Leading;
+    std::uint32_t      MaxWidth;
 
     template <typename... Arguments>
     static void Printf(const char* fngName, std::uint32_t objectHash, const char* format, Arguments... args) {

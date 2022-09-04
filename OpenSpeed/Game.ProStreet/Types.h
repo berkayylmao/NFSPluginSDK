@@ -354,6 +354,7 @@ namespace OpenSpeed::ProStreet {
   struct FEObject;
   struct FEPackage;
   struct FEPlayerCarDB;
+  struct FEString;
   struct FinishedRaceStatsEntry;
   struct FloatSpring;
   struct GameplaySettings;
@@ -1321,6 +1322,78 @@ namespace OpenSpeed::ProStreet {
     Dirt         = 7
   };
   enum class TireCondition : std::uint32_t { Grip, Wet, Flat, Drift, Drag };
+
+  namespace FEManager {
+    enum class eEntryPoints : std::uint32_t {
+      None,
+      BootFlow,
+      DebugCarCustomize,
+      MainMenu,
+      Mazda,
+      CarClassSelect,
+      CarLot,
+      Quickrace,
+      CareerMain,
+      CareerManager,
+      CareerCarSelect,
+      CareerBusted,
+      CareerNewWingman,
+      CareerNewWingmanJustMovie,
+      CareerCrewTutorial,
+      BossDefeated,
+      WorldMap,
+      ChallengeSeries,
+      GameRoom,
+      CustomMatchJoin,
+      PostRaceJoin,
+      WingmanSelectFromInGame,
+      GameWon,
+      GameOver,
+      Hub,
+      HubMap,
+      HubMapRaceDay,
+      HubMapCarSelect,
+      HubMapKingIntro,
+      HubMapKingProgess,
+      HubMapKingDefeated,
+      HubMapKingIntroSpeed,
+      HubMapKingIntroDrift,
+      HubMapKingIntroDrag,
+      HubMapKingIntroGrip,
+    };
+    enum class eEvents : std::uint32_t {
+      GarageCarLoaded,
+      ChatButtonPressed,
+      AnimationDone,
+      ControllerErrorCleared,
+      XenonPauseFinished,
+    };
+    enum class eState : std::uint32_t {
+      Autosave,
+      Bootflow,
+      DebugCarCustomize,
+      MainMenu,
+      Hub,
+      WaitingForHub,
+      Pause,
+      ConfirmSafehouse,
+      ConfirmCarLot,
+      PostRace,
+      SeriesPostRace,
+      PreRace,
+      Spectator,
+      SMS,
+      Movie,
+      CareerMap,
+      GameRoom,
+      InviteGameRoom,
+      Tutorial,
+      LoadingMain,
+      CrashFlow,
+      IceGradient,
+      Idle
+    };
+  }  // namespace FEManager
 
   namespace GRace {
     enum class AI_AggressionLevel : std::uint32_t { Careful, Intermediate, Aggressive };

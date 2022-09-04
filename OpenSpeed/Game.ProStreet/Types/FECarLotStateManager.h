@@ -25,7 +25,7 @@
 #include <OpenSpeed/Game.ProStreet/Types/FEStateManager.h>
 
 namespace OpenSpeed::ProStreet {
-  struct FECarLotStateManager : FEStateManager {
+  struct FECarLotStateManager : FEStateManager<> {
     using eDriveTrainFilter = DALVehicleCommands::DriveTrain;
     enum class eFECarLotState : std::uint32_t {
       CARLOT_MAIN,
@@ -51,9 +51,10 @@ namespace OpenSpeed::ProStreet {
     bool                                       mCurrentCarIsLocked;
     FEObject*                                  mPrevModeButton;
 
-    static inline FECarLotStateManager** spInstance = reinterpret_cast<FECarLotStateManager**>(0xB32B20);
-    static FECarLotStateManager*         Get() {
+    static FECarLotStateManager* Get() {
+      static auto** spInstance = reinterpret_cast<FECarLotStateManager**>(0xB32B20);
       if (!spInstance) return nullptr;
+      
       return *spInstance;
     }
   };

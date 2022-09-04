@@ -41,11 +41,17 @@ namespace OpenSpeed::ProStreet {
     FECustomizationRecord* GetCustomizationRecord() {
       return reinterpret_cast<FECustomizationRecord*(__thiscall*)(FECarRecord*)>(0x533640)(this);
     }
-    VehicleCustomizations* GetVCRecord() {
+    VehicleCustomizations* GetVCRecord(BluePrintNumber blueprintIdx) {
       auto* fecr = GetCustomizationRecord();
       if (!fecr) return nullptr;
 
-      return &fecr->mBluePrints[static_cast<std::uint32_t>(fecr->mActiveBlueprint)];
+      return &fecr->mBluePrints[static_cast<std::size_t>(blueprintIdx)];
+    }
+    VehicleCustomizations* GetActiveVCRecord() {
+      auto* fecr = GetCustomizationRecord();
+      if (!fecr) return nullptr;
+
+      return &fecr->mBluePrints[static_cast<std::size_t>(fecr->mActiveBlueprint)];
     }
   };
 }  // namespace OpenSpeed::ProStreet

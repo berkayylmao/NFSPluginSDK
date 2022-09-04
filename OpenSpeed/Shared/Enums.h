@@ -112,6 +112,13 @@ namespace OpenSpeed {
     FILTER_REGION_ALL        = 0xF0000,
     FILTER_REGION_MASK       = 0xFFFF0000
   };
+  enum class FEStringFormatting : std::uint32_t {
+    JustifyHorizontalCenter,
+    JustifyHorizontalRight,
+    JustifyVerticalCenter,
+    JustifyVerticalBottom,
+    WordWrap
+  };
   enum class GameFlowState : std::uint32_t {
     None,
     LoadingFrontEnd,
