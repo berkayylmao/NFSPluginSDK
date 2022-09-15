@@ -28,11 +28,14 @@ namespace OpenSpeed::MW05 {
     float        mSunAzimuth;
     float        mSunLatitude;
 
-    static inline TimeOfDay** g_ppInstance = reinterpret_cast<TimeOfDay**>(0x9B392C);
-    static TimeOfDay*         GetInstance() {
-      if (g_ppInstance && *g_ppInstance) return *g_ppInstance;
+    static TimeOfDay* GetInstance() {
+      static TimeOfDay** ppInstance = reinterpret_cast<TimeOfDay**>(0x9B392C);
+      if (ppInstance) return *ppInstance;
 
       return nullptr;
     }
+
+    TimeOfDay() :
+        mUpdateRate(1.0f), mUpdateDirection(1), mCurrentTimeOfDay(0.0f), mSunAzimuth(0.0f), mSunLatitude(0.0f) {}
   };
 }  // namespace OpenSpeed::MW05
