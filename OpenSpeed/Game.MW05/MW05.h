@@ -22,40 +22,31 @@
 #pragma once
 
 #include <OpenSpeed/Core/MemoryFieldWrapper.hpp>
-#include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.MW05/_IncludeAllTypes.h>
 
-namespace OpenSpeed {
-  namespace MW05::Variables {
-    static MemoryFieldWrapper<float>          AnimationSpeed{0x904AEC, 45.0f, FLT_MIN, FLT_MAX};
-    static MemoryFieldWrapper<Math::Matrix4>  CarScaleMatrix{0x9B34B0, Math::Matrix4()};
-    static MemoryFieldWrapper<bool>           DrawCars{0x903320, true};
-    static MemoryFieldWrapper<bool>           DrawCarsReflections{0x903324, true};
-    static MemoryFieldWrapper<bool>           DrawCarShadow{0x903328, true};
-    static MemoryFieldWrapper<bool>           DrawHUD{0x57CAA8, true};
-    static MemoryFieldWrapper<bool>           DrawLightFlares{0x8F2918, true};
-    static MemoryFieldWrapper<CARPART_LOD>    ForceCarLOD{0x903384, CARPART_LOD::A};
-    static MemoryFieldWrapper<CARPART_LOD>    ForceTireLOD{0x903388, CARPART_LOD::A};
-    static MemoryFieldWrapper<bool>           IsFadeScreenOn{0x91CAE4, false};
-    static MemoryFieldWrapper<bool>           IsInNIS{0x91606C, false};
-    static MemoryFieldWrapper<std::uint16_t>  NOSFOVWidening{0x91112C, 0x666, 0x001, 0x3500};
-    static MemoryFieldWrapper<ePrecullerMode> PrecullerMode{0x8FAE44, ePrecullerMode::On};
-    static MemoryFieldWrapper<bool>           StopUpdatingCamera{0x911020, false};
-    static MemoryFieldWrapper<AICopManager*>  TheOneCopManager{0x90D5F4, nullptr};
-    static MemoryFieldWrapper<GameFlowState>  TheGameFlowManager{0x925E90, GameFlowState::InFrontEnd};
-    static MemoryFieldWrapper<float>          Tweak_GameBreakerCollisionMass{0x901AEC, 2.0f, FLT_MIN, FLT_MAX};
-    static MemoryFieldWrapper<float>          Tweak_GameSpeed{0x901B1C, 1.0f, FLT_MIN, FLT_MAX};
-    static MemoryFieldWrapper<bool>           Tweak_InfiniteNOS{0x937804, false};
-    static MemoryFieldWrapper<bool>           Tweak_InfiniteRaceBreaker{0x988E1C, false};
-    static MemoryFieldWrapper<bool>           Tweak_PauseCameraLock{0x92584C, false};
-    static MemoryFieldWrapper<bool>           WindowHasLostFocus{0x982C50, false};
-
-    namespace Config {
-      static MemoryFieldWrapper<std::uint8_t> KeyAccelerate{0x91F420, 0x00};
-      static MemoryFieldWrapper<std::uint8_t> KeyBrake{0x91F454, 0x00};
-      static MemoryFieldWrapper<std::uint8_t> KeyShiftDown{0x91F58C, 0x00};
-      static MemoryFieldWrapper<std::uint8_t> KeyShiftUp{0x91F5C0, 0x00};
-    }  // namespace Config
-  }    // namespace MW05::Variables
-}  // namespace OpenSpeed
+namespace OpenSpeed::MW05::Variables {
+  static inline MemoryFieldWrapper<float>          AnimationSpeed{0x904AEC, 45.0f, FLT_MIN, FLT_MAX};
+  static inline MemoryFieldWrapper<Math::Matrix4>  CarScaleMatrix{0x9B34B0, Math::Matrix4()};
+  static inline MemoryFieldWrapper<bool>           DrawCars{0x903320, true};
+  static inline MemoryFieldWrapper<bool>           DrawCarsReflections{0x903324, true};
+  static inline MemoryFieldWrapper<bool>           DrawCarShadow{0x903328, true};
+  static inline MemoryFieldWrapper<bool>           DrawHUD{0x57CAA8, true};
+  static inline MemoryFieldWrapper<bool>           DrawLightFlares{0x8F2918, true};
+  static inline MemoryFieldWrapper<CARPART_LOD>    ForceCarLOD{0x903384, CARPART_LOD::A};
+  static inline MemoryFieldWrapper<CARPART_LOD>    ForceTireLOD{0x903388, CARPART_LOD::A};
+  static inline MemoryFieldWrapper<bool>           IsFadeScreenOn{0x91CAE4, false};
+  static inline MemoryFieldWrapper<bool>           IsInNIS{0x91606C, false};
+  static inline MemoryFieldWrapper<std::uint16_t>  NOSFOVWidening{0x91112C, 0x666, 0x001, 0x3500};
+  static inline MemoryFieldWrapper<ePrecullerMode> PrecullerMode{0x8FAE44, ePrecullerMode::On};
+  static inline MemoryFieldWrapper<bool>           StopUpdatingCamera{0x911020, false};
+  static inline MemoryFieldWrapper<AICopManager*>  TheOneCopManager{0x90D5F4, nullptr};
+  static inline MemoryFieldWrapper<GameFlowState>  TheGameFlowManager{0x925E90, GameFlowState::InFrontEnd};
+  static inline MemoryFieldWrapper<float>          Tweak_GameBreakerCollisionMass{0x901AEC, 2.0f, FLT_MIN, FLT_MAX};
+  static inline MemoryFieldWrapper<float>          Tweak_GameSpeed{0x901B1C, 1.0f, FLT_MIN, FLT_MAX};
+  static inline MemoryFieldWrapper<bool>           Tweak_InfiniteNOS{0x937804, false};
+  static inline MemoryFieldWrapper<bool>           Tweak_InfiniteRaceBreaker{0x988E1C, false};
+  static inline MemoryFieldWrapper<bool>           Tweak_PauseCameraLock{0x92584C, false};
+  static inline MemoryFieldWrapper<bool>           WindowHasLostFocus{0x982C50, false};
+}  // namespace OpenSpeed::MW05::Variables
 
 #endif  // OPENSPEED_GAME_MW05_MW05_H

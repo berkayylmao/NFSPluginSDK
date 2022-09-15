@@ -22,30 +22,27 @@
 #pragma once
 
 #include <OpenSpeed/Core/MemoryFieldWrapper.hpp>
-#include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/_IncludeAllTypes.h>
 
-namespace OpenSpeed {
-  namespace ProStreet::Variables {
-    static MemoryFieldWrapper<bool>           CarGuysForceLODS{0xBFBC43, false};
-    static MemoryFieldWrapper<std::uint32_t*> CarPartTypeNameHashTable{0xAEB774, nullptr};
-    static MemoryFieldWrapper<Math::Matrix4>  CarScaleMatrix{0xAEE180, Math::Matrix4()};
-    static MemoryFieldWrapper<bool>           DrawCars{0xA79CDC, true};
-    static MemoryFieldWrapper<bool>           EnableEnvMap{0xA61884, true};
-    static MemoryFieldWrapper<CARPART_LOD>    ForceCarLOD{0xA79D7C, CARPART_LOD::A};
-    static MemoryFieldWrapper<bool>           ForceCarLODPrint{0xAEB6E2, false};
-    static MemoryFieldWrapper<CARPART_LOD>    ForceTireLOD{0xA79D80, CARPART_LOD::A};
-    // DALPauseStates::mPauseRequest
-    static MemoryFieldWrapper<bool>          IsGameplayPaused{0xAB0EDC, false};
-    static MemoryFieldWrapper<bool>          IsRacing{0xAACF5F, false};
-    static MemoryFieldWrapper<float>         RealTimeElapsed{0xABB048, 0.0f};
-    static MemoryFieldWrapper<bool>          RearViewModel{0xAEB728, false};
-    static MemoryFieldWrapper<bool>          ShowAllCarsInFE{0xBFBC6E, false};
-    static MemoryFieldWrapper<bool>          ShowCarLODScreenPrint{0xAEB6E0, false};
-    static MemoryFieldWrapper<bool>          SkipCareerIntro{0xBFBC6C, false};
-    static MemoryFieldWrapper<GameFlowState> TheGameFlowManager{0xABB510, GameFlowState::InFrontEnd};
-    static MemoryFieldWrapper<float>         Tweak_GameBreakerCollisionMass{0xA9B678, 2.0f, FLT_MIN, FLT_MAX};
-    static MemoryFieldWrapper<bool>          UnlockAllThings{0xBFBC5B, false};
-  }  // namespace ProStreet::Variables
-}  // namespace OpenSpeed
+namespace OpenSpeed::ProStreet::Variables {
+  static inline MemoryFieldWrapper<bool>           CarGuysForceLODS{0xBFBC43, false};
+  static inline MemoryFieldWrapper<std::uint32_t*> CarPartTypeNameHashTable{0xAEB774, nullptr};
+  static inline MemoryFieldWrapper<Math::Matrix4>  CarScaleMatrix{0xAEE180, Math::Matrix4()};
+  static inline MemoryFieldWrapper<bool>           DrawCars{0xA79CDC, true};
+  static inline MemoryFieldWrapper<bool>           EnableEnvMap{0xA61884, true};
+  static inline MemoryFieldWrapper<CARPART_LOD>    ForceCarLOD{0xA79D7C, CARPART_LOD::A};
+  static inline MemoryFieldWrapper<bool>           ForceCarLODPrint{0xAEB6E2, false};
+  static inline MemoryFieldWrapper<CARPART_LOD>    ForceTireLOD{0xA79D80, CARPART_LOD::A};
+  static inline MemoryFieldWrapper<bool>           IsGameplayPaused{0xAB0EDC, false};
+  static inline MemoryFieldWrapper<bool>           IsRacing{0xAACF5F, false};
+  static inline MemoryFieldWrapper<float>          RealTimeElapsed{0xABB048, 0.0f};
+  static inline MemoryFieldWrapper<bool>           RearViewModel{0xAEB728, false};
+  static inline MemoryFieldWrapper<bool>           ShowAllCarsInFE{0xBFBC6E, false};
+  static inline MemoryFieldWrapper<bool>           ShowCarLODScreenPrint{0xAEB6E0, false};
+  static inline MemoryFieldWrapper<bool>           SkipCareerIntro{0xBFBC6C, false};
+  static inline MemoryFieldWrapper<GameFlowState>  TheGameFlowManager{0xABB510, GameFlowState::InFrontEnd};
+  static inline MemoryFieldWrapper<float>          Tweak_GameBreakerCollisionMass{0xA9B678, 2.0f, FLT_MIN, FLT_MAX};
+  static inline MemoryFieldWrapper<bool>           UnlockAllThings{0xBFBC5B, false};
+}  // namespace OpenSpeed::ProStreet::Variables
 
 #endif  // OPENSPEED_GAME_PROSTREET_PROSTREET_H
