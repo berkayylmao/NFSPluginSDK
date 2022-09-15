@@ -27,6 +27,7 @@
 #include <OpenSpeed/Game.MW05/Types/IPursuit.h>
 #include <OpenSpeed/Game.MW05/Types/Sim.h>
 #include <OpenSpeed/Game.MW05/Types/Timer.h>
+#include <OpenSpeed/Game.MW05/Types/UTL/Listable.h>
 
 namespace OpenSpeed::MW05 {
   struct AIPursuit : Sim::Activity, IPursuit {
@@ -42,7 +43,7 @@ namespace OpenSpeed::MW05 {
 
     HSIMTASK__*                             mSimulateTask;
     HSIMTASK__*                             mBustedTimerTask;
-    UTL::List<IVehicle*, 10>                mIVehicleList;
+    UTL::Listable<IVehicle*, 10>::List      mIVehicleList;
     AITarget*                               mTarget;
     IVehicle*                               mNearestCopInRoadblock;
     float                                   mDistanceToNearestCopInRoadblock;

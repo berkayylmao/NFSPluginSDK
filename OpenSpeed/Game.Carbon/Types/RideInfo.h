@@ -68,8 +68,8 @@ namespace OpenSpeed::Carbon {
     }
 
     inline void SetRandomPaint() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x7DACA0)(this); }
-    inline void SetRandomParts(Attrib::StringKey presetName = NULL) {
-      reinterpret_cast<void(__thiscall*)(RideInfo*, Attrib::StringKey)>(0x7E1880)(this, presetName);
+    inline void SetRandomParts(std::uint32_t presetNameHash = 0) {
+      reinterpret_cast<void(__thiscall*)(RideInfo*, std::uint32_t)>(0x7E1880)(this, presetNameHash);
     }
     inline void SetStockParts() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x7DA770)(this); }
 

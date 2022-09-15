@@ -22,17 +22,19 @@
 #pragma once
 
 #include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/UTL/FixedVector.h>
 
 namespace OpenSpeed::ProStreet::UTL {
   template <typename T, std::size_t nT, typename E, std::size_t nE>
   struct ListableSet {
+    struct List : FixedVector<T*, nT> {};
     struct _ListSet {
-      List<T, nT> _buckets[nE];
+      List _buckets[nE];
 
-      List<T, nT>&       operator[](std::size_t index) noexcept { return _buckets[index]; }
-      const List<T, nT>& operator[](std::size_t index) const noexcept { return _buckets[index]; }
-      List<T, nT>&       operator[](E index) noexcept { return _buckets[static_cast<std::size_t>(index)]; }
-      const List<T, nT>& operator[](E index) const noexcept { return _buckets[static_cast<std::size_t>(index)]; }
+      List&       operator[](std::size_t index) noexcept { return _buckets[index]; }
+      const List& operator[](std::size_t index) const noexcept { return _buckets[index]; }
+      List&       operator[](E index) noexcept { return _buckets[static_cast<std::size_t>(index)]; }
+      const List& operator[](E index) const noexcept { return _buckets[static_cast<std::size_t>(index)]; }
     };
   };
 }  // namespace OpenSpeed::ProStreet::UTL

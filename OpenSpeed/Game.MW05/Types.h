@@ -188,16 +188,12 @@ namespace OpenSpeed::MW05 {
   }  // namespace Sim
 
   namespace UTL {
-    template <typename T, std::size_t nT, typename E, std::size_t nE>
-    struct _ListSet;
-    template <typename T, std::size_t nT>
-    struct _Storage;
-    template <typename T, std::size_t nT>
+    template <typename T, std::size_t nT, std::size_t VectorCapacity = 16>
     struct FixedVector;
-    template <typename T>
+    template <typename T, std::size_t nT>
     struct GarbageNode;
     template <typename T, std::size_t nT>
-    struct List;
+    struct Listable;
     template <typename T, std::size_t nT, typename E, std::size_t nE>
     struct ListableSet;
     template <typename T, std::size_t N>
@@ -311,15 +307,17 @@ namespace OpenSpeed::MW05 {
   struct GTimer;
   struct GTrigger;
   struct GVault;
-  struct HACTIVITY__;
-  struct HCAUSE__;
+  using HACTIONQUEUE__ = std::uint32_t;
+  using HACTIVITY__    = std::uint32_t;
+  using HCAUSE__       = std::uint32_t;
+  using HCOLPRIM__     = std::uint32_t;
+  using HMODEL__       = std::uint32_t;
+  using HSIMABLE__     = std::uint32_t;
+  using HSIMPROFILE__  = std::uint32_t;
+  using HSIMSERVICE__  = std::uint32_t;
+  using HSIMTASK__     = std::uint32_t;
   struct HeliSheetCoordinate;
   struct HighScoresDatabase;
-  struct HMODEL__;
-  struct HSIMABLE__;
-  struct HSIMPROFILE__;
-  struct HSIMSERVICE__;
-  struct HSIMTASK__;
   struct HudElement;
   struct IAIHelicopter;
   struct IArticulatedVehicle;
@@ -738,7 +736,6 @@ namespace OpenSpeed::MW05 {
     Trailers
   };
   enum class eWorldMapView : std::uint8_t { Navigation, Event, Race, Pursuit };
-  enum class FormationType : std::uint32_t { None, Pit, BoxUn, RollingBlock, Follow, HeliPursuit, Herd, StaggerFollow };
   enum class JunkmanParts : std::uint32_t {
     None         = 0,
     Tires        = 1 << 0,

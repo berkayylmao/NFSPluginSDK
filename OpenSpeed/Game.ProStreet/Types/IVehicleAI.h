@@ -79,7 +79,7 @@ namespace OpenSpeed::ProStreet {
     virtual void                          EnableSimplePhysics()                                                    = 0;
     virtual bool                          IsSimplePhysicsActive()                                                  = 0;
     virtual void                          DisableSimplePhysics()                                                   = 0;
-    virtual IPursuit*                     GetPursuit()                                                             = 0;
+    virtual void*                         GetPursuit()                                                             = 0;
     virtual AIPursuit*                    AttachPursuit(AIPursuit*)                                                = 0;
     virtual AIRoadBlock*                  AttachRoadBlock(AIRoadBlock*)                                            = 0;
     virtual UMath::Vector3&               GetPursuitOffset()                                                       = 0;

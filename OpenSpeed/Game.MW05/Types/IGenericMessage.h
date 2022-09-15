@@ -26,7 +26,7 @@
 
 namespace OpenSpeed::MW05 {
   struct IGenericMessage : UTL::COM::IUnknown {
-    enum class FEngTypes : Attrib::StringKey {
+    enum class FEngTypes : std::uint32_t {
       None,
       Type1 = 0x8AB83EDB,  // [White Text] Fades out towards bottom of the screen
       Type2 = 0x9D73BC15,  // [White Text] Fades out towards player camera
@@ -34,7 +34,7 @@ namespace OpenSpeed::MW05 {
       Type4 = 0xA19BB14C,  // [Green Text] Fades out towards bottom of the screen
       Type5 = 0x821E6378   // [Green/White Text] Flashes and is kept alive
     };
-    enum class IconDisplayTypes : Attrib::StringKey {
+    enum class IconDisplayTypes : std::uint32_t {
       HideIcon,
       ShowIcon = 0x609F6B15,  // [Flashing background] Fades out towards bottom of the screen
     };

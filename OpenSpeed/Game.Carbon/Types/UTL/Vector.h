@@ -21,15 +21,17 @@
 #define OPENSPEED_GAME_CARBON_TYPES_UTL_VECTOR_H
 #pragma once
 
-#include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.Carbon/Types.h>
 
-namespace OpenSpeed::MW05::UTL {
+namespace OpenSpeed::Carbon::UTL {
   template <typename T, std::size_t N>
   struct Vector {
     T*            mBegin;
     std::uint32_t mCapacity;
     std::uint32_t mSize;
+
+    Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
   };
-}  // namespace OpenSpeed::MW05::UTL
+}  // namespace OpenSpeed::Carbon::UTL
 
 #endif  // OPENSPEED_GAME_CARBON_TYPES_UTL_VECTOR_H

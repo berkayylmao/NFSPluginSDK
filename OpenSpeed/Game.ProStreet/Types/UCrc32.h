@@ -21,7 +21,7 @@
 #define OPENSPEED_GAME_PROSTREET_TYPES_UCRC32_H
 #pragma once
 
-#include <OpenSpeed/Game.MW05/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet {
   struct UCrc32 {

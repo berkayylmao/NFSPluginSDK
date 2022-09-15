@@ -267,13 +267,8 @@ namespace OpenSpeed::ProStreet {
     struct VinylTransformPacked;
   }
 
-  namespace WRoadNav {
-    enum class eLaneType : std::uint32_t { Racing, Traffic, Drag, Cop, CopReckless, Reset, StartingGrid, Any };
-    enum class eNavType : std::uint32_t { None, Traffic, Direction, Path };
-    enum class ePathType : std::uint32_t { Cop, None, Racer, GPS, Player, Chopper, RaceRoute };
-  }  // namespace WRoadNav
-
   struct AcidEffect;
+  struct AcidEmitter;
   struct ActionData;
   struct ActionRef;
   struct ActionQueue;
@@ -395,15 +390,15 @@ namespace OpenSpeed::ProStreet {
   struct GTrigger;
   struct GVault;
   using HACTIONQUEUE__ = std::uint32_t;
-  struct HACTIVITY__;
-  struct HCAUSE__;
-  struct HCOLPRIM__;
+  using HACTIVITY__    = std::uint32_t;
+  using HCAUSE__       = std::uint32_t;
+  using HCOLPRIM__     = std::uint32_t;
+  using HMODEL__       = std::uint32_t;
+  using HSIMABLE__     = std::uint32_t;
+  using HSIMPROFILE__  = std::uint32_t;
+  using HSIMSERVICE__  = std::uint32_t;
+  using HSIMTASK__     = std::uint32_t;
   struct HighScoresDatabase;
-  struct HMODEL__;
-  struct HSIMABLE__;
-  struct HSIMPROFILE__;
-  struct HSIMSERVICE__;
-  struct HSIMTASK__;
   struct HudElement;
   struct IAIHelicopter;
   struct IArticulatedVehicle;
@@ -439,7 +434,6 @@ namespace OpenSpeed::ProStreet {
   struct IPerpetrator;
   struct IPlayer;
   struct IRacer;
-  struct IPursuit;
   struct IPursuitAI;
   struct IRBVehicle;
   struct IRenderable;
@@ -503,6 +497,7 @@ namespace OpenSpeed::ProStreet {
   struct VinylLayerPartInfo;
   struct WCollider;
   struct WorldModel;
+  struct WRoadNav;
   struct WRoadNavInfluence;
   struct WTrigger;
   struct WWorldPos;
@@ -1472,6 +1467,7 @@ namespace OpenSpeed::ProStreet {
     Color3,
     Color4
   };
+  enum class FormationType : std::uint32_t { None, Pit, BoxUn, RollingBlock, Follow, HeliPursuit, Herd, StaggerFollow };
   enum class KitType : std::uint32_t {
     Base,
     Stock,

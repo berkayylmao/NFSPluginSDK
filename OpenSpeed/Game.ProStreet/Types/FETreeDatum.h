@@ -318,7 +318,7 @@ namespace OpenSpeed::ProStreet {
     static FETreeDatum* GetStaticDatumByIndex(std::size_t idx) {
       if (idx > 327) return nullptr;
 
-      return &reinterpret_cast<OpenPS::FETreeDatum*>(0xA52AE8)[idx];
+      return &reinterpret_cast<FETreeDatum*>(0xA52AE8)[idx];
     }
   };
 }  // namespace OpenSpeed::ProStreet

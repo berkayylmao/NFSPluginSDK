@@ -24,18 +24,18 @@
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
+#include <OpenSpeed/Game.MW05/Types/UTL/Listable.h>
 
 namespace OpenSpeed::MW05 {
   struct GroundSupportRequest {
     enum Status : std::uint32_t { NotActive, Pending, Active };
 
-    const HeavySupport*      mHeavySupport;
-    const LeaderSupport*     mLeaderSupport;
-    UTL::List<IVehicle*, 10> mIVehicleList;
-    eastl::list<char*>       mVehicleGoals;
-    float                    mSupportTimer;
-    Status                   mSupportRequestStatus;
+    const HeavySupport*                mHeavySupport;
+    const LeaderSupport*               mLeaderSupport;
+    UTL::Listable<IVehicle*, 10>::List mIVehicleList;
+    eastl::list<char*>                 mVehicleGoals;
+    float                              mSupportTimer;
+    Status                             mSupportRequestStatus;
   };
 }  // namespace OpenSpeed::MW05
 

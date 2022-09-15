@@ -26,6 +26,7 @@
 #include <OpenSpeed/Game.MW05/Types/ICopMgr.h>
 #include <OpenSpeed/Game.MW05/Types/IVehicleCache.h>
 #include <OpenSpeed/Game.MW05/Types/Sim.h>
+#include <OpenSpeed/Game.MW05/Types/UTL/Listable.h>
 
 namespace OpenSpeed::MW05 {
   struct AICopManager : Sim::Activity, AISpawnManager, ICopMgr, IVehicleCache {
@@ -42,36 +43,36 @@ namespace OpenSpeed::MW05 {
       bool           mInRoadBlock;
     };
 
-    eastl::list<SpawnCopRequest> mSpawnRequests;
-    eastl::list<BreakerZone>     mBreakerZones;
-    HSIMTASK__*                  mSimulateTask;
-    std::int32_t                 mMaxCopCars;
-    std::int32_t                 mMaxCopHelicopters;
-    std::int32_t                 mPlatformBudgetCopCars;
-    std::int32_t                 mMaxPatrolCopCars;
-    std::int32_t                 mNumActiveCopCars;
-    std::int32_t                 mMaxActiveCopCars;
-    std::int32_t                 mNumActiveCopHelicopters;
-    std::int32_t                 mMaxActiveCopHelicopters;
-    std::int32_t                 mPursuitsInARow;
-    std::int32_t                 mTotalCopsDestroyed;
-    float                        mLockoutTimer;
-    float                        mHeavySupportDelayTimer;
-    bool                         mNoNewPursuitsOrCops;
-    std::int32_t                 mNumCopsForLatchedRoadblockReq;
-    IPursuit*                    mIPursuitWithLatchedRoadblockReq;
-    IVehicle*                    mPursuitRequestVehicle;
-    UTL::List<IVehicle*, 10>     mIVehicleList;
-    eastl::list<IPursuit*>       mIPursuitList;
-    eastl::list<IRoadBlock*>     mRoadBlockList;
-    ActionQueue*                 mActionQ;
-    IActivity*                   mSpeech;
-    AttributeSet*                mAttributes;
-    std::uint32_t*               mMessSpawnCop;
-    std::uint32_t*               mMessSetAutoSpawn;
-    std::uint32_t*               mMessSetCopsEnabled;
-    std::uint32_t*               mMessBreakerStopCops;
-    std::uint32_t*               mMessForcePursuitStart;
+    eastl::list<SpawnCopRequest>       mSpawnRequests;
+    eastl::list<BreakerZone>           mBreakerZones;
+    HSIMTASK__*                        mSimulateTask;
+    std::int32_t                       mMaxCopCars;
+    std::int32_t                       mMaxCopHelicopters;
+    std::int32_t                       mPlatformBudgetCopCars;
+    std::int32_t                       mMaxPatrolCopCars;
+    std::int32_t                       mNumActiveCopCars;
+    std::int32_t                       mMaxActiveCopCars;
+    std::int32_t                       mNumActiveCopHelicopters;
+    std::int32_t                       mMaxActiveCopHelicopters;
+    std::int32_t                       mPursuitsInARow;
+    std::int32_t                       mTotalCopsDestroyed;
+    float                              mLockoutTimer;
+    float                              mHeavySupportDelayTimer;
+    bool                               mNoNewPursuitsOrCops;
+    std::int32_t                       mNumCopsForLatchedRoadblockReq;
+    IPursuit*                          mIPursuitWithLatchedRoadblockReq;
+    IVehicle*                          mPursuitRequestVehicle;
+    UTL::Listable<IVehicle*, 10>::List mIVehicleList;
+    eastl::list<IPursuit*>             mIPursuitList;
+    eastl::list<IRoadBlock*>           mRoadBlockList;
+    ActionQueue*                       mActionQ;
+    IActivity*                         mSpeech;
+    AttributeSet*                      mAttributes;
+    std::uint32_t*                     mMessSpawnCop;
+    std::uint32_t*                     mMessSetAutoSpawn;
+    std::uint32_t*                     mMessSetCopsEnabled;
+    std::uint32_t*                     mMessBreakerStopCops;
+    std::uint32_t*                     mMessForcePursuitStart;
 
     virtual ~AICopManager();
     virtual void OnDebugDraw();

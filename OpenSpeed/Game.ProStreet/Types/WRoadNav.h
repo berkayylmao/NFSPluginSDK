@@ -26,6 +26,10 @@
 
 namespace OpenSpeed::ProStreet {
   struct WRoadNav {
+    enum class eLaneType : std::uint32_t { Racing, Traffic, Drag, Cop, CopReckless, Reset, StartingGrid, Any };
+    enum class eNavType : std::uint32_t { None, Traffic, Direction, Path };
+    enum class ePathType : std::uint32_t { Cop, None, Racer, GPS, Player, Chopper, RaceRoute };
+
     template <typename T, std::int32_t N = 32>
     struct CookieTrail {
       std::int32_t       mCount;

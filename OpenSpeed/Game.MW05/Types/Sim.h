@@ -100,7 +100,7 @@ namespace OpenSpeed::MW05 {
       virtual bool OnTask(HSIMTASK__* hTask, float deltaTime) override;
     };
 
-    struct Activity : Object, UTL::GarbageNode<Activity>, IActivity, IAttachable {
+    struct Activity : Object, UTL::GarbageNode<Activity, 40>, IActivity, IAttachable {
       // std::uint8_t _unk[0x4];
       Attachments* mAttachments;
 
@@ -116,7 +116,7 @@ namespace OpenSpeed::MW05 {
 #pragma endregion
     };
 
-    struct Entity : Object, UTL::GarbageNode<Entity>, IEntity, IAttachable {
+    struct Entity : Object, UTL::GarbageNode<Entity, 12>, IEntity, IAttachable {
       ISimable*    mSimable;
       Attachments* mAttachments;
 

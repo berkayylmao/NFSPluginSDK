@@ -21,47 +21,22 @@
 #define OPENSPEED_GAME_CARBON_TYPES_UTL_LISTABLESET_H
 #pragma once
 
-#include <OpenSpeed/Core/EASTL/EASTL/vector.h>
+#include <OpenSpeed/Game.Carbon/Types.h>
+#include <OpenSpeed/Game.Carbon/Types/UTL/FixedVector.h>
 
-#include <OpenSpeed/Game.MW05/Types.h>
+namespace OpenSpeed::Carbon::UTL {
+  template <typename T, std::size_t nT, typename E, std::size_t nE>
+  struct ListableSet {
+    struct List : FixedVector<T*, nT> {};
+    struct _ListSet {
+      List _buckets[nE];
 
-namespace OpenSpeed::MW05::UTL {
-  template <typename T>
-  struct GarbageNode {
-    struct Collector {
-      std::int8_t __unk[0x4];
-    };
-
-    union {
-      bool      mDirty;
-      Collector mCollector;
+      List&       operator[](std::size_t index) noexcept { return _buckets[index]; }
+      const List& operator[](std::size_t index) const noexcept { return _buckets[index]; }
+      List&       operator[](E index) noexcept { return _buckets[static_cast<std::size_t>(index)]; }
+      const List& operator[](E index) const noexcept { return _buckets[static_cast<std::size_t>(index)]; }
     };
   };
-
-  template <typename T, std::size_t nT, typename E, std::size_t nE>
-  struct ListableSet {};
-
-  namespace COM {
-    struct Object {
-      struct _IPair {
-        struct _Finder {
-          const IUnknown* ref;
-        };
-
-        void*     handle;
-        IUnknown* ref;
-      };
-
-      // eastl::vector<UTL::COM::Object::_IPair>
-      unsigned char _mInterfaces[0x18];
-    };
-
-    struct IUnknown {
-      Object* _mCOMObject;
-
-      virtual ~IUnknown();
-    };
-  }  // namespace COM
-}  // namespace OpenSpeed::MW05::UTL
+}  // namespace OpenSpeed::Carbon::UTL
 
 #endif  // OPENSPEED_GAME_CARBON_TYPES_UTL_LISTABLESET_H

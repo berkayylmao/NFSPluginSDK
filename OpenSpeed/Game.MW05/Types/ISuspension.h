@@ -58,7 +58,7 @@ namespace OpenSpeed::MW05 {
     virtual float                 GetRenderMotion()                                                = 0;
 
     static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x404040)(); }
-  }
+  };
 }  // namespace OpenSpeed::MW05
 
 #endif  // OPENSPEED_GAME_MW05_TYPES_ISUSPENSION_H

@@ -121,6 +121,7 @@ namespace OpenSpeed {
     JustifyVerticalBottom,
     WordWrap
   };
+  enum class FormationType : std::uint32_t { None, Pit, BoxUn, RollingBlock, Follow, HeliPursuit, Herd, StaggerFollow };
   enum class GameFlowState : std::uint32_t {
     None,
     LoadingFrontEnd,

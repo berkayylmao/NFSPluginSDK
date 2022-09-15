@@ -21,10 +21,10 @@
 #define OPENSPEED_GAME_CARBON_TYPES_IPURSUIT_H
 #pragma once
 
-#include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL.h>
+#include <OpenSpeed/Game.Carbon/Types.h>
+#include <OpenSpeed/Game.Carbon/Types/UTL.h>
 
-namespace OpenSpeed::MW05 {
+namespace OpenSpeed::Carbon {
   struct IPursuit : UTL::COM::IUnknown {
     virtual ~IPursuit();
 
@@ -111,6 +111,6 @@ namespace OpenSpeed::MW05 {
 
     static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4038C0)(); }
   };
-}  // namespace OpenSpeed::MW05
+}  // namespace OpenSpeed::Carbon
 
 #endif  // OPENSPEED_GAME_CARBON_TYPES_IPURSUIT_H

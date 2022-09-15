@@ -21,7 +21,7 @@
 #define OPENSPEED_GAME_PROSTREET_TYPES_DBCARPART_H
 #pragma once
 
-#include <OpenSpeed/Game.ProStreet/ProStreet.h>
+#include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Game.h>
 #include <OpenSpeed/Game.ProStreet/Types/CarPartAttribute.h>
 
@@ -39,7 +39,10 @@ namespace OpenSpeed::ProStreet {
       return reinterpret_cast<CarPartAttribute*(__thiscall*)(DBCarPart*, std::uint32_t, std::uint32_t)>(0x754CD0)(
           this, Game::bStringHash("PARTID_UPGRADE_GROUP"), 0);
     }
-    std::uint32_t GetCarTypeNameHash() { return Variables::CarPartTypeNameHashTable[mCarTypeNameHashIndex]; }
+    std::uint32_t GetCarTypeNameHash() {
+      static MemoryFieldWrapper<std::uint32_t*> sCarPartTypeNameHashTable{0xAEB774, nullptr};
+      return sCarPartTypeNameHashTable[mCarTypeNameHashIndex];
+    }
     std::uint32_t GetGroupNumber() { return reinterpret_cast<std::int32_t(__thiscall*)(DBCarPart*)>(0x76AB50)(this); }
     std::uint32_t GetPartID() { return reinterpret_cast<std::int32_t(__thiscall*)(DBCarPart*)>(0x76AB20)(this); }
     std::uint32_t GetUpgradeLevel() {

@@ -17,22 +17,21 @@
 //
 // clang-format on
 
-#ifndef OPENSPEED_GAME_CARBON_TYPES_UCRC32_H
-#define OPENSPEED_GAME_CARBON_TYPES_UCRC32_H
+#ifndef OPENSPEED_GAME_MW05_TYPES_UTL_CIRCULARQUEUE_H
+#define OPENSPEED_GAME_MW05_TYPES_UTL_CIRCULARQUEUE_H
 #pragma once
 
-#include <OpenSpeed/Game.Carbon/Types.h>
+#include <OpenSpeed/Game.MW05/Types.h>
 
-namespace OpenSpeed::Carbon {
-  struct UCrc32 {
-    std::uint32_t mCRC;
-
-    UCrc32() = default;
-    UCrc32(std::uint32_t crc) : mCRC(crc) {}
-
-    operator std::uint32_t() const noexcept { return mCRC; }
-    operator const std::uint32_t() const noexcept { return mCRC; }
+namespace OpenSpeed::MW05::UTL {
+  template <typename T, std::int32_t nT>
+  struct CircularQueue {
+    std::int32_t mSize;
+    std::int32_t mHead;
+    std::int32_t mTail;
+    std::int32_t mMaxSize;
+    T            mElements[nT];
   };
-}  // namespace OpenSpeed::Carbon
+}  // namespace OpenSpeed::MW05::UTL
 
-#endif  // OPENSPEED_GAME_CARBON_TYPES_UCRC32_H
+#endif  // OPENSPEED_GAME_MW05_TYPES_UTL_CIRCULARQUEUE_H

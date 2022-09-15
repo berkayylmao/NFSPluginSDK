@@ -23,27 +23,28 @@
 
 #include <OpenSpeed/Core/EASTL/EASTL/vector.h>
 
-#include <OpenSpeed/Game.MW05/Types.h>
-#include <OpenSpeed/Game.MW05/Types/UTL/_ListSet.h>
+#include <OpenSpeed/Game.Carbon/Types.h>
+#include <OpenSpeed/Game.Carbon/Types/UTL/FixedVector.h>
 
 namespace OpenSpeed::Carbon::UTL {
-  template <typename T>
+  template <typename T, std::size_t nT>
   struct GarbageNode {
     struct Collector {
-      _Storage<T, 40> _mDirty;
-      _Storage<T, 40> _mClean;
-      std::uint32_t   _mCount;
+      struct _Node {
+        T*           myptr;
+        std::int32_t refcount;
+      };
+      UTL::FixedVector<GarbageNode<T, nT>::Collector::_Node, nT> _mDirty;
+      UTL::FixedVector<GarbageNode<T, nT>::Collector::_Node, nT> _mClean;
+      std::uint32_t                                              _mCount;
     };
 
-    union {
-      bool       mDirty;
-      Collector* mCollector;
-    };
+    bool mDirty;
   };
 
-  template <typename T, std::size_t nT, typename E, std::size_t nE>
-  struct ListableSet {
-    _ListSet<T, nT, E, nE> mSet;
+  template <typename HandleType, typename T, std::size_t nMaxInstances>
+  struct Instanceable {
+    HandleType _mHandle;
   };
 
   namespace COM {
