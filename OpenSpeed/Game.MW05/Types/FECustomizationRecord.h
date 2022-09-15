@@ -18,35 +18,38 @@
 // clang-format on
 
 #pragma once
+#include <algorithm>
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Physics.h>
 
 namespace OpenSpeed::MW05 {
   struct FECustomizationRecord {
-    std::int16_t               mInstalledPartIndices[139];
+    std::int16_t               mInstalledParts[139];
     Physics::Upgrades::Package mInstalledPhysics;
     Physics::Tunings           mTunings[3];
     eCustomTuningType          mActiveTuning;
     std::int32_t               mPreset;
     std::uint8_t               mHandle;
 
-    inline void WriteRideIntoRecord(const RideInfo* rideInfo) {
+    std::int16_t& GetInstalledPart(CarSlotId slotId) noexcept {
+      return mInstalledParts[static_cast<std::size_t>(slotId)];
+    }
+    const std::int16_t& GetInstalledPart(CarSlotId slotId) const noexcept {
+      return mInstalledParts[static_cast<std::size_t>(slotId)];
+    }
+
+    void WriteRideIntoRecord(const RideInfo* rideInfo) {
       reinterpret_cast<void(__thiscall*)(FECustomizationRecord*, const RideInfo*)>(0x56F2F0)(this, rideInfo);
     }
 
     void operator=(const FECustomizationRecord& rhs) {
-      std::copy(std::cbegin(rhs.mInstalledPartIndices), std::cend(rhs.mInstalledPartIndices),
-                std::begin(this->mInstalledPartIndices));
-      this->mInstalledPhysics = rhs.mInstalledPhysics;
-      std::copy(std::cbegin(rhs.mTunings), std::cend(rhs.mTunings), std::begin(this->mTunings));
-      this->mActiveTuning = rhs.mActiveTuning;
-      this->mPreset       = rhs.mPreset;
-      this->mHandle       = rhs.mHandle;
-    }
-
-    std::int16_t& operator[](CarSlotId id) noexcept { return mInstalledPartIndices[static_cast<std::uint32_t>(id)]; }
-    const std::int16_t& operator[](CarSlotId id) const noexcept {
-      return mInstalledPartIndices[static_cast<std::uint32_t>(id)];
+      std::copy(std::cbegin(rhs.mInstalledParts), std::cend(rhs.mInstalledParts), std::begin(mInstalledParts));
+      mInstalledPhysics = rhs.mInstalledPhysics;
+      std::copy(std::cbegin(rhs.mTunings), std::cend(rhs.mTunings), std::begin(mTunings));
+      mActiveTuning = rhs.mActiveTuning;
+      mPreset       = rhs.mPreset;
+      mHandle       = rhs.mHandle;
     }
 
     explicit FECustomizationRecord() {
