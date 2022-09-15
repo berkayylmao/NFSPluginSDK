@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_SIM_H
+#define OPENSPEED_GAME_CARBON_TYPES_SIM_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.Carbon/Types.h>
@@ -141,3 +144,5 @@ namespace OpenSpeed::Carbon {
 
   struct SimSurface : Attrib::Gen::simsurface {};
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_SIM_H

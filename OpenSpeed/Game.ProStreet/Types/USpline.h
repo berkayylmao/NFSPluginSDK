@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_USPLINE_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_USPLINE_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.ProStreet/Types.h>
@@ -32,3 +35,5 @@ namespace OpenSpeed::ProStreet {
     eastl::list<UMath::Vector4> fSplinePtList;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_USPLINE_H

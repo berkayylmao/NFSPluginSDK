@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_DALRACERCOMMANDS_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_DALRACERCOMMANDS_H
 #pragma once
+
 #include <memory>  // unique_ptr
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/DLCommandObject.h>
@@ -28,8 +31,8 @@
 namespace OpenSpeed::ProStreet::DALRacerCommands {
   struct IStatPrintable {
     enum class ePrintType : std::uint32_t { Off, Time, Score, Speed, Percent, OutOf };
-    
-    static void Print(char* buf, std::int32_t unk1, float unk2, ePrintType type){
+
+    static void Print(char* buf, std::int32_t unk1, float unk2, ePrintType type) {
       reinterpret_cast<void(__cdecl*)(char*, std::int32_t, float, ePrintType)>(0x5CE6B0)(buf, unk1, unk2, type);
     }
   };
@@ -154,3 +157,5 @@ namespace OpenSpeed::ProStreet::DALRacerCommands {
     }
   };
 }  // namespace OpenSpeed::ProStreet::DALRacerCommands
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_DALRACERCOMMANDS_H

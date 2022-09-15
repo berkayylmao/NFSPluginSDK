@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Class.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Collection.h>
@@ -28,3 +31,5 @@
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Private.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/RefSpec.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/RGBA.h>
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_H

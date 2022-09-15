@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_VEHICLECUSTOMIZATIONS_H
+#define OPENSPEED_GAME_CARBON_TYPES_VEHICLECUSTOMIZATIONS_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon {
@@ -37,3 +40,5 @@ namespace OpenSpeed::Carbon {
     }
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_VEHICLECUSTOMIZATIONS_H

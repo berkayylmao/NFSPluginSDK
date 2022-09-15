@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FEGARAGEMAIN_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FEGARAGEMAIN_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/FrontEndRenderingCar.h>
 #include <OpenSpeed/Game.ProStreet/Types/GarageCarLoader.h>
@@ -79,8 +82,10 @@ namespace OpenSpeed::ProStreet {
 
     static inline FEGarageMain** spInstance = reinterpret_cast<FEGarageMain**>(0xB32AAC);
     static FEGarageMain*         Get() {
-      if (!spInstance) return nullptr;
+              if (!spInstance) return nullptr;
       return *spInstance;
     }
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FEGARAGEMAIN_H

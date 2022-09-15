@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_GTRIGGER_H
+#define OPENSPEED_GAME_MW05_TYPES_GTRIGGER_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/vector.h>
 
 #include <OpenSpeed/Game.MW05/Types.h>
@@ -39,3 +42,5 @@ namespace OpenSpeed::MW05 {
     std::int32_t             mActivationReferences;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_GTRIGGER_H

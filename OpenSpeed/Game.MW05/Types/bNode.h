@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_BNODE_H
+#define OPENSPEED_GAME_MW05_TYPES_BNODE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05 {
@@ -92,3 +95,5 @@ namespace OpenSpeed::MW05 {
     void* Object;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_BNODE_H

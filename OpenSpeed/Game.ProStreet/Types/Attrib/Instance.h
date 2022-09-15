@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_INSTANCE_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_INSTANCE_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::Attrib {
@@ -30,3 +33,5 @@ namespace OpenSpeed::ProStreet::Attrib {
     Flags         mFlags;
   };
 }  // namespace OpenSpeed::ProStreet::Attrib
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_INSTANCE_H

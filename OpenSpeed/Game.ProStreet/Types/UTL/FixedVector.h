@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_UTL_FIXEDVECTOR_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_UTL_FIXEDVECTOR_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/UTL/Vector.h>
 
@@ -36,3 +39,5 @@ namespace OpenSpeed::ProStreet::UTL {
     FixedVector() : Vector<T, nT>() { this->mBegin = mVectorSpace; }
   };
 }  // namespace OpenSpeed::ProStreet::UTL
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_UTL_FIXEDVECTOR_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FECAREERRECORD_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FECAREERRECORD_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEImpoundData.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEInfractionsData.h>
@@ -37,3 +40,5 @@ namespace OpenSpeed::ProStreet {
     FEInfractionsData mServedInfractions;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FECAREERRECORD_H

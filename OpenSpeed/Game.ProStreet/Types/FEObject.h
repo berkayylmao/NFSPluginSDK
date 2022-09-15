@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FEOBJECT_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FEOBJECT_H
 #pragma once
+
 #include <functional>
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEMinList.h>
@@ -98,3 +101,5 @@ namespace OpenSpeed::ProStreet {
     }
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FEOBJECT_H

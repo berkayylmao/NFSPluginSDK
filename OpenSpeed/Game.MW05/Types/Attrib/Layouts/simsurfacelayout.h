@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_SIMSURFACELAYOUT_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_SIMSURFACELAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/Private.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/RefSpec.h>
@@ -54,3 +57,5 @@ namespace OpenSpeed::MW05::Attrib::Layouts {
     std::uint8_t     WheelEffectIntensity;
   };
 }  // namespace OpenSpeed::MW05::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_SIMSURFACELAYOUT_H

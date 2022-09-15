@@ -17,9 +17,9 @@
 //
 // clang-format on
 
-#pragma once
 #ifndef OPENSPEED_SHARED_UMATH_H
 #define OPENSPEED_SHARED_UMATH_H
+#pragma once
 
 #include <cmath>
 
@@ -387,4 +387,4 @@ namespace OpenSpeed {
   };
 }  // namespace OpenSpeed
 
-#endif // OPENSPEED_SHARED_UMATH_H
+#endif  // OPENSPEED_SHARED_UMATH_H

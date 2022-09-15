@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_VEHICLEPARAMS_H
+#define OPENSPEED_GAME_CARBON_TYPES_VEHICLEPARAMS_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/Sim.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/Gen/pvehicle.h>
@@ -58,3 +61,5 @@ namespace OpenSpeed::Carbon {
     static void AddTypeName(VehicleParams* to) { reinterpret_cast<void(__cdecl*)(VehicleParams*)>(0x404820)(to); }
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_VEHICLEPARAMS_H

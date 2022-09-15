@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_BLIST_H
+#define OPENSPEED_GAME_CARBON_TYPES_BLIST_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/bNode.h>
 
@@ -48,3 +51,5 @@ namespace OpenSpeed::Carbon {
     ~bPList() {}
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_BLIST_H

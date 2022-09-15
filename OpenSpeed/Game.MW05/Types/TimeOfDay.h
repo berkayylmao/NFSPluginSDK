@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_TIMEOFDAY_H
+#define OPENSPEED_GAME_MW05_TYPES_TIMEOFDAY_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05 {
@@ -39,3 +42,5 @@ namespace OpenSpeed::MW05 {
         mUpdateRate(1.0f), mUpdateDirection(1), mCurrentTimeOfDay(0.0f), mSunAzimuth(0.0f), mSunLatitude(0.0f) {}
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_TIMEOFDAY_H

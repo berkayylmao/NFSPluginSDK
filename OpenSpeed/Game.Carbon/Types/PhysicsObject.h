@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_PHYSICSOBJECT_H
+#define OPENSPEED_GAME_CARBON_TYPES_PHYSICSOBJECT_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.Carbon/Types.h>
@@ -96,3 +99,5 @@ namespace OpenSpeed::Carbon {
 #pragma endregion
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_PHYSICSOBJECT_H

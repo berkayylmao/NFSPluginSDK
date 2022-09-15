@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_AITARGET_H
+#define OPENSPEED_GAME_MW05_TYPES_AITARGET_H
 #pragma once
+
 #include <new>
 
 #include <OpenSpeed/Game.MW05/Types.h>
@@ -58,3 +61,5 @@ namespace OpenSpeed::MW05 {
     }
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_AITARGET_H

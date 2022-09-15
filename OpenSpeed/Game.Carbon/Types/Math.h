@@ -17,6 +17,8 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_MATH_H
+#define OPENSPEED_GAME_CARBON_TYPES_MATH_H
 #pragma once
 
 namespace OpenSpeed::Carbon::Math {
@@ -344,3 +346,5 @@ namespace OpenSpeed::Carbon::Math {
     Matrix4(Vector4 v0, Vector4 v1, Vector4 v2, Vector4 v3) : v0(v0), v1(v1), v2(v2), v3(v3) {}
   };
 }  // namespace OpenSpeed::Carbon::Math
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_MATH_H

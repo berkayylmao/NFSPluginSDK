@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_RIGIDBODYSPECSLAYOUT_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_RIGIDBODYSPECSLAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/Private.h>
 
@@ -51,3 +54,5 @@ namespace OpenSpeed::Carbon::Attrib::Layouts {
     bool NO_WORLD_COLLISIONS;
   };
 }  // namespace OpenSpeed::Carbon::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_RIGIDBODYSPECSLAYOUT_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_RIGIDBODY_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_RIGIDBODY_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/map.h>
 
 #include <OpenSpeed/Game.ProStreet/Types.h>
@@ -240,3 +243,5 @@ namespace OpenSpeed::ProStreet {
   DEFINE_ENUM_FLAG_OPERATORS(RigidBody::State::Status)
 #endif
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_RIGIDBODY_H

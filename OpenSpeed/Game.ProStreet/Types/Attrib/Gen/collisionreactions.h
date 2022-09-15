@@ -17,10 +17,15 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_GEN_COLLISIONREACTIONS_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_GEN_COLLISIONREACTIONS_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Instance.h>
 
 namespace OpenSpeed::ProStreet::Attrib::Gen {
   struct collisionreactions : Instance {};
 }  // namespace OpenSpeed::ProStreet::Attrib::Gen
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_GEN_COLLISIONREACTIONS_H

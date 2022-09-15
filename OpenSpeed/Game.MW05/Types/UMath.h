@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_UMATH_H
+#define OPENSPEED_GAME_MW05_TYPES_UMATH_H
 #pragma once
+
 #include <OpenSpeed/Shared/UMath.h>
 
 namespace OpenSpeed::MW05::UMath {
@@ -68,3 +71,5 @@ namespace OpenSpeed::MW05::UMath {
     }
   };
 }  // namespace OpenSpeed::MW05::UMath
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_UMATH_H

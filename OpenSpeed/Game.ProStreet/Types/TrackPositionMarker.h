@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_TRACKPOSITIONMARKER_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_TRACKPOSITIONMARKER_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/bNode.h>
 
@@ -32,3 +35,5 @@ namespace OpenSpeed::ProStreet {
     std::uint16_t Angle;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_TRACKPOSITIONMARKER_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_BNODE_H
+#define OPENSPEED_GAME_CARBON_TYPES_BNODE_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon {
@@ -92,3 +95,5 @@ namespace OpenSpeed::Carbon {
     void* Object;
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_BNODE_H

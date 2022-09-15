@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_LOGGINGATTRIBALLOCATOR_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_LOGGINGATTRIBALLOCATOR_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/IAttribAllocator.h>
 
@@ -33,3 +36,5 @@ namespace OpenSpeed::ProStreet::Attrib {
     virtual ~LoggingAttribAllocator();
   };
 }  // namespace OpenSpeed::ProStreet::Attrib
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_LOGGINGATTRIBALLOCATOR_H

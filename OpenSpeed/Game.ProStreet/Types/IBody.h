@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_IBODY_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_IBODY_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/UTL.h>
 
@@ -31,3 +34,5 @@ namespace OpenSpeed::ProStreet {
     virtual std::uint32_t GetWorldID()                           = 0;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_IBODY_H

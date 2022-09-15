@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_DATABASE_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_DATABASE_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon::Attrib {
@@ -32,8 +35,10 @@ namespace OpenSpeed::Carbon::Attrib {
 
     static inline Database** g_mThis = reinterpret_cast<Database**>(0xA8499C);
     static Database*         Get() {
-      if (!g_mThis) return nullptr;
+              if (!g_mThis) return nullptr;
       return *g_mThis;
     }
   };
 }  // namespace OpenSpeed::Carbon::Attrib
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_DATABASE_H

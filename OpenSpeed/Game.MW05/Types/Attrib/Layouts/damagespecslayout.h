@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_DAMAGESPECSLAYOUT_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_DAMAGESPECSLAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Attrib::Layouts {
@@ -45,3 +48,5 @@ namespace OpenSpeed::MW05::Attrib::Layouts {
     float             HIT_POINTS;
   };
 }  // namespace OpenSpeed::MW05::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_DAMAGESPECSLAYOUT_H

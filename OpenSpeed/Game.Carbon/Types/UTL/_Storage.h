@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_UTL_STORAGE_H
+#define OPENSPEED_GAME_CARBON_TYPES_UTL_STORAGE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/UTL/FixedVector.h>
 
@@ -25,3 +28,5 @@ namespace OpenSpeed::MW05::UTL {
   template <typename T, std::size_t nT>
   struct _Storage : FixedVector<T, nT> {};
 }  // namespace OpenSpeed::MW05::UTL
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_UTL_STORAGE_H

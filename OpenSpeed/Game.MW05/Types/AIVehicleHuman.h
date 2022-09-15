@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_AIVEHICLEHUMAN_H
+#define OPENSPEED_GAME_MW05_TYPES_AIVEHICLEHUMAN_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/AIVehicleRacecar.h>
 #include <OpenSpeed/Game.MW05/Types/IHumanAI.h>
@@ -46,3 +49,5 @@ namespace OpenSpeed::MW05 {
 #pragma endregion
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_AIVEHICLEHUMAN_H

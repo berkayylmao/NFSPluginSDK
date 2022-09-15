@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_UMATH_H
+#define OPENSPEED_GAME_CARBON_TYPES_UMATH_H
 #pragma once
+
 #include <cmath>  // sqrt
 
 namespace OpenSpeed::Carbon::UMath {
@@ -345,3 +348,5 @@ namespace OpenSpeed::Carbon::UMath {
     Matrix4(Vector4 v0, Vector4 v1, Vector4 v2, Vector4 v3) : v0(v0), v1(v1), v2(v2), v3(v3) {}
   };
 }  // namespace OpenSpeed::Carbon::UMath
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_UMATH_H

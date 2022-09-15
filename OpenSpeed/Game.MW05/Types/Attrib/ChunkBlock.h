@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTRIB_CHUNKBLOCK_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTRIB_CHUNKBLOCK_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Attrib {
@@ -26,3 +29,5 @@ namespace OpenSpeed::MW05::Attrib {
     std::uint32_t mSize;
   };
 }  // namespace OpenSpeed::MW05::Attrib
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTRIB_CHUNKBLOCK_H

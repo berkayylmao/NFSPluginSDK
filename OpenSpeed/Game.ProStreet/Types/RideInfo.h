@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_RIDEINFO_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_RIDEINFO_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/AutoSculpt.h>
 #include <OpenSpeed/Game.ProStreet/Types/DBCarPart.h>
@@ -99,3 +102,5 @@ namespace OpenSpeed::ProStreet {
     ~RideInfo() { reinterpret_cast<void(__thiscall*)(RideInfo*)>(0x785130)(this); }
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_RIDEINFO_H

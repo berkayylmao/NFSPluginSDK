@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ISELECTABLEPART_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ISELECTABLEPART_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/AutoSculpt.h>
 #include <OpenSpeed/Game.ProStreet/Types/bNode.h>
@@ -60,3 +63,5 @@ namespace OpenSpeed::ProStreet {
     virtual bool             IsReallyAutosculptable();
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ISELECTABLEPART_H

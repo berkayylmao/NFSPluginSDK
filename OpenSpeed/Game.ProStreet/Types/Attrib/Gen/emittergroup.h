@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_GEN_EMITTERGROUP_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_GEN_EMITTERGROUP_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib.h>
 
@@ -32,3 +35,5 @@ namespace OpenSpeed::ProStreet::Attrib::Gen {
     static emittergroup TryGetInstance(const char* name) { return TryGetInstance(StringToKey(name)); }
   };
 }  // namespace OpenSpeed::ProStreet::Attrib::Gen
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_GEN_EMITTERGROUP_H

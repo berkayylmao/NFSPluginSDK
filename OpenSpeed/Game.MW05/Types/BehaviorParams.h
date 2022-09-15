@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_BEHAVIORPARAMS_H
+#define OPENSPEED_GAME_MW05_TYPES_BEHAVIORPARAMS_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Sim.h>
 
@@ -32,3 +35,5 @@ namespace OpenSpeed::MW05 {
         Sim::Param(0x0A6B47FAC), mParams(this->mType), mSig(this->mName), mMechanic(NULL) {}
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_BEHAVIORPARAMS_H

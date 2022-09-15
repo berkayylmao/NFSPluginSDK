@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_CFRONTENDDATABASE_H
+#define OPENSPEED_GAME_MW05_TYPES_CFRONTENDDATABASE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/cFinishedRaceStats.h>
 #include <OpenSpeed/Game.MW05/Types/FEKeyboardSettings.h>
@@ -76,8 +79,10 @@ namespace OpenSpeed::MW05 {
 
     static inline cFrontEndDatabase** g_mThis = reinterpret_cast<cFrontEndDatabase**>(0x91CF90);
     static cFrontEndDatabase*         Get() {
-      if (!g_mThis) return nullptr;
+              if (!g_mThis) return nullptr;
       return *g_mThis;
     }
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_CFRONTENDDATABASE_H

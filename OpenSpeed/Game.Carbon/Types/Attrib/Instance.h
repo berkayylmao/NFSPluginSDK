@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_INSTANCE_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_INSTANCE_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon::Attrib {
@@ -31,3 +34,5 @@ namespace OpenSpeed::Carbon::Attrib {
     std::uint16_t mLocks;
   };
 }  // namespace OpenSpeed::Carbon::Attrib
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_INSTANCE_H

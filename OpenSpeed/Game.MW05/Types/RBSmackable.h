@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_RBSMACKABLE_H
+#define OPENSPEED_GAME_MW05_TYPES_RBSMACKABLE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/RigidBody.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/Gen/rigidbodyspecs.h>
@@ -30,3 +33,5 @@ namespace OpenSpeed::MW05 {
     virtual ~RBSmackable();
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_RBSMACKABLE_H

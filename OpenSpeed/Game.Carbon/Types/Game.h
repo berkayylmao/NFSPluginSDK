@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_GAME_H
+#define OPENSPEED_GAME_CARBON_TYPES_GAME_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon::Game {
@@ -72,3 +75,5 @@ namespace OpenSpeed::Carbon::Game {
     return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x606B60)(cstring);
   }
 }  // namespace OpenSpeed::Carbon::Game
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_GAME_H

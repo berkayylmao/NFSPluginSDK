@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_H
+#define OPENSPEED_H
 #pragma once
+
 #include <cstdint>  // integer types
 #include <cstring>  // strstr
 
@@ -85,3 +88,5 @@ namespace OpenSpeed {
     return SpeedGameInformation();
   }
 }  // namespace OpenSpeed
+
+#endif  // OPENSPEED_H

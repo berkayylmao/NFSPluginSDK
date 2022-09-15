@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_H
+#define OPENSPEED_GAME_CARBON_TYPES_H
 #pragma once
+
 #include <cstdint>      // integer types
 #include <type_traits>  // enable_if_t, is_base_of_v
 #if defined(_WIN32)
@@ -633,3 +636,5 @@ namespace OpenSpeed::Carbon {
 
 #pragma endregion
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_H

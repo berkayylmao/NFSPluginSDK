@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_DALVEHICLECOMMANDS_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_DALVEHICLECOMMANDS_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/vector.h>
 
 #include <memory>  // unique_ptr
@@ -160,3 +163,5 @@ namespace OpenSpeed::ProStreet::DALVehicleCommands {
     }
   };
 }  // namespace OpenSpeed::ProStreet::DALVehicleCommands
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_DALVEHICLECOMMANDS_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_HIGHSCORESDATABASE_H
+#define OPENSPEED_GAME_MW05_TYPES_HIGHSCORESDATABASE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/CareerPursuitScores.h>
 #include <OpenSpeed/Game.MW05/Types/CostToStateScores.h>
@@ -43,3 +46,5 @@ namespace OpenSpeed::MW05 {
     std::uint32_t          PreviouslyPursuedCarFEKey;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_HIGHSCORESDATABASE_H

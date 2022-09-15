@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_PVEHICLELAYOUT_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_PVEHICLELAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Attrib::Layouts {
@@ -77,3 +80,5 @@ namespace OpenSpeed::MW05::Attrib::Layouts {
   DEFINE_ENUM_FLAG_OPERATORS(pvehiclelayout::CarType)
 #endif
 }  // namespace OpenSpeed::MW05::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_PVEHICLELAYOUT_H

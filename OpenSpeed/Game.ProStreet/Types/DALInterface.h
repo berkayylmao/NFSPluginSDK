@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_DALINTERFACE_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_DALINTERFACE_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/DLCommandObject.h>
 
@@ -581,3 +584,5 @@ namespace OpenSpeed::ProStreet {
     virtual void CancelCommand(DLCommandObject* command);
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_DALINTERFACE_H

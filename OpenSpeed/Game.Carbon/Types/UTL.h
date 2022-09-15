@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_UTL_H
+#define OPENSPEED_GAME_CARBON_TYPES_UTL_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/vector.h>
 
 #include <OpenSpeed/Game.MW05/Types.h>
@@ -70,3 +73,5 @@ namespace OpenSpeed::Carbon::UTL {
     };
   }  // namespace COM
 }  // namespace OpenSpeed::Carbon::UTL
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_UTL_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_AUTOSCULPT_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_AUTOSCULPT_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/AutoSculptRegion.h>
 
@@ -71,3 +74,5 @@ namespace OpenSpeed::ProStreet {
     AutoSculptRegion mRegionList[40];
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_AUTOSCULPT_H

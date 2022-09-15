@@ -17,9 +17,9 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_GAME_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_GAME_H
 #pragma once
-#ifndef OPENSPEED_PROSTREET_GAME_H
-#define OPENSPEED_PROSTREET_GAME_H
 
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
@@ -74,4 +74,4 @@ namespace OpenSpeed::ProStreet::Game {
   }
 }  // namespace OpenSpeed::ProStreet::Game
 
-#endif
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_GAME_H

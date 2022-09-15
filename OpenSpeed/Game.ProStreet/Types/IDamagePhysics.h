@@ -17,9 +17,14 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_IDAMAGEPHYSICS_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_IDAMAGEPHYSICS_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05 {
   struct IDamagePhysics;
 }
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_IDAMAGEPHYSICS_H

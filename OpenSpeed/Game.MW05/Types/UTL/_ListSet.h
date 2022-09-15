@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_UTL_LISTSET_H
+#define OPENSPEED_GAME_MW05_TYPES_UTL_LISTSET_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/UTL/List.h>
 
@@ -32,3 +35,5 @@ namespace OpenSpeed::MW05::UTL {
     const List<T, nT>& operator[](E index) const noexcept { return _buckets[static_cast<std::size_t>(index)]; }
   };
 }  // namespace OpenSpeed::MW05::UTL
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_UTL_LISTSET_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTACHMENTS_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTACHMENTS_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.MW05/Types.h>
@@ -29,3 +32,5 @@ namespace OpenSpeed::MW05 {
     IAttachable*              mOwner;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTACHMENTS_H

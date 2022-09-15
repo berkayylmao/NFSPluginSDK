@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_GICON_H
+#define OPENSPEED_GAME_MW05_TYPES_GICON_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05 {
@@ -76,7 +79,7 @@ namespace OpenSpeed::MW05 {
 
     inline std::uint32_t FindSection() { return reinterpret_cast<std::uint32_t(__thiscall*)(GIcon*)>(0x5DE590)(this); }
     inline WorldModel*   CreateGeometry(std::uint32_t _unk) {
-      return reinterpret_cast<WorldModel*(__thiscall*)(GIcon*, std::uint32_t)>(0x5DE690)(this, _unk);
+        return reinterpret_cast<WorldModel*(__thiscall*)(GIcon*, std::uint32_t)>(0x5DE690)(this, _unk);
     }
     inline void SetPosition() { reinterpret_cast<void(__thiscall*)(GIcon*)>(0x5E5A90)(this); }
     inline void Spawn() { reinterpret_cast<void(__thiscall*)(GIcon*)>(0x5EC270)(this); }
@@ -87,7 +90,7 @@ namespace OpenSpeed::MW05 {
     inline std::int16_t GetSectionID() { return mSectionId; }
     inline std::int16_t GetCombinedSectionID() { return mCombSectionId; }
     inline bool         GetVisibleInWorld() {
-      return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::ShowInWorld);
+              return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::ShowInWorld);
     }
     inline bool GetVisibleOnMap() {
       return static_cast<std::uint16_t>(mFlags) & static_cast<std::uint16_t>(Flags::ShowOnMap);
@@ -129,3 +132,5 @@ namespace OpenSpeed::MW05 {
   DEFINE_ENUM_FLAG_OPERATORS(GIcon::Type)
 #endif
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_GICON_H

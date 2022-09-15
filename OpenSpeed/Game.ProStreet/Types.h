@@ -17,9 +17,9 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_H
 #pragma once
-#ifndef OPENSPEED_PROSTREET_TYPES_H
-#define OPENSPEED_PROSTREET_TYPES_H
 
 #include <cstdint>      // integer types
 #include <type_traits>  // enable_if_t, is_base_of_v
@@ -1718,4 +1718,4 @@ namespace OpenSpeed::ProStreet {
 
 }  // namespace OpenSpeed::ProStreet
 
-#endif
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_H

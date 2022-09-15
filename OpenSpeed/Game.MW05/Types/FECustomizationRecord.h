@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_FECUSTOMIZATIONRECORD_H
+#define OPENSPEED_GAME_MW05_TYPES_FECUSTOMIZATIONRECORD_H
 #pragma once
+
 #include <algorithm>
 
 #include <OpenSpeed/Game.MW05/Types.h>
@@ -57,3 +60,5 @@ namespace OpenSpeed::MW05 {
     }
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_FECUSTOMIZATIONRECORD_H

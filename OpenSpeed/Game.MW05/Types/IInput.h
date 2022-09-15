@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_IINPUT_H
+#define OPENSPEED_GAME_MW05_TYPES_IINPUT_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/UTL.h>
 #include <OpenSpeed/Game.MW05/Types/InputControls.h>
@@ -43,3 +46,5 @@ namespace OpenSpeed::MW05 {
     virtual bool           IsAutomaticShift()                       = 0;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_IINPUT_H

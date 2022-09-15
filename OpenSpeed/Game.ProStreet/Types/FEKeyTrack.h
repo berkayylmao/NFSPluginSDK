@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FEKEYTRACK_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FEKEYTRACK_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEKeyNode.h>
 #include <OpenSpeed/Game.ProStreet/Types/FERefList.h>
@@ -34,3 +37,5 @@ namespace OpenSpeed::ProStreet {
     FERefList    DeltaKeys;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FEKEYTRACK_H

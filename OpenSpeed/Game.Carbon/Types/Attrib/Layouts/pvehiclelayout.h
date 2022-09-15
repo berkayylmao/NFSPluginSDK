@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_PVEHICLELAYOUT_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_PVEHICLELAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon::Attrib::Layouts {
@@ -77,3 +80,5 @@ namespace OpenSpeed::Carbon::Attrib::Layouts {
   DEFINE_ENUM_FLAG_OPERATORS(pvehiclelayout::CarType)
 #endif
 }  // namespace OpenSpeed::Carbon::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_PVEHICLELAYOUT_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTRIB_DEFINITION_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTRIB_DEFINITION_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Attrib {
@@ -42,3 +45,5 @@ namespace OpenSpeed::MW05::Attrib {
   DEFINE_ENUM_FLAG_OPERATORS(Definition::Flags)
 #endif
 }  // namespace OpenSpeed::MW05::Attrib
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTRIB_DEFINITION_H

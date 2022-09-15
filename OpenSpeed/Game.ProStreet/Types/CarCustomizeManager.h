@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_CARCUSTOMIZEMANAGER_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_CARCUSTOMIZEMANAGER_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/stack.h>
 #include <OpenSpeed/Core/EASTL/EASTL/vector.h>
 
@@ -44,3 +47,5 @@ namespace OpenSpeed::ProStreet {
     static inline CarCustomizeManager* Get() { return reinterpret_cast<CarCustomizeManager*>(0xB32CE0); }
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_CARCUSTOMIZEMANAGER_H

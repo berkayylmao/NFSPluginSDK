@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FEVINYLRECORD_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FEVINYLRECORD_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEModifiedColour.h>
 #include <OpenSpeed/Game.ProStreet/Types/VinylSystem.h>
@@ -31,3 +34,5 @@ namespace OpenSpeed::ProStreet {
     FEModifiedColour                  mc[4];
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FEVINYLRECORD_H

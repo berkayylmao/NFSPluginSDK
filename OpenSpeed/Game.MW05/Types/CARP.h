@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_CARP_H
+#define OPENSPEED_GAME_MW05_TYPES_CARP_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::CARP {
@@ -46,3 +49,5 @@ namespace OpenSpeed::MW05::CARP {
     UMath::Vector4 fPosRadius;
   };
 }  // namespace OpenSpeed::MW05::CARP
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_CARP_H

@@ -17,9 +17,9 @@
 //
 // clang-format on
 
-#pragma once
 #ifndef OPENSPEED_SHARED_ENUMS_H
 #define OPENSPEED_SHARED_ENUMS_H
+#pragma once
 
 #include <cstdint>
 #ifdef _WIN32
@@ -218,4 +218,4 @@ namespace OpenSpeed {
 #endif
 }  // namespace OpenSpeed
 
-#endif // OPENSPEED_SHARED_ENUMS_H
+#endif  // OPENSPEED_SHARED_ENUMS_H

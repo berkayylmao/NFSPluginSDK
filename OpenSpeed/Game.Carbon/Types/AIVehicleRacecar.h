@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_AIVEHICLERACECAR_H
+#define OPENSPEED_GAME_CARBON_TYPES_AIVEHICLERACECAR_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/AIPerpVehicle.h>
 #include <OpenSpeed/Game.Carbon/Types/IRacer.h>
@@ -44,3 +47,5 @@ namespace OpenSpeed::Carbon {
 #pragma endregion
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_AIVEHICLERACECAR_H

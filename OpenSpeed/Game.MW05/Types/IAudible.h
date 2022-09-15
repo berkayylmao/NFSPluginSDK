@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_IAUDIBLE_H
+#define OPENSPEED_GAME_MW05_TYPES_IAUDIBLE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/UTL.h>
 
@@ -27,3 +30,5 @@ namespace OpenSpeed::MW05 {
     virtual bool IsAudible() = 0;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_IAUDIBLE_H

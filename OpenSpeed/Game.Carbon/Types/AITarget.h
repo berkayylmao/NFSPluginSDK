@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_AITARGET_H
+#define OPENSPEED_GAME_CARBON_TYPES_AITARGET_H
 #pragma once
+
 #include <new>
 
 #include <OpenSpeed/Game.Carbon/Types.h>
@@ -59,3 +62,5 @@ namespace OpenSpeed::Carbon {
     }
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_AITARGET_H

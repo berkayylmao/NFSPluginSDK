@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ACIDEFFECT_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ACIDEFFECT_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/bList.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Gen/emittergroup.h>
@@ -57,3 +60,5 @@ namespace OpenSpeed::ProStreet {
   DEFINE_ENUM_FLAG_OPERATORS(AcidEffect::Flags)
 #endif
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ACIDEFFECT_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_USERPROFILE_H
+#define OPENSPEED_GAME_MW05_TYPES_USERPROFILE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/CareerSettings.h>
 #include <OpenSpeed/Game.MW05/Types/FEPlayerCarDB.h>
@@ -42,3 +45,5 @@ namespace OpenSpeed::MW05 {
     inline void                SetProfileNamed(bool isNamed) { m_bNamed = isNamed; }
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_USERPROFILE_H

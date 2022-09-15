@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_IATTRIBUTEABLE_H
+#define OPENSPEED_GAME_MW05_TYPES_IATTRIBUTEABLE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05 {
@@ -25,3 +28,5 @@ namespace OpenSpeed::MW05 {
     virtual void OnAttributeChange(void* Attrib__Collection, std::uint32_t) = 0;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_IATTRIBUTEABLE_H

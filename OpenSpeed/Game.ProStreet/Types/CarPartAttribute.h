@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_CARPARTATTRIBUTE_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_CARPARTATTRIBUTE_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/ProStreet.h>
 
 namespace OpenSpeed::ProStreet {
@@ -30,3 +33,5 @@ namespace OpenSpeed::ProStreet {
     };
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_CARPARTATTRIBUTE_H

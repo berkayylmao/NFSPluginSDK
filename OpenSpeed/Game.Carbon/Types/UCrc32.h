@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_UCRC32_H
+#define OPENSPEED_GAME_CARBON_TYPES_UCRC32_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::Carbon {
@@ -31,3 +34,5 @@ namespace OpenSpeed::Carbon {
     operator const std::uint32_t() const noexcept { return mCRC; }
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_UCRC32_H

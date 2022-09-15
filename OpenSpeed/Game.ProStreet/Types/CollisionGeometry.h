@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_COLLISIONGEOMETRY_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_COLLISIONGEOMETRY_H
 #pragma once
+
 #if defined(__linux__) || defined(_LINUX)
 #include <byteswap.h>  // bswap_16()
 #elif defined(_WIN32)
@@ -146,3 +149,5 @@ namespace OpenSpeed::ProStreet {
     };
   }  // namespace CollisionGeometry
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_COLLISIONGEOMETRY_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_DAMAGEVEHICLE_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_DAMAGEVEHICLE_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.ProStreet/Types.h>
@@ -44,7 +47,7 @@ namespace OpenSpeed::ProStreet {
     IRenderable*                               mRenderable;
     DamageZone::Info                           mZoneDamage;
     UMath::Vector3                             mLastImpactSpeed;
-    eastl::list<UCrc32>                       mBrokenParts;
+    eastl::list<UCrc32>                        mBrokenParts;
     VehicleFX::LightID                         mLightDamage;
     VehicleFX::LightID                         mLightCracked;
     VehicleFX::WindowID                        mWindowDamage;
@@ -83,3 +86,5 @@ namespace OpenSpeed::ProStreet {
 #pragma endregion
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_DAMAGEVEHICLE_H

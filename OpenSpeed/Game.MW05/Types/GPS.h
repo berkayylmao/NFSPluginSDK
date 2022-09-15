@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_GPS_H
+#define OPENSPEED_GAME_MW05_TYPES_GPS_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Sim.h>
 #include <OpenSpeed/Game.MW05/Types/WRoadNav.h>
@@ -40,8 +43,10 @@ namespace OpenSpeed::MW05 {
 
     static inline GPS** g_mThis = reinterpret_cast<GPS**>(0x90D8E4);
     static GPS*         Get() {
-      if (!g_mThis) return nullptr;
+              if (!g_mThis) return nullptr;
       return *g_mThis;
     }
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_GPS_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_GIOPPONENT_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_GIOPPONENT_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/UTL.h>
 
@@ -31,3 +34,5 @@ namespace OpenSpeed::ProStreet {
     enum class PerformanceLevel : std::uint32_t { Min, Current, Max };
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_GIOPPONENT_H

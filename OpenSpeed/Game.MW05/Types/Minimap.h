@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_MINIMAP_H
+#define OPENSPEED_GAME_MW05_TYPES_MINIMAP_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/HudElement.h>
 #include <OpenSpeed/Game.MW05/Types/MinimapItem.h>
@@ -48,3 +51,5 @@ namespace OpenSpeed::MW05 {
     FEImage*            mGameplayIcons[17][8];
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_MINIMAP_H

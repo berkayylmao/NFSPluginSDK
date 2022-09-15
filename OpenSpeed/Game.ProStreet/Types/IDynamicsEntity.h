@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_IDYNAMICSENTITY_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_IDYNAMICSENTITY_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Dynamics.h>
 #include <OpenSpeed/Game.ProStreet/Types/UTL.h>
@@ -27,3 +30,5 @@ namespace OpenSpeed::ProStreet {
     virtual ~IDynamicsEntity();
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_IDYNAMICSENTITY_H

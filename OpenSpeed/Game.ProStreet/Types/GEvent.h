@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_GEVENT_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_GEVENT_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/map.h>
 #include <OpenSpeed/Core/EASTL/EASTL/sort.h>
 #include <OpenSpeed/Core/EASTL/EASTL/vector.h>
@@ -42,3 +45,5 @@ namespace OpenSpeed::ProStreet {
     void AssignGridNumbersBasedOnPerformance() { reinterpret_cast<void(__thiscall*)(GEvent*)>(0x68B5D0)(this); }
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_GEVENT_H

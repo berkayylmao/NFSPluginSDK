@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FEINFRACTIONSDATA_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FEINFRACTIONSDATA_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet {
@@ -32,3 +35,5 @@ namespace OpenSpeed::ProStreet {
     std::uint16_t OffRoad;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FEINFRACTIONSDATA_H

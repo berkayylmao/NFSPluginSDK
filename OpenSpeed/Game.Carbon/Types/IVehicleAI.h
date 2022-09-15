@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_IVEHICLEAI_H
+#define OPENSPEED_GAME_CARBON_TYPES_IVEHICLEAI_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.Carbon/Types.h>
@@ -116,3 +119,5 @@ namespace OpenSpeed::Carbon {
   DEFINE_ENUM_FLAG_OPERATORS(IVehicleAI::DriveFlags)
 #endif
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_IVEHICLEAI_H

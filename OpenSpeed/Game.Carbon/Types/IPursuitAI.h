@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_IPURSUITAI_H
+#define OPENSPEED_GAME_CARBON_TYPES_IPURSUITAI_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/UTL.h>
 
@@ -60,3 +63,5 @@ namespace OpenSpeed::Carbon {
     static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4055B0)(); }
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_IPURSUITAI_H

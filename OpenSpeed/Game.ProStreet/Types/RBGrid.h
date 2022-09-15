@@ -17,10 +17,15 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_RBGRID_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_RBGRID_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Grid.h>
 
 namespace OpenSpeed::ProStreet {
   struct RBGrid : Grid<RigidBody> {};
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_RBGRID_H

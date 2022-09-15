@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_RIGIDBODY_H
+#define OPENSPEED_GAME_MW05_TYPES_RIGIDBODY_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/Gen/rigidbodyspecs.h>
 #include <OpenSpeed/Game.MW05/Types/Behavior.h>
@@ -252,3 +255,5 @@ namespace OpenSpeed::MW05 {
   DEFINE_ENUM_FLAG_OPERATORS(RigidBody::Volatile::Status)
 #endif
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_RIGIDBODY_H

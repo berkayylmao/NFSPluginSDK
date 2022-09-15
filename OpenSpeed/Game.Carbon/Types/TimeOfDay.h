@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_TIMEOFDAY_H
+#define OPENSPEED_GAME_CARBON_TYPES_TIMEOFDAY_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon {
@@ -30,9 +33,11 @@ namespace OpenSpeed::Carbon {
 
     static inline TimeOfDay** g_ppInstance = reinterpret_cast<TimeOfDay**>(0xB77F34);
     static TimeOfDay*         GetInstance() {
-      if (g_ppInstance && *g_ppInstance) return *g_ppInstance;
+              if (g_ppInstance && *g_ppInstance) return *g_ppInstance;
 
       return nullptr;
     }
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_TIMEOFDAY_H

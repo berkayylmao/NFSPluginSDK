@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_VEHICLEBEHAVIOR_H
+#define OPENSPEED_GAME_CARBON_TYPES_VEHICLEBEHAVIOR_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/Behavior.h>
 
@@ -30,3 +33,5 @@ namespace OpenSpeed::Carbon {
     inline IVehicle* GetVehicle() { return mVehicle; }
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_VEHICLEBEHAVIOR_H

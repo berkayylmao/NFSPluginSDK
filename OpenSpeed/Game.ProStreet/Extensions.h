@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_EXTENSIONS_H
+#define OPENSPEED_GAME_PROSTREET_EXTENSIONS_H
 #pragma once
+
 #include <functional>  // std::function
 
 #include <OpenSpeed/Core/MemoryEditor.hpp>  // ValidateMemory
@@ -293,3 +296,5 @@ namespace OpenSpeed::ProStreet {
     }
   }  // namespace HudEx
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_EXTENSIONS_H

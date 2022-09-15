@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ARRAYSCROLLER_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ARRAYSCROLLER_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/bList.h>
 #include <OpenSpeed/Game.ProStreet/Types/ArrayDatum.h>
@@ -51,3 +54,5 @@ namespace OpenSpeed::ProStreet {
     virtual void RefreshHeader();
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ARRAYSCROLLER_H

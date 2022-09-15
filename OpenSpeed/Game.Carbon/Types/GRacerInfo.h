@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_GRACERINFO_H
+#define OPENSPEED_GAME_CARBON_TYPES_GRACERINFO_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon {
@@ -28,3 +31,5 @@ namespace OpenSpeed::Carbon {
     std::uint8_t __unk_GRacerInfo__[876];
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_GRACERINFO_H

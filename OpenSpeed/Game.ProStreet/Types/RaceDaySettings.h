@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_RACEDAYSETTINGS_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_RACEDAYSETTINGS_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet {
@@ -29,3 +32,5 @@ namespace OpenSpeed::ProStreet {
     bool         mPrivateRace;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_RACEDAYSETTINGS_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_GAMEPLAYLAYOUT_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_GAMEPLAYLAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Attrib::Layouts {
@@ -26,3 +29,5 @@ namespace OpenSpeed::MW05::Attrib::Layouts {
     std::uint32_t message_id;
   };
 }  // namespace OpenSpeed::MW05::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_GAMEPLAYLAYOUT_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_IVEHICLE_H
+#define OPENSPEED_GAME_CARBON_TYPES_IVEHICLE_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib.h>
 #include <OpenSpeed/Game.Carbon/Types/EventSequencer.h>
@@ -103,3 +106,5 @@ namespace OpenSpeed::Carbon {
   DEFINE_ENUM_FLAG_OPERATORS(IVehicle::ForceStopType)
 #endif
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_IVEHICLE_H

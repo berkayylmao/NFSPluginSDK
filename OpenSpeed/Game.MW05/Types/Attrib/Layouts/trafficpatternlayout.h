@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_TRAFFICPATTERNLAYOUT_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_TRAFFICPATTERNLAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/RefSpec.h>
 
@@ -33,3 +36,5 @@ namespace OpenSpeed::MW05::Attrib::Layouts {
     const char* CollectionName;
   };
 }  // namespace OpenSpeed::MW05::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_TRAFFICPATTERNLAYOUT_H

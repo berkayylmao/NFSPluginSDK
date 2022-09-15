@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_DAMAGEZONE_H
+#define OPENSPEED_GAME_MW05_TYPES_DAMAGEZONE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/UTL.h>
 
@@ -26,3 +29,5 @@ namespace OpenSpeed::MW05::DamageZone {
     ID mValue;
   };
 }  // namespace OpenSpeed::MW05::DamageZone
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_DAMAGEZONE_H

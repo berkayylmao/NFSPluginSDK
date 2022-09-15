@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_SIMPLECHOPPER_H
+#define OPENSPEED_GAME_MW05_TYPES_SIMPLECHOPPER_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/ISimpleChopper.h>
 #include <OpenSpeed/Game.MW05/Types/ITransmission.h>
@@ -61,3 +64,5 @@ namespace OpenSpeed::MW05 {
 #pragma endregion
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_SIMPLECHOPPER_H

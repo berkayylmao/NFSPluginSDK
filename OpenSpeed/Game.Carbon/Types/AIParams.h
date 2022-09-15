@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_AIPARAMS_H
+#define OPENSPEED_GAME_CARBON_TYPES_AIPARAMS_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/Sim.h>
 
@@ -28,3 +31,5 @@ namespace OpenSpeed::Carbon {
     static void AddTypeName(AIParams* to) { reinterpret_cast<void(__cdecl*)(AIParams*)>(0x6BFE40)(to); }
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_AIPARAMS_H

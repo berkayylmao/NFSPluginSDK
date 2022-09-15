@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_RGBA_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_RGBA_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon::Attrib {
@@ -102,3 +105,5 @@ namespace OpenSpeed::Carbon::Attrib {
     RGBA(float red, float green, float blue, float alpha) : r(red), g(green), b(blue), a(alpha) {}
   };
 }  // namespace OpenSpeed::Carbon::Attrib
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_RGBA_H

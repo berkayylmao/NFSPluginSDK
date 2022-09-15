@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_GRACERINFO_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_GRACERINFO_H
 #pragma once
+
 #ifdef _WIN32
 #include <winnt.h>  // DEFINE_ENUM_FLAG_OPERATORS
 #endif
@@ -203,3 +206,5 @@ namespace OpenSpeed::ProStreet {
   DEFINE_ENUM_FLAG_OPERATORS(GRacerInfo::RacerStateFlag);
 #endif
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_GRACERINFO_H

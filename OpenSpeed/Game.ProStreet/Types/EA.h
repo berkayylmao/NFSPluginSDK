@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_EA_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_EA_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::EA {
@@ -61,3 +64,5 @@ namespace OpenSpeed::ProStreet::EA {
     };
   }  // namespace Thread
 }  // namespace OpenSpeed::ProStreet::EA
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_EA_H

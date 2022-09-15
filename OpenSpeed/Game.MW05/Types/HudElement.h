@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_HUDELEMENT_H
+#define OPENSPEED_GAME_MW05_TYPES_HUDELEMENT_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/bList.h>
 
@@ -33,3 +36,5 @@ namespace OpenSpeed::MW05 {
     virtual void Update(IPlayer* player);
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_HUDELEMENT_H

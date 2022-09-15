@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_GRACEBIN_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_GRACEBIN_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Gen/gameplay.h>
 #include <OpenSpeed/Game.ProStreet/Types/GVault.h>
@@ -28,3 +31,5 @@ namespace OpenSpeed::ProStreet {
     Attrib::Gen::gameplay mGameplayRecord;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_GRACEBIN_H

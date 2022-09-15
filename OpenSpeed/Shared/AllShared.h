@@ -17,12 +17,12 @@
 //
 // clang-format on
 
-#pragma once
 #ifndef OPENSPEED_SHARED_ALLSHARED_H
 #define OPENSPEED_SHARED_ALLSHARED_H
+#pragma once
 
 #include "Enums.h"
 #include "Math.h"
 #include "UMath.h"
 
-#endif // OPENSPEED_SHARED_ALLSHARED_H
+#endif  // OPENSPEED_SHARED_ALLSHARED_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ICOPMGR_H
+#define OPENSPEED_GAME_MW05_TYPES_ICOPMGR_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
@@ -41,3 +44,5 @@ namespace OpenSpeed::MW05 {
     virtual float GetLockoutTimeRemaining()                = 0;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ICOPMGR_H

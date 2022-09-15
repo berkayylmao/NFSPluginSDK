@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_PROSTREET_H
+#define OPENSPEED_GAME_PROSTREET_PROSTREET_H
 #pragma once
+
 #include <OpenSpeed/Core/MemoryFieldWrapper.hpp>
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
@@ -44,3 +47,5 @@ namespace OpenSpeed {
     static MemoryFieldWrapper<bool>          UnlockAllThings{0xBFBC5B, false};
   }  // namespace ProStreet::Variables
 }  // namespace OpenSpeed
+
+#endif  // OPENSPEED_GAME_PROSTREET_PROSTREET_H

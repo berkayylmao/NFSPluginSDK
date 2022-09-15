@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_PHYSICS_H
+#define OPENSPEED_GAME_MW05_TYPES_PHYSICS_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Physics {
@@ -131,3 +134,5 @@ namespace OpenSpeed::MW05::Physics {
     static inline const float g_GameDisplayMultiplier = 5.0f;
   };
 }  // namespace OpenSpeed::MW05::Physics
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_PHYSICS_H

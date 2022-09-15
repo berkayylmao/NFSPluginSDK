@@ -17,10 +17,15 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTRIB_POINTERNODE_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTRIB_POINTERNODE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/ChunkBlock.h>
 
 namespace OpenSpeed::MW05::Attrib {
   struct PointerNode : ChunkBlock {};
 }  // namespace OpenSpeed::MW05::Attrib
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTRIB_POINTERNODE_H

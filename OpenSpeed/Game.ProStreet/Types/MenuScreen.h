@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_MENUSCREEN_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_MENUSCREEN_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/ScreenConstructorData.h>
 
@@ -40,3 +43,5 @@ namespace OpenSpeed::ProStreet {
     virtual void               __unk_related_to_lan_raceday();
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_MENUSCREEN_H

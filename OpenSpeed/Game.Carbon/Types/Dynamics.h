@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_DYNAMICS_H
+#define OPENSPEED_GAME_CARBON_TYPES_DYNAMICS_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon::Dynamics {
@@ -53,3 +56,5 @@ namespace OpenSpeed::Carbon::Dynamics {
     virtual bool                  IsImmobile()                                                 = 0;
   };
 }  // namespace OpenSpeed::Carbon::Dynamics
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_DYNAMICS_H

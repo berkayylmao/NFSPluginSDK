@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_AIGOAL_H
+#define OPENSPEED_GAME_CARBON_TYPES_AIGOAL_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.Carbon/Types.h>
@@ -34,3 +37,5 @@ namespace OpenSpeed::Carbon {
     virtual void OnBehaviorChange(const UCrc32& mechanic);
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_AIGOAL_H

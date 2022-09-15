@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_EXTENSIONS_H
+#define OPENSPEED_GAME_MW05_EXTENSIONS_H
 #pragma once
+
 #include <functional>  // std::function
 
 #include <OpenSpeed/Core/MemoryEditor.hpp>  // ValidateMemory
@@ -764,3 +767,5 @@ namespace OpenSpeed::MW05 {
   }  // namespace PlayerEx
 
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_EXTENSIONS_H

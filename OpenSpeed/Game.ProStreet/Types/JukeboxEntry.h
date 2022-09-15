@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_JUKEBOXENTRY_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_JUKEBOXENTRY_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet {
@@ -27,3 +30,5 @@ namespace OpenSpeed::ProStreet {
     std::uint8_t  PlayabilityField;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_JUKEBOXENTRY_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_DAMAGERACER_H
+#define OPENSPEED_GAME_MW05_TYPES_DAMAGERACER_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/DamageVehicle.h>
 #include <OpenSpeed/Game.MW05/Types/ISpikeable.h>
@@ -60,3 +63,5 @@ namespace OpenSpeed::MW05 {
 #pragma endregion
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_DAMAGERACER_H

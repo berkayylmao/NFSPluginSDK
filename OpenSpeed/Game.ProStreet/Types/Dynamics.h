@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_DYNAMICS_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_DYNAMICS_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::Dynamics {
@@ -53,3 +56,5 @@ namespace OpenSpeed::ProStreet::Dynamics {
     virtual bool                  IsImmobile()                                                 = 0;
   };
 }  // namespace OpenSpeed::ProStreet::Dynamics
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_DYNAMICS_H

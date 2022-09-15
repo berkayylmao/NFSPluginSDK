@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_AIVEHICLE_H
+#define OPENSPEED_GAME_MW05_TYPES_AIVEHICLE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/AIGoal.h>
 #include <OpenSpeed/Game.MW05/Types/AIAvoidable.h>
@@ -165,3 +168,5 @@ namespace OpenSpeed::MW05 {
     inline void UpdateSpawnTimer(float spawnTime) { mLastSpawnTime = spawnTime; }
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_AIVEHICLE_H

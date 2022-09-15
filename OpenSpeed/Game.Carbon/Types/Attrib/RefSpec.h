@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_REFSPEC_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_REFSPEC_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon::Attrib {
@@ -27,3 +30,5 @@ namespace OpenSpeed::Carbon::Attrib {
     Collection*   mCollectionPtr;
   };
 }  // namespace OpenSpeed::Carbon::Attrib
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_REFSPEC_H

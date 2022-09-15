@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_WCOLLISIONMGR_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_WCOLLISIONMGR_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::WCollisionMgr {
@@ -39,3 +42,5 @@ namespace OpenSpeed::ProStreet::WCollisionMgr {
     virtual bool OnWCollide(const WCollisionMgr::WorldCollisionInfo&, const UMath::Vector3&, void*) = 0;
   };
 }  // namespace OpenSpeed::ProStreet::WCollisionMgr
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_WCOLLISIONMGR_H

@@ -17,10 +17,15 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_IHUD_H
+#define OPENSPEED_GAME_MW05_TYPES_IHUD_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/UTL.h>
 
 namespace OpenSpeed::MW05 {
   struct IHud : UTL::COM::IUnknown {};
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_IHUD_H

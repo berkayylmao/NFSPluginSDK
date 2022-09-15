@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_RBVEHICLE_H
+#define OPENSPEED_GAME_MW05_TYPES_RBVEHICLE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/IRBVehicle.h>
 #include <OpenSpeed/Game.MW05/Types/RigidBody.h>
@@ -42,3 +45,5 @@ namespace OpenSpeed::MW05 {
     virtual ~RBVehicle();
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_RBVEHICLE_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_GRACESTATUS_H
+#define OPENSPEED_GAME_CARBON_TYPES_GRACESTATUS_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/GRacerInfo.h>
 #include <OpenSpeed/Game.Carbon/Types/IVehicleCache.h>
@@ -37,8 +40,10 @@ namespace OpenSpeed::Carbon {
 
     static inline GRaceStatus** g_mThis = reinterpret_cast<GRaceStatus**>(0xA98284);
     static GRaceStatus*         Get() {
-      if (!g_mThis) return nullptr;
+              if (!g_mThis) return nullptr;
       return *g_mThis;
     }
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_GRACESTATUS_H

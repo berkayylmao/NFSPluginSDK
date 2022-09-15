@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_FENGHUD_H
+#define OPENSPEED_GAME_MW05_TYPES_FENGHUD_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/ActionQueue.h>
 #include <OpenSpeed/Game.MW05/Types/IHud.h>
@@ -64,3 +67,5 @@ namespace OpenSpeed::MW05 {
     bool           mCurrentWidescreenSetting;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_FENGHUD_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_RBSMACKABLE_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_RBSMACKABLE_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/RigidBody.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Gen/rigidbodyspecs.h>
@@ -36,3 +39,5 @@ namespace OpenSpeed::ProStreet {
     virtual void OnDebugDraw();
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_RBSMACKABLE_H

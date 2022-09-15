@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_UTL_FIXEDVECTOR_H
+#define OPENSPEED_GAME_CARBON_TYPES_UTL_FIXEDVECTOR_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/UTL/Vector.h>
 
@@ -27,3 +30,5 @@ namespace OpenSpeed::MW05::UTL {
     std::int32_t mVectorSpace[nT];
   };
 }  // namespace OpenSpeed::MW05::UTL
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_UTL_FIXEDVECTOR_H

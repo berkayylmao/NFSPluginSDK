@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_GRACEBIN_H
+#define OPENSPEED_GAME_MW05_TYPES_GRACEBIN_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/Gen/gameplay.h>
 
@@ -33,3 +36,5 @@ namespace OpenSpeed::MW05 {
     BinStats              mStats;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_GRACEBIN_H

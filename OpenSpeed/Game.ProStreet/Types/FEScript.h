@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FESCRIPT_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FESCRIPT_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEEventList.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEKeyTrack.h>
@@ -36,3 +39,5 @@ namespace OpenSpeed::ProStreet {
     std::uint32_t ID;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FESCRIPT_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_VINYLSELECTABLEPART_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_VINYLSELECTABLEPART_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/ISelectablePart.h>
 #include <OpenSpeed/Game.ProStreet/Types/VinylSystem.h>
@@ -36,3 +39,5 @@ namespace OpenSpeed::ProStreet {
     bool                              mIsDecal;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_VINYLSELECTABLEPART_H

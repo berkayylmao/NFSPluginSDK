@@ -17,9 +17,9 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FECUSTOMIZATIONRECORD_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FECUSTOMIZATIONRECORD_H
 #pragma once
-#ifndef OPENSPEED_PS_FECUSTOMIZATIONRECORD_H
-#define OPENSPEED_PS_FECUSTOMIZATIONRECORD_H
 
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Physics.h>
@@ -71,4 +71,4 @@ namespace OpenSpeed::ProStreet {
   };
 }  // namespace OpenSpeed::ProStreet
 
-#endif
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FECUSTOMIZATIONRECORD_H

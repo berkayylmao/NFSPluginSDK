@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_GAME_H
+#define OPENSPEED_GAME_MW05_TYPES_GAME_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Game {
@@ -77,3 +80,5 @@ namespace OpenSpeed::MW05::Game {
     return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x5CC240)(cstring);
   }
 }  // namespace OpenSpeed::MW05::Game
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_GAME_H

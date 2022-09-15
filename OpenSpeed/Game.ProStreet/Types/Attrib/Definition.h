@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_DEFINITION_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_DEFINITION_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::Attrib {
@@ -42,3 +45,5 @@ namespace OpenSpeed::ProStreet::Attrib {
   DEFINE_ENUM_FLAG_OPERATORS(Definition::Flags)
 #endif
 }  // namespace OpenSpeed::ProStreet::Attrib
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_DEFINITION_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_LAYOUTS_GAMEPLAYLAYOUT_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_LAYOUTS_GAMEPLAYLAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::Attrib::Layouts {
@@ -26,3 +29,5 @@ namespace OpenSpeed::ProStreet::Attrib::Layouts {
     std::uint32_t message_id;
   };
 }  // namespace OpenSpeed::ProStreet::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_LAYOUTS_GAMEPLAYLAYOUT_H

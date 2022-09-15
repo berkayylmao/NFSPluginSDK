@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_IRIGIDBODY_H
+#define OPENSPEED_GAME_CARBON_TYPES_IRIGIDBODY_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/UTL.h>
 
@@ -68,3 +71,5 @@ namespace OpenSpeed::Carbon {
     virtual void                  Debug()                                                         = 0;
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_IRIGIDBODY_H

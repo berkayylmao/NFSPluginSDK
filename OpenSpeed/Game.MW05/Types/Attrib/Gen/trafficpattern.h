@@ -17,10 +17,15 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTRIB_GEN_TRAFFICPATTERN_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTRIB_GEN_TRAFFICPATTERN_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/Instance.h>
 
 namespace OpenSpeed::MW05::Attrib::Gen {
   struct trafficpattern : Instance {};
 }  // namespace OpenSpeed::MW05::Attrib::Gen
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTRIB_GEN_TRAFFICPATTERN_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_IPERPETRATOR_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_IPERPETRATOR_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/UTL.h>
 
@@ -52,3 +55,5 @@ namespace OpenSpeed::ProStreet {
     static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4061D0)(); }
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_IPERPETRATOR_H

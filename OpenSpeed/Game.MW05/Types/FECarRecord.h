@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_FECARRECORD_H
+#define OPENSPEED_GAME_MW05_TYPES_FECARRECORD_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05 {
@@ -32,8 +35,10 @@ namespace OpenSpeed::MW05 {
 
     inline std::int32_t GetCost() { return reinterpret_cast<std::int32_t(__thiscall*)(FECarRecord*)>(0x581730)(this); }
     inline const char*  GetManufacturerName() {
-      return reinterpret_cast<const char*(__thiscall*)(FECarRecord*)>(0x581790)(this);
+       return reinterpret_cast<const char*(__thiscall*)(FECarRecord*)>(0x581790)(this);
     }
     CarType GetType() { return reinterpret_cast<CarType(__thiscall*)(FECarRecord*)>(0x5816B0)(this); }
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_FECARRECORD_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_UTL_LIST_H
+#define OPENSPEED_GAME_CARBON_TYPES_UTL_LIST_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/UTL/_Storage.h>
 
@@ -25,3 +28,5 @@ namespace OpenSpeed::MW05::UTL {
   template <typename T, std::size_t nT>
   struct List : _Storage<T*, nT> {};
 }  // namespace OpenSpeed::MW05::UTL
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_UTL_LIST_H

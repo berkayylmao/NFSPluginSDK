@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_JUKEBOX_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_JUKEBOX_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/EA.h>
 #include <OpenSpeed/Game.ProStreet/Types/JukeboxEntry.h>
@@ -26,3 +29,5 @@
 namespace OpenSpeed::ProStreet {
   struct Jukebox : UTL::FixedVector<JukeboxEntry, 40, 16>, EA::Memcard::IMemcardSavable {};
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_JUKEBOX_H

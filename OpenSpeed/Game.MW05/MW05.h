@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_MW05_H
+#define OPENSPEED_GAME_MW05_MW05_H
 #pragma once
+
 #include <OpenSpeed/Core/MemoryFieldWrapper.hpp>
 #include <OpenSpeed/Game.MW05/Types.h>
 
@@ -54,3 +57,5 @@ namespace OpenSpeed {
     }  // namespace Config
   }    // namespace MW05::Variables
 }  // namespace OpenSpeed
+
+#endif  // OPENSPEED_GAME_MW05_MW05_H

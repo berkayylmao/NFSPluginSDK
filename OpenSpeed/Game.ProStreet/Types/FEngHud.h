@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FENGHUD_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FENGHUD_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/ActionQueue.h>
 #include <OpenSpeed/Game.ProStreet/Types/HudElement.h>
@@ -77,3 +80,5 @@ namespace OpenSpeed::ProStreet {
     HudElement* GetHudElement(HudElement::eHudElementIds id) { return mHudElements[static_cast<std::uint32_t>(id)]; }
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FENGHUD_H

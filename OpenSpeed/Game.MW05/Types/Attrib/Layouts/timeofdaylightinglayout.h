@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_TIMEOFDAYLIGHTINGLAYOUT_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_TIMEOFDAYLIGHTINGLAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/RGBA.h>
 
@@ -120,3 +123,5 @@ namespace OpenSpeed::MW05::Attrib::Layouts {
     void operator/=(float rhs) { *this = *this / rhs; }
   };
 }  // namespace OpenSpeed::MW05::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTRIB_LAYOUTS_TIMEOFDAYLIGHTINGLAYOUT_H

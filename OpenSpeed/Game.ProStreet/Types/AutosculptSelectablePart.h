@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_AUTOSCULPTSELECTABLEPART_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_AUTOSCULPTSELECTABLEPART_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/StandardSelectablePart.h>
 
@@ -27,3 +30,5 @@ namespace OpenSpeed::ProStreet {
     float                mAutoSculptRegionSliders[3][11];
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_AUTOSCULPTSELECTABLEPART_H

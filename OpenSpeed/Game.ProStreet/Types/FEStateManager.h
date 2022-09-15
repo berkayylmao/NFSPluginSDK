@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FESTATEMANAGER_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FESTATEMANAGER_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/bList.h>
 #include <OpenSpeed/Game.ProStreet/Types/MenuScreen.h>
@@ -153,3 +156,5 @@ namespace OpenSpeed::ProStreet {
     virtual void               HandleWidgetValueChanged(std::uint32_t, std::uint32_t);
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FESTATEMANAGER_H

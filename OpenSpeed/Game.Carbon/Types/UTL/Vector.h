@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_UTL_VECTOR_H
+#define OPENSPEED_GAME_CARBON_TYPES_UTL_VECTOR_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::UTL {
@@ -28,3 +31,5 @@ namespace OpenSpeed::MW05::UTL {
     std::uint32_t mSize;
   };
 }  // namespace OpenSpeed::MW05::UTL
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_UTL_VECTOR_H

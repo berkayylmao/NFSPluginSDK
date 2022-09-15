@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_FECAREERRECORD_H
+#define OPENSPEED_GAME_MW05_TYPES_FECAREERRECORD_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/FEImpoundData.h>
 #include <OpenSpeed/Game.MW05/Types/FEInfractionsData.h>
@@ -34,3 +37,5 @@ namespace OpenSpeed::MW05 {
     FEInfractionsData mServedInfractions;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_FECAREERRECORD_H

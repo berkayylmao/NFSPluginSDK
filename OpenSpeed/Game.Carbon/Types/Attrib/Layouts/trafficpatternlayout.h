@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_TRAFFICPATTERNLAYOUT_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_TRAFFICPATTERNLAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/RefSpec.h>
 
@@ -33,3 +36,5 @@ namespace OpenSpeed::Carbon::Attrib::Layouts {
     const char* CollectionName;
   };
 }  // namespace OpenSpeed::Carbon::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_TRAFFICPATTERNLAYOUT_H

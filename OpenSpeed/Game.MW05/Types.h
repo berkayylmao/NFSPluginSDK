@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_H
+#define OPENSPEED_GAME_MW05_TYPES_H
 #pragma once
+
 #include <cstdint>      // integer types
 #include <type_traits>  // enable_if_t, is_base_of_v
 #if defined(_WIN32)
@@ -790,3 +793,5 @@ namespace OpenSpeed::MW05 {
 
 #pragma endregion
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_H

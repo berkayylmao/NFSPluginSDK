@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_DALMANAGER_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_DALMANAGER_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/DALInterface.h>
 
@@ -33,3 +36,5 @@ namespace OpenSpeed::ProStreet {
     static DALManager* Get() { return reinterpret_cast<DALManager*>(0xA50AD0); }
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_DALMANAGER_H

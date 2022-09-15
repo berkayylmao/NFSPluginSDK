@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FECARSBLUEPRINTS_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FECARSBLUEPRINTS_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/DALVehicleCommands.h>
 #include <OpenSpeed/Game.ProStreet/Types/FECustomizeStatsWidget.h>
@@ -47,3 +50,5 @@ namespace OpenSpeed::ProStreet {
     DALVehicleCommands::CarInfo                 mDownloadedCarInfo;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FECARSBLUEPRINTS_H

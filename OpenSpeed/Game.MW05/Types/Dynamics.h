@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_DYNAMICS_H
+#define OPENSPEED_GAME_MW05_TYPES_DYNAMICS_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::Dynamics {
@@ -53,3 +56,5 @@ namespace OpenSpeed::MW05::Dynamics {
     virtual bool                  IsImmobile()                                                 = 0;
   };
 }  // namespace OpenSpeed::MW05::Dynamics
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_DYNAMICS_H

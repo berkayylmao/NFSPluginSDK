@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FEIMPOUNDDATA_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FEIMPOUNDDATA_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet {
@@ -27,3 +30,5 @@ namespace OpenSpeed::ProStreet {
     std::int16_t Pad1;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FEIMPOUNDDATA_H

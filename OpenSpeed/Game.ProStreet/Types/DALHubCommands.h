@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_DALHUBCOMMANDS_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_DALHUBCOMMANDS_H
 #pragma once
+
 #include <memory>  // unique_ptr
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/DLCommandObject.h>
@@ -42,3 +45,5 @@ namespace OpenSpeed::ProStreet::DALHubCommands {
     }
   };
 }  // namespace OpenSpeed::ProStreet::DALHubCommands
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_DALHUBCOMMANDS_H

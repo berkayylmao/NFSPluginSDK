@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_IHUD_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_IHUD_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/IPlayer.h>
 #include <OpenSpeed/Game.ProStreet/Types/UTL.h>
@@ -46,3 +49,5 @@ namespace OpenSpeed::ProStreet {
     virtual bool           WasInitialized()                    = 0;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_IHUD_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_EXTENSIONS_H
+#define OPENSPEED_GAME_CARBON_EXTENSIONS_H
 #pragma once
+
 #include <functional>  // std::function
 
 #include <OpenSpeed/Core/MemoryEditor.hpp>  // ValidateMemory
@@ -448,3 +451,5 @@ namespace OpenSpeed::Carbon {
     }
   }  // namespace InputEx
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_EXTENSIONS_H

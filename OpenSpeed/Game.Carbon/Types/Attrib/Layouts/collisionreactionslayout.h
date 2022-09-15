@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_COLLISIONREACTIONSLAYOUT_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_COLLISIONREACTIONSLAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon::Attrib::Layouts {
@@ -37,3 +40,5 @@ namespace OpenSpeed::Carbon::Attrib::Layouts {
     CollisionReactionRecord REAR_REACTION;
   };
 }  // namespace OpenSpeed::Carbon::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_COLLISIONREACTIONSLAYOUT_H

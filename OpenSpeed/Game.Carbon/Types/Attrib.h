@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/Class.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/Collection.h>
@@ -28,3 +31,5 @@
 #include <OpenSpeed/Game.Carbon/Types/Attrib/Private.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/RefSpec.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/RGBA.h>
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_H

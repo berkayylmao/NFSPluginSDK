@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FEKEYNODE_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FEKEYNODE_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEGenericVal.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEMinNode.h>
@@ -28,3 +31,5 @@ namespace OpenSpeed::ProStreet {
     FEGenericVal Val;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FEKEYNODE_H

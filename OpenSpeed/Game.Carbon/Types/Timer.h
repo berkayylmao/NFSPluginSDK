@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_TIMER_H
+#define OPENSPEED_GAME_CARBON_TYPES_TIMER_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 
 namespace OpenSpeed::Carbon {
@@ -26,3 +29,5 @@ namespace OpenSpeed::Carbon {
     // TODO: implement member functions
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_TIMER_H

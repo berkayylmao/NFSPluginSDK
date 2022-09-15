@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FECUSTOMIZESTATSWIDGET_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FECUSTOMIZESTATSWIDGET_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEStatsBar.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEString.h>
@@ -32,3 +35,5 @@ namespace OpenSpeed::ProStreet {
     virtual void SetValue(std::uint32_t, std::uint32_t, std::uint32_t, float);
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FECUSTOMIZESTATSWIDGET_H

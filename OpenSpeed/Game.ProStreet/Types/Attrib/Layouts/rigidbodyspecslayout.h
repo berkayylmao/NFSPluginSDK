@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_LAYOUTS_RIGIDBODYSPECSLAYOUT_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_LAYOUTS_RIGIDBODYSPECSLAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/Private.h>
 
@@ -51,3 +54,5 @@ namespace OpenSpeed::ProStreet::Attrib::Layouts {
     float         GRAVITY;
   };
 }  // namespace OpenSpeed::ProStreet::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_LAYOUTS_RIGIDBODYSPECSLAYOUT_H

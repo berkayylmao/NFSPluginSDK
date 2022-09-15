@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_PHYSICSOBJECT_H
+#define OPENSPEED_GAME_MW05_TYPES_PHYSICSOBJECT_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 #include <OpenSpeed/Core/EASTL/EASTL/slist.h>
 
@@ -96,3 +99,5 @@ namespace OpenSpeed::MW05 {
 #pragma endregion
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_PHYSICSOBJECT_H

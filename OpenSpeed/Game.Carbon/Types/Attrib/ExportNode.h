@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_EXPORTNODE_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_EXPORTNODE_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/ChunkBlock.h>
 
@@ -26,3 +29,5 @@ namespace OpenSpeed::Carbon::Attrib {
     std::uint32_t mCount;
   };
 }  // namespace OpenSpeed::Carbon::Attrib
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_EXPORTNODE_H

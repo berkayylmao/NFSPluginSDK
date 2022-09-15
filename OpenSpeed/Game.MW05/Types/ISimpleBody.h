@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ISIMPLEBODY_H
+#define OPENSPEED_GAME_MW05_TYPES_ISIMPLEBODY_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/UTL.h>
 
@@ -51,3 +54,5 @@ namespace OpenSpeed::MW05 {
   DEFINE_ENUM_FLAG_OPERATORS(ISimpleBody::BodyFlags)
 #endif
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ISIMPLEBODY_H

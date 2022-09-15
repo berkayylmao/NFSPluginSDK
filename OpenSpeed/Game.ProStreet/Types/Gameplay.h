@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_GAMEPLAY_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_GAMEPLAY_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::Gameplay {
@@ -47,3 +50,5 @@ namespace OpenSpeed::ProStreet::Gameplay {
     std::uint32_t mCreatorFeslID;
   };
 }  // namespace OpenSpeed::ProStreet::Gameplay
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_GAMEPLAY_H

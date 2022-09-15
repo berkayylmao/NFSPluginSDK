@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_GRACESTATUS_H
+#define OPENSPEED_GAME_MW05_TYPES_GRACESTATUS_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/vector.h>
 
 #include <OpenSpeed/Game.MW05/Types.h>
@@ -81,8 +84,10 @@ namespace OpenSpeed::MW05 {
 
     static inline GRaceStatus** g_mThis = reinterpret_cast<GRaceStatus**>(0x91E000);
     static GRaceStatus*         Get() {
-      if (!g_mThis) return nullptr;
+              if (!g_mThis) return nullptr;
       return *g_mThis;
     }
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_GRACESTATUS_H

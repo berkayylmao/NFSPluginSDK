@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_UTL_VECTOR_H
+#define OPENSPEED_GAME_MW05_TYPES_UTL_VECTOR_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05::UTL {
@@ -30,3 +33,5 @@ namespace OpenSpeed::MW05::UTL {
     Vector() : mBegin(nullptr), mCapacity(N), mSize(0) {}
   };
 }  // namespace OpenSpeed::MW05::UTL
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_UTL_VECTOR_H

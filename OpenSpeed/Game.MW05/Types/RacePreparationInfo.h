@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_RACEPREPARATIONINFO_H
+#define OPENSPEED_GAME_MW05_TYPES_RACEPREPARATIONINFO_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 
 namespace OpenSpeed::MW05 {
@@ -31,3 +34,5 @@ namespace OpenSpeed::MW05 {
     Flags          mFlags;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_RACEPREPARATIONINFO_H

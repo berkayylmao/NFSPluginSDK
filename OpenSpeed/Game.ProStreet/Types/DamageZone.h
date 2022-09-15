@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_DAMAGEZONE_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_DAMAGEZONE_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/UTL.h>
 
@@ -26,3 +29,5 @@ namespace OpenSpeed::ProStreet::DamageZone {
     ID mValue;
   };
 }  // namespace OpenSpeed::ProStreet::DamageZone
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_DAMAGEZONE_H

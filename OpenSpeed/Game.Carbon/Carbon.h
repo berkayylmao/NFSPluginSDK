@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_CARBON_H
+#define OPENSPEED_GAME_CARBON_CARBON_H
 #pragma once
+
 #include <OpenSpeed/Core/MemoryFieldWrapper.hpp>
 #include <OpenSpeed/Game.Carbon/Types.h>
 
@@ -46,3 +49,5 @@ namespace OpenSpeed {
     static MemoryFieldWrapper<bool>           WindowHasLostFocus{0xAB0B3C, false};
   }  // namespace Carbon::Variables
 }  // namespace OpenSpeed
+
+#endif  // OPENSPEED_GAME_CARBON_CARBON_H

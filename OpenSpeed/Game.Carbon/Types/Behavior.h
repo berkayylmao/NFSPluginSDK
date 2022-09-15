@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_BEHAVIOR_H
+#define OPENSPEED_GAME_CARBON_TYPES_BEHAVIOR_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/list.h>
 
 #include <OpenSpeed/Game.Carbon/Types.h>
@@ -51,3 +54,5 @@ namespace OpenSpeed::Carbon {
     virtual void         OnUnPause();
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_BEHAVIOR_H

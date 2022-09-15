@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FECARLOTSTATEMANAGER_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FECARLOTSTATEMANAGER_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/vector.h>
 
 #include <OpenSpeed/Game.ProStreet/Types.h>
@@ -54,8 +57,10 @@ namespace OpenSpeed::ProStreet {
     static FECarLotStateManager* Get() {
       static auto** spInstance = reinterpret_cast<FECarLotStateManager**>(0xB32B20);
       if (!spInstance) return nullptr;
-      
+
       return *spInstance;
     }
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FECARLOTSTATEMANAGER_H

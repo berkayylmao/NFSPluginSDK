@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_FEIMAGE_H
+#define OPENSPEED_GAME_MW05_TYPES_FEIMAGE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/FEObject.h>
 
@@ -26,3 +29,5 @@ namespace OpenSpeed::MW05 {
     std::uint_least32_t ImageFlags;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_FEIMAGE_H

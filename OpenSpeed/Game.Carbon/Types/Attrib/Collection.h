@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_COLLECTION_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_COLLECTION_H
 #pragma once
+
 #include <OpenSpeed/Core/MemoryEditor.hpp>
 
 #include <OpenSpeed/Game.Carbon/Types.h>
@@ -65,3 +68,5 @@ namespace OpenSpeed::Carbon::Attrib {
     }
   };
 }  // namespace OpenSpeed::Carbon::Attrib
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_COLLECTION_H

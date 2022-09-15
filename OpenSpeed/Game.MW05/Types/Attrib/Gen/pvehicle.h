@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_ATTRIB_GEN_PVEHICLE_H
+#define OPENSPEED_GAME_MW05_TYPES_ATTRIB_GEN_PVEHICLE_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Attrib/Instance.h>
 
@@ -33,3 +36,5 @@ namespace OpenSpeed::MW05::Attrib::Gen {
     static pvehicle TryGetInstance(const char* name) { return TryGetInstance(StringToKey(name)); }
   };
 }  // namespace OpenSpeed::MW05::Attrib::Gen
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_ATTRIB_GEN_PVEHICLE_H

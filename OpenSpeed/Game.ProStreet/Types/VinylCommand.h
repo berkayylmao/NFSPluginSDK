@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_VINYLCOMMAND_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_VINYLCOMMAND_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/vector.h>
 
 #include <OpenSpeed/Game.ProStreet/Types.h>
@@ -31,3 +34,5 @@ namespace OpenSpeed::ProStreet {
     eastl::vector<VinylCommand*> mVector;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_VINYLCOMMAND_H

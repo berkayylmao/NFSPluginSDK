@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_DRIFTLAPREPORT_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_DRIFTLAPREPORT_H
 #pragma once
+
 #include <OpenSpeed/Core/EASTL/EASTL/map.h>
 
 #include <OpenSpeed/Game.ProStreet/Types.h>
@@ -31,3 +34,5 @@ namespace OpenSpeed::ProStreet {
     unsigned char                                                             _pad1[4];
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_DRIFTLAPREPORT_H

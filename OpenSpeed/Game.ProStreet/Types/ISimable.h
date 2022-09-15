@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ISIMABLE_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ISIMABLE_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib.h>
 #include <OpenSpeed/Game.ProStreet/Types/EventSequencer.h>
@@ -64,3 +67,5 @@ namespace OpenSpeed::ProStreet {
     virtual float                    GetCausalityTime()                     = 0;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ISIMABLE_H

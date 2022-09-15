@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_DBCARPART_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_DBCARPART_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/ProStreet.h>
 #include <OpenSpeed/Game.ProStreet/Types/Game.h>
 #include <OpenSpeed/Game.ProStreet/Types/CarPartAttribute.h>
@@ -47,3 +50,5 @@ namespace OpenSpeed::ProStreet {
     DBCarPart() = default;
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_DBCARPART_H

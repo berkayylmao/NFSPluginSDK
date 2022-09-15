@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_EXPORTNODE_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_EXPORTNODE_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/Attrib/ChunkBlock.h>
 
@@ -26,3 +29,5 @@ namespace OpenSpeed::ProStreet::Attrib {
     std::uint32_t mCount;
   };
 }  // namespace OpenSpeed::ProStreet::Attrib
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_ATTRIB_EXPORTNODE_H

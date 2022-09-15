@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_PHYSICS_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_PHYSICS_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::Physics {
@@ -107,3 +110,5 @@ namespace OpenSpeed::ProStreet::Physics {
     };
   };  // namespace Upgrades
 }  // namespace OpenSpeed::ProStreet::Physics
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_PHYSICS_H

@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_WROADNAV_H
+#define OPENSPEED_GAME_CARBON_TYPES_WROADNAV_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/USpline.h>
 
@@ -111,3 +114,5 @@ namespace OpenSpeed::Carbon {
     virtual ~WRoadNav();
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_WROADNAV_H

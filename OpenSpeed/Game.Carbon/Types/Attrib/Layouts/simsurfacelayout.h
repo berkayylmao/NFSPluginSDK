@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_SIMSURFACELAYOUT_H
+#define OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_SIMSURFACELAYOUT_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/Private.h>
 #include <OpenSpeed/Game.Carbon/Types/Attrib/RefSpec.h>
@@ -54,3 +57,5 @@ namespace OpenSpeed::Carbon::Attrib::Layouts {
     std::uint8_t     WheelEffectIntensity;
   };
 }  // namespace OpenSpeed::Carbon::Attrib::Layouts
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_ATTRIB_LAYOUTS_SIMSURFACELAYOUT_H

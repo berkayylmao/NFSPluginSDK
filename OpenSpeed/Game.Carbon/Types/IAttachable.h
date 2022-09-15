@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_IATTACHABLE_H
+#define OPENSPEED_GAME_CARBON_TYPES_IATTACHABLE_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/UTL.h>
 
@@ -32,3 +35,5 @@ namespace OpenSpeed::Carbon {
     virtual Attachments* GetAttachments()                       = 0;
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_IATTACHABLE_H

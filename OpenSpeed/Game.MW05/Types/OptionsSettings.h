@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_OPTIONSSETTINGS_H
+#define OPENSPEED_GAME_MW05_TYPES_OPTIONSSETTINGS_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/AudioSettings.h>
 #include <OpenSpeed/Game.MW05/Types/GameplaySettings.h>
@@ -38,3 +41,5 @@ namespace OpenSpeed::MW05 {
     inline PlayerSettings&   GetPlayerSettings(std::size_t index = 0) { return ThePlayerSettings[index]; }
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_OPTIONSSETTINGS_H

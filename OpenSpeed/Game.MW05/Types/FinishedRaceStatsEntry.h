@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_MW05_TYPES_FINISHEDRACESTATSENTRY_H
+#define OPENSPEED_GAME_MW05_TYPES_FINISHEDRACESTATSENTRY_H
 #pragma once
+
 #include <OpenSpeed/Game.MW05/Types.h>
 #include <OpenSpeed/Game.MW05/Types/Timer.h>
 
@@ -46,3 +49,5 @@ namespace OpenSpeed::MW05 {
     std::int32_t WasRecordBreaker;
   };
 }  // namespace OpenSpeed::MW05
+
+#endif  // OPENSPEED_GAME_MW05_TYPES_FINISHEDRACESTATSENTRY_H

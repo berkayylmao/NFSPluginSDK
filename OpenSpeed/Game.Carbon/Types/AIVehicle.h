@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_CARBON_TYPES_AIVEHICLE_H
+#define OPENSPEED_GAME_CARBON_TYPES_AIVEHICLE_H
 #pragma once
+
 #include <OpenSpeed/Game.Carbon/Types.h>
 #include <OpenSpeed/Game.Carbon/Types/AIGoal.h>
 #include <OpenSpeed/Game.Carbon/Types/AIAvoidable.h>
@@ -208,3 +211,5 @@ namespace OpenSpeed::Carbon {
     inline void UpdateSpawnTimer(float spawnTime) { mLastSpawnTime = spawnTime; }
   };
 }  // namespace OpenSpeed::Carbon
+
+#endif  // OPENSPEED_GAME_CARBON_TYPES_AIVEHICLE_H

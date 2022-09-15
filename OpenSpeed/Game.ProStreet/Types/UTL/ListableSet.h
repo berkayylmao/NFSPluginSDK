@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_UTL_LISTABLESET_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_UTL_LISTABLESET_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::UTL {
@@ -33,3 +36,5 @@ namespace OpenSpeed::ProStreet::UTL {
     };
   };
 }  // namespace OpenSpeed::ProStreet::UTL
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_UTL_LISTABLESET_H

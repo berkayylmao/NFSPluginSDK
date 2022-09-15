@@ -17,7 +17,10 @@
 //
 // clang-format on
 
+#ifndef OPENSPEED_GAME_PROSTREET_TYPES_FEGROUP_H
+#define OPENSPEED_GAME_PROSTREET_TYPES_FEGROUP_H
 #pragma once
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEObject.h>
 
@@ -30,3 +33,5 @@ namespace OpenSpeed::ProStreet {
     }
   };
 }  // namespace OpenSpeed::ProStreet
+
+#endif  // OPENSPEED_GAME_PROSTREET_TYPES_FEGROUP_H
