@@ -52,6 +52,17 @@ namespace OpenSpeed::ProStreet {
     FEScript*       mpCurrentScript;
     FERenderObject* mCached;
 
+    FEngFont* FindFont() { return reinterpret_cast<FEngFont*(__cdecl*)(std::uint32_t)>(0x5A1530)(mHandle); }
+    FEScript* FindScript(std::uint32_t scriptHash) {
+      return reinterpret_cast<FEScript*(__thiscall*)(FEObject*, std::uint32_t)>(0x624F10)(this, scriptHash);
+    }
+
+    bool IsVisible() { return (mFlags & FEObjFlags::Hidden) != FEObjFlags::Hidden; }
+
+    void SetScript(FEScript* script, bool reset) {
+      if (script) reinterpret_cast<void(__thiscall*)(FEObject*, FEScript*, bool)>(0x629070)(this, script, reset);
+    }
+
     static FEObject* FindObject(const char* fngName, std::uint32_t objectHash) {
       return reinterpret_cast<FEObject*(__cdecl*)(const char*, std::uint32_t)>(0x5BD520)(fngName, objectHash);
     }
@@ -85,15 +96,5 @@ namespace OpenSpeed::ProStreet {
     static void SetVisibility(FEObject* object, bool isVisible) {
       reinterpret_cast<void(__cdecl*)(FEObject*, bool)>(0x58DBE0)(object, isVisible);
     }
-
-    FEngFont* FindFont() { return reinterpret_cast<FEngFont*(__cdecl*)(std::uint32_t)>(0x5A1530)(mHandle); }
-    FEScript* FindScript(std::uint32_t scriptHash) {
-      return reinterpret_cast<FEScript*(__thiscall*)(FEObject*, std::uint32_t)>(0x624F10)(this, scriptHash);
-    }
-
-    void SetScript(FEScript* script, bool reset) {
-      if (script) reinterpret_cast<void(__thiscall*)(FEObject*, FEScript*, bool)>(0x629070)(this, script, reset);
-    }
-    void SetVisibility(bool isVisible) { SetVisibility(this, isVisible); }
   };
 }  // namespace OpenSpeed::ProStreet

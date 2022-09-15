@@ -18,25 +18,27 @@
 // clang-format on
 
 #pragma once
+#include <OpenSpeed/Core/EASTL/EASTL/list.h>
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/ScreenConstructorData.h>
 
 namespace OpenSpeed::ProStreet {
-  struct MenuScreen {
-    bool                  mPlaySound;
-    std::uint32_t         mDirectionForNextSound;
-    const char*           mpPackageFilename;
-    ScreenConstructorData mConstructData;
-    bool                  mIsGarageScreen;
-
-    virtual ~MenuScreen();
-    virtual eMenuSoundTriggers NotifySoundMessage(std::uint32_t, eMenuSoundTriggers);
-    virtual void               SetInitialOption(std::uint32_t);
-    virtual void               SetInitialOptionUsingDescHash(std::uint32_t);
-    virtual void               ShowHelpbar(char*);
-    virtual void               ShowScreen(bool);
-    virtual void               InitInstance();
-    virtual void               SetAspectRatio();
-    virtual void               __unk_related_to_lan_raceday();
+  struct FEMapTier {
+    std::uint32_t          mTierKey;
+    std::uint32_t          mFirstHub;
+    eastl::list<FEMapHub*> mHubList;
+    char                   mTierId;
+    bool                   mIsShowDown;
+    bool                   mIsElite;
+    std::uint32_t          mHubWonCount;
+    std::uint32_t          mHubDominateCount;
+    std::uint32_t          mHubRecordCount;
+    std::uint32_t          mPrevHubWonCount;
+    std::uint32_t          mPrevHubDominateCount;
+    std::uint32_t          mPrevHubRecordCount;
+    std::uint32_t          mHubReqWonCount;
+    std::uint32_t          mHubReqDominateCount;
+    std::uint32_t          mHubReqRecordCount;
+    std::uint32_t          mTierTrackRecordReq;
   };
 }  // namespace OpenSpeed::ProStreet

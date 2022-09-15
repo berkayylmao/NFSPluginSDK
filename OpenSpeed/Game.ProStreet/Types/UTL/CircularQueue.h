@@ -18,11 +18,15 @@
 // clang-format on
 
 #pragma once
-#ifndef OPENSPEED_SHARED_ALLSHARED_H
-#define OPENSPEED_SHARED_ALLSHARED_H
+#include <OpenSpeed/Game.ProStreet/Types.h>
 
-#include "Enums.h"
-#include "Math.h"
-#include "UMath.h"
-
-#endif // OPENSPEED_SHARED_ALLSHARED_H
+namespace OpenSpeed::ProStreet::UTL {
+  template <typename T, std::int32_t nT>
+  struct CircularQueue {
+    std::int32_t mSize;
+    std::int32_t mHead;
+    std::int32_t mTail;
+    std::int32_t mMaxSize;
+    T            mElements[nT];
+  };
+}  // namespace OpenSpeed::ProStreet::UTL

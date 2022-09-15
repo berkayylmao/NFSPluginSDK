@@ -8,7 +8,7 @@
 //    (at your option) any later version.
 //
 //    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    but WITHOUT ANY WARRANTY=0; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 //    GNU Affero General Public License for more details.
 //
@@ -18,11 +18,14 @@
 // clang-format on
 
 #pragma once
-#ifndef OPENSPEED_SHARED_ALLSHARED_H
-#define OPENSPEED_SHARED_ALLSHARED_H
+#include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/UTL.h>
 
-#include "Enums.h"
-#include "Math.h"
-#include "UMath.h"
-
-#endif // OPENSPEED_SHARED_ALLSHARED_H
+namespace OpenSpeed::ProStreet {
+  struct ICountdown : UTL::COM::IUnknown {
+    virtual ~ICountdown();
+    virtual void  BeginCountdown(std::int32_t countdown) = 0;
+    virtual bool  IsActive()                             = 0;
+    virtual float GetSecondsBeforeRaceStart()            = 0;
+  };
+}  // namespace OpenSpeed::ProStreet

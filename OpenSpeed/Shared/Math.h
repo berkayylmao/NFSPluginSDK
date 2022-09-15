@@ -27,6 +27,8 @@ namespace OpenSpeed {
   struct AxlePair {
     float Front;
     float Rear;
+
+    AxlePair() : Front(0.0f), Rear(0.0f) {}
   };
   struct VariableArray {
     float*        mArray;
@@ -405,4 +407,4 @@ namespace OpenSpeed {
   };
 }  // namespace OpenSpeed
 
-#endif
+#endif // OPENSPEED_SHARED_MATH_H

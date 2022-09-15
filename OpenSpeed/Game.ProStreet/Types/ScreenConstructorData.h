@@ -22,8 +22,8 @@
 
 namespace OpenSpeed::ProStreet {
   struct ScreenConstructorData {
-    const char*  PackageFilename;
-    FEPackage*   pPackage;
-    std::int32_t Arg;
+    const char*  mpPackageFilename;
+    FEPackage*   mpPackage;
+    std::int32_t mArg;
   };
 }  // namespace OpenSpeed::ProStreet

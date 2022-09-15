@@ -23,16 +23,18 @@
 
 namespace OpenSpeed {
   namespace ProStreet::Variables {
-    static MemoryFieldWrapper<bool>          CarGuysForceLODS{0xBFBC43, false};
-    static MemoryFieldWrapper<Math::Matrix4> CarScaleMatrix{0xAEE180, Math::Matrix4()};
-    static MemoryFieldWrapper<bool>          DrawCars{0xA79CDC, true};
-    static MemoryFieldWrapper<bool>          EnableEnvMap{0xA61884, true};
-    static MemoryFieldWrapper<CARPART_LOD>   ForceCarLOD{0xA79D7C, CARPART_LOD::A};
-    static MemoryFieldWrapper<bool>          ForceCarLODPrint{0xAEB6E2, false};
-    static MemoryFieldWrapper<CARPART_LOD>   ForceTireLOD{0xA79D80, CARPART_LOD::A};
+    static MemoryFieldWrapper<bool>           CarGuysForceLODS{0xBFBC43, false};
+    static MemoryFieldWrapper<std::uint32_t*> CarPartTypeNameHashTable{0xAEB774, nullptr};
+    static MemoryFieldWrapper<Math::Matrix4>  CarScaleMatrix{0xAEE180, Math::Matrix4()};
+    static MemoryFieldWrapper<bool>           DrawCars{0xA79CDC, true};
+    static MemoryFieldWrapper<bool>           EnableEnvMap{0xA61884, true};
+    static MemoryFieldWrapper<CARPART_LOD>    ForceCarLOD{0xA79D7C, CARPART_LOD::A};
+    static MemoryFieldWrapper<bool>           ForceCarLODPrint{0xAEB6E2, false};
+    static MemoryFieldWrapper<CARPART_LOD>    ForceTireLOD{0xA79D80, CARPART_LOD::A};
     // DALPauseStates::mPauseRequest
     static MemoryFieldWrapper<bool>          IsGameplayPaused{0xAB0EDC, false};
     static MemoryFieldWrapper<bool>          IsRacing{0xAACF5F, false};
+    static MemoryFieldWrapper<float>         RealTimeElapsed{0xABB048, 0.0f};
     static MemoryFieldWrapper<bool>          RearViewModel{0xAEB728, false};
     static MemoryFieldWrapper<bool>          ShowAllCarsInFE{0xBFBC6E, false};
     static MemoryFieldWrapper<bool>          ShowCarLODScreenPrint{0xAEB6E0, false};

@@ -39,6 +39,7 @@ namespace OpenSpeed {
     Ghost,
     Invalid
   };
+  enum class CarUsageType : std::uint32_t { Racing, Cop, Traffic, Wheels, Universal };
   enum class CopDensity : std::uint8_t { Off, Light, Medium, Heavy };
   enum class Difficulty : std::uint8_t { Easy, Medium, Hard };
   enum class eCustomTuningType : std::uint32_t { Setting1, Setting2, Setting3 };
@@ -78,7 +79,8 @@ namespace OpenSpeed {
     IsButton              = 0x10000000,
     PerspectiveProjection = 0x20000000,
     AffectAllScripts      = 0x40000000,
-    HideInEdit            = 0x80000000
+    HideInEdit            = 0x80000000,
+    Hidden                = 0x00000001
   };
   enum class FEObjType : std::uint32_t {
     None,
@@ -211,8 +213,9 @@ namespace OpenSpeed {
   }  // namespace VehicleFX
 
 #ifdef _WIN32
+  DEFINE_ENUM_FLAG_OPERATORS(FEObjFlags)
   DEFINE_ENUM_FLAG_OPERATORS(FEPlayerCarDBFilterBits)
 #endif
 }  // namespace OpenSpeed
 
-#endif
+#endif // OPENSPEED_SHARED_ENUMS_H

@@ -18,11 +18,9 @@
 // clang-format on
 
 #pragma once
-#ifndef OPENSPEED_SHARED_ALLSHARED_H
-#define OPENSPEED_SHARED_ALLSHARED_H
+#include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/Types/Attrib/Instance.h>
 
-#include "Enums.h"
-#include "Math.h"
-#include "UMath.h"
-
-#endif // OPENSPEED_SHARED_ALLSHARED_H
+namespace OpenSpeed::ProStreet::Attrib::Gen {
+  struct controller : Instance {};
+}  // namespace OpenSpeed::ProStreet::Attrib::Gen

@@ -23,6 +23,8 @@
 #include <memory>  // unique_ptr
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/DLCommandObject.h>
+#include <OpenSpeed/Game.ProStreet/Types/Physics.h>
+#include <OpenSpeed/Game.ProStreet/Types/RideInfo.h>
 
 namespace OpenSpeed::ProStreet::DALVehicleCommands {
   struct BlueprintInfo {
@@ -107,6 +109,22 @@ namespace OpenSpeed::ProStreet::DALVehicleCommands {
     BlueprintShareable* mBlueprints;
 
     virtual ~GetDownloadedBlueprints();
+    virtual void Execute() override;
+  };
+
+  struct GetSliderStats : DLCommandObject {
+    std::int32_t                        Levels[3];
+    float                               Values[3];
+    std::uint32_t                       Hashes[3];
+    RideInfo*                           mRideInfo;
+    bool                                mCreatedRideInfo;
+    std::uint32_t                       mVehicleKey;
+    BluePrintType                       mBluePrintType;
+    Physics::Info::CorrectedPerformance mCorrectedPerformanceUntuned;
+    Physics::Info::Performance          mEstimatedPerformanceUntuned;
+    RaceMode                            mMode;
+
+    virtual ~GetSliderStats();
     virtual void Execute() override;
   };
 

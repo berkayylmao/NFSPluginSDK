@@ -62,6 +62,12 @@ namespace OpenSpeed::ProStreet::Attrib::Layouts {
     float           TORQUE_SPLIT;
     float           TORQUE_SLIP_SLOPE0;
     float           TANK_SLAPPER_TIMER;
+    float           _0xbe9cf1a0;
+    float           _0xfdc201f0;
+    float           _0x75e363f1;
+    float           _0x618f8606;
+    float           _0x516a8498;
+    float           _0x55f90e57;
     float           STEERING_ALIGNING_TORQUE;
     float           SPOOL_TIME_UP;
     float           SPOOL_TIME_DOWN;
@@ -71,6 +77,7 @@ namespace OpenSpeed::ProStreet::Attrib::Layouts {
     float           RENDER_MOTION;
     float           RED_LINE;
     float           OPTIMAL_SHIFT;
+    float           MIN_TIRE_TRACTION_TO_SHIFT_UP_FIRST_GEAR;
     float           MIN_TIRE_TRACTION_TO_SHIFT_UP;
     float           MAX_RPM;
     float           MASS;

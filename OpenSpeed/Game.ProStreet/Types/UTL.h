@@ -39,6 +39,11 @@ namespace OpenSpeed::ProStreet::UTL {
     bool mDirty;
   };
 
+  template <typename HandleType, typename T, std::size_t nMaxInstances>
+  struct Instanceable {
+    HandleType _mHandle;
+  };
+
   namespace COM {
     struct Object {
       struct _IPair {

@@ -18,16 +18,32 @@
 // clang-format on
 
 #pragma once
-#include <OpenSpeed/Game.ProStreet/Types.h>
+#include <OpenSpeed/Game.ProStreet/ProStreet.h>
+#include <OpenSpeed/Game.ProStreet/Types/Game.h>
+#include <OpenSpeed/Game.ProStreet/Types/CarPartAttribute.h>
 
 namespace OpenSpeed::ProStreet {
   struct DBCarPart {
-    bool                isValid;
-    std::int8_t         CarTypeNameHashIndex;
-    std::uint16_t       AttributeTableOffset;
-    Attrib::Collection* partAttributes;
-    std::uint16_t       kitNum;
-    std::uint16_t       materialFlags;
-    char                padding;
+    bool                mIsValid;
+    std::uint8_t        mCarTypeNameHashIndex;
+    std::uint16_t       mAttributeTableOffset;
+    Attrib::Collection* mPartAttributes;
+    std::uint16_t       mKitNum;
+    std::uint16_t       mMaterialFlags;
+    char                _pad;
+
+    CarPartAttribute* GetAttribute() {
+      return reinterpret_cast<CarPartAttribute*(__thiscall*)(DBCarPart*, std::uint32_t, std::uint32_t)>(0x754CD0)(
+          this, Game::bStringHash("PARTID_UPGRADE_GROUP"), 0);
+    }
+    std::uint32_t GetCarTypeNameHash() { return Variables::CarPartTypeNameHashTable[mCarTypeNameHashIndex]; }
+    std::uint32_t GetGroupNumber() { return reinterpret_cast<std::int32_t(__thiscall*)(DBCarPart*)>(0x76AB50)(this); }
+    std::uint32_t GetPartID() { return reinterpret_cast<std::int32_t(__thiscall*)(DBCarPart*)>(0x76AB20)(this); }
+    std::uint32_t GetUpgradeLevel() {
+      if (auto* attribute = GetAttribute()) return attribute->muParam >> 5;
+      return 0;
+    }
+
+    DBCarPart() = default;
   };
 }  // namespace OpenSpeed::ProStreet

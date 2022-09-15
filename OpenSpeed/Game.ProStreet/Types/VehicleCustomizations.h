@@ -20,6 +20,7 @@
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/CarPaintPartRecordPacked.h>
+#include <OpenSpeed/Game.ProStreet/Types/DBCarPart.h>
 #include <OpenSpeed/Game.ProStreet/Types/PackedDecalLayer.h>
 #include <OpenSpeed/Game.ProStreet/Types/PackedVinylLayer.h>
 
@@ -48,5 +49,16 @@ namespace OpenSpeed::ProStreet {
     std::int8_t      mMorphValues[40][11];
     float            mPhysicsTuning[31];
     std::int32_t     mType;
+
+    bool GetInstalledPart(CarSlotId slotId, CarType carType, DBCarPart* out) {
+      return reinterpret_cast<bool(__thiscall*)(VehicleCustomizations*, CarSlotId, CarType, DBCarPart*)>(0x782F70)(
+          this, slotId, carType, out);
+    }
+    std::int16_t& GetInstalledPart(CarSlotId slotId) noexcept {
+      return mInstalledParts[static_cast<std::size_t>(slotId)];
+    }
+    const std::int16_t& GetInstalledPart(CarSlotId slotId) const noexcept {
+      return mInstalledParts[static_cast<std::size_t>(slotId)];
+    }
   };
 }  // namespace OpenSpeed::ProStreet

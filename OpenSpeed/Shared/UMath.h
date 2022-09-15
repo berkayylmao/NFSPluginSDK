@@ -387,4 +387,4 @@ namespace OpenSpeed {
   };
 }  // namespace OpenSpeed
 
-#endif
+#endif // OPENSPEED_SHARED_UMATH_H

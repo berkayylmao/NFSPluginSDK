@@ -19,24 +19,28 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/ScreenConstructorData.h>
+#include <OpenSpeed/Game.ProStreet/Types/FEObject.h>
 
 namespace OpenSpeed::ProStreet {
-  struct MenuScreen {
-    bool                  mPlaySound;
-    std::uint32_t         mDirectionForNextSound;
-    const char*           mpPackageFilename;
-    ScreenConstructorData mConstructData;
-    bool                  mIsGarageScreen;
-
-    virtual ~MenuScreen();
-    virtual eMenuSoundTriggers NotifySoundMessage(std::uint32_t, eMenuSoundTriggers);
-    virtual void               SetInitialOption(std::uint32_t);
-    virtual void               SetInitialOptionUsingDescHash(std::uint32_t);
-    virtual void               ShowHelpbar(char*);
-    virtual void               ShowScreen(bool);
-    virtual void               InitInstance();
-    virtual void               SetAspectRatio();
-    virtual void               __unk_related_to_lan_raceday();
+  struct FEScrollBar {
+    bool      mVertical;
+    bool      mResizeHandle;
+    bool      mHandleGrabbed;
+    bool      mArrowsOnly;
+    bool      mVisible;
+    bVector2  mGrabbedPos;
+    bVector2  mCurPos;
+    bVector2  mGrabOffset;
+    bVector2  mBackingPos;
+    bVector2  mBackingSize;
+    bVector2  mHandleMinSize;
+    float     mSegSize;
+    FEObject* mpBacking;
+    FEObject* mpSecondBacking;
+    FEObject* mpHandle;
+    FEObject* mpFirstArrow;
+    FEObject* mpSecondArrow;
+    FEObject* mpFirstBackingEnd;
+    FEObject* mpSecondBackingEnd;
   };
 }  // namespace OpenSpeed::ProStreet

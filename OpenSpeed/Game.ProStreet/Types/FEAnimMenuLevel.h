@@ -21,47 +21,30 @@
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/bList.h>
 #include <OpenSpeed/Game.ProStreet/Types/FEObject.h>
+#include <OpenSpeed/Game.ProStreet/Types/FETreeDataNode.h>
 
 namespace OpenSpeed::ProStreet {
-  struct HudElement {
-    enum class eHudElementIds : std::uint32_t {
-      Tachometer,
-      RaceOver,
-      Leaderboard,
-      Leaderboard4Up,
-      SplitTime,
-      WrongWay,
-      FullScreenFade,
-      SectorDisplay,
-      _321Go,
-      Nitrous,
-      BoostGauge,
-      Minimap,
-      GenericMessage,
-      TimeExtension,
-      RaceInformation,
-      DriftScores,
-      RevolutionWheel,
-      FadeToBlack,
-      GameplayDebug,
-      PositionIndicator,
-      DragStats,
-      TurnIndicator,
-      DragStagingMeter,
-      LapTime
-    };
+  struct FEAnimMenuLevel : bTNode<FEAnimMenuLevel> {
+    bTList<FETreeDataNode> mDataNodes;
+    FEAnimMenu*            mpMenu;
+    const char*            mpPackageName;
+    std::int32_t           mNumNodes;
+    std::int32_t           mHighlightedIndex;
+    FETreeDataNode*        mpHighlightedNode;
 
-    enum class eHudEvent : std::uint32_t { DoLeaderBoardPopup };
-
-    bPList<FEObject> mObjects;
-    const char*      mpPackageName;
-    bool             mIsVisible;
-
-    virtual ~HudElement();
-    virtual void        Update(IPlayer*);
-    virtual void        StartNewMode(IPlayer*, std::int32_t);
-    virtual void        Refresh();
-    virtual void        OnEvent(eHudEvent event);
-    virtual const char* GetDebugName();
+    virtual ~FEAnimMenuLevel();
+    virtual void  NotificationMessage(std::uint_least32_t, FEObject*, std::uint_least32_t, std::uint_least32_t);
+    virtual void  Enter(bool);
+    virtual void  EnterPreview(std::int32_t, bool);
+    virtual void  HidePreview();
+    virtual void  Select();
+    virtual void  Minimize(std::int32_t);
+    virtual void  Transition();
+    virtual float GetHighlightedValue();
+    virtual void  HighlightCurNode();
+    virtual void  ShowHighlighter();
+    virtual void  SetNodeText(std::int32_t, const char*, FETreeDataNode*);
+    virtual void  ShowPreviewRows(bool);
+    virtual void  UnhighlightCurNode();
   };
 }  // namespace OpenSpeed::ProStreet

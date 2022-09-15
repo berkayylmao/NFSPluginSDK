@@ -25,9 +25,7 @@
 #include <OpenSpeed/Game.ProStreet/Types/WWorldPos.h>
 
 namespace OpenSpeed::ProStreet {
-  struct ISimable : UTL::COM::IUnknown {
-    std::uint32_t _mHandle;  // from UTL::Instanceable<HSIMABLE__ *, ISimable, n>
-
+  struct ISimable : UTL::COM::IUnknown, UTL::Instanceable<HSIMABLE__*, ISimable, 256> {
     virtual ~ISimable();
     virtual SimableType              GetSimableType()                       = 0;
     virtual void                     Kill()                                 = 0;

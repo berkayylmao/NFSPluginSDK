@@ -18,6 +18,9 @@
 // clang-format on
 
 #pragma once
+#ifndef OPENSPEED_PROSTREET_GAME_H
+#define OPENSPEED_PROSTREET_GAME_H
+
 #include <OpenSpeed/Game.ProStreet/Types.h>
 
 namespace OpenSpeed::ProStreet::Game {
@@ -56,6 +59,9 @@ namespace OpenSpeed::ProStreet::Game {
   static inline std::uint32_t bStringHash(const char* cstring) {
     return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x436680)(cstring);
   }
+  static inline std::uint32_t bStringHashUpper(const char* cstring) {
+    return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x4366E0)(cstring);
+  }
 
   // custom hashing for fe
   static inline std::uint32_t FEHashUpper(const char* cstring) {
@@ -67,3 +73,5 @@ namespace OpenSpeed::ProStreet::Game {
     return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x465020)(cstring);
   }
 }  // namespace OpenSpeed::ProStreet::Game
+
+#endif

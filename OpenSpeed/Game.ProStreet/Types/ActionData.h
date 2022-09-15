@@ -19,24 +19,11 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/ScreenConstructorData.h>
 
 namespace OpenSpeed::ProStreet {
-  struct MenuScreen {
-    bool                  mPlaySound;
-    std::uint32_t         mDirectionForNextSound;
-    const char*           mpPackageFilename;
-    ScreenConstructorData mConstructData;
-    bool                  mIsGarageScreen;
-
-    virtual ~MenuScreen();
-    virtual eMenuSoundTriggers NotifySoundMessage(std::uint32_t, eMenuSoundTriggers);
-    virtual void               SetInitialOption(std::uint32_t);
-    virtual void               SetInitialOptionUsingDescHash(std::uint32_t);
-    virtual void               ShowHelpbar(char*);
-    virtual void               ShowScreen(bool);
-    virtual void               InitInstance();
-    virtual void               SetAspectRatio();
-    virtual void               __unk_related_to_lan_raceday();
+  struct ActionData {
+    ActionID     id;
+    std::int32_t slot;
+    float        data;
   };
 }  // namespace OpenSpeed::ProStreet

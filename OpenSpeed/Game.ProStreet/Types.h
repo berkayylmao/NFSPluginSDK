@@ -18,6 +18,9 @@
 // clang-format on
 
 #pragma once
+#ifndef OPENSPEED_PROSTREET_TYPES_H
+#define OPENSPEED_PROSTREET_TYPES_H
+
 #include <cstdint>      // integer types
 #include <type_traits>  // enable_if_t, is_base_of_v
 #if defined(_WIN32)
@@ -101,7 +104,7 @@ namespace OpenSpeed::ProStreet {
 
   namespace DALVehicleCommands {
     enum class RaceMode : std::uint32_t { Grip, Drift, Drag, Speed };
-    enum class DriveTrain : std::uint32_t { FWD, RWD, AWD };
+    enum class DriveTrain : std::uint32_t { FWD, RWD, AWD, Invalid = UINT32_MAX };
     struct CreateCustomizableCar;
   }  // namespace DALVehicleCommands
 
@@ -295,6 +298,9 @@ namespace OpenSpeed::ProStreet {
   struct AIVehicleRacecar;
   struct AIVehicleTraffic;
   struct AIWingman;
+  struct ArrayDatum;
+  struct ArrayScroller;
+  struct ArraySlot;
   struct Attachments;
   struct AttributeSet;
   struct AttribVaultPackImage;
@@ -344,12 +350,19 @@ namespace OpenSpeed::ProStreet {
   struct eSolid;
   struct eReplacementTextures;
   struct EventSequencer;
+  struct FEAnimMenu;
+  struct FEAnimMenuLevel;
   struct FECareerRecord;
   struct FECarRecord;
   struct FECustomizationRecord;
+  struct FEHubAnimController;
+  struct FEImage;
   struct FEImpoundData;
   struct FEInfractionsData;
   struct FEKeyboardSettings;
+  struct FEMapHub;
+  struct FEMapStreamer;
+  struct FEMapTier;
   struct FEngHud;
   struct FEObject;
   struct FEPackage;
@@ -381,6 +394,7 @@ namespace OpenSpeed::ProStreet {
   struct GTimer;
   struct GTrigger;
   struct GVault;
+  using HACTIONQUEUE__ = std::uint32_t;
   struct HACTIVITY__;
   struct HCAUSE__;
   struct HCOLPRIM__;
@@ -463,6 +477,7 @@ namespace OpenSpeed::ProStreet {
   struct RaceTypeHighScores;
   struct RBTractor;
   struct RBVehicle;
+  struct ResourceFile;
   struct RideInfo;
   struct RigidBody;
   struct SelectCarCameraMover;
@@ -496,9 +511,160 @@ namespace OpenSpeed::ProStreet {
 
 #pragma region Enums
 
+  enum class ActionID : std::uint32_t {
+    NULL_ACTION,
+    GAMEACTION_STEERLEFT,
+    GAMEACTION_STEERRIGHT,
+    GAMEACTION_OVERSTEER,
+    GAMEACTION_OVERSTEERLEFT,
+    GAMEACTION_OVERSTEERRIGHT,
+    GAMEACTION_TURNLEFT,
+    GAMEACTION_TURNRIGHT,
+    GAMEACTION_GAS,
+    GAMEACTION_GAS_SLOTCAR,
+    GAMEACTION_BRAKE,
+    GAMEACTION_HANDBRAKE,
+    GAMEACTION_GAMEBREAKER,
+    GAMEACTION_SHIFTUP,
+    GAMEACTION_SHIFTDOWN,
+    GAMEACTION_SHIFTFIRST,
+    GAMEACTION_SHIFTSECOND,
+    GAMEACTION_SHIFTTHIRD,
+    GAMEACTION_SHIFTFOURTH,
+    GAMEACTION_SHIFTFIFTH,
+    GAMEACTION_SHIFTSIXTH,
+    GAMEACTION_SHIFTNEUTRAL,
+    GAMEACTION_SHIFTREVERSE,
+    GAMEACTION_NOS,
+    GAMEACTION_RESET,
+    GAMEACTION_CREWAGGRESSIVE,
+    GAMEACTION_CREWDEFENSIVE,
+    GAMEACTION_CREWDEFAULT,
+    GAMEACTION_CREWSPEED,
+    GAMEACTION_FORWARD,
+    GAMEACTION_BACK,
+    GAMEACTION_JUMP,
+    GAMEACTION_DEBUGHUMAN1,
+    GAMEACTION_DEBUGHUMAN2,
+    GAMEACTION_DEBUGHUMAN3,
+    GAMEACTION_DEBUGHUMAN4,
+    GAMEACTION_CLUTCH,
+    GAMEACTION_CLUTCH_KICK,
+    CAMERAACTION_CHANGE,
+    CAMERAACTION_DEBUG,
+    CAMERAACTION_ENABLE_ICE,
+    CAMERAACTION_LOOKBACK,
+    CAMERAACTION_PULLBACK,
+    CAMERAACTION_ROT_LEFT,
+    CAMERAACTION_ROT_RIGHT,
+    CAMERAACTION_360,
+    FRONTENDACTION_UP,
+    FRONTENDACTION_DOWN,
+    FRONTENDACTION_LEFT,
+    FRONTENDACTION_RIGHT,
+    FRONTENDACTION_RUP,
+    FRONTENDACTION_RDOWN,
+    FRONTENDACTION_RLEFT,
+    FRONTENDACTION_RRIGHT,
+    FRONTENDACTION_ACCEPT,
+    FRONTENDACTION_CANCEL,
+    FRONTENDACTION_CANCEL_ALT,
+    FRONTENDACTION_START,
+    FRONTENDACTION_BUTTON0,
+    FRONTENDACTION_BUTTON1,
+    FRONTENDACTION_BUTTON2,
+    FRONTENDACTION_BUTTON3,
+    FRONTENDACTION_BUTTON4,
+    FRONTENDACTION_BUTTON5,
+    FRONTENDACTION_LTRIGGER,
+    FRONTENDACTION_RTRIGGER,
+    HUDACTION_PAUSEREQUEST,
+    HUDACTION_ENGAGE_EVENT,
+    HUDACTION_PAD_LEFT,
+    HUDACTION_PAD_DOWN,
+    HUDACTION_PAD_RIGHT,
+    HUDACTION_SKIPNIS,
+    HUDACTION_NEXTSONG,
+    HUDACTION_VOIPACTIVATION,
+    HUDACTION_VOIPDEACTIVATION,
+    HUDACTION_TOGGLE_LEADERBOARD,
+    HUDACTION_TOGGLE_MINIMAP,
+    HUDACTION_TOGGLE_BESTLINE,
+    HUDACTION_TOGGLE_ARROWS,
+    VOIPACTION_PUSHTOTALK,
+    DEBUGACTION_MOVE_UP,
+    DEBUGACTION_MOVE_DOWN,
+    DEBUGACTION_MOVE_LEFT,
+    DEBUGACTION_MOVE_RIGHT,
+    DEBUGACTION_MOVE_FORWARD,
+    DEBUGACTION_MOVE_BACK,
+    DEBUGACTION_MOVE_D_LEFT,
+    DEBUGACTION_MOVE_D_RIGHT,
+    DEBUGACTION_MOVE_D_FORWARD,
+    DEBUGACTION_MOVE_D_BACK,
+    DEBUGACTION_LOOK_UP,
+    DEBUGACTION_LOOK_DOWN,
+    DEBUGACTION_LOOK_LEFT,
+    DEBUGACTION_LOOK_RIGHT,
+    DEBUGACTION_LOOK_D_UP,
+    DEBUGACTION_LOOK_D_DOWN,
+    DEBUGACTION_LOOK_D_LEFT,
+    DEBUGACTION_LOOK_D_RIGHT,
+    DEBUGACTION_TURBO,
+    DEBUGACTION_SUPER_TURBO,
+    DEBUGACTION_DROPCAR,
+    DEBUGACTION_TOGGLEAI,
+    DEBUGACTION_TOGGLESIMSTEP,
+    DEBUGACTION_SIMSTEP,
+    DEBUGACTION_SCREENSHOT,
+    DEBUGACTION_STOPRECORDPATH,
+    DEBUGACTION_TOGGLECARCOLOUR,
+    DEBUGACTION_TOGGLEDEMOCAMERAS,
+    ICE_ACTION_START,
+    ICE_ACTION_SELECT,
+    ICE_ACTION_SOUTH,
+    ICE_ACTION_SOUTH_PRESS,
+    ICE_ACTION_NORTH,
+    ICE_ACTION_NORTH_PRESS,
+    ICE_ACTION_WEST,
+    ICE_ACTION_WEST_PRESS,
+    ICE_ACTION_EAST,
+    ICE_ACTION_EAST_PRESS,
+    ICE_ACTION_DOWN,
+    ICE_ACTION_DOWN_PRESS,
+    ICE_ACTION_UP,
+    ICE_ACTION_UP_PRESS,
+    ICE_ACTION_LEFT,
+    ICE_ACTION_LEFT_PRESS,
+    ICE_ACTION_RIGHT,
+    ICE_ACTION_RIGHT_PRESS,
+    ICE_ACTION_L1,
+    ICE_ACTION_L1_PRESS,
+    ICE_ACTION_R1,
+    ICE_ACTION_R1_PRESS,
+    ICE_ACTION_L2,
+    ICE_ACTION_L2_PRESS,
+    ICE_ACTION_R2,
+    ICE_ACTION_R2_PRESS,
+    ICE_ACTION_L3,
+    ICE_ACTION_L3_PRESS,
+    ICE_ACTION_R3,
+    ICE_ACTION_R3_RELEASE,
+    ICE_ACTION_LEFTSTICK_LEFT,
+    ICE_ACTION_LEFTSTICK_RIGHT,
+    ICE_ACTION_LEFTSTICK_DOWN,
+    ICE_ACTION_LEFTSTICK_UP,
+    ICE_ACTION_RIGHTSTICK_LEFT,
+    ICE_ACTION_RIGHTSTICK_RIGHT,
+    ICE_ACTION_RIGHTSTICK_DOWN,
+    ICE_ACTION_RIGHTSTICK_UP,
+    ACTION_EXITAPPLICATION,
+    ACTION_PLUGGED,
+    ACTION_UNPLUGGED,
+    ACTION_FLUSH
+  };
   enum class BluePrintNumber : std::uint32_t { BluePrint1, BluePrint2, BluePrint3 };
   enum class BluePrintType : std::uint32_t { Grip, Drift, Drag, SpeedChallenge };
-
   enum class CarSlotId : std::uint32_t {
     Invalid = UINT32_MAX,
     BadgingBumperSetFront,
@@ -1306,13 +1472,13 @@ namespace OpenSpeed::ProStreet {
     Color3,
     Color4
   };
-  enum class KitType : std::int32_t {
+  enum class KitType : std::uint32_t {
     Base,
     Stock,
     Autosculpt,
     Widebody,
   };
-
+  enum class InputUpdateType : std::uint32_t { Update, Press, Release, AnalogPress, AnalogRelease, CenterControl };
   enum class SurfaceSFX : std::uint32_t {
     None         = 0,
     LightCrack   = 1,
@@ -1444,8 +1610,8 @@ namespace OpenSpeed::ProStreet {
       GenericLeft
     };
     enum class Tier : std::uint32_t { None, Tier1, Tier2, Tier3 };
-    enum class Type : std::uint32_t {
-      None                   = UINT32_MAX,
+    enum class Type : std::uint8_t {
+      None                   = UINT8_MAX,
       P2P                    = 0,
       SpeedChallenge_HeadsUp = P2P,
       SpeedChallenge_Mixed   = 1,
@@ -1533,7 +1699,7 @@ namespace OpenSpeed::ProStreet {
     std::uint16_t buf;
 
     operator float() const {
-      return ((buf & 0x7C00 == 0) ? 0 : ((buf & 0x7FFF) << 13) + 0x38000000) | ((buf & 0x8000) << 16);
+      return (((buf & 0x7C00) == 0) ? 0 : ((buf & 0x7FFF) << 13) + 0x38000000) | ((buf & 0x8000) << 16);
     }
 
     float16() = default;
@@ -1551,3 +1717,5 @@ namespace OpenSpeed::ProStreet {
 #pragma endregion
 
 }  // namespace OpenSpeed::ProStreet
+
+#endif

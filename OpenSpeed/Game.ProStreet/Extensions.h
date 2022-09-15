@@ -25,6 +25,7 @@
 #include <OpenSpeed/Game.ProStreet/Types.h>
 #include <OpenSpeed/Game.ProStreet/Types/DamageCopCar.h>  // DamageCopCar, DamageVehicle, IDamageable, IDamageableVehicle
 #include <OpenSpeed/Game.ProStreet/Types/DamageRacer.h>   // DamageRacer
+#include <OpenSpeed/Game.ProStreet/Types/FEngHud.h>       // FEngHud, IHud
 #include <OpenSpeed/Game.ProStreet/Types/PVehicle.h>      // PVehicle
 #include <OpenSpeed/Game.ProStreet/Types/RBSmackable.h>   // RBSmackable, RigidBody, IRigidBody
 #include <OpenSpeed/Game.ProStreet/Types/RBVehicle.h>     // RBVehicle
@@ -170,9 +171,9 @@ namespace OpenSpeed::ProStreet {
     }
   }  // namespace RigidBodyEx
 
-  //            //
+  //             //
   // IDamageable //
-  //            //
+  //             //
 
   namespace DamageableEx {
     namespace details {
@@ -253,4 +254,42 @@ namespace OpenSpeed::ProStreet {
       return nullptr;
     }
   }  // namespace DamageableEx
+
+  //      //
+  // IHud //
+  //      //
+
+  namespace HudEx {
+    namespace details {
+      //                       //
+      // Verified FEngHud cast //
+      //                       //
+
+      struct FEngHudCast_t {
+        FEngHud* operator()(IHud* iHud) const {
+          if (!iHud || !MemoryEditor::Get().ValidateMemory(iHud)) return nullptr;
+          // Verify cast
+          auto* hud   = static_cast<FEngHud*>(iHud);
+          auto  vfptr = *reinterpret_cast<std::uintptr_t*>(hud);
+          // type: FEngHud
+          if (vfptr == 0x97F7D4) return hud;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      static FEngHud* operator|(IHud* i, FEngHudCast_t ext) { return ext(i); }
+    }  // namespace details
+
+    // Try-get IHud as FEngHud
+    // Usage: FEngHud* myptr = GetHudPtr() | HudEx::AsFEngHud;
+    static inline const details::FEngHudCast_t AsFEngHud;
+
+    // Get a pointer to the player IHud instance
+    static IHud* GetPlayerInstance() {
+      auto* pvehicle = PVehicleEx::GetPlayerInstance();
+      if (pvehicle && pvehicle->mPlayer) return pvehicle->mPlayer->GetHud();
+
+      return nullptr;
+    }
+  }  // namespace HudEx
 }  // namespace OpenSpeed::ProStreet

@@ -19,24 +19,22 @@
 
 #pragma once
 #include <OpenSpeed/Game.ProStreet/Types.h>
-#include <OpenSpeed/Game.ProStreet/Types/ScreenConstructorData.h>
+#include <OpenSpeed/Game.ProStreet/Types/bNode.h>
 
 namespace OpenSpeed::ProStreet {
-  struct MenuScreen {
-    bool                  mPlaySound;
-    std::uint32_t         mDirectionForNextSound;
-    const char*           mpPackageFilename;
-    ScreenConstructorData mConstructData;
-    bool                  mIsGarageScreen;
+  struct FETreeDataNode : bTNode<FETreeDataNode> {
+    enum class eNodeType : std::uint32_t { Standard, Slider, List };
 
-    virtual ~MenuScreen();
-    virtual eMenuSoundTriggers NotifySoundMessage(std::uint32_t, eMenuSoundTriggers);
-    virtual void               SetInitialOption(std::uint32_t);
-    virtual void               SetInitialOptionUsingDescHash(std::uint32_t);
-    virtual void               ShowHelpbar(char*);
-    virtual void               ShowScreen(bool);
-    virtual void               InitInstance();
-    virtual void               SetAspectRatio();
-    virtual void               __unk_related_to_lan_raceday();
+    std::int32_t  mId;
+    char*         mpLabel;
+    std::uint32_t mLabelHash;
+    std::uint32_t mData;
+    char*         mpStringVal;
+    float         mValue;
+    eNodeType     mType;
+
+    virtual ~FETreeDataNode();
+    virtual void  RefreshStringVal();
+    virtual float GetDataWidth(FEString* str);
   };
 }  // namespace OpenSpeed::ProStreet
