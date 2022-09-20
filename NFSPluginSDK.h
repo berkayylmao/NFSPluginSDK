@@ -25,12 +25,12 @@
 #include <cstring>  // strstr
 
 namespace NFSPluginSDK {
-  enum class SpeedGame { NotSupported, U2, MW05, Carbon, ProStreet };
-  struct SpeedGameInformation {
+  enum class Game { NotSupported, U2, MW05, Carbon, ProStreet };
+  struct GameInformation {
     /// <summary>
-    /// Pointer to game's window name, <strong>const</strong>.
+    /// Game type.
     /// </summary>
-    SpeedGame mGame;
+    Game mGame;
     /// <summary>
     /// Pointer to game's window name, const.
     /// </summary>
@@ -49,16 +49,16 @@ namespace NFSPluginSDK {
     /// </summary>
     void** mPDI8Device;
 
-    SpeedGameInformation() :
-        mGame(SpeedGame::NotSupported),
+    GameInformation() :
+        mGame(Game::NotSupported),
         mSzWindowName(nullptr),
         mPHwnd(nullptr),
         mPD3DDevice(nullptr),
         mPDI8Device(nullptr) {}
-    SpeedGameInformation(SpeedGame game, const char* szWindowName, void** hWnd, void** pD3DDevice, void** pDI8Device) :
+    GameInformation(Game game, const char* szWindowName, void** hWnd, void** pD3DDevice, void** pDI8Device) :
         mGame(game), mSzWindowName(szWindowName), mPHwnd(hWnd), mPD3DDevice(pD3DDevice), mPDI8Device(pDI8Device) {}
-    SpeedGameInformation(SpeedGame game, std::uintptr_t szWindowName, std::uintptr_t addrHWND,
-                         std::uintptr_t addrPD3DDevice, std::uintptr_t addrPDI8Device) :
+    GameInformation(Game game, std::uintptr_t szWindowName, std::uintptr_t addrHWND, std::uintptr_t addrPD3DDevice,
+                    std::uintptr_t addrPDI8Device) :
         mGame(game),
         mSzWindowName(reinterpret_cast<const char*>(szWindowName)),
         mPHwnd(reinterpret_cast<void**>(addrHWND)),
@@ -66,26 +66,26 @@ namespace NFSPluginSDK {
         mPDI8Device(reinterpret_cast<void**>(addrPDI8Device)) {}
   };
 
-  static inline SpeedGame GetCurrentSpeedGame() {
-    if (std::strstr(reinterpret_cast<const char*>(0x789694), "Need for Speed Underground 2")) return SpeedGame::U2;
-    if (std::strstr(reinterpret_cast<const char*>(0x8AF684), "Need For Speed Most Wanted")) return SpeedGame::MW05;
-    if (std::strstr(reinterpret_cast<const char*>(0x9E9E94), "Need For Speed Carbon")) return SpeedGame::Carbon;
-    if (std::strstr(reinterpret_cast<const char*>(0x98E9A0), "ProStreetGame")) return SpeedGame::ProStreet;
+  static inline Game GetCurrentGame() {
+    if (std::strstr(reinterpret_cast<const char*>(0x789694), "Need for Speed Underground 2")) return Game::U2;
+    if (std::strstr(reinterpret_cast<const char*>(0x8AF684), "Need For Speed Most Wanted")) return Game::MW05;
+    if (std::strstr(reinterpret_cast<const char*>(0x9E9E94), "Need For Speed Carbon")) return Game::Carbon;
+    if (std::strstr(reinterpret_cast<const char*>(0x98E9A0), "ProStreetGame")) return Game::ProStreet;
 
-    return SpeedGame::NotSupported;
+    return Game::NotSupported;
   }
-  static inline SpeedGameInformation GetInformationOfCurrentSpeedGame() {
-    switch (GetCurrentSpeedGame()) {
-      case SpeedGame::U2:
-        return SpeedGameInformation(SpeedGame::U2, 0x78E8F4, 0x870990, 0, 0);
-      case SpeedGame::MW05:
-        return SpeedGameInformation(SpeedGame::MW05, 0x8B0050, 0x982BF4, 0x982BDC, 0x982D14);
-      case SpeedGame::Carbon:
-        return SpeedGameInformation(SpeedGame::Carbon, 0x9E3648, 0xAB0AD8, 0xAB0ABC, 0xB1F5CC);
-      case SpeedGame::ProStreet:
-        return SpeedGameInformation(SpeedGame::ProStreet, 0x98D84C, 0xAC6ED8, 0xAC6ED4, 0xACDCAC);
+  static inline GameInformation GetInformationOfCurrentGame() {
+    switch (GetCurrentGame()) {
+      case Game::U2:
+        return GameInformation(Game::U2, 0x78E8F4, 0x870990, 0, 0);
+      case Game::MW05:
+        return GameInformation(Game::MW05, 0x8B0050, 0x982BF4, 0x982BDC, 0x982D14);
+      case Game::Carbon:
+        return GameInformation(Game::Carbon, 0x9E3648, 0xAB0AD8, 0xAB0ABC, 0xB1F5CC);
+      case Game::ProStreet:
+        return GameInformation(Game::ProStreet, 0x98D84C, 0xAC6ED8, 0xAC6ED4, 0xACDCAC);
     }
-    return SpeedGameInformation();
+    return GameInformation();
   }
 }  // namespace NFSPluginSDK
 

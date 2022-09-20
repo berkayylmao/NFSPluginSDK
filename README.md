@@ -4,7 +4,7 @@
 
 An attempt to reverse compiled types of BlackBox era Need for Speed games to allow creating plugins/scipt mods easily.
 
-Given the workload of finding leaked builds, cross-referencing compiled code, finding references to the variables inside structures and hand-crafting each structure; and also working alone, some structures may not feature all of their features and/or have missing functions/variables. However, NFSPluginSDK is mature enough to be used as a base. [NFS Chat Chaos Mod](https://github.com/berkayylmao/NFS-Chat-Chaos-Mod) and [B.A.M.](https://github.com/berkayylmao/BerkaysAssortedMods) already use it.
+Given the workload of finding leaked builds, cross-referencing compiled code, finding references to the variables inside structures and hand-crafting each of them; and also working alone, some structures may not have all of their features and/or have missing functions/variables. However, NFSPluginSDK is mature enough to be used as a base. [NFS Chat Chaos Mod](https://github.com/berkayylmao/NFS-Chat-Chaos-Mod) and [B.A.M.](https://github.com/berkayylmao/BerkaysAssortedMods) already use it.
 
 | Game                 | Progress |       Attrib       |      PVehicle      |     AIVehicle      |     \*Pursuit      |
 | :------------------- | :------: | :----------------: | :----------------: | :----------------: | :----------------: |
@@ -30,7 +30,7 @@ And use it!
 For more advanced examples you can take a look at the source code of [NFS Chat Chaos Mod](https://github.com/berkayylmao/NFS-Chat-Chaos-Mod) and [B.A.M.](https://github.com/berkayylmao/BerkaysAssortedMods).
 
 ## Thanks
-Massive thanks to nlgzgrn and heyitsleo for all their help.
+Massive thanks to [@nlgxzef](https://github.com/nlgxzef) and [@heyitsleo](https://github.com/LeoCodes21) for all their help.
 
 ## Legal
 NFSPluginSDK is not affiliated in any way with EA.
