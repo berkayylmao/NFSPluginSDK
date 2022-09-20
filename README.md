@@ -27,7 +27,7 @@ And use it!
 
 `MW05::Game::BlowEngine(MW05::PlayerEx::GetPlayerInstance());`
 
-For more advanced example you can take a look at the source code of [NFS Chat Chaos Mod](https://github.com/berkayylmao/NFS-Chat-Chaos-Mod) and [B.A.M.](https://github.com/berkayylmao/BerkaysAssortedMods).
+For more advanced examples you can take a look at the source code of [NFS Chat Chaos Mod](https://github.com/berkayylmao/NFS-Chat-Chaos-Mod) and [B.A.M.](https://github.com/berkayylmao/BerkaysAssortedMods).
 
 ## Thanks
 Massive thanks to nlgzgrn and heyitsleo for all their help.
