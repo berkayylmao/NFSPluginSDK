@@ -41,7 +41,6 @@ namespace OpenSpeed::ProStreet {
     KitType          mKitType;
     std::uint32_t    mKitNum;
     float            mRideHeight;
-    float            mRidePitch;
     PackedVinylLayer mVinylLayers[20];
     std::int32_t     mVinylMirrorBits;
     std::int32_t     mNumVinylLayers;
@@ -49,8 +48,8 @@ namespace OpenSpeed::ProStreet {
     std::int32_t     mDecalMirrorBits;
     std::int32_t     mNumDecalLayers;
     std::int32_t     mLiveryID;
-    std::int8_t      mMorphValues[40][11];
-    float            mPhysicsTuning[31];
+    std::int8_t      mMorphValues[41][11];
+    float            mPhysicsTuning[32];
     std::int32_t     mType;
 
     bool GetInstalledPart(CarSlotId slotId, CarType carType, DBCarPart* out) {

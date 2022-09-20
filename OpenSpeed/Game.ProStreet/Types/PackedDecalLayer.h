@@ -26,13 +26,13 @@
 #include <OpenSpeed/Game.ProStreet/Types/VinylSystem.h>
 
 namespace OpenSpeed::ProStreet {
-  struct PackedDecalLayer {
 #pragma pack(push, 1)
+  struct PackedDecalLayer {
     std::int16_t                      mDecalPart;
     VinylSystem::VinylTransformPacked mTransform;
     PackedVinylColor                  mColors;
-#pragma pack(pop)
   };
+#pragma pack(pop)
 }  // namespace OpenSpeed::ProStreet
 
 #endif  // OPENSPEED_GAME_PROSTREET_TYPES_PACKEDDECALLAYER_H
