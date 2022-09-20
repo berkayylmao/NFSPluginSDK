@@ -1,0 +1,40 @@
+// clang-format off
+//
+//    Copyright (C) 2022 Berkay Yigit <mail@berkay.link>
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU Affero General Public License as published
+//    by the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+//    GNU Affero General Public License for more details.
+//
+//    You should have received a copy of the GNU Affero General Public License
+//    along with this program. If not, see <https://www.gnu.org/licenses/>.
+//
+// clang-format on
+
+#ifndef NFSPLUGINSDK_GAME_PROSTREET_TYPES_EMODEL_H
+#define NFSPLUGINSDK_GAME_PROSTREET_TYPES_EMODEL_H
+#pragma once
+
+#include <NFSPluginSDK/Game.ProStreet/Types.h>
+#include <NFSPluginSDK/Game.ProStreet/Types/bNode.h>
+
+namespace NFSPluginSDK::ProStreet {
+  struct eModel : bTNode<eModel> {
+    std::uint32_t         NameHash;
+    eSolid*               Solid;
+    eReplacementTextures* pReplacementTextureTable;
+    std::int16_t          LodLevel;
+    std::int16_t          Pad;
+
+    // hash must be from bStringHash()
+    void Init(std::uint32_t hash) { reinterpret_cast<void(__thiscall*)(eModel*, std::uint32_t)>(0x454B50)(this, hash); }
+  };
+}  // namespace NFSPluginSDK::ProStreet
+
+#endif  // NFSPLUGINSDK_GAME_PROSTREET_TYPES_EMODEL_H

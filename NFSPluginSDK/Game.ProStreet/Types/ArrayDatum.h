@@ -1,0 +1,43 @@
+// clang-format off
+//
+//    Copyright (C) 2022 Berkay Yigit <mail@berkay.link>
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU Affero General Public License as published
+//    by the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+//    GNU Affero General Public License for more details.
+//
+//    You should have received a copy of the GNU Affero General Public License
+//    along with this program. If not, see <https://www.gnu.org/licenses/>.
+//
+// clang-format on
+
+#ifndef NFSPLUGINSDK_GAME_PROSTREET_TYPES_ARRAYDATUM_H
+#define NFSPLUGINSDK_GAME_PROSTREET_TYPES_ARRAYDATUM_H
+#pragma once
+
+#include <NFSPluginSDK/Game.ProStreet/Types.h>
+#include <NFSPluginSDK/Game.ProStreet/Types/bNode.h>
+
+namespace NFSPluginSDK::ProStreet {
+  struct ArrayDatum : bTNode<ArrayDatum> {
+    std::uint32_t mHash;
+    std::uint32_t mDesc;
+    bool          mEnabled;
+    bool          mGreyedOut;
+    bool          mLocked;
+    bool          mChecked;
+
+    virtual ~ArrayDatum();
+    virtual const char* GetString();
+    virtual void        NotificationMessage(std::uint32_t, FEObject*, std::uint32_t, std::uint32_t);
+    virtual void        OnHighlighted();
+  };
+}  // namespace NFSPluginSDK::ProStreet
+
+#endif  // NFSPLUGINSDK_GAME_PROSTREET_TYPES_ARRAYDATUM_H
