@@ -32,20 +32,13 @@
 
 namespace OpenSpeed::ProStreet {
   struct FEPlayerCarDB {
-    FECarRecord                                                                 CarTable[410];
-    FECustomizationRecord                                                       Customizations[80];
-    FECareerRecord                                                              CareerRecords[80];
-    FELinkedPool<FECarPartRecord, std::uint16_t, std::uint16_t, 9500 /*14000*/> CarParts;
-    FELinkedPool<FEVinylRecord, std::uint16_t, std::uint16_t, 700 /*760*/>      Vinyls;
-    std::uint32_t                                                               SoldHistoryBounty;
-    std::uint16_t                                                               SoldHistoryNumEvadedPursuits;
-    std::uint16_t                                                               SoldHistoryNumBustedPursuits;
-    FEInfractionsData                                                           SoldHistoryUnservedInfractions;
-    FEInfractionsData                                                           SoldHistoryServedInfractions;
-    unsigned char                                                               __pad[0x4768];
-    std::uint32_t                                                               LastAwardedKingCarHistoryCarHandle;
-    BluePrintType                                                               LastAwardedKingCarHistoryCarMode;
-    std::int8_t                                                                 mInitializingCarStable;
+    FECarRecord           mCarTable[410];
+    FECustomizationRecord mCustomizations[80];
+    FECareerRecord        mCareerRecords[80];
+    unsigned char         __pad[0x122C8];
+    std::uint32_t         mLastAwardedKingCarHistoryCarHandle;
+    BluePrintType         mLastAwardedKingCarHistoryCarMode;
+    std::int8_t           mInitializingCarStable;
 
     FECarRecord* GetCarRecordByHandle(std::uint32_t handle) {
       return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5332F0)(this, handle);
@@ -53,6 +46,18 @@ namespace OpenSpeed::ProStreet {
     FECarRecord* GetCarByIndex(std::uint32_t idx) {
       return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5333B0)(this, idx);
     }
+
+    /*
+     * __pad is undefined. The Wii debug build lists the following entries but they don't seem to line up correctly.
+     *
+     * FELinkedPool<FECarPartRecord, std::uint16_t, std::uint16_t, 9500> CarParts;
+     * FELinkedPool<FEVinylRecord, std::uint16_t, std::uint16_t, 700>    Vinyls;
+     * std::uint32_t                                                     SoldHistoryBounty;
+     * std::uint16_t                                                     SoldHistoryNumEvadedPursuits;
+     * std::uint16_t                                                     SoldHistoryNumBustedPursuits;
+     * FEInfractionsData                                                 SoldHistoryUnservedInfractions;
+     * FEInfractionsData                                                 SoldHistoryServedInfractions;
+     */
   };
 }  // namespace OpenSpeed::ProStreet
 

@@ -38,9 +38,9 @@ namespace OpenSpeed::ProStreet {
     OptionsSettings      mOptionsSettings;
     std::uint32_t        mNumRaceDaySaves;
     std::uint32_t        mNumRaceDaySavesTotal;
-    Gameplay::GHubRecord currentRaceDayConfig;
+    Gameplay::GHubRecord mCurrentRaceDayConfig;
     RaceDaySettings      mRaceDaySettings;
-    std::uint32_t        OnlineXPLevel;
+    std::uint32_t        mOnlineXPLevel;
 
     static inline UserProfile (**spUserProfiles)[4] = reinterpret_cast<UserProfile (**)[4]>(0xAB0EAC);
 
