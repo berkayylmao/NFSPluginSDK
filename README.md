@@ -33,6 +33,6 @@ For more advanced example you can take a look at the source code of [NFS Chat Ch
 Massive thanks to nlgzgrn and heyitsleo for all their help.
 
 ## Legal
-OpenNFS is not affiliated in any way with EA.
+NFSPluginSDK is not affiliated in any way with EA.
 
 Released under the AGPL-3.0 License.
