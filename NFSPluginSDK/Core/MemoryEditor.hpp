@@ -45,6 +45,8 @@ namespace MemoryEditor {
     Call,
     // 0xE9
     Jump,
+    // 0xFF25
+    JumpAbsolute,
     // 0x90
     NOP,
     // 0xC3
@@ -211,7 +213,9 @@ namespace MemoryEditor {
     }
 
     void Make(MakeType type, std::uintptr_t from, std::uintptr_t to) const {
-      std::int32_t size = ((type == MakeType::Call) || (type == MakeType::Jump)) ? 5 : to - from;
+      std::int32_t size = (type == MakeType::JumpAbsolute)
+                              ? 6
+                              : (((type == MakeType::Call) || (type == MakeType::Jump)) ? 5 : to - from);
       if (size < 0) return;
 
       auto mem = std::make_unique<std::uint8_t[]>(size);
@@ -224,6 +228,10 @@ namespace MemoryEditor {
         case MakeType::Jump: {
           mem[0]                                     = 0xE9;
           *reinterpret_cast<std::uint32_t*>(&mem[1]) = CalcRelativeDistance(from, to);
+        } break;
+        case MakeType::JumpAbsolute: {
+          *reinterpret_cast<std::uint16_t*>(&mem[0]) = 0x25FF;
+          *reinterpret_cast<std::uint32_t*>(&mem[2]) = to;
         } break;
         case MakeType::NOP:
           std::memset(mem.get(), 0x90, size);
