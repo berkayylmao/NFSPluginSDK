@@ -27,7 +27,7 @@ And use it!
 
 `MW05::Game::BlowEngine(MW05::PlayerEx::GetPlayerInstance());`
 
-For more advanced examples you can take a look at the source code of [NFS Chat Chaos Mod](https://github.com/berkayylmao/NFS-Chat-Chaos-Mod) and [B.A.M.](https://github.com/berkayylmao/BerkaysAssortedMods).
+All gameplay functionality of [NFS Chat Chaos Mod](https://github.com/berkayylmao/NFS-Chat-Chaos-Mod) and [B.A.M.](https://github.com/berkayylmao/BerkaysAssortedMods) are provided by NFSPluginSDK.
 
 ## Thanks
 Massive thanks to [@nlgxzef](https://github.com/nlgxzef) and [@heyitsleo](https://github.com/LeoCodes21) for all their help.
@@ -35,4 +35,4 @@ Massive thanks to [@nlgxzef](https://github.com/nlgxzef) and [@heyitsleo](https:
 ## Legal
 NFSPluginSDK is not affiliated in any way with EA.
 
-Released under the AGPL-3.0 License.
+Released under the BSD 3-Clause License.
