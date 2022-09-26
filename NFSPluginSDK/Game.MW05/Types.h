@@ -711,7 +711,17 @@ namespace NFSPluginSDK::MW05 {
     Online
   };
   enum class ePlayerList : std::uint32_t { All, Local, Remote };
-  enum class ePlayerSettingsCameras : std::uint32_t { Bumper, Hood, Default, Close, Far, SuperFar, Drift, Pursuit };
+  enum class ePlayerSettingsCameras : std::uint32_t {
+    Bumper,
+    Hood,
+    Default,
+    Close,
+    Far,
+    SuperFar,
+    Drift,
+    Pursuit,
+    Invalid = UINT32_MAX
+  };
   enum class ePostRaceOptions : std::uint32_t { NextRace, Quit, RestartRace, RestartEvent };
   enum class ePursuitStatus : std::uint32_t { InitialChase, BackupRequested, Cooldown, Busted, Evaded };
   enum class eSplitTimeTypes : std::uint8_t { RaceLeader, LapRecord, BestLap, LastLap, Off };

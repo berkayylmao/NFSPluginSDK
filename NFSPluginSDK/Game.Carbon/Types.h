@@ -621,6 +621,17 @@ namespace NFSPluginSDK::Carbon {
     LevelUnique,
     LevelUnspecified = UINT32_MAX
   };
+  enum class ePlayerSettingsCameras : std::uint8_t {
+    Bumper,
+    Hood,
+    Default,
+    Close,
+    Far,
+    SuperFar,
+    Drift,
+    Pursuit,
+    Invalid = UINT8_MAX
+  };
   enum class ePursuitStatus : std::uint32_t { InitialChase, BackupRequested, Cooldown, Busted, Evaded };
   enum class eVehicleParamFlags : std::uint32_t {
     None,
