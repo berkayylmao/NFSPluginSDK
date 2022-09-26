@@ -624,7 +624,6 @@ namespace NFSPluginSDK::Carbon {
   enum class ePlayerSettingsCameras : std::uint8_t {
     Bumper,
     Hood,
-    Default,
     Close,
     Far,
     SuperFar,

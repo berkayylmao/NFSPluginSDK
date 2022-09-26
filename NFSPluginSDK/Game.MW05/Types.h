@@ -714,7 +714,6 @@ namespace NFSPluginSDK::MW05 {
   enum class ePlayerSettingsCameras : std::uint32_t {
     Bumper,
     Hood,
-    Default,
     Close,
     Far,
     SuperFar,
