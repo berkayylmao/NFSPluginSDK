@@ -43,6 +43,7 @@ namespace NFSPluginSDK::ProStreet::Variables {
   static inline MemoryFieldWrapper<bool>           ShowAllCarsInFE{0xBFBC6E, false};
   static inline MemoryFieldWrapper<bool>           ShowCarLODScreenPrint{0xAEB6E0, false};
   static inline MemoryFieldWrapper<bool>           SkipCareerIntro{0xBFBC6C, false};
+  static inline MemoryFieldWrapper<bool>           SkipFE{0xBFBC08, false};
   static inline MemoryFieldWrapper<GameFlowState>  TheGameFlowManager{0xABB510, GameFlowState::InFrontEnd};
   static inline MemoryFieldWrapper<float>          Tweak_GameBreakerCollisionMass{0xA9B678, 2.0f, FLT_MIN, FLT_MAX};
   static inline MemoryFieldWrapper<bool>           UnlockAllThings{0xBFBC5B, false};
