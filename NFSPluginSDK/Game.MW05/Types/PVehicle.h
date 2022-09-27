@@ -138,13 +138,13 @@ namespace NFSPluginSDK::MW05 {
 
     static inline _InstanceLayout* g_mInstances = reinterpret_cast<_InstanceLayout*>(0x9352B0);
 
-    static PVehicle* Construct(const VehicleParams& vehicleParams) {
+    static inline PVehicle* Construct(const VehicleParams& vehicleParams) {
       ISimable* pSimable =
           reinterpret_cast<ISimable*(__cdecl*)(VehicleParams, UCrc32)>(0x689820)(vehicleParams, vehicleParams.mName);
       return static_cast<PVehicle*>(pSimable);
     }
 
-    static std::int32_t GetInstancesCount() {
+    static inline std::int32_t GetInstancesCount() {
       std::int32_t _amount    = 0;
       auto*        _pInstance = g_mInstances;
       while ((_pInstance++)->mInstance) _amount++;
@@ -152,7 +152,7 @@ namespace NFSPluginSDK::MW05 {
       return _amount;
     }
 
-    static PVehicle* GetInstance(std::int32_t idx) {
+    static inline PVehicle* GetInstance(std::int32_t idx) {
       auto* _instance = g_mInstances[idx].mInstance;
       if (_instance) return _instance;
 

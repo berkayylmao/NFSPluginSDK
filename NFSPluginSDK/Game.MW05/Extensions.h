@@ -34,7 +34,7 @@
 #include <NFSPluginSDK/Game.MW05/Types/AIVehicleHelicopter.h>  // AIVehicleHelicopter
 #include <NFSPluginSDK/Game.MW05/Types/AIVehicleHuman.h>       // AIVehicleHuman, AIVehicleRacecar
 #include <NFSPluginSDK/Game.MW05/Types/AIVehicleTraffic.h>     // AIVehicleTraffic
-#include <NFSPluginSDK/Game.MW05/Types/DamageCopCar.h>     // DamageCopCar, DamageVehicle, IDamageable, IDamageableVehicle
+#include <NFSPluginSDK/Game.MW05/Types/DamageCopCar.h>  // DamageCopCar, DamageVehicle, IDamageable, IDamageableVehicle
 #include <NFSPluginSDK/Game.MW05/Types/DamageDragster.h>   // DamageDragster, DamageRacer, ISpikeable
 #include <NFSPluginSDK/Game.MW05/Types/DamageHeli.h>       // DamageHeli
 #include <NFSPluginSDK/Game.MW05/Types/GRaceStatus.h>      // GRaceStatus
@@ -80,15 +80,15 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static PVehicle* operator|(PVehicle* pvehicle, ValidatePVehicle_t ext) { return ext(pvehicle); }
+      inline PVehicle* operator|(PVehicle* pvehicle, ValidatePVehicle_t ext) { return ext(pvehicle); }
     }  // namespace details
 
     // Validate PVehicle pointer
     // Usage: PVehicle* myptr = GetPVehiclePtr() | PVehicleEx::ValidatePVehicle;
-    static inline const details::ValidatePVehicle_t ValidatePVehicle;
+    inline const details::ValidatePVehicle_t ValidatePVehicle;
 
     // Get a pointer to the player PVehicle instance
-    static PVehicle* GetPlayerInstance() {
+    inline PVehicle* GetPlayerInstance() {
       auto* _instance = PVehicle::g_mInstances;
       while (auto* pvehicle = ((_instance++)->mInstance | ValidatePVehicle))
         if (pvehicle->IsPlayer() && pvehicle->IsOwnedByPlayer()) return pvehicle;
@@ -97,13 +97,13 @@ namespace NFSPluginSDK::MW05 {
     }
 
     // Run a function on all PVehicle instances
-    static void ForEachInstance(const std::function<void(PVehicle* p)>& fn) {
+    inline void ForEachInstance(const std::function<void(PVehicle* p)>& fn) {
       auto* _instance = PVehicle::g_mInstances;
       while (auto* pvehicle = ((_instance++)->mInstance | ValidatePVehicle)) fn(pvehicle);
     }
 
     // Change target PVehicle model
-    static details::ChangedPVehicleInfo ChangePVehicleInto(
+    inline details::ChangedPVehicleInfo ChangePVehicleInto(
         PVehicle* target, std::uint32_t vehicleKey, FECustomizationRecord* customizations,
         eVehicleParamFlags flags           = eVehicleParamFlags::SnapToGround | eVehicleParamFlags::CalcPerformance,
         bool               killAfterChange = true) {
@@ -188,7 +188,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static RigidBody* operator|(IRigidBody* iRB, RigidBodyCast_t ext) { return ext(iRB); }
+      inline RigidBody* operator|(IRigidBody* iRB, RigidBodyCast_t ext) { return ext(iRB); }
 
       //                           //
       // Verified RBSmackable cast //
@@ -204,7 +204,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static RBSmackable* operator|(IRigidBody* iRB, RBSmackableCast_t ext) { return ext(iRB); }
+      inline RBSmackable* operator|(IRigidBody* iRB, RBSmackableCast_t ext) { return ext(iRB); }
 
       //                         //
       // Verified RBVehicle cast //
@@ -224,7 +224,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static RBVehicle* operator|(IRigidBody* iRB, RBVehicleCast_t ext) { return ext(iRB); }
+      inline RBVehicle* operator|(IRigidBody* iRB, RBVehicleCast_t ext) { return ext(iRB); }
 
       //                         //
       // Verified RBTractor cast //
@@ -240,7 +240,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static RBTractor* operator|(IRigidBody* iRB, RBTractorCast_t ext) { return ext(iRB); }
+      inline RBTractor* operator|(IRigidBody* iRB, RBTractorCast_t ext) { return ext(iRB); }
 
       //                               //
       // Verified SimpleRigidBody cast //
@@ -256,31 +256,31 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static SimpleRigidBody* operator|(IRigidBody* iRB, SimpleRigidBodyCast_t ext) { return ext(iRB); }
+      inline SimpleRigidBody* operator|(IRigidBody* iRB, SimpleRigidBodyCast_t ext) { return ext(iRB); }
     }  // namespace details
 
     // Try-get IRigidBody as RigidBody
     // Usage: RigidBody* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRigidBody;
-    static inline const details::RigidBodyCast_t AsRigidBody;
+    inline const details::RigidBodyCast_t AsRigidBody;
 
     // Try-get IRigidBody as RBSmackable
     // Usage: RBSmackable* myptr = GetRigidBodyPtr() | RigidBodyEx::RBSmackable;
-    static inline const details::RBSmackableCast_t AsRBSmackable;
+    inline const details::RBSmackableCast_t AsRBSmackable;
 
     // Try-get IRigidBody as RBVehicle
     // Usage: RBVehicle* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRBVehicle;
-    static inline const details::RBVehicleCast_t AsRBVehicle;
+    inline const details::RBVehicleCast_t AsRBVehicle;
 
     // Try-get IRigidBody as RBTractor
     // Usage: RBTractor* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRBTractor;
-    static inline const details::RBTractorCast_t AsRBTractor;
+    inline const details::RBTractorCast_t AsRBTractor;
 
     // Try-get IRigidBody as SimpleRigidBody
     // Usage: SimpleRigidBody* myptr = GetRigidBodyPtr() | RigidBodyEx::AsSimpleRigidBody;
-    static inline const details::SimpleRigidBodyCast_t AsSimpleRigidBody;
+    inline const details::SimpleRigidBodyCast_t AsSimpleRigidBody;
 
     // Get a pointer to the player IRigidBody instance
-    static IRigidBody* GetPlayerInstance() {
+    inline IRigidBody* GetPlayerInstance() {
       auto* pvehicle = PVehicleEx::GetPlayerInstance();
       if (pvehicle) return pvehicle->GetRigidBody();
 
@@ -288,7 +288,7 @@ namespace NFSPluginSDK::MW05 {
     }
 
     // Run a function on all RigidBody::Volatile instances
-    static void ForEachInstance(const std::function<void(RigidBody::Volatile* p)>& fn) {
+    inline void ForEachInstance(const std::function<void(RigidBody::Volatile* p)>& fn) {
       auto* _instance = RigidBody::Volatile::g_mInstances;
       while (auto* volatileData = *(_instance++))
         if (MemoryEditor::Get().ValidateMemory(volatileData)) fn(volatileData);
@@ -316,15 +316,15 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static SimpleRigidBody* operator|(ISimpleBody* iSRB, SimpleRigidBodyCast_t ext) { return ext(iSRB); }
+      inline SimpleRigidBody* operator|(ISimpleBody* iSRB, SimpleRigidBodyCast_t ext) { return ext(iSRB); }
     }  // namespace details
 
     // Try-get ISimpleBody as SimpleRigidBody
     // Usage: SimpleRigidBody* myptr = GetSimpleBodyPtr() | SimpleBodyEx::AsSimpleRigidBody;
-    static inline const details::SimpleRigidBodyCast_t AsSimpleRigidBody;
+    inline const details::SimpleRigidBodyCast_t AsSimpleRigidBody;
 
     // Run a function on all SimpleRigidBody::Volatile instances
-    static void ForEachInstance(const std::function<void(SimpleRigidBody::Volatile* p)>& fn) {
+    inline void ForEachInstance(const std::function<void(SimpleRigidBody::Volatile* p)>& fn) {
       auto* _instance = SimpleRigidBody::Volatile::g_mInstances;
       while (auto* volatileData = *(_instance++))
         if (MemoryEditor::Get().ValidateMemory(volatileData)) fn(volatileData);
@@ -351,7 +351,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static PInput* operator|(IInput* iInput, PInputCast_t ext) { return ext(iInput); }
+      inline PInput* operator|(IInput* iInput, PInputCast_t ext) { return ext(iInput); }
 
       //                           //
       // Verified InputPlayer cast //
@@ -367,19 +367,19 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static InputPlayer* operator|(IInput* iInput, InputPlayerCast_t ext) { return ext(iInput); }
+      inline InputPlayer* operator|(IInput* iInput, InputPlayerCast_t ext) { return ext(iInput); }
     }  // namespace details
 
     // Try-get IInput as PInput
     // Usage: PInput* myptr = GetInputPtr() | InputEx::AsPInput;
-    static inline const details::PInputCast_t AsPInput;
+    inline const details::PInputCast_t AsPInput;
 
     // Try-get IInput as InputPlayer
     // Usage: InputPlayer* myptr = GetInputPtr() | InputEx::AsInputPlayer;
-    static inline const details::InputPlayerCast_t AsInputPlayer;
+    inline const details::InputPlayerCast_t AsInputPlayer;
 
     // Get a pointer to the player IInput instance
-    static IInput* GetPlayerInstance() {
+    inline IInput* GetPlayerInstance() {
       auto* pvehicle = PVehicleEx::GetPlayerInstance();
       if (pvehicle) return pvehicle->mInput;
 
@@ -407,7 +407,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static AIVehicle* operator|(IVehicleAI* i, AIVehicleCast_t ext) { return ext(i); }
+      inline AIVehicle* operator|(IVehicleAI* i, AIVehicleCast_t ext) { return ext(i); }
 
       //                               //
       // Verified AIVehicleCopCar cast //
@@ -423,7 +423,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static AIVehicleCopCar* operator|(IVehicleAI* i, AIVehicleCopCarCast_t ext) { return ext(i); }
+      inline AIVehicleCopCar* operator|(IVehicleAI* i, AIVehicleCopCarCast_t ext) { return ext(i); }
 
       //                              //
       // Verified AIVehicleEmpty cast //
@@ -439,7 +439,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static AIVehicleEmpty* operator|(IVehicleAI* iAI, AIVehicleEmptyCast_t ext) { return ext(iAI); }
+      inline AIVehicleEmpty* operator|(IVehicleAI* iAI, AIVehicleEmptyCast_t ext) { return ext(iAI); }
 
       //                                   //
       // Verified AIVehicleHelicopter cast //
@@ -455,7 +455,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static AIVehicleHelicopter* operator|(IVehicleAI* i, AIVehicleHelicopterCast_t ext) { return ext(i); }
+      inline AIVehicleHelicopter* operator|(IVehicleAI* i, AIVehicleHelicopterCast_t ext) { return ext(i); }
 
       //                              //
       // Verified AIVehicleHuman cast //
@@ -471,7 +471,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static AIVehicleHuman* operator|(IVehicleAI* i, AIVehicleHumanCast_t ext) { return ext(i); }
+      inline AIVehicleHuman* operator|(IVehicleAI* i, AIVehicleHumanCast_t ext) { return ext(i); }
 
       //                            //
       // Verified AIVehiclePid cast //
@@ -487,7 +487,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static AIVehiclePid* operator|(IVehicleAI* i, AIVehiclePidCast_t ext) { return ext(i); }
+      inline AIVehiclePid* operator|(IVehicleAI* i, AIVehiclePidCast_t ext) { return ext(i); }
 
       //                                //
       // Verified AIVehiclePursuit cast //
@@ -503,7 +503,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static AIVehiclePursuit* operator|(IVehicleAI* i, AIVehiclePursuitCast_t ext) { return ext(i); }
+      inline AIVehiclePursuit* operator|(IVehicleAI* i, AIVehiclePursuitCast_t ext) { return ext(i); }
 
       //                                //
       // Verified AIVehicleRacecar cast //
@@ -519,7 +519,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static AIVehicleRacecar* operator|(IVehicleAI* i, AIVehicleRacecarCast_t ext) { return ext(i); }
+      inline AIVehicleRacecar* operator|(IVehicleAI* i, AIVehicleRacecarCast_t ext) { return ext(i); }
 
       //                                //
       // Verified AIVehicleTraffic cast //
@@ -535,47 +535,47 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static AIVehicleTraffic* operator|(IVehicleAI* i, AIVehicleTrafficCast_t ext) { return ext(i); }
+      inline AIVehicleTraffic* operator|(IVehicleAI* i, AIVehicleTrafficCast_t ext) { return ext(i); }
     }  // namespace details
 
     // Try-get IVehicleAI as AIVehicle
     // Usage: AIVehicle* myptr = GetAIPtr() | AIVehicleEx::AsAIVehicle;
-    static inline const details::AIVehicleCast_t AsAIVehicle;
+    inline const details::AIVehicleCast_t AsAIVehicle;
 
     // Try-get IVehicleAI as AIVehicleCopCar
     // Usage: AIVehicleCopCar* myptr = GetAIPtr() | AIVehicleEx::AsAIVehicleCopCar;
-    static inline const details::AIVehicleCopCarCast_t AsAIVehicleCopCar;
+    inline const details::AIVehicleCopCarCast_t AsAIVehicleCopCar;
 
     // Try-get IVehicleAI as AIVehicleEmpty
     // Usage: AIVehicleEmpty* myptr = GetAIPtr() | AIVehicleEx::AsAIVehicleEmpty;
-    static inline const details::AIVehicleEmptyCast_t AsAIVehicleEmpty;
+    inline const details::AIVehicleEmptyCast_t AsAIVehicleEmpty;
 
     // Try-get IVehicleAI as AIVehicleHelicopter
     // Usage: AIVehicleHelicopter* myptr = GetAIPtr() | AIVehicleEx::AsAIVehicleHelicopter;
-    static inline const details::AIVehicleHelicopterCast_t AsAIVehicleHelicopter;
+    inline const details::AIVehicleHelicopterCast_t AsAIVehicleHelicopter;
 
     // Try-get IVehicleAI as AIVehicleHuman
     // Usage: AIVehicleHuman* myptr = GetAIPtr() | AIVehicleEx::AsAIVehicleHuman;
-    static inline const details::AIVehicleHumanCast_t AsAIVehicleHuman;
+    inline const details::AIVehicleHumanCast_t AsAIVehicleHuman;
 
     // Try-get IVehicleAI as AIVehiclePid
     // Usage: AIVehiclePid* myptr = GetAIPtr() | AIVehicleEx::AsAIVehiclePid;
-    static inline const details::AIVehiclePidCast_t AsAIVehiclePid;
+    inline const details::AIVehiclePidCast_t AsAIVehiclePid;
 
     // Try-get IVehicleAI as AIVehiclePursuit
     // Usage: AIVehiclePursuit* myptr = GetAIPtr() | AIVehicleEx::AsAIVehiclePursuit;
-    static inline const details::AIVehiclePursuitCast_t AsAIVehiclePursuit;
+    inline const details::AIVehiclePursuitCast_t AsAIVehiclePursuit;
 
     // Try-get IVehicleAI as AIVehicleRaceCar
     // Usage: AIVehicleRaceCar* myptr = GetAIPtr() | AIVehicleEx::AsAIVehicleRaceCar;
-    static inline const details::AIVehicleRacecarCast_t AsAIVehicleRacecar;
+    inline const details::AIVehicleRacecarCast_t AsAIVehicleRacecar;
 
     // Try-get IVehicleAI as AIVehicleTraffic
     // Usage: AIVehicleTraffic* myptr = GetAIPtr() | AIVehicleEx::AsAIVehicleTraffic;
-    static inline const details::AIVehicleTrafficCast_t AsAIVehicleTraffic;
+    inline const details::AIVehicleTrafficCast_t AsAIVehicleTraffic;
 
     // Get a pointer to the player IVehicleAI instance
-    static IVehicleAI* GetPlayerInstance() {
+    inline IVehicleAI* GetPlayerInstance() {
       auto* pvehicle = PVehicleEx::GetPlayerInstance();
       if (pvehicle) return pvehicle->GetAIVehiclePtr();
 
@@ -613,7 +613,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static DamageVehicle* operator|(IDamageable* i, DamageVehicleCast_t ext) { return ext(i); }
+      inline DamageVehicle* operator|(IDamageable* i, DamageVehicleCast_t ext) { return ext(i); }
 
       //                            //
       // Verified DamageCopCar cast //
@@ -629,7 +629,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static DamageCopCar* operator|(IDamageable* i, DamageCopCarCast_t ext) { return ext(i); }
+      inline DamageCopCar* operator|(IDamageable* i, DamageCopCarCast_t ext) { return ext(i); }
 
       //                          //
       // Verified DamageHeli cast //
@@ -645,7 +645,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static DamageHeli* operator|(IDamageable* i, DamageHeliCast_t ext) { return ext(i); }
+      inline DamageHeli* operator|(IDamageable* i, DamageHeliCast_t ext) { return ext(i); }
 
       //                           //
       // Verified DamageRacer cast //
@@ -665,7 +665,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static DamageRacer* operator|(IDamageable* i, DamageRacerCast_t ext) { return ext(i); }
+      inline DamageRacer* operator|(IDamageable* i, DamageRacerCast_t ext) { return ext(i); }
 
       //                              //
       // Verified DamageDragster cast //
@@ -681,31 +681,31 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static DamageDragster* operator|(IDamageable* i, DamageDragsterCast_t ext) { return ext(i); }
+      inline DamageDragster* operator|(IDamageable* i, DamageDragsterCast_t ext) { return ext(i); }
     }  // namespace details
 
     // Try-get IDamageable as DamageVehicle
     // Usage: DamageVehicle* myptr = GetDamagePtr() | DamageableEx::AsDamageVehicle;
-    static inline const details::DamageVehicleCast_t AsDamageVehicle;
+    inline const details::DamageVehicleCast_t AsDamageVehicle;
 
     // Try-get IDamageable as DamageCopCar
     // Usage: DamageCopCar* myptr = GetDamagePtr() | DamageableEx::AsDamageCopCar;
-    static inline const details::DamageCopCarCast_t AsDamageCopCar;
+    inline const details::DamageCopCarCast_t AsDamageCopCar;
 
     // Try-get IDamageable as DamageHeli
     // Usage: DamageHeli* myptr = GetDamagePtr() | DamageableEx::AsDamageHeli;
-    static inline const details::DamageHeliCast_t AsDamageHeli;
+    inline const details::DamageHeliCast_t AsDamageHeli;
 
     // Try-get IDamageable as DamageRacer
     // Usage: DamageRacer* myptr = GetDamagePtr() | DamageableEx::AsDamageRacer;
-    static inline const details::DamageRacerCast_t AsDamageRacer;
+    inline const details::DamageRacerCast_t AsDamageRacer;
 
     // Try-get IDamageable as DamageDragster
     // Usage: DamageDragster* myptr = GetDamagePtr() | DamageableEx::AsDamageDragster;
-    static inline const details::DamageDragsterCast_t AsDamageDragster;
+    inline const details::DamageDragsterCast_t AsDamageDragster;
 
     // Get a pointer to the player IDamageable instance
-    static IDamageable* GetPlayerInstance() {
+    inline IDamageable* GetPlayerInstance() {
       auto* pvehicle = PVehicleEx::GetPlayerInstance();
       if (pvehicle) return pvehicle->mDamage;
 
@@ -732,7 +732,7 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static IPlayer* operator|(IPlayer* player, ValidatePlayer_t ext) { return ext(player); }
+      inline IPlayer* operator|(IPlayer* player, ValidatePlayer_t ext) { return ext(player); }
 
       //                           //
       // Verified LocalPlayer cast //
@@ -749,19 +749,19 @@ namespace NFSPluginSDK::MW05 {
           return nullptr;
         }
       };
-      static LocalPlayer* operator|(IPlayer* i, LocalPlayerCast_t ext) { return ext(i); }
+      inline LocalPlayer* operator|(IPlayer* i, LocalPlayerCast_t ext) { return ext(i); }
     }  // namespace details
 
     // Validate IPlayer pointer
     // Usage: IPlayer* myptr = GetPlayerPtr() | PlayerEx::ValidateIPlayer;
-    static inline const details::ValidatePlayer_t ValidatePlayer;
+    inline const details::ValidatePlayer_t ValidatePlayer;
 
     // Try-get IPlayer as LocalPlayer
     // Usage: LocalPlayer* myptr = GetPlayerPtr() | PlayerEx::AsLocalPlayer;
-    static inline const details::LocalPlayerCast_t AsLocalPlayer;
+    inline const details::LocalPlayerCast_t AsLocalPlayer;
 
     // Get a pointer to the player IPlayer instance
-    static IPlayer* GetPlayerInstance() {
+    inline IPlayer* GetPlayerInstance() {
       auto* pvehicle = PVehicleEx::GetPlayerInstance();
       if (pvehicle) return pvehicle->mPlayer | ValidatePlayer;
 

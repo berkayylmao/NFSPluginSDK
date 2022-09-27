@@ -136,14 +136,14 @@ namespace NFSPluginSDK::Carbon {
 
     static inline bTNode<PVehicle>** g_mInstances = reinterpret_cast<bTNode<PVehicle>**>(0xA9E728);
 
-    static PVehicle* Construct(VehicleParams vehicleParams) {
+    static inline PVehicle* Construct(VehicleParams vehicleParams) {
       ISimable* simable =
           reinterpret_cast<ISimable*(__cdecl*)(UCrc32, VehicleParams*)>(0x6DAA80)(vehicleParams.mType, &vehicleParams);
       if (simable) return static_cast<PVehicle*>(simable);
       return nullptr;
     }
 
-    static std::int32_t GetInstancesCount() {
+    static inline std::int32_t GetInstancesCount() {
       std::int32_t amount = 0;
 
       auto** pInstance = PVehicle::g_mInstances;
@@ -157,7 +157,7 @@ namespace NFSPluginSDK::Carbon {
       return amount;
     }
 
-    static PVehicle* GetInstance(std::int32_t idx) {
+    static inline PVehicle* GetInstance(std::int32_t idx) {
       auto** pInstance = PVehicle::g_mInstances;
       if (!pInstance) return nullptr;
 

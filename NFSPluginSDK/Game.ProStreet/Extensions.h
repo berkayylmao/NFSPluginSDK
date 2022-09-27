@@ -30,11 +30,11 @@
 
 #include <NFSPluginSDK/Game.ProStreet/Types.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/DamageCopCar.h>  // DamageCopCar, DamageVehicle, IDamageable, IDamageableVehicle
-#include <NFSPluginSDK/Game.ProStreet/Types/DamageRacer.h>   // DamageRacer
-#include <NFSPluginSDK/Game.ProStreet/Types/FEngHud.h>       // FEngHud, IHud
-#include <NFSPluginSDK/Game.ProStreet/Types/PVehicle.h>      // PVehicle
-#include <NFSPluginSDK/Game.ProStreet/Types/RBSmackable.h>   // RBSmackable, RigidBody, IRigidBody
-#include <NFSPluginSDK/Game.ProStreet/Types/RBVehicle.h>     // RBVehicle
+#include <NFSPluginSDK/Game.ProStreet/Types/DamageRacer.h>  // DamageRacer
+#include <NFSPluginSDK/Game.ProStreet/Types/FEngHud.h>      // FEngHud, IHud
+#include <NFSPluginSDK/Game.ProStreet/Types/PVehicle.h>     // PVehicle
+#include <NFSPluginSDK/Game.ProStreet/Types/RBSmackable.h>  // RBSmackable, RigidBody, IRigidBody
+#include <NFSPluginSDK/Game.ProStreet/Types/RBVehicle.h>    // RBVehicle
 
 namespace NFSPluginSDK::ProStreet {
   //          //
@@ -58,15 +58,15 @@ namespace NFSPluginSDK::ProStreet {
           return nullptr;
         }
       };
-      static PVehicle* operator|(PVehicle* pvehicle, ValidatePVehicle_t ext) { return ext(pvehicle); }
+      inline PVehicle* operator|(PVehicle* pvehicle, ValidatePVehicle_t ext) { return ext(pvehicle); }
     }  // namespace details
 
     // Validate PVehicle pointer
     // Usage: PVehicle* myptr = GetPVehiclePtr() | PVehicleEx::ValidatePVehicle;
-    static inline const details::ValidatePVehicle_t ValidatePVehicle;
+    inline const details::ValidatePVehicle_t ValidatePVehicle;
 
     // Get a pointer to the player PVehicle instance
-    static PVehicle* GetPlayerInstance() {
+    inline PVehicle* GetPlayerInstance() {
       auto** pInstance = PVehicle::g_mInstances;
       if (!pInstance) return nullptr;
 
@@ -81,7 +81,7 @@ namespace NFSPluginSDK::ProStreet {
     }
 
     // Run a function on all PVehicle instances
-    static void ForEachInstance(const std::function<void(PVehicle* p)>& fn) {
+    inline void ForEachInstance(const std::function<void(PVehicle* p)>& fn) {
       auto** pInstance = PVehicle::g_mInstances;
       if (!pInstance) return;
 
@@ -119,7 +119,7 @@ namespace NFSPluginSDK::ProStreet {
           return nullptr;
         }
       };
-      static RigidBody* operator|(IRigidBody* iRB, RigidBodyCast_t ext) { return ext(iRB); }
+      inline RigidBody* operator|(IRigidBody* iRB, RigidBodyCast_t ext) { return ext(iRB); }
 
       //                           //
       // Verified RBSmackable cast //
@@ -135,7 +135,7 @@ namespace NFSPluginSDK::ProStreet {
           return nullptr;
         }
       };
-      static RBSmackable* operator|(IRigidBody* iRB, RBSmackableCast_t ext) { return ext(iRB); }
+      inline RBSmackable* operator|(IRigidBody* iRB, RBSmackableCast_t ext) { return ext(iRB); }
 
       //                         //
       // Verified RBVehicle cast //
@@ -153,23 +153,23 @@ namespace NFSPluginSDK::ProStreet {
           return nullptr;
         }
       };
-      static RBVehicle* operator|(IRigidBody* iRB, RBVehicleCast_t ext) { return ext(iRB); }
+      inline RBVehicle* operator|(IRigidBody* iRB, RBVehicleCast_t ext) { return ext(iRB); }
     }  // namespace details
 
     // Try-get IRigidBody as RigidBody
     // Usage: RigidBody* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRigidBody;
-    static inline const details::RigidBodyCast_t AsRigidBody;
+    inline const details::RigidBodyCast_t AsRigidBody;
 
     // Try-get IRigidBody as RBSmackable
     // Usage: RBSmackable* myptr = GetRigidBodyPtr() | RigidBodyEx::RBSmackable;
-    static inline const details::RBSmackableCast_t AsRBSmackable;
+    inline const details::RBSmackableCast_t AsRBSmackable;
 
     // Try-get IRigidBody as RBVehicle
     // Usage: RBVehicle* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRBVehicle;
-    static inline const details::RBVehicleCast_t AsRBVehicle;
+    inline const details::RBVehicleCast_t AsRBVehicle;
 
     // Get a pointer to the player IRigidBody instance
-    static IRigidBody* GetPlayerInstance() {
+    inline IRigidBody* GetPlayerInstance() {
       auto* pvehicle = PVehicleEx::GetPlayerInstance();
       if (pvehicle) return pvehicle->GetRigidBody();
 
@@ -203,7 +203,7 @@ namespace NFSPluginSDK::ProStreet {
           return nullptr;
         }
       };
-      static DamageVehicle* operator|(IDamageable* i, DamageVehicleCast_t ext) { return ext(i); }
+      inline DamageVehicle* operator|(IDamageable* i, DamageVehicleCast_t ext) { return ext(i); }
 
       //                            //
       // Verified DamageCopCar cast //
@@ -219,7 +219,7 @@ namespace NFSPluginSDK::ProStreet {
           return nullptr;
         }
       };
-      static DamageCopCar* operator|(IDamageable* i, DamageCopCarCast_t ext) { return ext(i); }
+      inline DamageCopCar* operator|(IDamageable* i, DamageCopCarCast_t ext) { return ext(i); }
 
       //                           //
       // Verified DamageRacer cast //
@@ -237,23 +237,23 @@ namespace NFSPluginSDK::ProStreet {
           return nullptr;
         }
       };
-      static DamageRacer* operator|(IDamageable* i, DamageRacerCast_t ext) { return ext(i); }
+      inline DamageRacer* operator|(IDamageable* i, DamageRacerCast_t ext) { return ext(i); }
     }  // namespace details
 
     // Try-get IDamageable as DamageVehicle
     // Usage: DamageVehicle* myptr = GetDamagePtr() | DamageableEx::AsDamageVehicle;
-    static inline const details::DamageVehicleCast_t AsDamageVehicle;
+    inline const details::DamageVehicleCast_t AsDamageVehicle;
 
     // Try-get IDamageable as DamageCopCar
     // Usage: DamageCopCar* myptr = GetDamagePtr() | DamageableEx::AsDamageCopCar;
-    static inline const details::DamageCopCarCast_t AsDamageCopCar;
+    inline const details::DamageCopCarCast_t AsDamageCopCar;
 
     // Try-get IDamageable as DamageRacer
     // Usage: DamageRacer* myptr = GetDamagePtr() | DamageableEx::AsDamageRacer;
-    static inline const details::DamageRacerCast_t AsDamageRacer;
+    inline const details::DamageRacerCast_t AsDamageRacer;
 
     // Get a pointer to the player IDamageable instance
-    static IDamageable* GetPlayerInstance() {
+    inline IDamageable* GetPlayerInstance() {
       auto* pvehicle = PVehicleEx::GetPlayerInstance();
       if (pvehicle) return pvehicle->mDamage;
 
@@ -283,15 +283,15 @@ namespace NFSPluginSDK::ProStreet {
           return nullptr;
         }
       };
-      static FEngHud* operator|(IHud* i, FEngHudCast_t ext) { return ext(i); }
+      inline FEngHud* operator|(IHud* i, FEngHudCast_t ext) { return ext(i); }
     }  // namespace details
 
     // Try-get IHud as FEngHud
     // Usage: FEngHud* myptr = GetHudPtr() | HudEx::AsFEngHud;
-    static inline const details::FEngHudCast_t AsFEngHud;
+    inline const details::FEngHudCast_t AsFEngHud;
 
     // Get a pointer to the player IHud instance
-    static IHud* GetPlayerInstance() {
+    inline IHud* GetPlayerInstance() {
       auto* pvehicle = PVehicleEx::GetPlayerInstance();
       if (pvehicle && pvehicle->mPlayer) return pvehicle->mPlayer->GetHud();
 
