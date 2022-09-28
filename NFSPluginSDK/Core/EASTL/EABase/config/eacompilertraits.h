@@ -1,89 +1,36 @@
-/*-----------------------------------------------------------------------------
- * config/eacompilertraits.h
- *
- * Copyright (c) Electronic Arts Inc. All rights reserved.
- *-----------------------------------------------------------------------------
- * Currently supported defines include:
- *    EA_PREPROCESSOR_JOIN
- *
- *    EA_COMPILER_IS_ANSIC
- *    EA_COMPILER_IS_C99
- *    EA_COMPILER_IS_C11
- *    EA_COMPILER_HAS_C99_TYPES
- *    EA_COMPILER_IS_CPLUSPLUS
- *    EA_COMPILER_MANAGED_CPP
- *    EA_COMPILER_INTMAX_SIZE
- *    EA_OFFSETOF
- *    EA_SIZEOF_MEMBER
- *
- *    EA_ALIGN_OF()
- *    EA_ALIGN_MAX_STATIC / EA_ALIGN_MAX_AUTOMATIC
- *    EA_ALIGN() / EA_PREFIX_ALIGN() / EA_POSTFIX_ALIGN()
- *    EA_ALIGNED()
- *    EA_PACKED()
- *
- *    EA_LIKELY()
- *    EA_UNLIKELY()
- *    EA_INIT_PRIORITY()
- *    EA_MAY_ALIAS()
- *    EA_ASSUME()
- *    EA_ANALYSIS_ASSUME()
- *    EA_PURE
- *    EA_WEAK
- *    EA_UNUSED()
- *    EA_EMPTY()
- *
- *    EA_WCHAR_T_NON_NATIVE
- *    EA_WCHAR_SIZE = <n bytes>
- *
- *    EA_RESTRICT
- *    EA_DEPRECATED   / EA_PREFIX_DEPRECATED   / EA_POSTFIX_DEPRECATED
- *    EA_FORCE_INLINE / EA_PREFIX_FORCE_INLINE / EA_POSTFIX_FORCE_INLINE
- *    EA_NO_INLINE    / EA_PREFIX_NO_INLINE    / EA_POSTFIX_NO_INLINE
- *    EA_NO_VTABLE    / EA_CLASS_NO_VTABLE     / EA_STRUCT_NO_VTABLE
- *    EA_PASCAL
- *    EA_PASCAL_FUNC()
- *    EA_SSE = [0 | 1]
- *    EA_IMPORT
- *    EA_EXPORT
- *    EA_PRAGMA_ONCE_SUPPORTED
- *    EA_ONCE
- *    EA_OVERRIDE
- *    EA_INHERITANCE_FINAL
- *    EA_SEALED
- *    EA_ABSTRACT
- *    EA_CONSTEXPR / EA_CONSTEXPR_OR_CONST
- *    EA_CONSTEXPR_IF
- *    EA_EXTERN_TEMPLATE
- *    EA_NOEXCEPT
- *    EA_NORETURN
- *    EA_CARRIES_DEPENDENCY
- *    EA_NON_COPYABLE / struct EANonCopyable
- *    EA_OPTIMIZE_OFF / EA_OPTIMIZE_ON
- *    EA_SIGNED_RIGHT_SHIFT_IS_UNSIGNED
- *
- *    EA_DISABLE_VC_WARNING    / EA_RESTORE_VC_WARNING / EA_DISABLE_ALL_VC_WARNINGS / EA_RESTORE_ALL_VC_WARNINGS
- *    EA_DISABLE_GCC_WARNING   / EA_RESTORE_GCC_WARNING
- *    EA_DISABLE_CLANG_WARNING / EA_RESTORE_CLANG_WARNING
- *    EA_DISABLE_SN_WARNING    / EA_RESTORE_SN_WARNING / EA_DISABLE_ALL_SN_WARNINGS / EA_RESTORE_ALL_SN_WARNINGS
- *    EA_DISABLE_GHS_WARNING   / EA_RESTORE_GHS_WARNING
- *    EA_DISABLE_EDG_WARNING   / EA_RESTORE_EDG_WARNING
- *    EA_DISABLE_CW_WARNING    / EA_RESTORE_CW_WARNING
- *
- *    EA_DISABLE_DEFAULT_CTOR
- *    EA_DISABLE_COPY_CTOR
- *    EA_DISABLE_MOVE_CTOR
- *    EA_DISABLE_ASSIGNMENT_OPERATOR
- *    EA_DISABLE_MOVE_OPERATOR
- *
- *  Todo:
- *    Find a way to reliably detect wchar_t size at preprocessor time and
- *    implement it below for EA_WCHAR_SIZE.
- *
- *  Todo:
- *    Find out how to support EA_PASCAL and EA_PASCAL_FUNC for systems in
- *    which it hasn't yet been found out for.
- *---------------------------------------------------------------------------*/
+// clang-format off
+//
+//  BSD 3-Clause License
+//  
+//  Copyright (c) 2019, Electronic Arts
+//  All rights reserved.
+//  
+//  Redistribution and use in source and binary forms, with or without
+//  modification, are permitted provided that the following conditions are met:
+//  
+//  1. Redistributions of source code must retain the above copyright notice, this
+//     list of conditions and the following disclaimer.
+//  
+//  2. Redistributions in binary form must reproduce the above copyright notice,
+//     this list of conditions and the following disclaimer in the documentation
+//     and/or other materials provided with the distribution.
+//  
+//  3. Neither the name of the copyright holder nor the names of its
+//     contributors may be used to endorse or promote products derived from
+//     this software without specific prior written permission.
+//  
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+//  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+//  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+//  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+//  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+//  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+//  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+//  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+//  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+//  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+// clang-format on
 
 #ifndef INCLUDED_eacompilertraits_H
 #define INCLUDED_eacompilertraits_H

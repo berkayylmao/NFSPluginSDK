@@ -1,191 +1,36 @@
-/*-----------------------------------------------------------------------------
- * config/eacompiler.h
- *
- * Copyright (c) Electronic Arts Inc. All rights reserved.
- *-----------------------------------------------------------------------------
- * Currently supported defines include:
- *     EA_COMPILER_GNUC
- *     EA_COMPILER_ARM
- *     EA_COMPILER_EDG
- *     EA_COMPILER_SN
- *     EA_COMPILER_MSVC
- *     EA_COMPILER_METROWERKS
- *     EA_COMPILER_INTEL
- *     EA_COMPILER_BORLANDC
- *     EA_COMPILER_IBM
- *     EA_COMPILER_QNX
- *     EA_COMPILER_GREEN_HILLS
- *     EA_COMPILER_CLANG
- *     EA_COMPILER_CLANG_CL
- *
- *     EA_COMPILER_VERSION = <integer>
- *     EA_COMPILER_NAME = <string>
- *     EA_COMPILER_STRING = <string>
- *
- *     EA_COMPILER_VA_COPY_REQUIRED
- *
- *  C++98/03 functionality
- *     EA_COMPILER_NO_STATIC_CONSTANTS
- *     EA_COMPILER_NO_TEMPLATE_SPECIALIZATION
- *     EA_COMPILER_NO_TEMPLATE_PARTIAL_SPECIALIZATION
- *     EA_COMPILER_NO_MEMBER_TEMPLATES
- *     EA_COMPILER_NO_MEMBER_TEMPLATE_SPECIALIZATION
- *     EA_COMPILER_NO_TEMPLATE_TEMPLATES
- *     EA_COMPILER_NO_MEMBER_TEMPLATE_FRIENDS
- *     EA_COMPILER_NO_VOID_RETURNS
- *     EA_COMPILER_NO_COVARIANT_RETURN_TYPE
- *     EA_COMPILER_NO_DEDUCED_TYPENAME
- *     EA_COMPILER_NO_ARGUMENT_DEPENDENT_LOOKUP
- *     EA_COMPILER_NO_EXCEPTION_STD_NAMESPACE
- *     EA_COMPILER_NO_EXPLICIT_FUNCTION_TEMPLATE_ARGUMENTS
- *     EA_COMPILER_NO_RTTI
- *     EA_COMPILER_NO_EXCEPTIONS
- *     EA_COMPILER_NO_NEW_THROW_SPEC
- *     EA_THROW_SPEC_NEW / EA_THROW_SPEC_DELETE
- *     EA_COMPILER_NO_UNWIND
- *     EA_COMPILER_NO_STANDARD_CPP_LIBRARY
- *     EA_COMPILER_NO_STATIC_VARIABLE_INIT
- *     EA_COMPILER_NO_STATIC_FUNCTION_INIT
- *     EA_COMPILER_NO_VARIADIC_MACROS
- *
- *  C++11 functionality
- *     EA_COMPILER_NO_RVALUE_REFERENCES
- *     EA_COMPILER_NO_EXTERN_TEMPLATE
- *     EA_COMPILER_NO_RANGE_BASED_FOR_LOOP
- *     EA_COMPILER_NO_CONSTEXPR
- *     EA_COMPILER_NO_OVERRIDE
- *     EA_COMPILER_NO_INHERITANCE_FINAL
- *     EA_COMPILER_NO_NULLPTR
- *     EA_COMPILER_NO_AUTO
- *     EA_COMPILER_NO_DECLTYPE
- *     EA_COMPILER_NO_DEFAULTED_FUNCTIONS
- *     EA_COMPILER_NO_DELETED_FUNCTIONS
- *     EA_COMPILER_NO_LAMBDA_EXPRESSIONS
- *     EA_COMPILER_NO_TRAILING_RETURN_TYPES
- *     EA_COMPILER_NO_STRONGLY_TYPED_ENUMS
- *     EA_COMPILER_NO_FORWARD_DECLARED_ENUMS
- *     EA_COMPILER_NO_VARIADIC_TEMPLATES
- *     EA_COMPILER_NO_TEMPLATE_ALIASES
- *     EA_COMPILER_NO_INITIALIZER_LISTS
- *     EA_COMPILER_NO_NORETURN
- *     EA_COMPILER_NO_CARRIES_DEPENDENCY
- *     EA_COMPILER_NO_FALLTHROUGH
- *     EA_COMPILER_NO_NODISCARD
- *     EA_COMPILER_NO_MAYBE_UNUSED
- *     EA_COMPILER_NO_NONSTATIC_MEMBER_INITIALIZERS
- *     EA_COMPILER_NO_RIGHT_ANGLE_BRACKETS
- *     EA_COMPILER_NO_ALIGNOF
- *     EA_COMPILER_NO_ALIGNAS
- *     EA_COMPILER_NO_DELEGATING_CONSTRUCTORS
- *     EA_COMPILER_NO_INHERITING_CONSTRUCTORS
- *     EA_COMPILER_NO_USER_DEFINED_LITERALS
- *     EA_COMPILER_NO_STANDARD_LAYOUT_TYPES
- *     EA_COMPILER_NO_EXTENDED_SIZEOF
- *     EA_COMPILER_NO_INLINE_NAMESPACES
- *     EA_COMPILER_NO_UNRESTRICTED_UNIONS
- *     EA_COMPILER_NO_EXPLICIT_CONVERSION_OPERATORS
- *     EA_COMPILER_NO_FUNCTION_TEMPLATE_DEFAULT_ARGS
- *     EA_COMPILER_NO_LOCAL_CLASS_TEMPLATE_PARAMETERS
- *     EA_COMPILER_NO_NOEXCEPT
- *     EA_COMPILER_NO_RAW_LITERALS
- *     EA_COMPILER_NO_UNICODE_STRING_LITERALS
- *     EA_COMPILER_NO_NEW_CHARACTER_TYPES
- *     EA_COMPILER_NO_UNICODE_CHAR_NAME_LITERALS
- *     EA_COMPILER_NO_UNIFIED_INITIALIZATION_SYNTAX
- *     EA_COMPILER_NO_EXTENDED_FRIEND_DECLARATIONS
- *
- *  C++14 functionality
- *     EA_COMPILER_NO_VARIABLE_TEMPLATES
- *
- *  C++17 functionality
- *     EA_COMPILER_NO_INLINE_VARIABLES
- *     EA_COMPILER_NO_ALIGNED_NEW
- *
- *  C++20 functionality
- *     EA_COMPILER_NO_DESIGNATED_INITIALIZERS
- *
- *-----------------------------------------------------------------------------
- *
- * Supplemental documentation
- *     EA_COMPILER_NO_STATIC_CONSTANTS
- *         Code such as this is legal, but some compilers fail to compile it:
- *             struct A{ static const a = 1; };
- *
- *     EA_COMPILER_NO_TEMPLATE_SPECIALIZATION
- *         Some compilers fail to allow template specialization, such as with this:
- *             template<class U> void DoSomething(U u);
- *             void DoSomething(int x);
- *
- *     EA_COMPILER_NO_TEMPLATE_PARTIAL_SPECIALIZATION
- *         Some compilers fail to allow partial template specialization, such as with this:
- *             template <class T, class Allocator> class vector{ };         // Primary templated class.
- *             template <class Allocator> class vector<bool, Allocator>{ }; // Partially specialized version.
- *
- *     EA_COMPILER_NO_MEMBER_TEMPLATES
- *         Some compilers fail to allow member template functions such as this:
- *             struct A{ template<class U> void DoSomething(U u); };
- *
- *     EA_COMPILER_NO_MEMBER_TEMPLATE_SPECIALIZATION
- *         Some compilers fail to allow member template specialization, such as with this:
- *             struct A{
- *                 template<class U> void DoSomething(U u);
- *                 void DoSomething(int x);
- *             };
- *
- *     EA_COMPILER_NO_TEMPLATE_TEMPLATES
- *         Code such as this is legal:
- *             template<typename T, template<typename> class U>
- *             U<T> SomeFunction(const U<T> x) { return x.DoSomething(); }
- *
- *     EA_COMPILER_NO_MEMBER_TEMPLATE_FRIENDS
- *         Some compilers fail to compile templated friends, as with this:
- *             struct A{ template<class U> friend class SomeFriend; };
- *         This is described in the C++ Standard at 14.5.3.
- *
- *     EA_COMPILER_NO_VOID_RETURNS
- *          This is legal C++:
- *              void DoNothing1(){ };
- *              void DoNothing2(){ return DoNothing1(); }
- *
- *     EA_COMPILER_NO_COVARIANT_RETURN_TYPE
- *         See the C++ standard sec 10.3,p5.
- *
- *     EA_COMPILER_NO_DEDUCED_TYPENAME
- *         Some compilers don't support the use of 'typename' for
- *         dependent types in deduced contexts, as with this:
- *             template <class T> void Function(T, typename T::type);
- *
- *     EA_COMPILER_NO_ARGUMENT_DEPENDENT_LOOKUP
- *         Also known as Koenig lookup. Basically, if you have a function
- *         that is a namespace and you call that function without prefixing
- *         it with the namespace the compiler should look at any arguments
- *         you pass to that function call and search their namespace *first*
- *         to see if the given function exists there.
- *
- *     EA_COMPILER_NO_EXCEPTION_STD_NAMESPACE
- *         <exception> is in namespace std. Some std libraries fail to
- *         put the contents of <exception> in namespace std. The following
- *         code should normally be legal:
- *             void Function(){ std::terminate(); }
- *
- *     EA_COMPILER_NO_EXPLICIT_FUNCTION_TEMPLATE_ARGUMENTS
- *         Some compilers fail to execute DoSomething() properly, though they
- *         succeed in compiling it, as with this:
- *             template <int i>
- *             bool DoSomething(int j){ return i == j; };
- *             DoSomething<1>(2);
- *
- *     EA_COMPILER_NO_EXCEPTIONS
- *         The compiler is configured to disallow the use of try/throw/catch
- *         syntax (often to improve performance). Use of such syntax in this
- *         case will cause a compilation error.
- *
- *     EA_COMPILER_NO_UNWIND
- *         The compiler is configured to allow the use of try/throw/catch
- *         syntax and behaviour but disables the generation of stack unwinding
- *         code for responding to exceptions (often to improve performance).
- *
- *---------------------------------------------------------------------------*/
+// clang-format off
+//
+//  BSD 3-Clause License
+//  
+//  Copyright (c) 2019, Electronic Arts
+//  All rights reserved.
+//  
+//  Redistribution and use in source and binary forms, with or without
+//  modification, are permitted provided that the following conditions are met:
+//  
+//  1. Redistributions of source code must retain the above copyright notice, this
+//     list of conditions and the following disclaimer.
+//  
+//  2. Redistributions in binary form must reproduce the above copyright notice,
+//     this list of conditions and the following disclaimer in the documentation
+//     and/or other materials provided with the distribution.
+//  
+//  3. Neither the name of the copyright holder nor the names of its
+//     contributors may be used to endorse or promote products derived from
+//     this software without specific prior written permission.
+//  
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+//  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+//  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+//  DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+//  FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+//  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+//  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+//  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+//  OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+//  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+// clang-format on
 
 #ifndef INCLUDED_eacompiler_H
 #define INCLUDED_eacompiler_H
