@@ -106,7 +106,7 @@ namespace NFSPluginSDK::ProStreet {
   }  // namespace CollisionGeometry
 
   namespace DALVehicleCommands {
-    enum class RaceMode : std::uint32_t { Grip, Drift, Drag, Speed };
+    enum class RaceMode : std::uint32_t { Grip, Drift, Drag, Speed, Invalid = UINT32_MAX };
     enum class DriveTrain : std::uint32_t { FWD, RWD, AWD, Invalid = UINT32_MAX };
     struct CreateCustomizableCar;
   }  // namespace DALVehicleCommands
@@ -1417,6 +1417,19 @@ namespace NFSPluginSDK::ProStreet {
     COMMON_DRIFT_PERFECT_ENTRY       = 0x195
   };
   enum class eMiniMapModes : std::uint8_t { Off, Static };
+  enum class ePackageType : std::uint32_t {
+    QuickPower,
+    QuickHandling,
+    QuickVisual,
+    CustomEngineCore,
+    CustomEngineManagement,
+    CustomEngineExhaust,
+    CustomEngineForced_induction,
+    CustomEngineNitrous,
+    CustomDrivetrain,
+    CustomSuspension,
+    CustomBrakes
+  };
   enum class ePlayerSettingsCameras : std::uint8_t {
     Bumper,
     Hood,

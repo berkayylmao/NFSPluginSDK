@@ -30,25 +30,33 @@
 namespace NFSPluginSDK::ProStreet {
   struct IInput : UTL::COM::IUnknown {
     virtual ~IInput();
-    virtual void  ClearInput()                       = 0;
-    virtual float GetControlBrake()                  = 0;
-    virtual float GetControlGas()                    = 0;
-    virtual float GetControlSteering()               = 0;
-    virtual float GetControlOverSteer()              = 0;
-    virtual bool  GetControlNOS()                    = 0;
-    virtual float GetControlHandBrake()              = 0;
-    virtual float GetControlClutch()                 = 0;
-    virtual void  SetControlSteering(float amount)   = 0;
-    virtual void  SetControlOverSteer(float amount)  = 0;
-    virtual void  SetControlGas(float amount)        = 0;
-    virtual void  SetControlBrake(float amount)      = 0;
-    virtual void  SetControlNOS(bool isPressed)      = 0;
-    virtual void  SetControlHandBrake(float amount)  = 0;
-    virtual void  SetControlClutch(float amount)     = 0;
-    virtual bool  IsLookBackButtonPressed()          = 0;
-    virtual bool  IsPullBackButtonPressed()          = 0;
-    virtual bool  IsWingmanActivationButtonPressed() = 0;
-    virtual bool  IsAutomaticShift()                 = 0;
+    virtual void                  ClearInput()                       = 0;
+    virtual float                 GetControlBrake()                  = 0;
+    virtual float                 GetControlGas()                    = 0;
+    virtual float                 GetControlSteering()               = 0;
+    virtual bool                  GetControlCruiseControl()          = 0;
+    virtual float                 GetControlOverSteer()              = 0;
+    virtual bool                  GetControlNOS()                    = 0;
+    virtual float                 GetControlHandBrake()              = 0;
+    virtual float                 GetControlClutch()                 = 0;
+    virtual void                  SetControlSteering(float amount)   = 0;
+    virtual void                  SetControlOverSteer(float amount)  = 0;
+    virtual void                  SetControlGas(float amount)        = 0;
+    virtual void                  SetControlBrake(float amount)      = 0;
+    virtual void                  SetControlNOS(bool isPressed)      = 0;
+    virtual void                  SetControlHandBrake(float amount)  = 0;
+    virtual void                  SetCruiseControl(bool isPressed)   = 0;
+    virtual void                  SetControlClutch(float amount)     = 0;
+    virtual bool                  IsLookBackButtonPressed()          = 0;
+    virtual bool                  IsPullBackButtonPressed()          = 0;
+    virtual float                 GetCameraRotInput()                = 0;
+    virtual bool                  IsWingmanActivationButtonPressed() = 0;
+    virtual bool                  IsAutomaticShift()                 = 0;
+    virtual bool                  IsManualClutch()                   = 0;
+    virtual TractionControlStates GetTractionControlSetting()        = 0;
+    virtual TractionControlStates GetStabilityManagementSetting()    = 0;
+    virtual bool                  GetABSSetting()                    = 0;
+    virtual Difficulty            GetDifficultySettings()            = 0;
 
     static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x403AA0)(); }
   };

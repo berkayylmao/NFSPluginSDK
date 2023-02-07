@@ -135,10 +135,8 @@ namespace NFSPluginSDK::ProStreet {
     virtual void GetEnabledSelectionSets(GPresentationController&, eastl::list<std::uint32_t>&, bool) override;
 
     static GRaceStatus* Get() {
-      static GRaceStatus** g_This = reinterpret_cast<GRaceStatus**>(0xAB9D7C);
-      if (!g_This) return nullptr;
-
-      return *g_This;
+      static GRaceStatus** fObj = reinterpret_cast<GRaceStatus**>(0xAB9D7C);
+      return *fObj;
     }
   };
 }  // namespace NFSPluginSDK::ProStreet

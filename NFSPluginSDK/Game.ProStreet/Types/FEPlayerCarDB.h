@@ -35,13 +35,13 @@
 
 namespace NFSPluginSDK::ProStreet {
   struct FEPlayerCarDB {
-    FECarRecord           mCarTable[410];
-    FECustomizationRecord mCustomizations[80];
-    FECareerRecord        mCareerRecords[80];
-    unsigned char         __pad[0x122C8];
-    std::uint32_t         mLastAwardedKingCarHistoryCarHandle;
-    BluePrintType         mLastAwardedKingCarHistoryCarMode;
-    std::int8_t           mInitializingCarStable;
+    std::array<FECarRecord, 410>          mCarTable;
+    std::array<FECustomizationRecord, 80> mCustomizations;
+    std::array<FECareerRecord, 80>        mCareerRecords;
+    unsigned char                         __pad[0x122C8];
+    std::uint32_t                         mLastAwardedKingCarHistoryCarHandle;
+    BluePrintType                         mLastAwardedKingCarHistoryCarMode;
+    std::int8_t                           mInitializingCarStable;
 
     FECarRecord* GetCarRecordByHandle(std::uint32_t handle) {
       return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5332F0)(this, handle);

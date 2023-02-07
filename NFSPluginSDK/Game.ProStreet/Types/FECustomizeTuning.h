@@ -33,12 +33,12 @@
 
 namespace NFSPluginSDK::ProStreet {
   struct FECustomizeTuning : ArrayWidgetMenu {
-    TuningSelectablePart*               mTuningPart;
-    RideInfo                            mRideInfo;
-    DALVehicleCommands::GetSliderStats* mSliderStats;
-    std::uint32_t                       mPVehicleKey;
-    DALVehicleCommands::RaceMode        mMode;
-    FECustomizeCarStatsWidget           mStatsWidget;
+    TuningSelectablePart*            mTuningPart;
+    RideInfo                         mRideInfo;
+    DALVehicleCommands::GetCarStats* mCarStats;
+    std::uint32_t                    mPVehicleKey;
+    DALVehicleCommands::RaceMode     mMode;
+    FECustomizeCarStatsWidget        mStatsWidget;
   };
 }  // namespace NFSPluginSDK::ProStreet
 
