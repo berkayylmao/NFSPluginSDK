@@ -33,10 +33,25 @@ namespace NFSPluginSDK::ProStreet {
     bool          mInited;
 
     virtual ~DALManager();
-    virtual void HandleCommand(DLCommandObject*, const std::int32_t unk1 = -1);
-    virtual void CancelCommand(DLCommandObject*, const std::int32_t unk1 = -1);
+    virtual void HandleCommand(DLCommandObject*, const std::int32_t unk1);
+    virtual void CancelCommand(DLCommandObject*, const std::int32_t unk1);
 
-    static DALManager* Get() { return reinterpret_cast<DALManager*>(0xA50AD0); }
+    static DALManager* Get() {
+      static auto* g_instance = reinterpret_cast<DALManager*>(0xA50AD0);
+      if (g_instance && g_instance->mInited) return g_instance;
+
+      return nullptr;
+    }
+    static bool TryHandleCommand(DerivedFromDLCommandObject auto* pCommandObject) {
+      auto* dal = Get();
+      if (!dal) return false;
+
+      dal->HandleCommand(pCommandObject, -1);
+      return true;
+    }
+    static bool TryHandleCommand(DerivedFromDLCommandObject auto& commandObject) {
+      return TryHandleCommand(&commandObject);
+    }
   };
 }  // namespace NFSPluginSDK::ProStreet
 
