@@ -9,11 +9,11 @@ Given the workload of finding leaked builds, cross-referencing compiled code, fi
 | Game                 | Progress |       Attrib       |      PVehicle      |     AIVehicle      |     \*Pursuit      |
 | :------------------- | :------: | :----------------: | :----------------: | :----------------: | :----------------: |
 | NFS Most Wanted 2005 |   ≈60%   | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| NFS Carbon           |   ≈20%   | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| NFS ProStreet        |   ≈70%   | :white_check_mark: | :white_check_mark: |                    |                    |
+| NFS Carbon           |   ≈40%   | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| NFS ProStreet        |   ≈75%   | :white_check_mark: | :white_check_mark: |                    |                    |
 
 ## Usage
-NFSPluginSDK does not need a seperate build, it's only a bunch of header files. Simply add it to your C++14 (or above) project, `#include` it and enjoy!
+NFSPluginSDK does not need a seperate build, it's only a bunch of header files. Simply add it to your C++20 (or above) project, `#include` it and enjoy!
 
 The easiest way to use NFSPluginSDK is to add it as a submodule.
 
@@ -25,7 +25,11 @@ Include the header of the game you are working with.
 
 And use it!
 
-`MW05::Game::BlowEngine(MW05::PlayerEx::GetPlayerInstance());`
+```cpp
+using namespace NFSPluginSDK;
+
+MW05::Game::BlowEngine(MW05::PlayerEx::GetPlayerInstance());
+```
 
 All gameplay functionality of [NFS Chat Chaos Mod](https://github.com/berkayylmao/NFS-Chat-Chaos-Mod) and [B.A.M.](https://github.com/berkayylmao/BerkaysAssortedMods) are provided by NFSPluginSDK.
 
