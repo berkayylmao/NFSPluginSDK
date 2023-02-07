@@ -24,6 +24,9 @@
 #define NFSPLUGINSDK_SHARED_ALLSHARED_H
 #pragma once
 
+#include <array>
+#include <cstdint>
+
 #include "Enums.h"
 #include "Math.h"
 #include "UMath.h"
