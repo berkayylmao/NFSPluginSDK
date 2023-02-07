@@ -76,8 +76,8 @@ namespace MemoryEditor {
 
      public:
       bool IsValid() const {
-        return !std::all_of(mOrigBytes.cbegin(), mOrigBytes.cend(), [](std::uint8_t b) { return b == 0; }) &&
-               mAddrDetour;
+        return mAddrFrom && mAddrDetour &&
+               std::none_of(mOrigBytes.cbegin(), mOrigBytes.cend(), [](std::uint8_t b) { return b == 0ui8; });
       }
       bool           GetHasDetoured() const { return mHasDetoured; }
       std::uintptr_t GetAddrFrom() const { return mAddrFrom; }
