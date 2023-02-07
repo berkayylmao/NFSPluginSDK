@@ -24,6 +24,7 @@
 #define NFSPLUGINSDK_GAME_PROSTREET_TYPES_DLCOMMANDOBJECT_H
 #pragma once
 
+#include <concepts>
 #include <NFSPluginSDK/Game.ProStreet/Types.h>
 
 namespace NFSPluginSDK::ProStreet {
@@ -32,10 +33,17 @@ namespace NFSPluginSDK::ProStreet {
 
     CommandState mState;
 
-    virtual ~DLCommandObject();
-    virtual void Cancel();
-    virtual void Execute();
+    virtual ~DLCommandObject() {
+      reinterpret_cast<DLCommandObject*(__thiscall*)(DLCommandObject*, bool freeMemory)>(0x5476A0)(this, false);
+    }
+    virtual void Cancel() {}
+    virtual void Execute() {}
+
+    DLCommandObject() : mState(CommandState::WaitingToExecute) {}
   };
+
+  template <class CommandObject>
+  concept DerivedFromDLCommandObject = std::is_base_of<DLCommandObject, CommandObject>::value;
 }  // namespace NFSPluginSDK::ProStreet
 
 #endif  // NFSPLUGINSDK_GAME_PROSTREET_TYPES_DLCOMMANDOBJECT_H
