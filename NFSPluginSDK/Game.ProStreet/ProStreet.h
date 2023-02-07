@@ -31,6 +31,7 @@ namespace NFSPluginSDK::ProStreet::Variables {
   inline MemoryFieldWrapper<bool>           CarGuysForceLODS{0xBFBC43, false};
   inline MemoryFieldWrapper<std::uint32_t*> CarPartTypeNameHashTable{0xAEB774, nullptr};
   inline MemoryFieldWrapper<Math::Matrix4>  CarScaleMatrix{0xAEE180, Math::Matrix4()};
+  inline MemoryFieldWrapper<bool>           DisableTotalledState{0xAB9DCD, false};
   inline MemoryFieldWrapper<bool>           DrawCars{0xA79CDC, true};
   inline MemoryFieldWrapper<bool>           EnableEnvMap{0xA61884, true};
   inline MemoryFieldWrapper<CARPART_LOD>    ForceCarLOD{0xA79D7C, CARPART_LOD::A};
@@ -45,6 +46,7 @@ namespace NFSPluginSDK::ProStreet::Variables {
   inline MemoryFieldWrapper<bool>           SkipCareerIntro{0xBFBC6C, false};
   inline MemoryFieldWrapper<bool>           SkipFE{0xBFBC08, false};
   inline MemoryFieldWrapper<GameFlowState>  TheGameFlowManager{0xABB510, GameFlowState::InFrontEnd};
+  inline MemoryFieldWrapper<bool>           TrannyOnAllCars{0xAB09B8, false};
   inline MemoryFieldWrapper<float>          Tweak_GameBreakerCollisionMass{0xA9B678, 2.0f, FLT_MIN, FLT_MAX};
   inline MemoryFieldWrapper<bool>           UnlockAllThings{0xBFBC5B, false};
 }  // namespace NFSPluginSDK::ProStreet::Variables
