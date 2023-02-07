@@ -44,6 +44,9 @@ namespace NFSPluginSDK::ProStreet {
     virtual void GetCheckpointDirection(std::uint32_t, UMath::Vector3&);
     virtual ~GRaceParameters();
 
+    std::uint32_t GetEventHash() {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(GRaceParameters*)>(0x6826F0)(this);
+    }
     std::int8_t    GetNumLaps() { return reinterpret_cast<std::int8_t(__thiscall*)(GRaceParameters*)>(0x657CF0)(this); }
     GRace::Variant GetRaceVariant() {
       if (!mIndex) return GRace::Variant::Invalid;
