@@ -26,11 +26,12 @@
 
 #include <NFSPluginSDK/Core/EASTL/EASTL/vector.h>
 
-#include <memory>  // unique_ptr
 #include <NFSPluginSDK/Game.ProStreet/Types.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/DLCommandObject.h>
+#include <NFSPluginSDK/Game.ProStreet/Types/FECarRecord.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/Physics.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/RideInfo.h>
+#include <NFSPluginSDK/Game.ProStreet/Types/UserProfile.h>
 
 namespace NFSPluginSDK::ProStreet::DALVehicleCommands {
   struct BlueprintInfo {
@@ -42,52 +43,47 @@ namespace NFSPluginSDK::ProStreet::DALVehicleCommands {
   };
 
   struct CarInfo {
-    std::uint32_t carNameHash;
-    std::uint32_t carManuLogoHash;
-    std::uint32_t carLogoHash;
-    std::uint32_t carCost;
-    DriveTrain    drivetrain;
-    std::uint32_t handle;
-    RaceMode      mode;
-    float         damage;
+    std::uint32_t mCarNameHash;
+    std::uint32_t mCarManuLogoHash;
+    std::uint32_t mCarLogoHash;
+    std::uint32_t mCarCost;
+    DriveTrain    mDrivetrain;
+    std::uint32_t mHandle;
+    RaceMode      mMode;
+    float         mDamage;
+
+    explicit CarInfo() = default;
+    explicit CarInfo(std::uint32_t carNameHash, std::uint32_t carManuLogoHash, std::uint32_t carLogoHash,
+                     std::uint32_t carCost, DriveTrain drivetrain, std::uint32_t handle, RaceMode mode, float damage) :
+        mCarNameHash(carNameHash),
+        mCarManuLogoHash(carManuLogoHash),
+        mCarLogoHash(carLogoHash),
+        mCarCost(carCost),
+        mDrivetrain(drivetrain),
+        mHandle(handle),
+        mMode(mode),
+        mDamage(damage) {}
   };
 
   struct CreateCustomizableCar : DLCommandObject {
     std::uint32_t mNewCar;
     std::uint32_t mHandle;
-    RaceMode      mMode;
+    RaceMode      mRaceMode;
 
-    virtual ~CreateCustomizableCar();
-    virtual void Execute() override;
+    virtual void Execute() override { reinterpret_cast<void(__thiscall*)(CreateCustomizableCar*)>(0x5633E0)(this); }
 
-    static std::unique_ptr<CreateCustomizableCar> Construct(std::uint32_t newCar, std::uint32_t handle, RaceMode mode) {
-      auto dummy   = std::make_unique<uint8_t[]>(sizeof(CreateCustomizableCar));
-      auto ret     = std::unique_ptr<CreateCustomizableCar>{reinterpret_cast<CreateCustomizableCar*>(dummy.release())};
-      ret->mState  = DLCommandObject::CommandState::WaitingToExecute;
-      ret->mNewCar = newCar;
-      ret->mHandle = handle;
-      ret->mMode   = mode;
-
-      *reinterpret_cast<std::uintptr_t*>(ret.get()) = 0x96F4B0;
-      return ret;
-    }
+    explicit CreateCustomizableCar(std::uint32_t newCar, std::uint32_t handle, RaceMode raceMode) :
+        mNewCar(newCar), mHandle(handle), mRaceMode(raceMode) {}
   };
 
   struct GetBlueprintInfo : DLCommandObject {
     eastl::vector<BlueprintInfo> mVector;
     std::uint32_t                mHandle;
 
-    virtual ~GetBlueprintInfo();
-    virtual void Execute() override;
-
-    static std::unique_ptr<GetBlueprintInfo> Construct() {
-      auto dummy  = std::make_unique<uint8_t[]>(sizeof(GetBlueprintInfo));
-      auto ret    = std::unique_ptr<GetBlueprintInfo>{reinterpret_cast<GetBlueprintInfo*>(dummy.release())};
-      ret->mState = DLCommandObject::CommandState::WaitingToExecute;
-
-      *reinterpret_cast<std::uintptr_t*>(ret.get()) = 0x56F480;
-      return ret;
+    virtual ~GetBlueprintInfo() {
+      reinterpret_cast<DLCommandObject*(__thiscall*)(GetBlueprintInfo*, bool freeMemory)>(0x560160)(this, false);
     }
+    virtual void Execute() override { reinterpret_cast<void(__thiscall*)(GetBlueprintInfo*)>(0x56F480)(this); }
   };
 
   struct GetCustomizableCars : DLCommandObject {
@@ -95,30 +91,36 @@ namespace NFSPluginSDK::ProStreet::DALVehicleCommands {
     RaceMode                                   mMode;
     FEPlayerCarDBFilterBits                    mFilter;
 
-    virtual ~GetCustomizableCars();
-    virtual void Execute() override;
-
-    static std::unique_ptr<GetCustomizableCars> Construct(RaceMode mode, FEPlayerCarDBFilterBits filter) {
-      auto dummy   = std::make_unique<uint8_t[]>(sizeof(GetCustomizableCars));
-      auto ret     = std::unique_ptr<GetCustomizableCars>{reinterpret_cast<GetCustomizableCars*>(dummy.release())};
-      ret->mState  = DLCommandObject::CommandState::WaitingToExecute;
-      ret->mMode   = mode;
-      ret->mFilter = filter;
-
-      *reinterpret_cast<std::uintptr_t*>(ret.get()) = 0x9708D8;
-      return ret;
+    virtual ~GetCustomizableCars() {
+      // reinterpret_cast<DLCommandObject*(__thiscall*)(GetCustomizableCars*, bool freeMemory)>(0x560120)(this, false);
     }
+    virtual void Execute() override {
+      // reinterpret_cast<void(__thiscall*)(GetCustomizableCars*)>(0x56F1E0)(this);
+
+      if (auto* profile = UserProfile::Get()) {
+        for (const auto& car : profile->mCarStable.mCarTable) {
+          if (car.MatchesFilter(FEPlayerCarDBFilterBits::FILTER_LIST_CUSTOMIZABLE) && car.MatchesFilter(mFilter)) {
+            if (mMode != RaceMode::Invalid && car.GetMode() != mMode) continue;
+            mVector.push_back(CarInfo(car.GetNameHash(), car.GetMenuLogoHash(), car.GetLogoHash(), car.GetCost(),
+                                      car.GetDriveTrain(), car.Handle, car.GetMode(), 0.0f));
+          }
+        }
+      }
+    }
+
+    explicit GetCustomizableCars(RaceMode                mode   = RaceMode::Invalid,
+                                 FEPlayerCarDBFilterBits filter = FEPlayerCarDBFilterBits::FILTER_REGION_MASK |
+                                                                  FEPlayerCarDBFilterBits::FILTER_LIST_MASK) :
+        mMode(mode), mFilter(filter) {}
   };
 
   struct GetDownloadedBlueprints : DLCommandObject {
     std::uint32_t       mNumBlueprints;
     BlueprintShareable* mBlueprints;
-
-    virtual ~GetDownloadedBlueprints();
-    virtual void Execute() override;
   };
 
-  struct GetSliderStats : DLCommandObject {
+  // Named 'GetSliderStats' in the RTII.
+  struct GetCarStats : DLCommandObject {
     std::int32_t                        Levels[3];
     float                               Values[3];
     std::uint32_t                       Hashes[3];
@@ -130,40 +132,38 @@ namespace NFSPluginSDK::ProStreet::DALVehicleCommands {
     Physics::Info::Performance          mEstimatedPerformanceUntuned;
     RaceMode                            mMode;
 
-    virtual ~GetSliderStats();
-    virtual void Execute() override;
+    // Deletes mRideInfos
+    virtual ~GetCarStats() {
+      reinterpret_cast<DLCommandObject*(__thiscall*)(GetCarStats*, bool freeMemory)>(0x55DE50)(this, false);
+    }
+    virtual void Execute() override { reinterpret_cast<void(__thiscall*)(GetCarStats*)>(0x575F30)(this); }
   };
 
   struct GetStockCars : DLCommandObject {
     eastl::vector<DALVehicleCommands::CarInfo> mVector;
 
-    virtual ~GetStockCars();
-    virtual void Execute() override;
+    virtual ~GetStockCars() {
+      // reinterpret_cast<DLCommandObject*(__thiscall*)(GetStockCars*, bool freeMemory)>(0x5B5960)(this, false);
+    }
+    virtual void Execute() override {
+      // reinterpret_cast<void(__thiscall*)(GetStockCars*)>(0x56EB30)(this);
 
-    static std::unique_ptr<GetStockCars> Construct() {
-      auto dummy  = std::make_unique<uint8_t[]>(sizeof(GetStockCars));
-      auto ret    = std::unique_ptr<GetStockCars>{reinterpret_cast<GetStockCars*>(dummy.release())};
-      ret->mState = DLCommandObject::CommandState::WaitingToExecute;
-
-      *reinterpret_cast<std::uintptr_t*>(ret.get()) = 0x9A163C;
-      return ret;
+      if (auto* profile = UserProfile::Get()) {
+        for (const auto& car : profile->mCarStable.mCarTable) {
+          if (car.MatchesFilter(FEPlayerCarDBFilterBits::FILTER_LIST_STOCK |
+                                FEPlayerCarDBFilterBits::FILTER_REGION_ALL)) {
+            mVector.push_back(CarInfo(car.GetNameHash(), car.GetMenuLogoHash(), car.GetLogoHash(), car.GetCost(),
+                                      car.GetDriveTrain(), car.Handle, car.GetMode(), 0.0f));
+          }
+        }
+      }
     }
   };
 
   struct RemoveCustomizableCar : DLCommandObject {
     std::uint32_t mHandle;
 
-    virtual ~RemoveCustomizableCar();
-    virtual void Execute() override;
-
-    static std::unique_ptr<RemoveCustomizableCar> Construct() {
-      auto dummy  = std::make_unique<uint8_t[]>(sizeof(RemoveCustomizableCar));
-      auto ret    = std::unique_ptr<RemoveCustomizableCar>{reinterpret_cast<RemoveCustomizableCar*>(dummy.release())};
-      ret->mState = DLCommandObject::CommandState::WaitingToExecute;
-
-      *reinterpret_cast<std::uintptr_t*>(ret.get()) = 0x99E870;
-      return ret;
-    }
+    virtual void Execute() override { reinterpret_cast<void(__thiscall*)(RemoveCustomizableCar*)>(0x5636F0)(this); }
   };
 }  // namespace NFSPluginSDK::ProStreet::DALVehicleCommands
 

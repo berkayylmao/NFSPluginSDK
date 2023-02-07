@@ -24,7 +24,6 @@
 #define NFSPLUGINSDK_GAME_PROSTREET_TYPES_DALHUBCOMMANDS_H
 #pragma once
 
-#include <memory>  // unique_ptr
 #include <NFSPluginSDK/Game.ProStreet/Types.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/DLCommandObject.h>
 
@@ -35,17 +34,14 @@ namespace NFSPluginSDK::ProStreet::DALHubCommands {
     std::int32_t mWinCondition;
     std::int32_t mDominateCondition;
 
-    virtual ~GetScoresAndConditions();
-    virtual void Execute() override;
+    virtual void Execute() override { reinterpret_cast<void(__thiscall*)(GetScoresAndConditions*)>(0x53FE70)(this); }
+  };
 
-    static std::unique_ptr<GetScoresAndConditions> Construct() {
-      auto dummy  = std::make_unique<uint8_t[]>(sizeof(GetScoresAndConditions));
-      auto ret    = std::unique_ptr<GetScoresAndConditions>{reinterpret_cast<GetScoresAndConditions*>(dummy.release())};
-      ret->mState = DLCommandObject::CommandState::WaitingToExecute;
+  struct GetHubLocationName : DLCommandObject {
+    char          mHubLocationName[64];
+    std::uint32_t mHubKey;
 
-      *reinterpret_cast<std::uintptr_t*>(ret.get()) = 0x96FC04;
-      return ret;
-    }
+    virtual void Execute() override { reinterpret_cast<void(__thiscall*)(GetHubLocationName*)>(0x53FB50)(this); }
   };
 }  // namespace NFSPluginSDK::ProStreet::DALHubCommands
 

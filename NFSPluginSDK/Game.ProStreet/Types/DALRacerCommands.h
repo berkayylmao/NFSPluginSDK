@@ -24,7 +24,6 @@
 #define NFSPLUGINSDK_GAME_PROSTREET_TYPES_DALRACERCOMMANDS_H
 #pragma once
 
-#include <memory>  // unique_ptr
 #include <NFSPluginSDK/Game.ProStreet/Types.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/DLCommandObject.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/GRacerInfo.h>
@@ -62,8 +61,7 @@ namespace NFSPluginSDK::ProStreet::DALRacerCommands {
     bool           mIsDragStaging;
     Timer          mTimer;
 
-    virtual ~RaceInformationCmd();
-    virtual void Execute() override;
+    virtual void Execute() override { reinterpret_cast<void(__thiscall*)(RaceInformationCmd*)>(0x550080)(this); }
 
     std::uint32_t GetPrimaryProgressHeader() {
       return reinterpret_cast<std::uint32_t(__thiscall*)(RaceInformationCmd*)>(0x53D010)(this);
@@ -71,15 +69,6 @@ namespace NFSPluginSDK::ProStreet::DALRacerCommands {
 
     void Setup(IPlayer* player, void* unk) {
       reinterpret_cast<void(__thiscall*)(RaceInformationCmd*, IPlayer*, void*)>(0x54FDE0)(this, player, unk);
-    }
-
-    static std::unique_ptr<RaceInformationCmd> Construct() {
-      auto dummy  = std::make_unique<uint8_t[]>(sizeof(RaceInformationCmd));
-      auto ret    = std::unique_ptr<RaceInformationCmd>{reinterpret_cast<RaceInformationCmd*>(dummy.release())};
-      ret->mState = DLCommandObject::CommandState::WaitingToExecute;
-
-      *reinterpret_cast<std::uintptr_t*>(ret.get()) = 0x96FDFC;
-      return ret;
     }
   };
 
@@ -147,17 +136,6 @@ namespace NFSPluginSDK::ProStreet::DALRacerCommands {
     };
 
     eScripts mScripts[18];
-
-    virtual ~TweakableFlashers();
-
-    static std::unique_ptr<TweakableFlashers> Construct() {
-      auto dummy  = std::make_unique<uint8_t[]>(sizeof(TweakableFlashers));
-      auto ret    = std::unique_ptr<TweakableFlashers>{reinterpret_cast<TweakableFlashers*>(dummy.release())};
-      ret->mState = DLCommandObject::CommandState::WaitingToExecute;
-
-      *reinterpret_cast<std::uintptr_t*>(ret.get()) = 0x9705E8;
-      return ret;
-    }
   };
 }  // namespace NFSPluginSDK::ProStreet::DALRacerCommands
 
