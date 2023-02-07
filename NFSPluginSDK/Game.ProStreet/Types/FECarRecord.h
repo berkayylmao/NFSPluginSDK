@@ -39,21 +39,40 @@ namespace NFSPluginSDK::ProStreet {
     std::uint8_t            IsPresetSkin;
     std::uint8_t            Padd;
 
-    bool IsUnlocked() { return reinterpret_cast<bool(__thiscall*)(FECarRecord*)>(0x548C00)(this); }
+    bool IsUnlocked() const { return reinterpret_cast<bool(__thiscall*)(const FECarRecord*)>(0x548C00)(this); }
+    bool MatchesFilter(FEPlayerCarDBFilterBits filter) const {
+      return reinterpret_cast<bool(__thiscall*)(const FECarRecord*, FEPlayerCarDBFilterBits)>(0x533610)(this, filter);
+    }
 
-    DALVehicleCommands::DriveTrain GetDriveTrain() {
-      return reinterpret_cast<DALVehicleCommands::DriveTrain(__thiscall*)(FECarRecord*)>(0x548C40)(this);
+    std::uint32_t GetNameHash() const {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(const FECarRecord*)>(0x5611A0)(this);
     }
-    FECustomizationRecord* GetCustomizationRecord() {
-      return reinterpret_cast<FECustomizationRecord*(__thiscall*)(FECarRecord*)>(0x533640)(this);
+    std::uint32_t GetMenuLogoHash() const {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(const FECarRecord*)>(0x561270)(this);
     }
-    VehicleCustomizations* GetVCRecord(BluePrintNumber blueprintIdx) {
+    std::uint32_t GetLogoHash() const {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(const FECarRecord*)>(0x558470)(this);
+    }
+    DALVehicleCommands::DriveTrain GetDriveTrain() const {
+      return reinterpret_cast<DALVehicleCommands::DriveTrain(__thiscall*)(const FECarRecord*)>(0x548C40)(this);
+    }
+    std::uint32_t GetCost() const {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(const FECarRecord*)>(0x5485A0)(this);
+    }
+    DALVehicleCommands::RaceMode GetMode() const {
+      return reinterpret_cast<DALVehicleCommands::RaceMode(__thiscall*)(const FECarRecord*)>(0x548D90)(this);
+    }
+
+    FECustomizationRecord* GetCustomizationRecord() const {
+      return reinterpret_cast<FECustomizationRecord*(__thiscall*)(const FECarRecord*)>(0x533640)(this);
+    }
+    VehicleCustomizations* GetVCRecord(BluePrintNumber blueprintIdx) const {
       auto* fecr = GetCustomizationRecord();
       if (!fecr) return nullptr;
 
       return &fecr->mBluePrints[static_cast<std::size_t>(blueprintIdx)];
     }
-    VehicleCustomizations* GetActiveVCRecord() {
+    VehicleCustomizations* GetActiveVCRecord() const {
       auto* fecr = GetCustomizationRecord();
       if (!fecr) return nullptr;
 
