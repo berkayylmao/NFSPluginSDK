@@ -34,6 +34,7 @@
 
 #ifndef EASTL_INTERNAL_CONFIG_H
 #define EASTL_INTERNAL_CONFIG_H
+#define EASTL_USER_CONFIG_HEADER "config_user.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // ReadMe
