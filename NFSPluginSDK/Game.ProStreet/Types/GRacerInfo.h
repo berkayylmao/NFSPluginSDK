@@ -198,11 +198,12 @@ namespace NFSPluginSDK::ProStreet {
     float          mFirstLapTimeEstimate;
     float          mSubsequentLapTimesEstimate;
 
-    ISimable* GetSimable() { return reinterpret_cast<ISimable*(__thiscall*)(GRacerInfo*)>(0x667290)(this); }
-
     bool IsFinishReason(FinishReason reason) {
       return reinterpret_cast<bool(__thiscall*)(GRacerInfo*, FinishReason)>(0x656AD0)(this, reason);
     }
+    bool      GetIsHuman() { return reinterpret_cast<bool(__thiscall*)(GRacerInfo*)>(0x66C940)(this); }
+    ISimable* GetSimable() { return reinterpret_cast<ISimable*(__thiscall*)(GRacerInfo*)>(0x667290)(this); }
+    void      TotalVehicle() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x671B90)(this); }
   };
 
 #ifdef _WIN32
