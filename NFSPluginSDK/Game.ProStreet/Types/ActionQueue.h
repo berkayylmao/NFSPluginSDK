@@ -31,7 +31,6 @@
 #include <NFSPluginSDK/Game.ProStreet/Types/Timer.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/UTL.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/UTL/CircularQueue.h>
-#include <NFSPluginSDK/Game.ProStreet/Types/UTL/Listable.h>
 
 namespace NFSPluginSDK::ProStreet {
   struct ActionQueue : UTL::Listable<ActionQueue, 32>, UTL::Instanceable<HACTIONQUEUE__*, ActionQueue, 32> {
