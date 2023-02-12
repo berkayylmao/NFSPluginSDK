@@ -47,6 +47,10 @@ namespace NFSPluginSDK::ProStreet {
     std::int32_t                                                     mCurrentEditingLayer;
     bool                                                             mDecal;
 
+    bool IsPartInInventory(ISelectablePart* pPart) {
+      return reinterpret_cast<bool(__thiscall*)(CarCustomizeManager*, ISelectablePart*)>(0x7CBE70)(this, pPart);
+    }
+
     static inline CarCustomizeManager* Get() { return reinterpret_cast<CarCustomizeManager*>(0xB32CE0); }
   };
 }  // namespace NFSPluginSDK::ProStreet
