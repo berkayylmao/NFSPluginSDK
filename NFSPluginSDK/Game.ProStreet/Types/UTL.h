@@ -27,7 +27,7 @@
 #include <NFSPluginSDK/Core/EASTL/EASTL/vector.h>
 
 #include <NFSPluginSDK/Game.ProStreet/Types.h>
-#include <NFSPluginSDK/Game.ProStreet/Types/UTL/FixedVector.h>
+#include <NFSPluginSDK/Game.ProStreet/Types/UTL/Listable.h>
 
 namespace NFSPluginSDK::ProStreet::UTL {
   template <typename T, std::size_t nT>
