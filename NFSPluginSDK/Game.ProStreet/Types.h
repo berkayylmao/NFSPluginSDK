@@ -146,6 +146,18 @@ namespace NFSPluginSDK::ProStreet {
     using _h_HHANDLER__ = std::uint32_t;
   }
 
+  namespace Hub {
+    enum class OrgBody : std::uint32_t {
+      Nitrocide,
+      NoiseBomb,
+      GEffect,
+      RogueSpeed,
+      SuperPromotion,
+      ReactTeam,
+      BattleMachine
+    };
+  }
+
   namespace Math {
     using AxlePair      = NFSPluginSDK::AxlePair;
     using Curve         = NFSPluginSDK::Curve;
@@ -369,26 +381,34 @@ namespace NFSPluginSDK::ProStreet {
   struct FinishedRaceStatsEntry;
   struct FloatSpring;
   struct GameplaySettings;
+  struct GActiveHubSaveData;
   struct GActivity;
+  struct GCareer;
+  struct GCareerElement;
   struct GCharacter;
+  struct GDamageometer;
   struct GenericMessage;
   struct GEventTimer;
+  struct GHub;
+  struct GHubSimHelper;
+  struct GHubWriter;
   struct GIcon;
   struct GIOpponent;
   struct GManager;
   struct GMilestone;
   struct GObjectBlock;
+  struct GProgressionActivityWrapper;
+  struct GProStreetGame;
   struct GRaceBin;
   struct GRaceIndexData;
   struct GRaceParameters;
   struct GRacerInfo;
   template <typename T>
   struct Grid;
-  struct LeaderSupport;
-  struct HeavySupport;
   struct GroundSupportRequest;
   struct GRuntimeInstance;
   struct GSpeedTrap;
+  struct GTier;
   struct GTimer;
   struct GTrigger;
   struct GVault;
@@ -401,6 +421,7 @@ namespace NFSPluginSDK::ProStreet {
   using HSIMPROFILE__  = std::uint32_t;
   using HSIMSERVICE__  = std::uint32_t;
   using HSIMTASK__     = std::uint32_t;
+  struct HeavySupport;
   struct HighScoresDatabase;
   struct HudElement;
   struct IAIHelicopter;
@@ -455,6 +476,7 @@ namespace NFSPluginSDK::ProStreet {
   struct IVehicleAI;
   struct IVehicleCache;
   struct JukeboxEntry;
+  struct LeaderSupport;
   struct LocalPlayer;
   struct MilestoneTypeInfo;
   struct ObjectStateBlockHeader;
