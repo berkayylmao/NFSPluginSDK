@@ -151,8 +151,8 @@ namespace NFSPluginSDK::ProStreet {
     virtual const UCrc32&                GetVehicleClass() override;
     virtual const Attrib::Gen::pvehicle& GetVehicleAttributes() override;
     virtual const char*                  GetVehicleName() override;
-    virtual Attrib::StringKey            GetVehicleKey() override;
-    virtual Attrib::StringKey            GetStockVehicleKey() override;
+    virtual std::uint32_t                GetVehicleKey() override;
+    virtual std::uint32_t                GetStockVehicleKey() override;
     virtual void                         SetDriverClass(DriverClass newDriverClass) override;
     virtual DriverClass                  GetDriverClass() override;
     virtual bool                         IsLoading() override;
