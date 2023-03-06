@@ -686,7 +686,6 @@ namespace NFSPluginSDK::ProStreet {
   enum class BluePrintNumber : std::uint32_t { BluePrint1, BluePrint2, BluePrint3 };
   enum class BluePrintType : std::uint32_t { Grip, Drift, Drag, SpeedChallenge };
   enum class CarSlotId : std::uint32_t {
-    Invalid = UINT32_MAX,
     BadgingBumperSetFront,
     BadgingBumperSetRear,
     BadgingFenderFrontLeft,
@@ -851,7 +850,8 @@ namespace NFSPluginSDK::ProStreet {
     WheelSpokeRearPaintSwatch,
     WindowTint,
     WindowTintGroup,
-    WindowTintSwatch
+    WindowTintSwatch,
+    Invalid = UINT32_MAX
   };
   enum class CarType : std::uint32_t {
     CCX,

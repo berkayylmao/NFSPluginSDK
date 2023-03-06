@@ -49,6 +49,9 @@ namespace NFSPluginSDK::ProStreet {
     FECarRecord* GetCarByIndex(std::uint32_t idx) {
       return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5333B0)(this, idx);
     }
+    FECarRecord* GetPresetCarRecord(std::uint32_t presetKey) {
+      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x533370)(this, presetKey);
+    }
 
     /*
      * __pad is undefined. The Wii debug build lists the following entries but they don't seem to line up correctly.
