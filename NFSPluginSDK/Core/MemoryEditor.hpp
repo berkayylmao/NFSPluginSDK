@@ -282,13 +282,17 @@ namespace MemoryEditor {
     // Checks both the pointer itself and the pointed data (if not NULL)
     template <typename T>
     bool ValidateMemory(T* ptr) const {
-      if (!ptr) return false;
+      __try {
+        if (!ptr) return false;
 
-      bool ret = ValidateMemory(reinterpret_cast<std::uintptr_t>(ptr));
-      if (*reinterpret_cast<std::uintptr_t*>(ptr) == 0) return ret;
+        bool ret = ValidateMemory(reinterpret_cast<std::uintptr_t>(ptr));
+        if (*reinterpret_cast<std::uintptr_t*>(ptr) == 0) return ret;
 
-      ret |= ValidateMemory(*reinterpret_cast<std::uintptr_t*>(ptr));
-      return ret;
+        ret |= ValidateMemory(*reinterpret_cast<std::uintptr_t*>(ptr));
+        return ret;
+      } __except (EXCEPTION_EXECUTE_HANDLER) {
+        return false;
+      }
     }
 
     static inline const Editor& Get() {
