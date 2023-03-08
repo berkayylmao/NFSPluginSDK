@@ -96,6 +96,9 @@ namespace NFSPluginSDK::ProStreet {
       reinterpret_cast<void(__cdecl*)(const char*, std::uint32_t, std::uint32_t, bool)>(0x5BD590)(fngName, objectHash,
                                                                                                   scriptHash, reset);
     }
+    static void SetSize(FEObject* object, float x, float y) {
+      reinterpret_cast<void(__cdecl*)(FEObject*, float, float)>(0x58DFC0)(object, x, y);
+    }
     static void SetTopLeft(FEObject* object, float x, float y) {
       reinterpret_cast<void(__cdecl*)(FEObject*, float, float)>(0x5BD8F0)(object, x, y);
     }
