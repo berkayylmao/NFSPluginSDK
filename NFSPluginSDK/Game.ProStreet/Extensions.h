@@ -50,6 +50,8 @@ namespace NFSPluginSDK::ProStreet {
       struct ValidatePVehicle_t {
         PVehicle* operator()(PVehicle* pvehicle) const {
           if (!pvehicle || !MemoryEditor::Get().ValidateMemory(pvehicle)) return nullptr;
+          // Validate ptr (vtable)
+          if (*reinterpret_cast<std::uintptr_t*>(pvehicle) != 0x994020) return nullptr;
           // Validate ptr
           if (pvehicle->mObjType != SimableType::Invalid && pvehicle->mDirty == false &&
               pvehicle->mRigidBody != nullptr)
