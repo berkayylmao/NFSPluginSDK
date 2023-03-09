@@ -45,7 +45,7 @@ namespace NFSPluginSDK::ProStreet::DALHubCommands {
   };
 
   struct GetKingHubData : DLCommandObject {
-    enum KingType : std::uint32_t { Showdown, Showdown_Stage2, Drift, Drag, Speed, Grip, None = UINT32_MAX };
+    enum class KingType : std::uint32_t { Showdown, Showdown_Stage2, Drift, Drag, Speed, Grip, None = UINT32_MAX };
     struct KingHubRaceData {
       std::uint32_t mTrackNameHash;
       std::uint32_t mFEngStringHash;
