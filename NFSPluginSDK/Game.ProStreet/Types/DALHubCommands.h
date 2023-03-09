@@ -43,6 +43,24 @@ namespace NFSPluginSDK::ProStreet::DALHubCommands {
 
     virtual void Execute() override { reinterpret_cast<void(__thiscall*)(GetHubLocationName*)>(0x53FB50)(this); }
   };
+
+  struct GetKingHubData : DLCommandObject {
+    enum KingType : std::uint32_t { Showdown, Showdown_Stage2, Drift, Drag, Speed, Grip, None = UINT32_MAX };
+    struct KingHubRaceData {
+      std::uint32_t mTrackNameHash;
+      std::uint32_t mFEngStringHash;
+    };
+
+    std::array<KingHubRaceData, 5> mHubRaceData;
+    std::int32_t                   mNumRaces;
+    std::uint32_t                  mBackgroundTexture;
+    std::uint32_t                  mHelpTextHash;
+    std::uint32_t                  mTitleTextHash;
+    KingType                       mKingType;
+    std::uint32_t                  mHubKey;
+
+    virtual void Execute() override { reinterpret_cast<void(__thiscall*)(GetKingHubData*)>(0x540060)(this); }
+  };
 }  // namespace NFSPluginSDK::ProStreet::DALHubCommands
 
 #endif  // NFSPLUGINSDK_GAME_PROSTREET_TYPES_DALHUBCOMMANDS_H
