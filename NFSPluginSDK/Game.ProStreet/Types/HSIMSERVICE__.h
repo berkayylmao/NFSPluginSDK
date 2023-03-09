@@ -24,12 +24,12 @@
 #define NFSPLUGINSDK_GAME_PROSTREET_TYPES_HSIMSERVICE_H
 #pragma once
 
-#include <NFSPluginSDK/Game.MW05/Types.h>
+#include <NFSPluginSDK/Game.ProStreet/Types.h>
 
-namespace NFSPluginSDK::MW05 {
+namespace NFSPluginSDK::ProStreet {
   struct HSIMSERVICE__ {
     std::int32_t unused;
   };
-}  // namespace NFSPluginSDK::MW05
+}  // namespace NFSPluginSDK::ProStreet
 
 #endif  // NFSPLUGINSDK_GAME_PROSTREET_TYPES_HSIMSERVICE_H

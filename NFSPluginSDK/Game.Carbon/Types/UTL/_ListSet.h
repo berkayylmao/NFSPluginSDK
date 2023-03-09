@@ -24,10 +24,10 @@
 #define NFSPLUGINSDK_GAME_CARBON_TYPES_UTL_LISTSET_H
 #pragma once
 
-#include <NFSPluginSDK/Game.MW05/Types.h>
-#include <NFSPluginSDK/Game.MW05/Types/UTL/List.h>
+#include <NFSPluginSDK/Game.Carbon/Types.h>
+#include <NFSPluginSDK/Game.Carbon/Types/UTL/List.h>
 
-namespace NFSPluginSDK::MW05::UTL {
+namespace NFSPluginSDK::Carbon::UTL {
   template <typename T, std::size_t nT, typename E, std::size_t nE>
   struct _ListSet {
     List<T, nT> _buckets[nE];
@@ -35,6 +35,6 @@ namespace NFSPluginSDK::MW05::UTL {
     List<T, nT>&       operator[](E index) noexcept { return _buckets[static_cast<std::size_t>(index)]; }
     const List<T, nT>& operator[](E index) const noexcept { return _buckets[static_cast<std::size_t>(index)]; }
   };
-}  // namespace NFSPluginSDK::MW05::UTL
+}  // namespace NFSPluginSDK::Carbon::UTL
 
 #endif  // NFSPLUGINSDK_GAME_CARBON_TYPES_UTL_LISTSET_H

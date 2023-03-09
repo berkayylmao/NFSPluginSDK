@@ -24,10 +24,10 @@
 #define NFSPLUGINSDK_GAME_PROSTREET_TYPES_IPURSUIT_H
 #pragma once
 
-#include <NFSPluginSDK/Game.MW05/Types.h>
-#include <NFSPluginSDK/Game.MW05/Types/UTL.h>
+#include <NFSPluginSDK/Game.ProStreet/Types.h>
+#include <NFSPluginSDK/Game.ProStreet/Types/UTL.h>
 
-namespace NFSPluginSDK::MW05 {
+namespace NFSPluginSDK::ProStreet {
   struct IPursuit : UTL::COM::IUnknown {
     virtual ~IPursuit();
 

@@ -24,12 +24,12 @@
 #define NFSPLUGINSDK_GAME_CARBON_TYPES_HSIMTASK_H
 #pragma once
 
-#include <NFSPluginSDK/Game.MW05/Types.h>
+#include <NFSPluginSDK/Game.Carbon/Types.h>
 
-namespace NFSPluginSDK::MW05 {
+namespace NFSPluginSDK::Carbon {
   struct HSIMTASK__ {
     std::int32_t unused;
   };
-}  // namespace NFSPluginSDK::MW05
+}  // namespace NFSPluginSDK::Carbon
 
 #endif  // NFSPLUGINSDK_GAME_CARBON_TYPES_HSIMTASK_H

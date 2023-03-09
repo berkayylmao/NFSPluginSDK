@@ -24,12 +24,12 @@
 #define NFSPLUGINSDK_GAME_PROSTREET_TYPES_UTL_LIST_H
 #pragma once
 
-#include <NFSPluginSDK/Game.MW05/Types.h>
-#include <NFSPluginSDK/Game.MW05/Types/UTL/_Storage.h>
+#include <NFSPluginSDK/Game.ProStreet/Types.h>
+#include <NFSPluginSDK/Game.ProStreet/Types/UTL/_Storage.h>
 
-namespace NFSPluginSDK::MW05::UTL {
+namespace NFSPluginSDK::ProStreet::UTL {
   template <typename T, std::size_t nT>
   struct List : _Storage<T*, nT> {};
-}  // namespace NFSPluginSDK::MW05::UTL
+}  // namespace NFSPluginSDK::ProStreet::UTL
 
 #endif  // NFSPLUGINSDK_GAME_PROSTREET_TYPES_UTL_LIST_H

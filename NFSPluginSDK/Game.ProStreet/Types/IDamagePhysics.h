@@ -24,9 +24,9 @@
 #define NFSPLUGINSDK_GAME_PROSTREET_TYPES_IDAMAGEPHYSICS_H
 #pragma once
 
-#include <NFSPluginSDK/Game.MW05/Types.h>
+#include <NFSPluginSDK/Game.ProStreet/Types.h>
 
-namespace NFSPluginSDK::MW05 {
+namespace NFSPluginSDK::ProStreet {
   struct IDamagePhysics;
 }
 

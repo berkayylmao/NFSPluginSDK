@@ -24,12 +24,12 @@
 #define NFSPLUGINSDK_GAME_PROSTREET_TYPES_UTL_STORAGE_H
 #pragma once
 
-#include <NFSPluginSDK/Game.MW05/Types.h>
-#include <NFSPluginSDK/Game.MW05/Types/UTL/FixedVector.h>
+#include <NFSPluginSDK/Game.ProStreet/Types.h>
+#include <NFSPluginSDK/Game.ProStreet/Types/UTL/FixedVector.h>
 
-namespace NFSPluginSDK::MW05::UTL {
+namespace NFSPluginSDK::ProStreet::UTL {
   template <typename T, std::size_t nT>
   struct _Storage : FixedVector<T, nT> {};
-}  // namespace NFSPluginSDK::MW05::UTL
+}  // namespace NFSPluginSDK::ProStreet::UTL
 
 #endif  // NFSPLUGINSDK_GAME_PROSTREET_TYPES_UTL_STORAGE_H
