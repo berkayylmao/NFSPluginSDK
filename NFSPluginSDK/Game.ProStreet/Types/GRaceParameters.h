@@ -44,6 +44,7 @@ namespace NFSPluginSDK::ProStreet {
     virtual void GetCheckpointDirection(std::uint32_t, UMath::Vector3&);
     virtual ~GRaceParameters();
 
+    float         GetCashValue() { return reinterpret_cast<float(__thiscall*)(GRaceParameters*)>(0x65EBD0)(this); }
     std::uint32_t GetEventHash() {
       return reinterpret_cast<std::uint32_t(__thiscall*)(GRaceParameters*)>(0x6826F0)(this);
     }

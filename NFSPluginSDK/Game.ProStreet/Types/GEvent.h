@@ -46,6 +46,12 @@ namespace NFSPluginSDK::ProStreet {
     bool                                                                                mAscending;
 
     void AssignGridNumbersBasedOnPerformance() { reinterpret_cast<void(__thiscall*)(GEvent*)>(0x68B5D0)(this); }
+    std::uint32_t GetEventKey() { return reinterpret_cast<std::uint32_t(__thiscall*)(GEvent*)>(0x6595F0)(this); }
+
+    static GEvent* Get() {
+      static GEvent** fObj = reinterpret_cast<GEvent**>(0xAB9DB0);
+      return *fObj;
+    }
   };
 }  // namespace NFSPluginSDK::ProStreet
 
