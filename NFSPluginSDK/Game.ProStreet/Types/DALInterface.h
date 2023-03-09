@@ -552,7 +552,17 @@ namespace NFSPluginSDK::ProStreet {
       DAL_RACEDAY_INT_SETTINGS_AI_OPPONENTS            = 0x4278,
       DAL_RACEDAY_INT_SETTINGS_MIN_PLAYERS             = 0x4279,
       DAL_RACEDAY_INT_SETTINGS_PRIVATE_RACE            = 0x427A,
-      DAL_RACEDAY_STR_SAVE_NAME                        = 0x427B
+      DAL_RACEDAY_STR_SAVE_NAME                        = 0x427B,
+      DAL_OPPONENT_ROUND_SCORE                         = 0x4650,
+      DAL_OPPONENT_POSITION                            = 0x4651,
+      DAL_OPPONENT_TOTAL_POINTS                        = 0x4652,
+      DAL_OPPONENT_RANKING_POINTS                      = 0x4653,
+      DAL_OPPONENT_DAMAGE_POINTS                       = 0x4654,
+      DAL_OPPONENT_TIME_POINTS                         = 0x4655,
+      DAL_OPPONENT_FINISH_REASON                       = 0x4656,
+      DAL_OPPONENT_CASH_REWARD                         = 0x4657,
+      DAL_OPPONENT_NAME                                = 0x4658,
+      DAL_OPPONENT_FINISH_REASON_STRING                = 0x4659
     };
 
     Type mInterfaceIndex;
