@@ -48,8 +48,8 @@ namespace NFSPluginSDK::ProStreet {
     };
     enum class PlayMode : std::uint32_t { Roaming, Racing };
 
-    GRacerInfo                                                   mRacerInfo[8];
-    GRacerInfo*                                                  mLazyRankingInfo[8];
+    std::array<GRacerInfo, 8>                                    mRacerInfo;
+    std::array<GRacerInfo*, 8>                                   mLazyRankingInfo;
     std::int32_t                                                 mRacerCount;
     eastl::vector<std::uint32_t>                                 mOpponents;
     float                                                        mRaceHandicap;
