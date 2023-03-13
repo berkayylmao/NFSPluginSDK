@@ -53,6 +53,10 @@ namespace NFSPluginSDK::ProStreet::Game {
   static inline void SabotageEngine(ISimable* pTarget, float durationInSeconds) {
     reinterpret_cast<void(__cdecl*)(ISimable*, float)>(0x6E5760)(pTarget, durationInSeconds);
   }
+  // Game_SetAIGoal
+  static inline void SetAIGoal(ISimable* pTarget, const char* goal) {
+    reinterpret_cast<void(__cdecl*)(ISimable*, const char*)>(0x6E5810)(pTarget, goal);
+  }
   // Game_ShowPauseMenu
   static inline void ShowPauseMenu() { reinterpret_cast<void(__cdecl*)()>(0x6DEBA0)(); }
   // Game_TotalRacer
