@@ -27,8 +27,9 @@
 #include <NFSPluginSDK/Game.ProStreet/Types.h>
 
 namespace NFSPluginSDK::ProStreet {
-  struct GElapsedCallback;
-
+  struct GElapsedCallback {
+    virtual void Elapsed(GCallbackTimer*) = 0;
+  };
   struct GCallbackTimer {
     float             mInterval;
     bool              mRunning;
@@ -36,9 +37,6 @@ namespace NFSPluginSDK::ProStreet {
     std::uint32_t     mNameHash;
     char              mName[20];
     GElapsedCallback* mCallback;
-  };
-  struct GElapsedCallback {
-    virtual void Elapsed(GCallbackTimer*);
   };
 }  // namespace NFSPluginSDK::ProStreet
 

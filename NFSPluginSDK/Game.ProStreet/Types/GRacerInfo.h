@@ -198,6 +198,10 @@ namespace NFSPluginSDK::ProStreet {
     float          mFirstLapTimeEstimate;
     float          mSubsequentLapTimesEstimate;
 
+    virtual void Elapsed(GCallbackTimer* pTimer) override {
+      reinterpret_cast<void(__thiscall*)(GRacerInfo*, GCallbackTimer*)>(0x65D190)(this, pTimer);
+    }
+
     bool IsFinishReason(FinishReason reason) {
       return reinterpret_cast<bool(__thiscall*)(GRacerInfo*, FinishReason)>(0x656AD0)(this, reason);
     }

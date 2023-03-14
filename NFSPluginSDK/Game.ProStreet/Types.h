@@ -383,6 +383,7 @@ namespace NFSPluginSDK::ProStreet {
   struct GameplaySettings;
   struct GActiveHubSaveData;
   struct GActivity;
+  struct GCallbackTimer;
   struct GCareer;
   struct GCareerElement;
   struct GCharacter;
