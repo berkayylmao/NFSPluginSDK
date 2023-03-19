@@ -40,7 +40,7 @@ namespace NFSPluginSDK::ProStreet::Game {
   // Game_ForceAIControl
   inline void ForceAIControl(bool _unk = true) { reinterpret_cast<void(__cdecl*)(bool)>(0x6EA6F0)(_unk); }
   // Game_IsPracticeMode
-  inline bool IsPracticeMode() { reinterpret_cast<bool(__cdecl*)()>(0x6DFAC0)(); }
+  inline bool IsPracticeMode() { return reinterpret_cast<bool(__cdecl*)()>(0x6DFAC0)(); }
   // Game_JumpToCarLot
   inline void JumpToCarLot() { reinterpret_cast<void(__cdecl*)()>(0x6DEE30)(); }
   // Game_JumpToSafehouse
