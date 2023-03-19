@@ -28,55 +28,57 @@
 
 namespace NFSPluginSDK::ProStreet::Game {
   // ECameraShake
-  static inline void ShakeCamera() { reinterpret_cast<void(__cdecl*)()>(0x69A020)(); }
+  inline void ShakeCamera() { reinterpret_cast<void(__cdecl*)()>(0x69A020)(); }
   // ERefreshHUD
-  static inline void RefreshHUD() { reinterpret_cast<void(__cdecl*)()>(0x69DE30)(); }
+  inline void RefreshHUD() { reinterpret_cast<void(__cdecl*)()>(0x69DE30)(); }
   // Game_AbandonRace
-  static inline void AbandonRace() { reinterpret_cast<void(__cdecl*)()>(0x6E5570)(); }
+  inline void AbandonRace() { reinterpret_cast<void(__cdecl*)()>(0x6E5570)(); }
   // Game_BlowEngine
-  static inline void BlowEngine(ISimable* pTarget) { reinterpret_cast<void(__cdecl*)(ISimable*)>(0x6E5730)(pTarget); }
+  inline void BlowEngine(ISimable* pTarget) { reinterpret_cast<void(__cdecl*)(ISimable*)>(0x6E5730)(pTarget); }
   // Game_ClearAIControl
-  static inline void ClearAIControl(bool _unk = true) { reinterpret_cast<void(__cdecl*)(bool)>(0x6EA760)(_unk); }
+  inline void ClearAIControl(bool _unk = true) { reinterpret_cast<void(__cdecl*)(bool)>(0x6EA760)(_unk); }
   // Game_ForceAIControl
-  static inline void ForceAIControl(bool _unk = true) { reinterpret_cast<void(__cdecl*)(bool)>(0x6EA6F0)(_unk); }
-  // Game_KnockoutRacer
-  static inline void KnockoutRacer(ISimable* racer) { reinterpret_cast<void(__cdecl*)(ISimable*)>(0x6E99B0)(racer); }
+  inline void ForceAIControl(bool _unk = true) { reinterpret_cast<void(__cdecl*)(bool)>(0x6EA6F0)(_unk); }
+  // Game_IsPracticeMode
+  inline bool IsPracticeMode() { reinterpret_cast<bool(__cdecl*)()>(0x6DFAC0)(); }
   // Game_JumpToCarLot
-  static inline void JumpToCarLot() { reinterpret_cast<void(__cdecl*)()>(0x6DEE30)(); }
+  inline void JumpToCarLot() { reinterpret_cast<void(__cdecl*)()>(0x6DEE30)(); }
   // Game_JumpToSafehouse
-  static inline void JumpToSafehouse() { reinterpret_cast<void(__cdecl*)()>(0x6DEEA0)(); }
+  inline void JumpToSafehouse() { reinterpret_cast<void(__cdecl*)()>(0x6DEEA0)(); }
+  // Game_KnockoutRacer
+  inline void KnockoutRacer(ISimable* racer) { reinterpret_cast<void(__cdecl*)(ISimable*)>(0x6E99B0)(racer); }
   // Game_NavigatePlayerTo
-  static inline void NavigatePlayerTo(GRuntimeInstance* to, GTrigger* trigger) {
+  inline void NavigatePlayerTo(GRuntimeInstance* to, GTrigger* trigger) {
     reinterpret_cast<void(__cdecl*)(GRuntimeInstance*, GTrigger*)>(0x6DEF40)(to, trigger);
   }
   // Game_SabotageEngine
-  static inline void SabotageEngine(ISimable* pTarget, float durationInSeconds) {
+  inline void SabotageEngine(ISimable* pTarget, float durationInSeconds) {
     reinterpret_cast<void(__cdecl*)(ISimable*, float)>(0x6E5760)(pTarget, durationInSeconds);
   }
   // Game_SetAIGoal
-  static inline void SetAIGoal(ISimable* pTarget, const char* goal) {
+  inline void SetAIGoal(ISimable* pTarget, const char* goal) {
     reinterpret_cast<void(__cdecl*)(ISimable*, const char*)>(0x6E5810)(pTarget, goal);
   }
   // Game_ShowPauseMenu
-  static inline void ShowPauseMenu() { reinterpret_cast<void(__cdecl*)()>(0x6DEBA0)(); }
+  inline void ShowPauseMenu() { reinterpret_cast<void(__cdecl*)()>(0x6DEBA0)(); }
   // Game_TotalRacer
-  static inline void TotalRacer(ISimable* racer) { KnockoutRacer(racer); }
+  inline void TotalRacer(ISimable* racer) { KnockoutRacer(racer); }
 
   // custom hashing
-  static inline std::uint32_t bStringHash(const char* cstring) {
+  inline std::uint32_t bStringHash(const char* cstring) {
     return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x436680)(cstring);
   }
-  static inline std::uint32_t bStringHashUpper(const char* cstring) {
+  inline std::uint32_t bStringHashUpper(const char* cstring) {
     return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x4366E0)(cstring);
   }
 
   // custom hashing for fe
-  static inline std::uint32_t FEHashUpper(const char* cstring) {
+  inline std::uint32_t FEHashUpper(const char* cstring) {
     return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x6241D0)(cstring);
   }
 
   // uses 0xABCDEF00 magic
-  static inline std::uint32_t stringhash32(const char* cstring) {
+  inline std::uint32_t stringhash32(const char* cstring) {
     return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x465020)(cstring);
   }
 }  // namespace NFSPluginSDK::ProStreet::Game
