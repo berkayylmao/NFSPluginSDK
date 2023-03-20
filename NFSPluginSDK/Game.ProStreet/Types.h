@@ -80,17 +80,17 @@ namespace NFSPluginSDK::ProStreet {
       struct trafficpattern;
     }  // namespace Gen
 
-    static inline std::uint32_t StringToKey(const char* name) {
+    inline std::uint32_t StringToKey(const char* name) {
       return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x52B8D0)(name);
     }
 
-    static inline Collection* FindCollection(std::uint32_t classKey, std::uint32_t collectionKey) {
+    inline Collection* FindCollection(std::uint32_t classKey, std::uint32_t collectionKey) {
       return reinterpret_cast<Collection*(__cdecl*)(std::uint32_t, std::uint32_t)>(0x52CD40)(classKey, collectionKey);
     }
-    static inline Collection* FindCollection(const char* className, std::uint32_t collectionKey) {
+    inline Collection* FindCollection(const char* className, std::uint32_t collectionKey) {
       return FindCollection(StringToKey(className), collectionKey);
     }
-    static inline Collection* FindCollection(const char* className, const char* collectionName) {
+    inline Collection* FindCollection(const char* className, const char* collectionName) {
       return FindCollection(StringToKey(className), StringToKey(collectionName));
     }
   }  // namespace Attrib

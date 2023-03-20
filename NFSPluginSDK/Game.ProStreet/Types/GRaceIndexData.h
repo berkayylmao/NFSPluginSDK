@@ -30,7 +30,7 @@ namespace NFSPluginSDK::ProStreet {
   struct GRaceIndexData {
     std::uint32_t mKey;
     char          mEventID[10];
-    std::uint32_t mRaceHash;
+    std::uint32_t mRaceHash;  // Attrib::StringToKey for mEventID
     std::uint32_t mFlags;
     float         mLength;
     std::int16_t  mLocalizationTag;
