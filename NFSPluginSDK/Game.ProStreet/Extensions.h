@@ -34,7 +34,7 @@
 #include <NFSPluginSDK/Game.ProStreet/Types/FEngHud.h>      // FEngHud, IHud
 #include <NFSPluginSDK/Game.ProStreet/Types/PVehicle.h>     // PVehicle
 #include <NFSPluginSDK/Game.ProStreet/Types/RBSmackable.h>  // RBSmackable, RigidBody, IRigidBody
-#include <NFSPluginSDK/Game.ProStreet/Types/RBVehicle.h>    // RBVehicle
+#include <NFSPluginSDK/Game.ProStreet/Types/RBGhost.h>      // RBGhost, RBVehicle
 
 namespace NFSPluginSDK::ProStreet {
   //          //
@@ -123,6 +123,24 @@ namespace NFSPluginSDK::ProStreet {
       };
       inline RigidBody* operator|(IRigidBody* iRB, RigidBodyCast_t ext) { return ext(iRB); }
 
+      //                       //
+      // Verified RBGhost cast //
+      //                       //
+
+      struct RBGhostCast_t {
+        RBGhost* operator()(IRigidBody* iRB) const {
+          if (!iRB || !MemoryEditor::Get().ValidateMemory(iRB)) return nullptr;
+          // Verify cast
+          auto* rb    = static_cast<RBGhost*>(iRB);
+          auto  vfptr = *reinterpret_cast<std::uintptr_t*>(rb);
+          // type: RBGhost
+          if (vfptr == 0x9F5C74) return rb;
+          // Bad cast
+          return nullptr;
+        }
+      };
+      inline RBGhost* operator|(IRigidBody* iRB, RBGhostCast_t ext) { return ext(iRB); }
+
       //                           //
       // Verified RBSmackable cast //
       //                           //
@@ -161,6 +179,10 @@ namespace NFSPluginSDK::ProStreet {
     // Try-get IRigidBody as RigidBody
     // Usage: RigidBody* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRigidBody;
     inline const details::RigidBodyCast_t AsRigidBody;
+
+    // Try-get IRigidBody as RBGhost
+    // Usage: RBGhost* myptr = GetRigidBodyPtr() | RigidBodyEx::AsRBGhost;
+    inline const details::RBGhostCast_t AsRBGhost;
 
     // Try-get IRigidBody as RBSmackable
     // Usage: RBSmackable* myptr = GetRigidBodyPtr() | RigidBodyEx::RBSmackable;
