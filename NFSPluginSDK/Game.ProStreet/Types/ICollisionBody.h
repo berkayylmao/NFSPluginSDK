@@ -75,7 +75,7 @@ namespace NFSPluginSDK::ProStreet {
     virtual const UMath::Matrix4& GetMatrix4()                                                 = 0;
     virtual std::uint32_t         SetWorldCollisionMask(std::uint32_t flag)                    = 0;
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x406030)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x402250); }
   };
 }  // namespace NFSPluginSDK::ProStreet
 

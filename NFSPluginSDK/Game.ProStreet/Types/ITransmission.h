@@ -73,7 +73,7 @@ namespace NFSPluginSDK::ProStreet {
     virtual eTransmissionOverride GetTransmissionOverride()                               = 0;
     virtual float                 GetPerfectLaunchError()                                 = 0;
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x404010)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x407F00); }
   };
 }  // namespace NFSPluginSDK::ProStreet
 

@@ -112,8 +112,8 @@ namespace NFSPluginSDK::ProStreet {
     virtual void                        SetBustedTimerToZero()                         = 0;
     virtual Attrib::Gen::pursuitlevels* GetPursuitLevelAttrib()                        = 0;
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4038C0)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x4038C0); }
   };
-}  // namespace NFSPluginSDK::MW05
+}  // namespace NFSPluginSDK::ProStreet
 
 #endif  // NFSPLUGINSDK_GAME_PROSTREET_TYPES_IPURSUIT_H

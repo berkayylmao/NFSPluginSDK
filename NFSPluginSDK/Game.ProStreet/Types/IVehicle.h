@@ -118,6 +118,8 @@ namespace NFSPluginSDK::ProStreet {
     virtual ISimable*   SpawnPart(UCrc32, UCrc32, UCrc32)                                          = 0;
     virtual void        HidePart(UCrc32)                                                           = 0;
     virtual void        ResetPart(UCrc32)                                                          = 0;
+
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x402440); }
   };
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS

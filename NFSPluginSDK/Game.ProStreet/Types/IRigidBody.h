@@ -78,6 +78,8 @@ namespace NFSPluginSDK::ProStreet {
     virtual void                  ConvertWorldToLocal(UMath::Vector3& out, bool normalize)        = 0;
     virtual void                  Debug()                                                         = 0;
     virtual bool                  IsTumbling()                                                    = 0;
+
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x402280); }
   };
 }  // namespace NFSPluginSDK::ProStreet
 

@@ -41,6 +41,8 @@ namespace NFSPluginSDK::ProStreet {
     virtual eInvulnerability GetInvulnerability()                                                 = 0;
     virtual void             SetPlayerReactions(const Attrib::Gen::collisionreactions& reactions) = 0;
     virtual const Attrib::Gen::collisionreactions& GetPlayerReactions()                           = 0;
+
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x402270); }
   };
 }  // namespace NFSPluginSDK::ProStreet
 

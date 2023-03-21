@@ -58,7 +58,7 @@ namespace NFSPluginSDK::ProStreet {
     virtual bool                  GetABSSetting()                    = 0;
     virtual Difficulty            GetDifficultySettings()            = 0;
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x403AA0)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x402AC0); }
   };
 }  // namespace NFSPluginSDK::ProStreet
 

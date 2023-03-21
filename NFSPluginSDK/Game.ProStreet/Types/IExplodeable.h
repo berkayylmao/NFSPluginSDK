@@ -32,7 +32,7 @@ namespace NFSPluginSDK::ProStreet {
     virtual ~IExplodeable();
     virtual void OnExplosion(const UMath::Vector3&, const UMath::Vector3&, float, IExplosion*);
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x6BF9E0)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x712040); }
   };
 }  // namespace NFSPluginSDK::ProStreet
 

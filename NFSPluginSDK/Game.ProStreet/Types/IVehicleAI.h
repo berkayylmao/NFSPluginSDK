@@ -115,7 +115,7 @@ namespace NFSPluginSDK::ProStreet {
     virtual bool                          IsCrewMate(ISimable* target)                                             = 0;
     virtual bool                          IsCopVehicle()                                                           = 0;
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4036A0)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x4028A0); }
   };
 
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS

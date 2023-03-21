@@ -39,7 +39,7 @@ namespace NFSPluginSDK::ProStreet {
     virtual void                  ClearWorldMoment()                                           = 0;
     virtual bool                  IsFacingWrongWay()                                           = 0;
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4087C0)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x405D30); }
   };
 }  // namespace NFSPluginSDK::ProStreet
 

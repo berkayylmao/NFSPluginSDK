@@ -35,7 +35,7 @@ namespace NFSPluginSDK::ProStreet {
     virtual void FetchInput()           = 0;
     virtual void ClearInput()           = 0;
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x403A90)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x4029E0); }
   };
 }  // namespace NFSPluginSDK::ProStreet
 

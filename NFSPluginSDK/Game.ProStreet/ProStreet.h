@@ -28,6 +28,7 @@
 #include <NFSPluginSDK/Game.ProStreet/_IncludeAllTypes.h>
 
 namespace NFSPluginSDK::ProStreet::Variables {
+  inline MemoryFieldWrapper<bool>           AttachmentInPhysics{0xA9D6A7, true};
   inline MemoryFieldWrapper<bool>           CarGuysForceLODS{0xBFBC43, false};
   inline MemoryFieldWrapper<std::uint32_t*> CarPartTypeNameHashTable{0xAEB774, nullptr};
   inline MemoryFieldWrapper<Math::Matrix4>  CarScaleMatrix{0xAEE180, Math::Matrix4()};

@@ -55,7 +55,7 @@ namespace NFSPluginSDK::ProStreet {
     virtual void                            Set911CallTime(float time)                                   = 0;
     virtual float                           Get911CallTime()                                             = 0;
 
-    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*(__cdecl*)()>(0x4061D0)(); }
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x4061D0); }
   };
 }  // namespace NFSPluginSDK::ProStreet
 

@@ -68,6 +68,8 @@ namespace NFSPluginSDK::ProStreet {
     virtual void                     SetCausality(HCAUSE__* p, float time)  = 0;
     virtual HCAUSE__*                GetCausality()                         = 0;
     virtual float                    GetCausalityTime()                     = 0;
+
+    static IHandle* GetIHandle() { return reinterpret_cast<IHandle*>(0x4021C0); }
   };
 }  // namespace NFSPluginSDK::ProStreet
 
