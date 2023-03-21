@@ -49,6 +49,7 @@ namespace NFSPluginSDK::ProStreet {
     std::uint32_t                            mWonRaces[8];
 
     std::uint32_t GetEventCount() { return reinterpret_cast<std::uint32_t(__thiscall*)(GHub*)>(0x419C30)(this); }
+    bool          IsChallenge() { return reinterpret_cast<bool(__thiscall*)(GHub*)>(0x659E10)(this); }
     Hub::OrgBody  GetOrgBody() { return reinterpret_cast<Hub::OrgBody(__thiscall*)(GHub*)>(0x661CE0)(this); }
     bool          HaveAllRacesBeenWon() { return reinterpret_cast<bool(__thiscall*)(GHub*)>(0x659FB0)(this); }
     bool          IsCareer() { return reinterpret_cast<bool(__thiscall*)(GHub*)>(0x531D90)(this); }
