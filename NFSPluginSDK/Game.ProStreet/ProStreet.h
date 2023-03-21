@@ -52,6 +52,7 @@ namespace NFSPluginSDK::ProStreet::Variables {
   inline MemoryFieldWrapper<float>          Tweak_CosmeticDamage{0xA5C5AC, 0.01f, FLT_MIN, FLT_MAX};
   inline MemoryFieldWrapper<float>          Tweak_Level1Damage{0xA5C5A8, 1.0f, FLT_MIN, FLT_MAX};
   inline MemoryFieldWrapper<float>          Tweak_Level2Damage{0xA5C5B0, 2.0f, FLT_MIN, FLT_MAX};
+  inline MemoryFieldWrapper<bool>           Tweak_RunDyno{0xACDD71, false};
   inline MemoryFieldWrapper<float>          Tweak_TotalledDamage{0xA5C5B4, 3.0f, FLT_MIN, FLT_MAX};
   inline MemoryFieldWrapper<bool>           UnlockAllThings{0xBFBC5B, false};
 }  // namespace NFSPluginSDK::ProStreet::Variables
