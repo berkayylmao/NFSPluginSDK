@@ -205,13 +205,20 @@ namespace NFSPluginSDK::ProStreet {
     bool IsFinishReason(FinishReason reason) {
       return reinterpret_cast<bool(__thiscall*)(GRacerInfo*, FinishReason)>(0x656AD0)(this, reason);
     }
-    float     GetDragWheelieDistance() { return mStats.arbitrated.mDragWheelieDistance; }
-    float     GetDriftTotalPoints() { return mStats.arbitrated.mPointTotal; }
-    bool      GetIsHuman() { return reinterpret_cast<bool(__thiscall*)(GRacerInfo*)>(0x66C940)(this); }
-    bool      GetIsLocalPlayer() { return reinterpret_cast<bool(__thiscall*)(GRacerInfo*)>(0x66C9C0)(this); }
-    float     GetRaceTime() { return reinterpret_cast<float(__thiscall*)(GRacerInfo*)>(0x404C90)(this); }
-    ISimable* GetSimable() { return reinterpret_cast<ISimable*(__thiscall*)(GRacerInfo*)>(0x667290)(this); }
-    void      SetFinishReason(FinishReason reason) {
+    float GetDragWheelieDistance() { return mStats.arbitrated.mDragWheelieDistance; }
+    float GetDriftTotalPoints() { return mStats.arbitrated.mPointTotal; }
+    bool  GetIsHuman() { return reinterpret_cast<bool(__thiscall*)(GRacerInfo*)>(0x66C940)(this); }
+    bool  GetIsKnockedOut() { return reinterpret_cast<bool(__thiscall*)(GRacerInfo*)>(0x531C50)(this); }
+    bool  GetIsLocalPlayer() { return reinterpret_cast<bool(__thiscall*)(GRacerInfo*)>(0x66C9C0)(this); }
+    bool  GetIsTotalled() {
+      return mStats.arbitrated.mFinishReason == FinishReason::Totalled ||
+             mStats.arbitrated.mFinishReason == FinishReason::EngineBlown;
+    }
+    std::int32_t GetLapsCompleted() { return mStats.arbitrated.mLapsCompleted; }
+    float        GetRaceTime() { return reinterpret_cast<float(__thiscall*)(GRacerInfo*)>(0x404C90)(this); }
+    ISimable*    GetSimable() { return reinterpret_cast<ISimable*(__thiscall*)(GRacerInfo*)>(0x667290)(this); }
+    void         KnockOut() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x66C6A0)(this); }
+    void         SetFinishReason(FinishReason reason) {
       reinterpret_cast<void(__thiscall*)(GRacerInfo*, FinishReason)>(0x68D980)(this, reason);
     }
     void TotalVehicle() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x671B90)(this); }

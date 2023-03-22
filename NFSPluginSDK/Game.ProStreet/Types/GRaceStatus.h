@@ -134,6 +134,8 @@ namespace NFSPluginSDK::ProStreet {
     virtual void                OnRemovedVehicleCache(IVehicle* ivehicle) override;
     virtual void GetEnabledSelectionSets(GPresentationController&, eastl::list<std::uint32_t>&, bool) override;
 
+    bool IsPracticeMode() { return reinterpret_cast<bool(__thiscall*)(GRaceStatus*)>(0x686340)(this); }
+
     static GRaceStatus* Get() {
       static GRaceStatus** fObj = reinterpret_cast<GRaceStatus**>(0xAB9D7C);
       return *fObj;
