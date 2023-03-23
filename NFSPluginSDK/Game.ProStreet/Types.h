@@ -1453,6 +1453,21 @@ namespace NFSPluginSDK::ProStreet {
     CustomSuspension,
     CustomBrakes
   };
+  enum class ePaintSlot : std::uint32_t {
+    Body,
+    RimsFront,
+    RimsRear,
+    Rollcage,
+    BumperFront,
+    BumperRear,
+    Sideskirt,
+    Hood,
+    Mirror,
+    Spoiler,
+    Window_tint,
+    Roofscoop,
+    Invalid = 13
+  };
   enum class ePlayerSettingsCameras : std::uint8_t {
     Bumper,
     Hood,

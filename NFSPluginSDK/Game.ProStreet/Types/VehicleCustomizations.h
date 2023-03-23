@@ -34,11 +34,11 @@ namespace NFSPluginSDK::ProStreet {
   struct VehicleCustomizations {
     std::int16_t mGUID[5];
     alignas(4) std::uint32_t mCreatorId;
-    char          mCreatorName[32];
-    std::uint32_t mShareNumber;
-    std::int16_t  mInstalledParts[165];
-    std::int8_t   mCustomPaintsValid[12];
-    alignas(4) CarPaintPartRecordPacked mCustomPaints[12];
+    char                        mCreatorName[32];
+    std::uint32_t               mShareNumber;
+    std::int16_t                mInstalledParts[165];
+    std::array<std::int8_t, 12> mCustomPaintsValid;
+    alignas(4) std::array<CarPaintPartRecordPacked, 12> mCustomPaints;
     std::int8_t      mPartBaseMaterials[12];
     BluePrintType    mBluePrintType;
     KitType          mKitType;
