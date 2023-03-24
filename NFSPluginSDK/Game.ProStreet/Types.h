@@ -1550,6 +1550,10 @@ namespace NFSPluginSDK::ProStreet {
   };
   enum class TireCondition : std::uint32_t { Grip, Wet, Flat, Drift, Drag };
 
+  // TODO: Convert to struct
+  namespace DALCareer {
+    enum class eCarDamageLevel : std::uint32_t { Repaired, Level1, Level2, Totaled };
+  }
   namespace FEManager {
     enum class eEntryPoints : std::uint32_t {
       None,
