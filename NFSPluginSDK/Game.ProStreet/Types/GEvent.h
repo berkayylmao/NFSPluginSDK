@@ -33,17 +33,17 @@
 
 namespace NFSPluginSDK::ProStreet {
   struct GEvent {
-    GActivity*                                                                          mEventActivity;
-    eastl::vector<std::uint32_t>                                                        mOpponents;
-    eastl::map<std::uint32_t, GRacerInfo::GRacerHeatStats*, eastl::less<std::uint32_t>> mOpponentStats;
-    unsigned char                                                                       __pad1[4];
-    eastl::map<std::uint32_t, GRacerInfo::GRacerPoints*, eastl::less<std::uint32_t>>    mOpponentPoints;
-    unsigned char                                                                       __pad2[4];
-    GRacerInfo::GRacerHeatStats                                                         mHeatStats[8][4];
-    GRacerInfo::GRacerPoints                                                            mPoints[8];
-    std::int32_t                                                                        mNumHeats;
-    std::int32_t                                                                        mCurrentHeat;
-    bool                                                                                mAscending;
+    GActivity*                                              mEventActivity;
+    eastl::vector<std::uint32_t>                            mOpponents;
+    eastl::map<std::uint32_t, GRacerInfo::GRacerHeatStats*> mOpponentStats;
+    unsigned char                                           __pad1[4];
+    eastl::map<std::uint32_t, GRacerInfo::GRacerPoints*>    mOpponentPoints;
+    unsigned char                                           __pad2[132];
+    GRacerInfo::GRacerHeatStats                             mHeatStats[8][4];
+    GRacerInfo::GRacerPoints                                mPoints[8];
+    std::int32_t                                            mNumHeats;
+    std::int32_t                                            mCurrentHeat;
+    bool                                                    mAscending;
 
     void AssignGridNumbersBasedOnPerformance() { reinterpret_cast<void(__thiscall*)(GEvent*)>(0x68B5D0)(this); }
     std::uint32_t GetEventKey() { return reinterpret_cast<std::uint32_t(__thiscall*)(GEvent*)>(0x6595F0)(this); }

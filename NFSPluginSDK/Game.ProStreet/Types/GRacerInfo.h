@@ -86,7 +86,7 @@ namespace NFSPluginSDK::ProStreet {
       float        mPoundsNOSUsed;
       float        mBestSectorPoints;
       float        mCheckpointTopSpeeds[16];
-      float        mRaceResult;
+      float        mRaceResult; // finish time in seconds
       float        mAccumulatedCheckpointSpeeds;
       float        mDragWheelieDistance;
     };
