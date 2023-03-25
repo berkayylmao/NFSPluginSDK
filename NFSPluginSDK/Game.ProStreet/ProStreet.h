@@ -40,6 +40,7 @@ namespace NFSPluginSDK::ProStreet::Variables {
   inline MemoryFieldWrapper<CARPART_LOD>    ForceTireLOD{0xA79D80, CARPART_LOD::A};
   inline MemoryFieldWrapper<bool>           IsGameplayPaused{0xAB0EDC, false};
   inline MemoryFieldWrapper<bool>           IsRacing{0xAACF5F, false};
+  inline MemoryFieldWrapper<bool>           IsSoundEnabled{0xA9DA00, true};
   inline MemoryFieldWrapper<float>          RealTimeElapsed{0xABB048, 0.0f};
   inline MemoryFieldWrapper<bool>           RearViewModel{0xAEB728, false};
   inline MemoryFieldWrapper<bool>           ShowAllCarsInFE{0xBFBC6E, false};
