@@ -208,7 +208,7 @@ namespace NFSPluginSDK::ProStreet {
     }
     void EnableCollisions() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x66C620)(this); }
     void EnableDamage(bool enableDamage) {
-      reinterpret_cast<void(__thiscall*)(GRacerInfo*, bool)>(0x66C620)(this, enableDamage);
+      reinterpret_cast<void(__thiscall*)(GRacerInfo*, bool)>(0x66D220)(this, enableDamage);
     }
     float GetDragWheelieDistance() { return mStats.arbitrated.mDragWheelieDistance; }
     float GetDriftTotalPoints() { return mStats.arbitrated.mPointTotal; }
