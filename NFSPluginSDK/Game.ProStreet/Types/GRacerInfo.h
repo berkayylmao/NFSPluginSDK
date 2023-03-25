@@ -86,7 +86,7 @@ namespace NFSPluginSDK::ProStreet {
       float        mPoundsNOSUsed;
       float        mBestSectorPoints;
       float        mCheckpointTopSpeeds[16];
-      float        mRaceResult; // finish time in seconds
+      float        mRaceResult;  // finish time in seconds
       float        mAccumulatedCheckpointSpeeds;
       float        mDragWheelieDistance;
     };
@@ -202,8 +202,10 @@ namespace NFSPluginSDK::ProStreet {
       reinterpret_cast<void(__thiscall*)(GRacerInfo*, GCallbackTimer*)>(0x65D190)(this, pTimer);
     }
 
-    bool IsFinishReason(FinishReason reason) {
-      return reinterpret_cast<bool(__thiscall*)(GRacerInfo*, FinishReason)>(0x656AD0)(this, reason);
+    void DisableCollisions() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x66C580)(this); }
+    void EnableCollisions() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x66C620)(this); }
+    void EnableDamage(bool enableDamage) {
+      reinterpret_cast<void(__thiscall*)(GRacerInfo*, bool)>(0x66C620)(this, enableDamage);
     }
     float GetDragWheelieDistance() { return mStats.arbitrated.mDragWheelieDistance; }
     float GetDriftTotalPoints() { return mStats.arbitrated.mPointTotal; }
@@ -217,8 +219,14 @@ namespace NFSPluginSDK::ProStreet {
     std::int32_t GetLapsCompleted() { return mStats.arbitrated.mLapsCompleted; }
     float        GetRaceTime() { return reinterpret_cast<float(__thiscall*)(GRacerInfo*)>(0x404C90)(this); }
     ISimable*    GetSimable() { return reinterpret_cast<ISimable*(__thiscall*)(GRacerInfo*)>(0x667290)(this); }
-    void         KnockOut() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x66C6A0)(this); }
-    void         SetFinishReason(FinishReason reason) {
+    bool         IsFinishReason(FinishReason reason) {
+      return reinterpret_cast<bool(__thiscall*)(GRacerInfo*, FinishReason)>(0x656AD0)(this, reason);
+    }
+    void KnockOut() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x66C6A0)(this); }
+    void SetAIControl(bool enableAIControl) {
+      reinterpret_cast<void(__thiscall*)(GRacerInfo*, bool)>(0x695F60)(this, enableAIControl);
+    }
+    void SetFinishReason(FinishReason reason) {
       reinterpret_cast<void(__thiscall*)(GRacerInfo*, FinishReason)>(0x68D980)(this, reason);
     }
     void TotalVehicle() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x671B90)(this); }
