@@ -203,6 +203,9 @@ namespace NFSPluginSDK::ProStreet {
     }
 
     void DisableCollisions() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x66C580)(this); }
+    void EnableAIControl(bool enableAIControl) {
+      reinterpret_cast<void(__thiscall*)(GRacerInfo*, bool)>(0x695F60)(this, enableAIControl);
+    }
     void EnableCollisions() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x66C620)(this); }
     void EnableDamage(bool enableDamage) {
       reinterpret_cast<void(__thiscall*)(GRacerInfo*, bool)>(0x66C620)(this, enableDamage);
@@ -223,9 +226,6 @@ namespace NFSPluginSDK::ProStreet {
       return reinterpret_cast<bool(__thiscall*)(GRacerInfo*, FinishReason)>(0x656AD0)(this, reason);
     }
     void KnockOut() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x66C6A0)(this); }
-    void SetAIControl(bool enableAIControl) {
-      reinterpret_cast<void(__thiscall*)(GRacerInfo*, bool)>(0x695F60)(this, enableAIControl);
-    }
     void SetFinishReason(FinishReason reason) {
       reinterpret_cast<void(__thiscall*)(GRacerInfo*, FinishReason)>(0x68D980)(this, reason);
     }
