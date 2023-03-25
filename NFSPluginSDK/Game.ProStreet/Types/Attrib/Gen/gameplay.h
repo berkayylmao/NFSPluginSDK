@@ -28,7 +28,15 @@
 #include <NFSPluginSDK/Game.ProStreet/Types/Attrib/Instance.h>
 
 namespace NFSPluginSDK::ProStreet::Attrib::Gen {
-  struct gameplay : Instance {};
+  struct gameplay : Instance {
+    static gameplay TryGetInstance(std::uint32_t key) {
+      gameplay instance;
+      reinterpret_cast<gameplay*(__thiscall*)(gameplay&, std::uint32_t, bool)>(0x4E12B0)(instance, key, false);
+
+      return instance;
+    }
+    static gameplay TryGetInstance(const char* name) { return TryGetInstance(StringToKey(name)); }
+  };
 }  // namespace NFSPluginSDK::ProStreet::Attrib::Gen
 
 #endif  // NFSPLUGINSDK_GAME_PROSTREET_TYPES_ATTRIB_GEN_GAMEPLAY_H

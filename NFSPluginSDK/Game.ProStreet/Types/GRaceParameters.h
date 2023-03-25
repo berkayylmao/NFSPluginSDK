@@ -55,6 +55,10 @@ namespace NFSPluginSDK::ProStreet {
       return reinterpret_cast<GRace::Variant(__cdecl*)(GRace::Type)>(0x657E10)(mIndex->mRaceType);
     }
     float GetRaceLengthMeters() { return reinterpret_cast<float(__thiscall*)(GRaceParameters*)>(0x6872D0)(this); }
+    float GetTrackRecord() { return reinterpret_cast<float(__thiscall*)(GRaceParameters*)>(0x657C60)(this); }
+    std::uint32_t GetTrackRecordHolder() {
+      return reinterpret_cast<std::uint32_t(__thiscall*)(GRaceParameters*)>(0x6829E0)(this);
+    }
   };
 }  // namespace NFSPluginSDK::ProStreet
 
