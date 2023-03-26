@@ -29,10 +29,12 @@
 
 namespace NFSPluginSDK::ProStreet::Variables {
   inline MemoryFieldWrapper<bool>           AttachmentInPhysics{0xA9D6A7, true};
+  inline MemoryFieldWrapper<bool>           CameraDoCollisionCheck{0xA5A28D, false};
   inline MemoryFieldWrapper<bool>           CarGuysForceLODS{0xBFBC43, false};
   inline MemoryFieldWrapper<std::uint32_t*> CarPartTypeNameHashTable{0xAEB774, nullptr};
   inline MemoryFieldWrapper<Math::Matrix4>  CarScaleMatrix{0xAEE180, Math::Matrix4()};
   inline MemoryFieldWrapper<bool>           DisableTotalledState{0xAB9DCD, false};
+  inline MemoryFieldWrapper<bool>           DoCameraShake{0xA5A28C, true};
   inline MemoryFieldWrapper<bool>           DrawCars{0xA79CDC, true};
   inline MemoryFieldWrapper<bool>           EnableEnvMap{0xA61884, true};
   inline MemoryFieldWrapper<CARPART_LOD>    ForceCarLOD{0xA79D7C, CARPART_LOD::A};
