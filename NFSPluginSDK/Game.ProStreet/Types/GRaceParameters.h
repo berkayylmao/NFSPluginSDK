@@ -48,6 +48,7 @@ namespace NFSPluginSDK::ProStreet {
     std::uint32_t GetEventHash() {
       return reinterpret_cast<std::uint32_t(__thiscall*)(GRaceParameters*)>(0x6826F0)(this);
     }
+    char*        GetEventId() { return reinterpret_cast<char*(__thiscall*)(GRaceParameters*)>(0x657C30)(this); }
     std::int32_t GetLocalizationTag() {
       return reinterpret_cast<std::int32_t(__thiscall*)(GRaceParameters*)>(0x657CC0)(this);
     }
