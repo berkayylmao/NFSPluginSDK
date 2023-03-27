@@ -202,6 +202,7 @@ namespace NFSPluginSDK::ProStreet {
       reinterpret_cast<void(__thiscall*)(GRacerInfo*, GCallbackTimer*)>(0x65D190)(this, pTimer);
     }
 
+    void BlowEngine() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x66C840)(this); }
     void DisableCollisions() { reinterpret_cast<void(__thiscall*)(GRacerInfo*)>(0x66C580)(this); }
     void EnableAIControl(bool enableAIControl) {
       reinterpret_cast<void(__thiscall*)(GRacerInfo*, bool)>(0x695F60)(this, enableAIControl);
