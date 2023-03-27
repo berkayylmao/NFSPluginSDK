@@ -49,10 +49,8 @@ namespace NFSPluginSDK::ProStreet {
     FECarRecord* GetCarByIndex(std::uint32_t idx) {
       return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5333B0)(this, idx);
     }
-    std::uint32_t GetNumCars(std::uint32_t) {
-      return reinterpret_cast<std::uint32_t(__thiscall*)(FEPlayerCarDB*)>(0x547C80)(this);
-    }
-    FECarRecord* GetPresetCarRecord(std::uint32_t presetKey) {
+    std::uint32_t GetNumCars() { return reinterpret_cast<std::uint32_t(__thiscall*)(FEPlayerCarDB*)>(0x547C80)(this); }
+    FECarRecord*  GetPresetCarRecord(std::uint32_t presetKey) {
       return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x533370)(this, presetKey);
     }
 
