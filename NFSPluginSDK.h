@@ -52,13 +52,13 @@ namespace NFSPluginSDK {
     /// </summary>
     void** mPDI8Device;
 
-    GameInformation() :
+    constexpr GameInformation() :
         mGame(Game::NotSupported),
         mSzWindowName(nullptr),
         mPHwnd(nullptr),
         mPD3DDevice(nullptr),
         mPDI8Device(nullptr) {}
-    GameInformation(Game game, const char* szWindowName, void** hWnd, void** pD3DDevice, void** pDI8Device) :
+    constexpr GameInformation(Game game, const char* szWindowName, void** hWnd, void** pD3DDevice, void** pDI8Device) :
         mGame(game), mSzWindowName(szWindowName), mPHwnd(hWnd), mPD3DDevice(pD3DDevice), mPDI8Device(pDI8Device) {}
     GameInformation(Game game, std::uintptr_t szWindowName, std::uintptr_t addrHWND, std::uintptr_t addrPD3DDevice,
                     std::uintptr_t addrPDI8Device) :
@@ -69,7 +69,7 @@ namespace NFSPluginSDK {
         mPDI8Device(reinterpret_cast<void**>(addrPDI8Device)) {}
   };
 
-  static inline Game GetCurrentGame() {
+  inline Game GetCurrentGame() {
     if (std::strstr(reinterpret_cast<const char*>(0x789694), "Need for Speed Underground 2")) return Game::U2;
     if (std::strstr(reinterpret_cast<const char*>(0x8AF684), "Need For Speed Most Wanted")) return Game::MW05;
     if (std::strstr(reinterpret_cast<const char*>(0x9E9E94), "Need For Speed Carbon")) return Game::Carbon;
@@ -77,7 +77,7 @@ namespace NFSPluginSDK {
 
     return Game::NotSupported;
   }
-  static inline GameInformation GetInformationOfCurrentGame() {
+  inline GameInformation GetInformationOfCurrentGame() {
     switch (GetCurrentGame()) {
       case Game::U2:
         return GameInformation(Game::U2, 0x78E8F4, 0x870990, 0, 0);
