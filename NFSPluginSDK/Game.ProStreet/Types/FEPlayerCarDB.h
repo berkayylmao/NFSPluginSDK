@@ -43,6 +43,9 @@ namespace NFSPluginSDK::ProStreet {
     BluePrintType                         mLastAwardedKingCarHistoryCarMode;
     std::int8_t                           mInitializingCarStable;
 
+    FECarRecord* CreateNewCustomCar(std::uint32_t handle) {
+      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5604D0)(this, handle);
+    }
     FECarRecord* GetCarRecordByHandle(std::uint32_t handle) {
       return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5332F0)(this, handle);
     }

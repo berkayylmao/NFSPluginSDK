@@ -33,503 +33,6 @@
 #include <NFSPluginSDK/Shared/AllShared.h>
 
 namespace NFSPluginSDK::ProStreet {
-#pragma region Forward declarations
-  namespace Attrib {
-    struct StringKey {
-      std::uint32_t mHash32;
-      const char*   mString;
-
-      StringKey(std::uint32_t hash, const char* str) : mHash32(hash), mString(str) {}
-      StringKey() : StringKey(0, nullptr) {}
-    };
-
-    struct ChunkBlock;
-    struct Class;
-    struct ClassPrivate;
-    struct Collection;
-    struct Database;
-    struct DatabasePrivate;
-    struct DataBlock;
-    struct Definition;
-    struct DependencyNode;
-    struct ExportManager;
-    struct ExportNode;
-    struct ExportPolicyPair;
-    struct HashMap;
-    struct Instance;
-    struct Node;
-    struct PointerNode;
-    struct Private;
-    struct RefSpec;
-    struct Vault;
-
-    namespace Gen {
-      struct aivehicle;
-      struct camerainfo;
-      struct chopperspecs;
-      struct collisionreactions;
-      struct gameplay;
-      struct presetride;
-      struct pursuitescalation;
-      struct pursuitlevels;
-      struct pursuitsupport;
-      struct pvehicle;
-      struct rigidbodyspecs;
-      struct simsurface;
-      struct timeofdaylighting;
-      struct trafficpattern;
-    }  // namespace Gen
-
-    inline std::uint32_t StringToKey(const char* name) {
-      return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x52B8D0)(name);
-    }
-
-    inline Collection* FindCollection(std::uint32_t classKey, std::uint32_t collectionKey) {
-      return reinterpret_cast<Collection*(__cdecl*)(std::uint32_t, std::uint32_t)>(0x52CD40)(classKey, collectionKey);
-    }
-    inline Collection* FindCollection(const char* className, std::uint32_t collectionKey) {
-      return FindCollection(StringToKey(className), collectionKey);
-    }
-    inline Collection* FindCollection(const char* className, const char* collectionName) {
-      return FindCollection(StringToKey(className), StringToKey(collectionName));
-    }
-  }  // namespace Attrib
-
-  namespace CollisionGeometry {
-    struct _V3c;
-    struct _Q4c;
-    struct BoundsHeader;
-    struct Bounds;
-    struct Collection;
-    struct PCloudHeader;
-    struct IBoundable;
-  }  // namespace CollisionGeometry
-
-  namespace DALVehicleCommands {
-    enum class RaceMode : std::uint32_t { Grip, Drift, Drag, Speed, Invalid = UINT32_MAX };
-    enum class DriveTrain : std::uint32_t { FWD, RWD, AWD, Invalid = UINT32_MAX };
-    struct CreateCustomizableCar;
-  }  // namespace DALVehicleCommands
-
-  namespace DamageZone {
-    enum class ID : std::uint32_t { Front, Rear, Left, Right, LeftFront, RightFront, LeftRear, RightRear, Top, Bottom };
-    struct Info;
-  }  // namespace DamageZone
-
-  namespace Dynamics {
-    namespace Collision {
-      struct Geometry;
-      struct Moment;
-      struct Plane;
-    }  // namespace Collision
-
-    struct IEntity;
-  }  // namespace Dynamics
-
-  namespace FECust {
-    enum class VinylAreas : std::uint32_t { Colour0 = 0x0, Colour1 = 0x1, Colour2 = 0x2, Colour3 = 0x3 };
-    enum class SelectableRegion : std::uint32_t {
-      Front,
-      Rear,
-      Side,
-      FrontBumper = Front,
-      RearBumper  = Rear,
-      Skirt       = Side,
-      FrontWheel  = Front,
-      RearWheel   = Rear,
-      FrontTire   = Front,
-      RearTire    = Rear,
-    };
-  }  // namespace FECust
-
-  namespace Hermes {
-    using _h_HHANDLER__ = std::uint32_t;
-  }
-
-  namespace Hub {
-    enum class OrgBody : std::uint32_t {
-      Nitrocide,
-      NoiseBomb,
-      GEffect,
-      RogueSpeed,
-      SuperPromotion,
-      ReactTeam,
-      BattleMachine
-    };
-  }
-
-  namespace Math {
-    using AxlePair      = NFSPluginSDK::AxlePair;
-    using Curve         = NFSPluginSDK::Curve;
-    using VariableArray = NFSPluginSDK::VariableArray;
-    using Vector2       = NFSPluginSDK::Vector2;
-    using Vector3       = NFSPluginSDK::Vector3;
-    using Vector4       = NFSPluginSDK::Vector4;
-    using Matrix4       = NFSPluginSDK::Matrix4;
-
-  }  // namespace Math
-  namespace UMath {
-    using Vector2 = NFSPluginSDK::UVector2;
-    using Vector3 = NFSPluginSDK::UVector3;
-    using Vector4 = NFSPluginSDK::UVector4;
-    using Matrix4 = NFSPluginSDK::UMatrix4;
-  }  // namespace UMath
-
-  namespace Physics {
-    enum class ePerformanceType : std::uint32_t {
-      SimpleTime_0_to_100MPH,
-      SimpleTime_0_to_60MPH,
-      SimpleTime_70_to_150MPH,
-      SimpleTime_100_to_0MPH,
-      SimpleTime_60_to_0MPH,
-      SimpleDistance_60_to_0MPH,
-      SimpleDistance_100_to_0MPH,
-      SimpleTimeQuarterMile,
-      SimpleSpeedQuarterMileMPH,
-      SimpleTime60Feet,
-      SimpleTopspeed,
-      SimpleMax_gs_30MPH,
-      SimpleMax_gs_60MPH,
-      SimpleMax_gs_100MPH,
-      SimpleTimeCorner_200m_40m_300m,
-      SimpleDownforce,
-      SimpleDrag,
-      SimpleFrontToe30MPH,
-      SimpleFrontToe60MPH,
-      SimpleFrontToe100MPH,
-      SimpleCaster,
-      SimpleFrontWeightBias,
-      SimpleBbrake,
-      SimpleSteeringAlignmentTorque,
-      SimpleAeroCG,
-      SimpleRollCenter,
-      SimpleSpringStiffness,
-      SimpleSwaybarStiffness,
-      SimpleShockDigression,
-      SimpleShockValving,
-      SimpleHorsePower,
-      SimpleHorsePowerRPM,
-      SimplePeakTorque,
-      SimplePeakTorqueRPM,
-      SimpleWeight,
-      SimpleWeightToPowerRatio,
-      ComplexGrip,
-      ComplexDrift,
-      ComplexDrag,
-      ComplexWheelie,
-      ComplexSpeedChallenge,
-      ComplexPower,
-      ComplexTraction,
-      ComplexAero,
-      ComplexHandling,
-      ComplexControl,
-      ComplexStability,
-    };
-
-    struct Tunings;
-
-    namespace Info {
-      struct CorrectedPerformance;
-      struct Performance;
-    }  // namespace Info
-
-    namespace Upgrades {
-      enum class Type : std::uint32_t { Tires, Brakes, Chassis, Transmission, Engine, Induction, NOS };
-      struct Package;
-      struct Part;
-      struct Tuning;
-    }  // namespace Upgrades
-  }    // namespace Physics
-
-  namespace Sim {
-    namespace Collision {
-      enum class CollisionType : std::uint32_t { None, Object, World, Ground };
-
-      struct Info;
-      struct IListener;
-    }  // namespace Collision
-
-    struct Activity;
-    struct Entity;
-    struct IActivity;
-    struct IEntity;
-    struct IServiceable;
-    struct ITaskable;
-    struct Object;
-    struct Packet;
-    struct Param;
-  }  // namespace Sim
-
-  namespace UTL {
-    template <typename T, std::size_t nT, std::size_t VectorCapacity = 16>
-    struct FixedVector;
-    template <typename T, std::size_t nT>
-    struct GarbageNode;
-    template <typename T, std::size_t nT>
-    struct Listable;
-    template <typename T, std::size_t nT, typename E, std::size_t nE>
-    struct ListableSet;
-    template <typename T, std::size_t N>
-    struct Vector;
-
-    namespace COM {
-      struct IUnknown;
-      struct Object;
-    }  // namespace COM
-  }    // namespace UTL
-
-  namespace VinylSystem {
-    struct VinylTransformPacked;
-  }
-
-  struct AcidEffect;
-  struct AcidEmitter;
-  struct ActionData;
-  struct ActionRef;
-  struct ActionQueue;
-  struct AdaptivePIDControllerComplicated;
-  struct AdaptivePIDControllerSimple;
-  struct AIAction;
-  struct AIAvoidable;
-  struct AICopManager;
-  struct AIGoal;
-  struct AIPerpVehicle;
-  struct AIPursuit;
-  struct AIRoadBlock;
-  struct AISpawnManager;
-  struct AISplinePath;
-  struct AITarget;
-  struct AIVehicle;
-  struct AIVehicleCopCar;
-  struct AIVehicleEmpty;
-  struct AIVehicleGhost;
-  struct AIVehicleHuman;
-  struct AIVehiclePursuit;
-  struct AIVehicleRacecar;
-  struct AIVehicleTraffic;
-  struct AIWingman;
-  struct ArrayDatum;
-  struct ArrayScroller;
-  struct ArraySlot;
-  struct Attachments;
-  struct AttributeSet;
-  struct AttribVaultPackImage;
-  struct AudioSettings;
-  struct AutoSculpt;
-  struct AutoSculptRegion;
-  struct Behavior;
-  struct BehaviorParams;
-  struct bFile;
-  struct bList;
-  struct BlueprintShareable;
-  template <typename T>
-  struct bPList;
-  struct bPNode;
-  template <typename T>
-  struct bTList;
-  struct bNode;
-  template <typename T>
-  struct bTNode;
-  using bVector2    = Math::Vector2;
-  using bVector3    = Math::Vector3;
-  using bVector4    = Math::Vector4;
-  using bQuaternion = Math::Vector4;
-  using bMatrix4    = Math::Matrix4;
-  struct CareerPursuitScores;
-  struct CareerSettings;
-  struct CarPaintPart;
-  struct CarPaintPartRecord;
-  struct CarPaintPartRecordPacked;
-  struct CarPart;
-  struct CarRenderInfo;
-  struct cFinishedRaceStats;
-  struct cFrontEndDatabase;
-  struct Context;
-  struct CostToStateScores;
-  struct DamageCopCar;
-  struct DamageDragster;
-  struct DamageHeli;
-  struct DamageRacer;
-  struct DamageVehicle;
-  struct DBCarPart;
-  struct DecalLayerPartInfo;
-  struct DLCommandObject;
-  struct EmitterGroup;
-  struct eLightMaterial;
-  struct eModel;
-  struct eSolid;
-  struct eReplacementTextures;
-  struct EventSequencer;
-  struct FEAnimMenu;
-  struct FEAnimMenuLevel;
-  struct FECareerRecord;
-  struct FECarRecord;
-  struct FECustomizationRecord;
-  struct FEHubAnimController;
-  struct FEImage;
-  struct FEImpoundData;
-  struct FEInfractionsData;
-  struct FEKeyboardSettings;
-  struct FEMapHub;
-  struct FEMapStreamer;
-  struct FEMapTier;
-  struct FEngHud;
-  struct FEObject;
-  struct FEPackage;
-  struct FEPlayerCarDB;
-  struct FEString;
-  struct FinishedRaceStatsEntry;
-  struct FloatSpring;
-  struct GameplaySettings;
-  struct GActiveHubSaveData;
-  struct GActivity;
-  struct GCallbackTimer;
-  struct GCareer;
-  struct GCareerElement;
-  struct GCharacter;
-  struct GDamageometer;
-  struct GenericMessage;
-  struct GEventTimer;
-  struct GHub;
-  struct GHubSimHelper;
-  struct GHubWriter;
-  struct GIcon;
-  struct GIOpponent;
-  struct GManager;
-  struct GMilestone;
-  struct GObjectBlock;
-  struct GProgressionActivityWrapper;
-  struct GProStreetGame;
-  struct GRaceBin;
-  struct GRaceIndexData;
-  struct GRaceParameters;
-  struct GRacerInfo;
-  template <typename T>
-  struct Grid;
-  struct GroundSupportRequest;
-  struct GRuntimeInstance;
-  struct GSpeedTrap;
-  struct GTier;
-  struct GTimer;
-  struct GTrigger;
-  struct GVault;
-  using HACTIONQUEUE__ = std::uint32_t;
-  using HACTIVITY__    = std::uint32_t;
-  using HCAUSE__       = std::uint32_t;
-  using HCOLPRIM__     = std::uint32_t;
-  using HMODEL__       = std::uint32_t;
-  using HSIMABLE__     = std::uint32_t;
-  using HSIMPROFILE__  = std::uint32_t;
-  using HSIMSERVICE__  = std::uint32_t;
-  using HSIMTASK__     = std::uint32_t;
-  struct HeavySupport;
-  struct HighScoresDatabase;
-  struct HudElement;
-  struct IAIHelicopter;
-  struct IArticulatedVehicle;
-  struct IAttachable;
-  struct IAttachmentSystem;
-  struct IAttributeable;
-  struct IAudible;
-  struct IBody;
-  struct ICause;
-  struct IChassis;
-  struct ICheater;
-  struct ICollisionBody;
-  struct ICopMgr;
-  struct IDamageable;
-  struct IDamageableVehicle;
-  struct IDamagePhysics;
-  struct IDisposable;
-  struct IDynamicsEntity;
-  struct IEngine;
-  struct IExplodeable;
-  struct IExplosion;
-  struct IFeedback;
-  struct IGarbageCollector;
-  struct IGenericMessage;
-  struct IHandle;
-  struct IHud;
-  struct IInput;
-  struct IInputPlayer;
-  struct IModel;
-  struct InputControls;
-  struct InputMapping;
-  struct InputPlayer;
-  struct IPerpetrator;
-  struct IPlayer;
-  struct IRacer;
-  struct IPursuitAI;
-  struct IRBVehicle;
-  struct IRenderable;
-  struct IResetable;
-  struct IRigidBody;
-  struct IRoadBlock;
-  struct ISimable;
-  struct ISimpleBody;
-  struct ISimpleChopper;
-  struct ISpikeable;
-  struct ISteeringWheel;
-  struct ISuspension;
-  struct ITrafficAI;
-  struct ITransmission;
-  struct IVehicle;
-  struct IVehicleAI;
-  struct IVehicleCache;
-  struct JukeboxEntry;
-  struct LeaderSupport;
-  struct LocalPlayer;
-  struct MilestoneTypeInfo;
-  struct ObjectStateBlockHeader;
-  struct OptionsSettings;
-  struct PackedDecalLayer;
-  struct PackedVinylColor;
-  struct PackedVinylLayer;
-  struct PhysicsObject;
-  struct PidError;
-  struct PInput;
-  struct PlayerSettings;
-  struct PursuitFormation;
-  struct PursuitScore;
-  struct PVehicle;
-  struct RacePreparationInfo;
-  struct RaceSettings;
-  struct RaceTypeHighScores;
-  struct RBTractor;
-  struct RBVehicle;
-  struct ResourceFile;
-  struct RideInfo;
-  struct RigidBody;
-  struct SelectCarCameraMover;
-  struct SimpleChopper;
-  struct SimCollisionMap;
-  struct SimSurface;
-  struct Smackable;
-  struct SmackableParams;
-  struct TextureInfo;
-  struct TimeOfDay;
-  struct Timer;
-  struct TopEvadedPursuitDetail;
-  struct TrackHighScore;
-  template <typename T, std::size_t N>
-  struct UCircularQueue;
-  struct UCrc32;
-  struct UserProfile;
-  struct VehicleBehavior;
-  struct VehicleCustomizations;
-  struct VehicleParams;
-  struct VideoSettings;
-  struct VinylColorPartInfo;
-  struct VinylLayerPartInfo;
-  struct WCollider;
-  struct WorldModel;
-  struct WRoadNav;
-  struct WRoadNavInfluence;
-  struct WTrigger;
-  struct WWorldPos;
-
-#pragma endregion
-
 #pragma region Enums
 
   enum class ActionID : std::uint32_t {
@@ -685,7 +188,7 @@ namespace NFSPluginSDK::ProStreet {
     ACTION_FLUSH
   };
   enum class BluePrintNumber : std::uint32_t { BluePrint1, BluePrint2, BluePrint3 };
-  enum class BluePrintType : std::uint32_t { Grip, Drift, Drag, SpeedChallenge };
+  enum class BluePrintType : std::uint32_t { Grip, Drift, Drag, SpeedChallenge, Invalid = std::numeric_limits<std::uint32_t>::max() };
   enum class CarSlotId : std::uint32_t {
     BadgingBumperSetFront,
     BadgingBumperSetRear,
@@ -1733,6 +1236,503 @@ namespace NFSPluginSDK::ProStreet {
 #if defined(_WIN32)  // DEFINE_ENUM_FLAG_OPERATORS
   DEFINE_ENUM_FLAG_OPERATORS(eVehicleParamFlags)
 #endif
+
+#pragma endregion
+
+#pragma region Forward declarations
+  namespace Attrib {
+    struct StringKey {
+      std::uint32_t mHash32;
+      const char*   mString;
+
+      StringKey(std::uint32_t hash, const char* str) : mHash32(hash), mString(str) {}
+      StringKey() : StringKey(0, nullptr) {}
+    };
+
+    struct ChunkBlock;
+    struct Class;
+    struct ClassPrivate;
+    struct Collection;
+    struct Database;
+    struct DatabasePrivate;
+    struct DataBlock;
+    struct Definition;
+    struct DependencyNode;
+    struct ExportManager;
+    struct ExportNode;
+    struct ExportPolicyPair;
+    struct HashMap;
+    struct Instance;
+    struct Node;
+    struct PointerNode;
+    struct Private;
+    struct RefSpec;
+    struct Vault;
+
+    namespace Gen {
+      struct aivehicle;
+      struct camerainfo;
+      struct chopperspecs;
+      struct collisionreactions;
+      struct gameplay;
+      struct presetride;
+      struct pursuitescalation;
+      struct pursuitlevels;
+      struct pursuitsupport;
+      struct pvehicle;
+      struct rigidbodyspecs;
+      struct simsurface;
+      struct timeofdaylighting;
+      struct trafficpattern;
+    }  // namespace Gen
+
+    inline std::uint32_t StringToKey(const char* name) {
+      return reinterpret_cast<std::uint32_t(__cdecl*)(const char*)>(0x52B8D0)(name);
+    }
+
+    inline Collection* FindCollection(std::uint32_t classKey, std::uint32_t collectionKey) {
+      return reinterpret_cast<Collection*(__cdecl*)(std::uint32_t, std::uint32_t)>(0x52CD40)(classKey, collectionKey);
+    }
+    inline Collection* FindCollection(const char* className, std::uint32_t collectionKey) {
+      return FindCollection(StringToKey(className), collectionKey);
+    }
+    inline Collection* FindCollection(const char* className, const char* collectionName) {
+      return FindCollection(StringToKey(className), StringToKey(collectionName));
+    }
+  }  // namespace Attrib
+
+  namespace CollisionGeometry {
+    struct _V3c;
+    struct _Q4c;
+    struct BoundsHeader;
+    struct Bounds;
+    struct Collection;
+    struct PCloudHeader;
+    struct IBoundable;
+  }  // namespace CollisionGeometry
+
+  namespace DALVehicleCommands {
+    using RaceMode = BluePrintType;
+    enum class DriveTrain : std::uint32_t { FWD, RWD, AWD, Invalid = UINT32_MAX };
+    struct CreateCustomizableCar;
+  }  // namespace DALVehicleCommands
+
+  namespace DamageZone {
+    enum class ID : std::uint32_t { Front, Rear, Left, Right, LeftFront, RightFront, LeftRear, RightRear, Top, Bottom };
+    struct Info;
+  }  // namespace DamageZone
+
+  namespace Dynamics {
+    namespace Collision {
+      struct Geometry;
+      struct Moment;
+      struct Plane;
+    }  // namespace Collision
+
+    struct IEntity;
+  }  // namespace Dynamics
+
+  namespace FECust {
+    enum class VinylAreas : std::uint32_t { Colour0 = 0x0, Colour1 = 0x1, Colour2 = 0x2, Colour3 = 0x3 };
+    enum class SelectableRegion : std::uint32_t {
+      Front,
+      Rear,
+      Side,
+      FrontBumper = Front,
+      RearBumper  = Rear,
+      Skirt       = Side,
+      FrontWheel  = Front,
+      RearWheel   = Rear,
+      FrontTire   = Front,
+      RearTire    = Rear,
+    };
+  }  // namespace FECust
+
+  namespace Hermes {
+    using _h_HHANDLER__ = std::uint32_t;
+  }
+
+  namespace Hub {
+    enum class OrgBody : std::uint32_t {
+      Nitrocide,
+      NoiseBomb,
+      GEffect,
+      RogueSpeed,
+      SuperPromotion,
+      ReactTeam,
+      BattleMachine
+    };
+  }
+
+  namespace Math {
+    using AxlePair      = NFSPluginSDK::AxlePair;
+    using Curve         = NFSPluginSDK::Curve;
+    using VariableArray = NFSPluginSDK::VariableArray;
+    using Vector2       = NFSPluginSDK::Vector2;
+    using Vector3       = NFSPluginSDK::Vector3;
+    using Vector4       = NFSPluginSDK::Vector4;
+    using Matrix4       = NFSPluginSDK::Matrix4;
+
+  }  // namespace Math
+  namespace UMath {
+    using Vector2 = NFSPluginSDK::UVector2;
+    using Vector3 = NFSPluginSDK::UVector3;
+    using Vector4 = NFSPluginSDK::UVector4;
+    using Matrix4 = NFSPluginSDK::UMatrix4;
+  }  // namespace UMath
+
+  namespace Physics {
+    enum class ePerformanceType : std::uint32_t {
+      SimpleTime_0_to_100MPH,
+      SimpleTime_0_to_60MPH,
+      SimpleTime_70_to_150MPH,
+      SimpleTime_100_to_0MPH,
+      SimpleTime_60_to_0MPH,
+      SimpleDistance_60_to_0MPH,
+      SimpleDistance_100_to_0MPH,
+      SimpleTimeQuarterMile,
+      SimpleSpeedQuarterMileMPH,
+      SimpleTime60Feet,
+      SimpleTopspeed,
+      SimpleMax_gs_30MPH,
+      SimpleMax_gs_60MPH,
+      SimpleMax_gs_100MPH,
+      SimpleTimeCorner_200m_40m_300m,
+      SimpleDownforce,
+      SimpleDrag,
+      SimpleFrontToe30MPH,
+      SimpleFrontToe60MPH,
+      SimpleFrontToe100MPH,
+      SimpleCaster,
+      SimpleFrontWeightBias,
+      SimpleBbrake,
+      SimpleSteeringAlignmentTorque,
+      SimpleAeroCG,
+      SimpleRollCenter,
+      SimpleSpringStiffness,
+      SimpleSwaybarStiffness,
+      SimpleShockDigression,
+      SimpleShockValving,
+      SimpleHorsePower,
+      SimpleHorsePowerRPM,
+      SimplePeakTorque,
+      SimplePeakTorqueRPM,
+      SimpleWeight,
+      SimpleWeightToPowerRatio,
+      ComplexGrip,
+      ComplexDrift,
+      ComplexDrag,
+      ComplexWheelie,
+      ComplexSpeedChallenge,
+      ComplexPower,
+      ComplexTraction,
+      ComplexAero,
+      ComplexHandling,
+      ComplexControl,
+      ComplexStability,
+    };
+
+    struct Tunings;
+
+    namespace Info {
+      struct CorrectedPerformance;
+      struct Performance;
+    }  // namespace Info
+
+    namespace Upgrades {
+      enum class Type : std::uint32_t { Tires, Brakes, Chassis, Transmission, Engine, Induction, NOS };
+      struct Package;
+      struct Part;
+      struct Tuning;
+    }  // namespace Upgrades
+  }    // namespace Physics
+
+  namespace Sim {
+    namespace Collision {
+      enum class CollisionType : std::uint32_t { None, Object, World, Ground };
+
+      struct Info;
+      struct IListener;
+    }  // namespace Collision
+
+    struct Activity;
+    struct Entity;
+    struct IActivity;
+    struct IEntity;
+    struct IServiceable;
+    struct ITaskable;
+    struct Object;
+    struct Packet;
+    struct Param;
+  }  // namespace Sim
+
+  namespace UTL {
+    template <typename T, std::size_t nT, std::size_t VectorCapacity = 16>
+    struct FixedVector;
+    template <typename T, std::size_t nT>
+    struct GarbageNode;
+    template <typename T, std::size_t nT>
+    struct Listable;
+    template <typename T, std::size_t nT, typename E, std::size_t nE>
+    struct ListableSet;
+    template <typename T, std::size_t N>
+    struct Vector;
+
+    namespace COM {
+      struct IUnknown;
+      struct Object;
+    }  // namespace COM
+  }    // namespace UTL
+
+  namespace VinylSystem {
+    struct VinylTransformPacked;
+  }
+
+  struct AcidEffect;
+  struct AcidEmitter;
+  struct ActionData;
+  struct ActionRef;
+  struct ActionQueue;
+  struct AdaptivePIDControllerComplicated;
+  struct AdaptivePIDControllerSimple;
+  struct AIAction;
+  struct AIAvoidable;
+  struct AICopManager;
+  struct AIGoal;
+  struct AIPerpVehicle;
+  struct AIPursuit;
+  struct AIRoadBlock;
+  struct AISpawnManager;
+  struct AISplinePath;
+  struct AITarget;
+  struct AIVehicle;
+  struct AIVehicleCopCar;
+  struct AIVehicleEmpty;
+  struct AIVehicleGhost;
+  struct AIVehicleHuman;
+  struct AIVehiclePursuit;
+  struct AIVehicleRacecar;
+  struct AIVehicleTraffic;
+  struct AIWingman;
+  struct ArrayDatum;
+  struct ArrayScroller;
+  struct ArraySlot;
+  struct Attachments;
+  struct AttributeSet;
+  struct AttribVaultPackImage;
+  struct AudioSettings;
+  struct AutoSculpt;
+  struct AutoSculptRegion;
+  struct Behavior;
+  struct BehaviorParams;
+  struct bFile;
+  struct bList;
+  struct BlueprintShareable;
+  template <typename T>
+  struct bPList;
+  struct bPNode;
+  template <typename T>
+  struct bTList;
+  struct bNode;
+  template <typename T>
+  struct bTNode;
+  using bVector2    = Math::Vector2;
+  using bVector3    = Math::Vector3;
+  using bVector4    = Math::Vector4;
+  using bQuaternion = Math::Vector4;
+  using bMatrix4    = Math::Matrix4;
+  struct CareerPursuitScores;
+  struct CareerSettings;
+  struct CarPaintPart;
+  struct CarPaintPartRecord;
+  struct CarPaintPartRecordPacked;
+  struct CarPart;
+  struct CarRenderInfo;
+  struct cFinishedRaceStats;
+  struct cFrontEndDatabase;
+  struct Context;
+  struct CostToStateScores;
+  struct DamageCopCar;
+  struct DamageDragster;
+  struct DamageHeli;
+  struct DamageRacer;
+  struct DamageVehicle;
+  struct DBCarPart;
+  struct DecalLayerPartInfo;
+  struct DLCommandObject;
+  struct EmitterGroup;
+  struct eLightMaterial;
+  struct eModel;
+  struct eSolid;
+  struct eReplacementTextures;
+  struct EventSequencer;
+  struct FEAnimMenu;
+  struct FEAnimMenuLevel;
+  struct FECareerRecord;
+  struct FECarRecord;
+  struct FECustomizationRecord;
+  struct FEHubAnimController;
+  struct FEImage;
+  struct FEImpoundData;
+  struct FEInfractionsData;
+  struct FEKeyboardSettings;
+  struct FEMapHub;
+  struct FEMapStreamer;
+  struct FEMapTier;
+  struct FEngHud;
+  struct FEObject;
+  struct FEPackage;
+  struct FEPlayerCarDB;
+  struct FEString;
+  struct FinishedRaceStatsEntry;
+  struct FloatSpring;
+  struct GameplaySettings;
+  struct GActiveHubSaveData;
+  struct GActivity;
+  struct GCallbackTimer;
+  struct GCareer;
+  struct GCareerElement;
+  struct GCharacter;
+  struct GDamageometer;
+  struct GenericMessage;
+  struct GEventTimer;
+  struct GHub;
+  struct GHubSimHelper;
+  struct GHubWriter;
+  struct GIcon;
+  struct GIOpponent;
+  struct GManager;
+  struct GMilestone;
+  struct GObjectBlock;
+  struct GProgressionActivityWrapper;
+  struct GProStreetGame;
+  struct GRaceBin;
+  struct GRaceIndexData;
+  struct GRaceParameters;
+  struct GRacerInfo;
+  template <typename T>
+  struct Grid;
+  struct GroundSupportRequest;
+  struct GRuntimeInstance;
+  struct GSpeedTrap;
+  struct GTier;
+  struct GTimer;
+  struct GTrigger;
+  struct GVault;
+  using HACTIONQUEUE__ = std::uint32_t;
+  using HACTIVITY__    = std::uint32_t;
+  using HCAUSE__       = std::uint32_t;
+  using HCOLPRIM__     = std::uint32_t;
+  using HMODEL__       = std::uint32_t;
+  using HSIMABLE__     = std::uint32_t;
+  using HSIMPROFILE__  = std::uint32_t;
+  using HSIMSERVICE__  = std::uint32_t;
+  using HSIMTASK__     = std::uint32_t;
+  struct HeavySupport;
+  struct HighScoresDatabase;
+  struct HudElement;
+  struct IAIHelicopter;
+  struct IArticulatedVehicle;
+  struct IAttachable;
+  struct IAttachmentSystem;
+  struct IAttributeable;
+  struct IAudible;
+  struct IBody;
+  struct ICause;
+  struct IChassis;
+  struct ICheater;
+  struct ICollisionBody;
+  struct ICopMgr;
+  struct IDamageable;
+  struct IDamageableVehicle;
+  struct IDamagePhysics;
+  struct IDisposable;
+  struct IDynamicsEntity;
+  struct IEngine;
+  struct IExplodeable;
+  struct IExplosion;
+  struct IFeedback;
+  struct IGarbageCollector;
+  struct IGenericMessage;
+  struct IHandle;
+  struct IHud;
+  struct IInput;
+  struct IInputPlayer;
+  struct IModel;
+  struct InputControls;
+  struct InputMapping;
+  struct InputPlayer;
+  struct IPerpetrator;
+  struct IPlayer;
+  struct IRacer;
+  struct IPursuitAI;
+  struct IRBVehicle;
+  struct IRenderable;
+  struct IResetable;
+  struct IRigidBody;
+  struct IRoadBlock;
+  struct ISimable;
+  struct ISimpleBody;
+  struct ISimpleChopper;
+  struct ISpikeable;
+  struct ISteeringWheel;
+  struct ISuspension;
+  struct ITrafficAI;
+  struct ITransmission;
+  struct IVehicle;
+  struct IVehicleAI;
+  struct IVehicleCache;
+  struct JukeboxEntry;
+  struct LeaderSupport;
+  struct LocalPlayer;
+  struct MilestoneTypeInfo;
+  struct ObjectStateBlockHeader;
+  struct OptionsSettings;
+  struct PackedDecalLayer;
+  struct PackedVinylColor;
+  struct PackedVinylLayer;
+  struct PhysicsObject;
+  struct PidError;
+  struct PInput;
+  struct PlayerSettings;
+  struct PursuitFormation;
+  struct PursuitScore;
+  struct PVehicle;
+  struct RacePreparationInfo;
+  struct RaceSettings;
+  struct RaceTypeHighScores;
+  struct RBTractor;
+  struct RBVehicle;
+  struct ResourceFile;
+  struct RideInfo;
+  struct RigidBody;
+  struct SelectCarCameraMover;
+  struct SimpleChopper;
+  struct SimCollisionMap;
+  struct SimSurface;
+  struct Smackable;
+  struct SmackableParams;
+  struct TextureInfo;
+  struct TimeOfDay;
+  struct Timer;
+  struct TopEvadedPursuitDetail;
+  struct TrackHighScore;
+  template <typename T, std::size_t N>
+  struct UCircularQueue;
+  struct UCrc32;
+  struct UserProfile;
+  struct VehicleBehavior;
+  struct VehicleCustomizations;
+  struct VehicleParams;
+  struct VideoSettings;
+  struct VinylColorPartInfo;
+  struct VinylLayerPartInfo;
+  struct WCollider;
+  struct WorldModel;
+  struct WRoadNav;
+  struct WRoadNavInfluence;
+  struct WTrigger;
+  struct WWorldPos;
 
 #pragma endregion
 

@@ -25,6 +25,7 @@
 #pragma once
 
 #include <NFSPluginSDK/Game.ProStreet/Types.h>
+#include <NFSPluginSDK/Game.ProStreet/Types/Attrib/Gen/presetride.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/CarPaintPartRecordPacked.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/DBCarPart.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/PackedDecalLayer.h>
@@ -64,6 +65,11 @@ namespace NFSPluginSDK::ProStreet {
     }
     const std::int16_t& GetInstalledPart(CarSlotId slotId) const noexcept {
       return mInstalledParts[static_cast<std::size_t>(slotId)];
+    }
+
+    void ReadFrom(const Attrib::Gen::presetride& preset) {
+      reinterpret_cast<void(__thiscall*)(VehicleCustomizations*, const Attrib::Gen::presetride&)>(0x785EE0)(this,
+                                                                                                            preset);
     }
   };
 }  // namespace NFSPluginSDK::ProStreet

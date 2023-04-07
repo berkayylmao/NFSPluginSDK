@@ -59,8 +59,8 @@ namespace NFSPluginSDK::ProStreet {
     std::uint32_t GetCost() const {
       return reinterpret_cast<std::uint32_t(__thiscall*)(const FECarRecord*)>(0x5485A0)(this);
     }
-    DALVehicleCommands::RaceMode GetMode() const {
-      return reinterpret_cast<DALVehicleCommands::RaceMode(__thiscall*)(const FECarRecord*)>(0x548D90)(this);
+    BluePrintType GetMode() const {
+      return reinterpret_cast<BluePrintType(__thiscall*)(const FECarRecord*)>(0x548D90)(this);
     }
 
     FECustomizationRecord* GetCustomizationRecord() const {
@@ -77,6 +77,10 @@ namespace NFSPluginSDK::ProStreet {
       if (!fecr) return nullptr;
 
       return &fecr->mBluePrints[static_cast<std::size_t>(fecr->mActiveBlueprint)];
+    }
+
+    void SetMode(BluePrintType mode) {
+      reinterpret_cast<void(__thiscall*)(FECarRecord*, BluePrintType)>(0x5584A0)(this, mode);
     }
   };
 }  // namespace NFSPluginSDK::ProStreet
