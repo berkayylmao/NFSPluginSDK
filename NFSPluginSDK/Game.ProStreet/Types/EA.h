@@ -179,6 +179,12 @@ namespace NFSPluginSDK::ProStreet::EA {
       enum class TaskResult : std::int32_t { SUCCESS, FAILED, CANCELLED, RETRY, UNKNOWN };
 
       virtual ~IFEMemcard();
+      virtual void          OnAutosave()                                                           = 0;
+      virtual const char*   GetProfileName()                                                       = 0;
+      virtual const char*   GetCareerName()                                                        = 0;
+      virtual const char*   GetWiiSecondBannerComment()                                            = 0;
+      virtual const char*   MemcardGameTitleFull()                                                 = 0;
+      virtual std::int32_t  GetSizeofGameTitleFull()                                               = 0;
       virtual const char*   MemcardGameTitleShort()                                                = 0;
       virtual std::int32_t  GetSizeofGameTitleShort()                                              = 0;
       virtual bool          NeedToShowAutosaveOverwriteMsg()                                       = 0;
@@ -207,7 +213,6 @@ namespace NFSPluginSDK::ProStreet::EA {
       virtual void          OnSignInComplete()                                                     = 0;
       virtual void          OnShowSystemUtility(bool)                                              = 0;
       virtual bool          IsFindingOldEntries()                                                  = 0;
-      virtual const char*   GetAutosaveConfirm()                                                   = 0;
       virtual const char*   GetFirstAutosaveWarning()                                              = 0;
       virtual const char*   GetSecondAutosaveWarning()                                             = 0;
       virtual const char*   GetConfirmAutosaveOverwrite()                                          = 0;
@@ -224,6 +229,8 @@ namespace NFSPluginSDK::ProStreet::EA {
       virtual bool          IsAutoSaveEnabled()                                                    = 0;
       virtual bool          IsMemcardEnabled()                                                     = 0;
       virtual bool          IsMemcardVersioningEnabled()                                           = 0;
+      virtual bool          IsMemCardBusy_DAL()                                                    = 0;
+      virtual bool          IsMemCardEnabled_DAL()                                                 = 0;
       virtual bool          IsLogReplaying();
       virtual bool          IsCapturing();
       virtual void          OnUpdateLogReplay();
@@ -285,6 +292,13 @@ namespace NFSPluginSDK::ProStreet::EA {
       bool                        mIsFindingOldEntries;
       bool                        mDidJustLoad;
       std::int32_t                mNumSaveFiles;
+
+      virtual void            DefaultAllData();
+      virtual MemcardShadow*  GetCurrentShadow();
+      virtual MCStateManager* GetMCStateManager();
+      virtual bool            GetDidJustLoad();
+      virtual void            SetDidJustLoad(bool value);
+      virtual void            TaskDone();
 
       static NFSMemcardInterface* Get() {
         static auto** spInstance = reinterpret_cast<NFSMemcardInterface**>(0xAB29B0);
