@@ -562,8 +562,23 @@ namespace NFSPluginSDK::ProStreet {
       DAL_OPPONENT_FINISH_REASON                       = 0x4656,
       DAL_OPPONENT_CASH_REWARD                         = 0x4657,
       DAL_OPPONENT_NAME                                = 0x4658,
-      DAL_OPPONENT_FINISH_REASON_STRING                = 0x4659
+      DAL_OPPONENT_FINISH_REASON_STRING                = 0x4659,
+      DAL_MEMCARD_IS_CAREER_STARTED                    = 0x4A38,
+      DAL_MEMCARD_IS_ALIAS_LOADED                      = 0x4A39,
+      DAL_MEMCARD_IS_ALIAS_SAVED                       = 0x4A3A,
+      DAL_MEMCARD_IS_CAREER_LOADED                     = 0x4A3B,
+      DAL_MEMCARD_IS_CAREER_SAVED                      = 0x4A3C,
+      DAL_MEMCARD_HEADER_LOCATION                      = 0x4A3D,
+      DAL_MEMCARD_HEADER_COMPLETE_PERCENT              = 0x4A3E,
+      DAL_MEMCARD_NUMBER_ALIAS_FOUND                   = 0x4A3F,
+      DAL_MEMCARD_NUMBER_CAREER_FOUND                  = 0x4A40,
+      DAL_MEMCARD_DATA_VERSION_NUMBER                  = 0x4A41,
+      DAL_MEMCARD_IS_CARD_BUSY                         = 0x4A42,
+      DAL_MEMCARD_IS_ENABLED                           = 0x4A43,
+      DAL_MEMCARD_RESET_REQUESTED                      = 0x4A44,
+      DAL_MEMCARD_UPDATE                               = 0x4A45
     };
+    using enum Code;
 
     Type mInterfaceIndex;
 
