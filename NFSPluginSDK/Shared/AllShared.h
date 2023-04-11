@@ -24,6 +24,7 @@
 #define NFSPLUGINSDK_SHARED_ALLSHARED_H
 #pragma once
 
+#include <algorithm>
 #include <array>
 #include <cstdint>
 

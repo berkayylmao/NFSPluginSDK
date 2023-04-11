@@ -32,6 +32,7 @@
 #include <NFSPluginSDK/Game.ProStreet/Types/FEInfractionsData.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/FELinkedPool.h>
 #include <NFSPluginSDK/Game.ProStreet/Types/FEVinylRecord.h>
+#include <NFSPluginSDK/Game.ProStreet/Types/Game.h>
 
 namespace NFSPluginSDK::ProStreet {
   struct FEPlayerCarDB {
@@ -43,14 +44,27 @@ namespace NFSPluginSDK::ProStreet {
     BluePrintType                         mLastAwardedKingCarHistoryCarMode;
     std::int8_t                           mInitializingCarStable;
 
-    FECarRecord* CreateNewCustomCar(std::uint32_t handle) {
-      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5604D0)(this, handle);
+    FECarRecord* CreateNewCustomCar(std::uint32_t fromHandle) {
+      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5604D0)(this, fromHandle);
+    }
+    FECarRecord* GetCarRecordByFECarName(const char* feCarName) {
+      return GetCarRecordByFEHash(Game::FEHashUpper(feCarName));
+    }
+    FECarRecord* GetCarRecordByFEHash(std::uint32_t feHash) {
+      auto it = std::find_if(mCarTable.begin(), mCarTable.end(),
+                             [&](const FECarRecord& p) { return p.GetNameHash() == feHash; });
+      if (it != mCarTable.end()) return &*it;
+      return nullptr;
     }
     FECarRecord* GetCarRecordByHandle(std::uint32_t handle) {
-      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5332F0)(this, handle);
+      auto it =
+          std::find_if(mCarTable.begin(), mCarTable.end(), [&](const FECarRecord& p) { return p.Handle == handle; });
+      if (it != mCarTable.end()) return &*it;
+      return nullptr;
     }
     FECarRecord* GetCarByIndex(std::uint32_t idx) {
-      return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5333B0)(this, idx);
+      if (idx < 0 || idx > mCarTable.size()) return nullptr;
+      return &mCarTable.at(idx);
     }
     std::uint32_t GetNumCars() { return reinterpret_cast<std::uint32_t(__thiscall*)(FEPlayerCarDB*)>(0x547C80)(this); }
     FECarRecord*  GetPresetCarRecord(std::uint32_t presetKey) {
