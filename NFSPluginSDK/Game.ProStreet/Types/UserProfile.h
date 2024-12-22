@@ -44,6 +44,7 @@ namespace NFSPluginSDK::ProStreet {
     Gameplay::GHubRecord mCurrentRaceDayConfig;
     RaceDaySettings      mRaceDaySettings;
     std::uint32_t        mOnlineXPLevel;
+    std::uint32_t        mEasterEggs;
 
     static inline UserProfile (**spUserProfiles)[4] = reinterpret_cast<UserProfile (**)[4]>(0xAB0EAC);
 
