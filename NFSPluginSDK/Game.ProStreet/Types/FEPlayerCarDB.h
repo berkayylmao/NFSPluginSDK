@@ -36,13 +36,18 @@
 
 namespace NFSPluginSDK::ProStreet {
   struct FEPlayerCarDB {
-    std::array<FECarRecord, 410>          mCarTable;
-    std::array<FECustomizationRecord, 80> mCustomizations;
-    std::array<FECareerRecord, 80>        mCareerRecords;
-    unsigned char                         __pad[0x122C8];
-    std::uint32_t                         mLastAwardedKingCarHistoryCarHandle;
-    BluePrintType                         mLastAwardedKingCarHistoryCarMode;
-    std::int8_t                           mInitializingCarStable;
+    std::array<FECarRecord, 410>                                                    mCarTable;
+    std::array<FECustomizationRecord, 80>                                           mCustomizations;
+    std::array<FECareerRecord, 80>                                                  mCareerRecords;
+    FELinkedPool<FECarPartRecord, std::uint16_t, std::uint16_t, 9500, 65535, 16383> CarParts;
+    std::uint32_t                                                                   SoldHistoryBounty;
+    std::uint16_t                                                                   SoldHistoryNumEvadedPursuits;
+    std::uint16_t                                                                   SoldHistoryNumBustedPursuits;
+    FEInfractionsData                                                               SoldHistoryUnservedInfractions;
+    FEInfractionsData                                                               SoldHistoryServedInfractions;
+    std::uint32_t                                                                   mLastAwardedKingCarHistoryCarHandle;
+    BluePrintType                                                                   mLastAwardedKingCarHistoryCarMode;
+    bool                                                                            mInitializingCarStable;
 
     FECarRecord* CreateNewCustomCar(std::uint32_t fromHandle) {
       return reinterpret_cast<FECarRecord*(__thiscall*)(FEPlayerCarDB*, std::uint32_t)>(0x5604D0)(this, fromHandle);

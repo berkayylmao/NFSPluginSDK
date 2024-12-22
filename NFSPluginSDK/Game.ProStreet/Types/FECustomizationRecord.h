@@ -56,19 +56,19 @@ namespace NFSPluginSDK::ProStreet {
     VehicleCustomizations mBluePrints[3];
     FEKitInfo             mBodykitInfo;
     FEBlueprintStats      mBlueprintStats[3];
-    FEBitField<32>        mPhysicsInventory;
     Physics::Tunings      mTunings[3];
     eCustomTuningType     mActiveTuning;
     std::int32_t          mPreset;
-    std::int8_t           mHandle;
+    std::uint8_t          mHandle;
     std::int32_t          mType;
     FEPaintSV             mPaint[3][12];
     float                 mPerformanceDetuning[3];
-    float                 mRideHeight;
     bool                  mFastVinyl;
     bool                  mBlueprintIsLocked[3];
     BluePrintNumber       mActiveBlueprint;
     bool                  mBlueprintUsed[3];
+    eOnlineBlueprintType  mOnlineType[3];
+    std::uint8_t          mBlueprintTier[3];
 
     VehicleCustomizations* GetActiveBluePrint() { return &mBluePrints[static_cast<std::size_t>(mActiveBlueprint)]; }
   };
