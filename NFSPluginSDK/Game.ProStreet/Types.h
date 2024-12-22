@@ -187,8 +187,14 @@ namespace NFSPluginSDK::ProStreet {
     ACTION_UNPLUGGED,
     ACTION_FLUSH
   };
-  enum class BluePrintNumber : std::uint32_t { BluePrint1, BluePrint2, BluePrint3 };
-  enum class BluePrintType : std::uint32_t { Grip, Drift, Drag, SpeedChallenge, Invalid = std::numeric_limits<std::uint32_t>::max() };
+  enum class BluePrintNumber : std::uint32_t { BluePrint1, BluePrint2, BluePrint3, INVALID };
+  enum class BluePrintType : std::uint32_t {
+    Grip,
+    Drift,
+    Drag,
+    SpeedChallenge,
+    Invalid = std::numeric_limits<std::uint32_t>::max()
+  };
   enum class CarSlotId : std::uint32_t {
     BadgingBumperSetFront,
     BadgingBumperSetRear,
@@ -943,6 +949,7 @@ namespace NFSPluginSDK::ProStreet {
     COMMON_DRIFT_PERFECT_ENTRY       = 0x195
   };
   enum class eMiniMapModes : std::uint8_t { Off, Static };
+  enum class eOnlineBlueprintType : std::int32_t { None, Shared, DLC };
   enum class ePackageType : std::uint32_t {
     QuickPower,
     QuickHandling,
@@ -1445,7 +1452,7 @@ namespace NFSPluginSDK::ProStreet {
       struct Part;
       struct Tuning;
     }  // namespace Upgrades
-  }    // namespace Physics
+  }  // namespace Physics
 
   namespace Sim {
     namespace Collision {
@@ -1482,7 +1489,7 @@ namespace NFSPluginSDK::ProStreet {
       struct IUnknown;
       struct Object;
     }  // namespace COM
-  }    // namespace UTL
+  }  // namespace UTL
 
   namespace VinylSystem {
     struct VinylTransformPacked;
