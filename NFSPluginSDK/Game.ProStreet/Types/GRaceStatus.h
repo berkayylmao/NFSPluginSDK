@@ -136,6 +136,10 @@ namespace NFSPluginSDK::ProStreet {
 
     bool IsPracticeMode() { return reinterpret_cast<bool(__thiscall*)(GRaceStatus*)>(0x686340)(this); }
 
+    GRacerInfo* GetRacerInfo(ISimable* of) {
+      return reinterpret_cast<GRacerInfo*(__thiscall*)(GRaceStatus*, ISimable*)>(0x00671EC0)(this, of);
+    }
+
     static GRaceStatus* Get() {
       static GRaceStatus** fObj = reinterpret_cast<GRaceStatus**>(0xAB9D7C);
       return *fObj;
