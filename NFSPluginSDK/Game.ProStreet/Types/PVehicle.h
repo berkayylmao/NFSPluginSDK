@@ -104,6 +104,7 @@ namespace NFSPluginSDK::ProStreet {
     Physics::Info::CorrectedPerformance mPerformance;
     bool                                mPerformanceValid;
     const char*                         mCacheName;
+    unsigned char                       __unk1[0x10];
     IAttachmentSystem*                  mAttachmentSystem;
     bool                                mPhysicsOnly;
     HSIMTASK__*                         mAttachmentSystemUpdate;
